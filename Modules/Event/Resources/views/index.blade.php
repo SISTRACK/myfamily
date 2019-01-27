@@ -2,12 +2,12 @@
 
 @section('page-title')
     {{'Available Family Event'}}
-@endsetion
+@endsection
 
 @section('page-content')
 <div class="col-md-8 col-md-offset-2">
-    <div class="widget">			
-        <h4 class="bg-primary innerAll half border-bottom margin-none">Event</h4>
+    <div class="widget">
+
         <div class="innerAll half bg-primary border-bottom">
             <div class="media innerAll half margin-none">
                 <div class="pull-left">
@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+
         <div class="innerAll half bg-gray border-bottom">
             <div class="media innerAll half margin-none">
                 <div class="pull-left">
@@ -48,26 +49,32 @@
         
     </div>
     <div class="widget">
-        <div class="border-bottom">
-            <div class="innerAll half">
-                <span class="badge badge-primary pull-right">{{'20 People'}}</span> Attending
-                <div class="innerAll half text-center">
-                    <a href="#" class="border-none">
-                        <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
-                    </a>
-                </div>
+        <div class="innerAll half">
+            <span class="badge badge-success">{{'1'}}</span> Attending
+            <div class="innerAll half text-center">
+                <a href="#" class="border-none">
+                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                </a>
             </div>
         </div>
-        <div class="border-bottom">
-            <div class="innerAll half">
-                <span class="badge badge-primary badge-stroke pull-right">{{'49 People'}}</span> Might Go
-                <div class="innerAll half text-center">
-                    <a href="#" class="border-none">
-                        <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
-                    </a>	
-                </div>
+    
+        <div class="innerAll half">
+            <span class="badge badge-warning">{{'4'}}</span> Might Go
+            <div class="innerAll half text-center">
+                <a href="#" class="border-none">
+                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                </a>
+                <a href="#" class="border-none">
+                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                </a>
+                <a href="#" class="border-none">
+                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                </a>
+                <a href="#" class="border-none">
+                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                </a>	
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 @stop
