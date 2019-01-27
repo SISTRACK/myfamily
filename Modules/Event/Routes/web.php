@@ -13,4 +13,5 @@
 
 Route::prefix('event')->middleware(['auth','hasFamily'])->group(function() {
     Route::get('/', 'EventController@index');
+    Route::get('/register', 'EventController@store')->name('event.register');
 });
