@@ -11,6 +11,6 @@
 |
 */
 
-Route::middleware(['auth','hasFamily'])->group(function() {
-    Route::get('/family_event', 'EventController@index');
+Route::prefix('event')->middleware(['auth','hasFamily'])->group(function() {
+    Route::get('/', 'EventController@index');
 });
