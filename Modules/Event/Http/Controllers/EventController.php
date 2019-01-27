@@ -33,6 +33,12 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($event =new RegisterFamilyEvent($request->all()) && session('error') == null){
+            //broadcast(new NewFamilyEvent($event))->toOthers();
+        }
+        return redirect('/event');
+      
     }
 
     /**
