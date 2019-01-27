@@ -2,9 +2,16 @@
 
 namespace Modules\Event\Events;
 
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class RegisterNewFamilyEvent
+class RegisterNewFamilyEvent implements ShouldBroadcastNow
 {
     use SerializesModels;
 
@@ -13,7 +20,7 @@ class RegisterNewFamilyEvent
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($event)
     {
         //
     }
