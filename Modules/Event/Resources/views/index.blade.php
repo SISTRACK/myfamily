@@ -18,6 +18,7 @@
                     <p class="strong margin-none">{{'Time: From 2:30am'}}  {{'To 4:00'}}</p>
                     <p class="strong margin-none">{{'20 days Remain To Event'}}</p>
                     <p class="strong margin-none">{{'Announcer : isah labbo'}}</p>
+                    <p class="strong margin-none">{{'Family : Galbi'}}</p>
                 </div>
             </div>
         </div>
