@@ -5,6 +5,8 @@ namespace Modules\Event\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Events\RegisterFamilyEvent;
+use Modules\Events\FamilyEventFormRequest;
 
 class EventController extends Controller
 {
@@ -31,11 +33,11 @@ class EventController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(FamilyEventFormRequest $request)
     {
 
         if($event =new RegisterFamilyEvent($request->all()) && session('error') == null){
-            //broadcast(new NewFamilyEvent($event))->toOthers();
+            //broadcast(new RegisterNewFamilyEvent($event))->toOthers();
         }
         return redirect('/event');
       
