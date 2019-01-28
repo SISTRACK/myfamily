@@ -14,7 +14,11 @@ class FamilyEventFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'address' => 'required',
+            'end' => 'required',
+            'start' => 'required',
+            'date' => 'required',
+            'message' => 'required|string'
         ];
     }
 
