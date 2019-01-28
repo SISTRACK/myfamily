@@ -13,9 +13,9 @@ class Family extends Model
     	return $this->hasOne('Modules\Admin\Entities\Admin');
     }
 
-    public function familyEvent()
+    public function familyEvents()
     {
-    	return $this->hasMany(FamilyEvent::class);
+    	return $this->hasMany('Modules\Event\Entities\FamilyEvent');
     }
     public function subFamilies()
     {

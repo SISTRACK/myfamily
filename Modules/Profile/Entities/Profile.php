@@ -24,9 +24,9 @@ class Profile extends Model
     {
         return $this->belongsTo(Religion::class);
     }
-    public function event()
+    public function events()
     {
-    	return $this->hasMany(Envet::class);
+    	return $this->hasMany('Modules\Event\Entities\Event');
     }
 
     public function death()

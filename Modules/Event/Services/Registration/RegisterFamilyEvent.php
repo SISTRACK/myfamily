@@ -21,6 +21,6 @@ class RegisterFamilyEvent
 		$this->family = $this->profile->family;
 		$this->data = $data;
 		$this->validateEvent();
-		$this->registerThisEvent()
+		$this->registerThisEvent();
 	}
 }

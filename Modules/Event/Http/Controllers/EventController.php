@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Events\RegisterFamilyEvent;
-use Modules\Events\FamilyEventFormRequest;
+use Modules\Event\Http\Requests\FamilyEventFormRequest;
+use Modules\Event\Services\Registration\RegisterFamilyEvent as FamilyEvent;
 
 class EventController extends Controller
 {
@@ -16,7 +17,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event::new_event');
+        return view('event::index');
     }
 
     /**
@@ -25,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('event::create');
+        return view('event::new_event');
     }
 
     /**
@@ -36,7 +37,7 @@ class EventController extends Controller
     public function store(FamilyEventFormRequest $request)
     {
 
-        if($event =new RegisterFamilyEvent($request->all()) && session('error') == null){
+        if($event =new FamilyEvent($request->all()) && session('error') == null){
             //broadcast(new RegisterNewFamilyEvent($event))->toOthers();
         }
         return redirect('/event');
