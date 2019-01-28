@@ -13,7 +13,7 @@ class Family extends Model
     	return $this->hasOne('Modules\Admin\Entities\Admin');
     }
 
-    public function familyEvents()
+    public function events()
     {
     	return $this->hasMany('Modules\Event\Entities\FamilyEvent');
     }

@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Events\RegisterFamilyEvent;
 use Modules\Event\Http\Requests\FamilyEventFormRequest;
 use Modules\Event\Services\Registration\RegisterFamilyEvent as FamilyEvent;
+use Modules\Family\Services\Family\RootFamily;
 
 class EventController extends Controller
 {
@@ -17,7 +18,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('event::index');
+        $root = new RootFamily(Auth()->User()->profile->family);
+        
+        return view('event::index',['family'=> $root->family]);
     }
 
     /**

@@ -6,6 +6,8 @@
 
 @section('page-content')
 <div class="col-md-8 col-md-offset-2">
+    @if($family)
+    @foreach($family->events as $famil_event)
     <div class="widget">
 
         <div class="innerAll half bg-primary border-bottom">
@@ -14,11 +16,11 @@
                 <i class="fa fa-fw fa-calendar fa-3x"></i>
                 </div>
                 <div class="media-body">
-                    <p class="strong lead margin-none">{{'12/12/2019'}}</p>
-                    <p class="strong margin-none">{{'Time: From 2:30am'}}  {{'To 4:00'}}</p>
+                    <p class="strong lead margin-none">{{date('D/M/Y',$famil_event->event->date)}}</p>
+                    <p class="strong margin-none">{{'Time: From '.date('h:m:s a',$famil_event->event->start_time)}}  {{'To '.date('h:m:s a',$famil_event->event->end_time)}}</p>
                     <p class="strong margin-none">{{'20 days Remain To Event'}}</p>
-                    <p class="strong margin-none">{{'Announcer : isah labbo'}}</p>
-                    <p class="strong margin-none">{{'Family : Galbi'}}</p>
+                    <p class="strong margin-none">{{'Announcer : '.$famil_event->event->profile->user->first_name.''.$famil_event->event->profile->user->last_name}}</p>
+                    <p class="strong margin-none">{{'Family : '.$famil_event->family->name}}</p>
                 </div>
             </div>
         </div>
@@ -29,15 +31,15 @@
                     <i class="fa fa-fw fa-map-marker fa-3x"></i>
                 </div>
                 <div class="media-body">
-                    <p class="strong lead margin-none">{{'Marriage Event'}}</p>
-                    <p class="strong margin-none">{{'Address :  No 31 Ali akilu road sokoto'}}</p>
+                    <p class="strong lead margin-none">{{$famil_event->event->description}}</p>
+                    <p class="strong margin-none">{{'Address : '.$famil_event->event->address}}</p>
                 </div> 
             </div>
         </div>
         
         <div class="row"> <br>
             <div class="col-md-12 h4 text-center text-primary">
-                    {{'the marriage of isah labbo and sumayya aliyu bagudo'}}
+                    {{$famil_event->event->description}}
             </div>
         </div>
            
@@ -77,5 +79,9 @@
             </div>
         </div>
     </div>
+@endforeach
+@else
+<div class="alert alert-danger">{{'There is no vailable event'}}</div>
+@endif
 </div>
 @stop
