@@ -34,9 +34,9 @@ class Profile extends Model
         return $this->hasOne('Modules\Death\Entities\Death');
     }
     
-    public function attendEvent()
+    public function attendEvents()
     {
-    	return $this->hasMany(AttendEvent::class);
+    	return $this->hasMany('Modules\Event\Entities\AttendEvent');
     }
 
     public function userMessage()

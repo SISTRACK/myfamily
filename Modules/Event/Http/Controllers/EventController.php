@@ -19,7 +19,6 @@ class EventController extends Controller
     public function index()
     {
         $root = new RootFamily(Auth()->User()->profile->family);
-        
         return view('event::index',['family'=> $root->family]);
     }
 
@@ -51,11 +50,31 @@ class EventController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function show()
+    public function attaid($id)
     {
-        return view('event::show');
+        $profile = Auth()->User()->profile;
+        if($profile->attendEvent->where(['event_id'=>$id,'status'=>1])->get()->isNotEmpty()){
+            session()->flash('error',['Sorry you are already in the list of people that attend this event']);        
+        }else{
+            $event = $profile->attendEvent->where(['event_id'=>$id,'status'=>2])->get();
+            if($event->isNotEmpty()){
+                $event->update(['status'=>1]);
+                session()->flash('message','Congratulation you are remove from people that might attend and added to the list of people  attend this event');
+            }else{
+                $profile->attendEvents->create([
+                'event_id'=>$id,
+                'status'=>1
+                ]);
+                session()->flash('message','Congratulation you are added to the list of people  attend this event');
+            }
+            
+        }
+        return redirect()->route('event.index'
     }
-
+    public function maightAttaid($id)
+    {
+        dd($id);
+    }
     /**
      * Show the form for editing the specified resource.
      * @return Response
