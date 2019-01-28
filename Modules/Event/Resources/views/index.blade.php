@@ -7,7 +7,7 @@
 @section('page-content')
 <div class="col-md-8 col-md-offset-2">
     @if($family)
-    @foreach($family->events as $famil_event)
+    @foreach($family->events as $family_event        )
     <div class="widget">
 
         <div class="innerAll half bg-primary border-bottom">
@@ -16,11 +16,11 @@
                 <i class="fa fa-fw fa-calendar fa-3x"></i>
                 </div>
                 <div class="media-body">
-                    <p class="strong lead margin-none">{{date('D/M/Y',$famil_event->event->date)}}</p>
-                    <p class="strong margin-none">{{'Time: From '.date('h:m:s a',$famil_event->event->start_time)}}  {{'To '.date('h:m:s a',$famil_event->event->end_time)}}</p>
-                    <p class="strong margin-none">{{'20 days Remain To Event'}}</p>
-                    <p class="strong margin-none">{{'Announcer : '.$famil_event->event->profile->user->first_name.''.$famil_event->event->profile->user->last_name}}</p>
-                    <p class="strong margin-none">{{'Family : '.$famil_event->family->name}}</p>
+                    <p class="strong lead margin-none">{{date('D/M/Y',$family_event->event->date)}}</p>
+                    <p class="strong margin-none">{{'Time: From '.date('h:m:s a',$family_event->event->start_time)}}  {{'To '.date('h:m:s a',$family_event->event->end_time)}}</p>
+                    <p class="strong margin-none">{{'Remains '.$family_event->event->timeRemain($family_event->event->date,$family_event->event->start_time)}}</p>
+                    <p class="strong margin-none">{{'Announcer : '.$family_event->event->profile->user->first_name.''.$family_event->event->profile->user->last_name}}</p>
+                    <p class="strong margin-none">{{'Family : '.$family_event->family->name}}</p>
                 </div>
             </div>
         </div>
@@ -31,22 +31,22 @@
                     <i class="fa fa-fw fa-map-marker fa-3x"></i>
                 </div>
                 <div class="media-body">
-                    <p class="strong lead margin-none">{{$famil_event->event->description}}</p>
-                    <p class="strong margin-none">{{'Address : '.$famil_event->event->address}}</p>
+                    <p class="strong lead margin-none">{{$family_event->event->description}}</p>
+                    <p class="strong margin-none">{{'Address : '.$family_event->event->address}}</p>
                 </div> 
             </div>
         </div>
         
         <div class="row"> <br>
             <div class="col-md-12 h4 text-center text-primary">
-                    {{$famil_event->event->description}}
+                    {{$family_event->event->description}}
             </div>
         </div>
            
         <div class="innerAll text-center half">
             <div class="btn-group">
                 <a href="#" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Attend</a>
-                <a href="#"class="btn btn-default">I might go</a>
+                <a href="#" class="btn btn-default">I might go</a>
                 </div>
         </div>
         
