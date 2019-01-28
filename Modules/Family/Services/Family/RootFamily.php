@@ -26,7 +26,8 @@ class RootFamily
 				$this->family = Family::find($root->family->id);
 				$this->getRoot($this->family);
 			}
+        }else{
+		    return $this->family;
         }
-		return $this->family;
 	}
 }

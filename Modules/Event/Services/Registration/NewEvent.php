@@ -26,6 +26,8 @@ trait NewEvent
 		if(session('error') == null){
 			$this->NewEvent();
             $this->familyEvent();
+            session()->flash('message','Event registered successfully');
 		}
 	}
+	
 }
