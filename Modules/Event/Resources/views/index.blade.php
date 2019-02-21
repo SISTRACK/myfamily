@@ -45,8 +45,8 @@
            
         <div class="innerAll text-center half">
             <div class="btn-group">
-                <a href="#" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Attend</a>
-                <a href="#" class="btn btn-default">I might go</a>
+                <a href="event/{{$family_event->event->id}}/attend" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Attend</a>
+                <a href="event/{{$family_event->event->id}}/might_attend" class="btn btn-default">I might go</a>
                 </div>
         </div>
         

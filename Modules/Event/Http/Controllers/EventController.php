@@ -50,7 +50,7 @@ class EventController extends Controller
      * Show the specified resource.
      * @return Response
      */
-    public function attaid($id)
+    public function attend($id)
     {
         $profile = Auth()->User()->profile;
         if($profile->attendEvent->where(['event_id'=>$id,'status'=>1])->get()->isNotEmpty()){
@@ -69,11 +69,27 @@ class EventController extends Controller
             }
             
         }
-        return redirect()->route('event.index'
+        return redirect()->route('event.index');
     }
-    public function maightAttaid($id)
+    public function maightAttend($id)
     {
-        dd($id);
+        $profile = Auth()->User()->profile;
+        if($profile->attendEvent->where(['event_id'=>$id,'status'=>2])->get()->isNotEmpty()){
+            session()->flash('error',['Sorry you are already in the list of people that might attend this event']);
+        }else{
+            $event = $profile->attendEvent->where(['event_id'=>$id,'status'=>1])->get();
+            if($event->isNotEmpty()){
+                $event->update(['status'=>2]);
+                session()->flash('message','Congratulation you are remove from people attending and added to the list of people  that might attend this event');
+            }else{
+                $profile->attendEvents->create([
+                'event_id'=>$id,
+                'status'=>2
+                ]);
+                session()->flash('message','Congratulation you are added to the list of people  attend this event');
+            }
+        }
+        return redirect()->route('event.index');
     }
     /**
      * Show the form for editing the specified resource.
