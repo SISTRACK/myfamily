@@ -69,7 +69,6 @@
                             <a href="#" class="user-list-item">
                                 <div class="avatar">
                                     <img src="assets/images/users/male.png" alt="">
-                                    
                                 </div>
                                 <div class="user-desc">
                                     <span class="name">Patricia Beach</span>
