@@ -28,10 +28,10 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
     }
 
-    protected function schedule(Schedule $schedule)
-    {
-       $schedule->command('personal-data-export:clean')->daily();
-    }
+    // protected function schedule(Schedule $schedule)
+    // {
+    //    $schedule->command('personal-data-export:clean')->daily();
+    // }
 
     /**
      * Register the commands for the application.
