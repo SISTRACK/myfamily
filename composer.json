@@ -10,7 +10,7 @@
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "^9.0",
-        "laravel/framework": "5.7.*",
+        "laravel/framework": "5.8.*",
         "laravel/nova": "*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",

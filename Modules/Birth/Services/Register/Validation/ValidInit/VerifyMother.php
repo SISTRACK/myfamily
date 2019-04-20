@@ -18,6 +18,7 @@ trait VerifyMother
         $user_id = $this->motherUserIds();
         $flag = false;
         foreach($user_id as $id){
+            dd($this->status->wife[0]);
 			if($this->status->wife[0]->profile->user->id == $id){
 			    $flag = true;
 			}

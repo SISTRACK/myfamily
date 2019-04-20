@@ -6,6 +6,7 @@ use \Stripe\Stripe;
 use \Stripe\Plan;
 use \Stripe\Token;
 use \Stripe\Invoice;
+use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,4 +91,11 @@ Route::group(['middleware'=>'auth'], function(){
    
 });
 Route::get('/subscribe', function (){
+});
+
+
+Route::PersonalDataExports('personal-data-exports');
+
+Route::get('create_personal_data', function(){
+    dispatch(new CreatePersonalDataExportJob(auth()->user());
 });
