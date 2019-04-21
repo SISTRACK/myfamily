@@ -137,4 +137,20 @@ class Profile extends Model
         return $this->hasOne('Modules\Address\Entities\WorkIn');
     }
 
+    public function birth()
+    {
+        $count = [];
+        
+        if($this->gender->name = 'Male'){
+            foreach ($this->husband->father->births as $birth) {
+                $count[] = $birth;
+            }
+        }else{
+            foreach ($this->wife->mother->births as $birth) {
+                $count[] = $birth;
+            }
+        } 
+        return $count;
+    }
+
 }

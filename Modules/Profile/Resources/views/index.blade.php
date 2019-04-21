@@ -34,7 +34,7 @@
                                 <p class="text-muted font-13"><strong>Marriage :</strong> <span class="m-l-15">{{$user->profile->maritalStatus != null ? $user->profile->maritalStatus->name : 'Not Available'}}</span></p>
 
                                 @if($user->profile->husband != null || $user->profile->wife != null)
-                                    <p class="text-muted font-13"><strong>Birth :</strong> <span class="m-l-15">{{$user->profile->husband->father != null ? count($user->profile->husband->father->birth()) : 0}}</span></p>
+                                    <p class="text-muted font-13"><strong>Birth :</strong> <span class="m-l-15">{{$user->profile->husband->father != null ? count($user->profile->birth()) : 0}}</span></p>
                                 @endif
 
                             </div>
