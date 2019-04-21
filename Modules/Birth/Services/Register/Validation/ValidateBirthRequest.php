@@ -9,21 +9,15 @@ use Modules\Birth\Services\Register\Validation\ValidInit\VerifyChild;
 
 trait ValidateBirthRequest
 
-{
-
-
-	public $father;
-
-	public $mother;
-    
+{    
     public $error = [];
 
-    use VerifyMother, VerifyBirth, VerifyChild, ParentInit;
+    use VerifyMother, VerifyBirth, VerifyChild;
 
 	public function Validate(){
-
+        
         $this->nameAuth();
-        $this->parent();
+
         if($this->mother != null){
             $this->nextBirthAuth();
         }else{
@@ -31,7 +25,7 @@ trait ValidateBirthRequest
         }
         if($this->error == null){
 		    $this->createUser();
-        	$this->handleParent();
+        	//$this->handleParent();
         	$this->handleChildProfile();
         }
 

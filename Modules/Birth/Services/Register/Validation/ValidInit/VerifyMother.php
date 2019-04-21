@@ -11,15 +11,21 @@ use Modules\Family\Entities\Family;
 trait VerifyMother
 
 {
-	
+	public $wife;
     public function nameAuth()
     {
     	$this->wifeStatus();
         $user_id = $this->motherUserIds();
         $flag = false;
         foreach($user_id as $id){
-            dd($this->status->wife[0]);
-			if($this->status->wife[0]->profile->user->id == $id){
+
+			if($this->id($this->data['mother_first_name']) == $id){
+                $this->wife = User::find($id)->profile->wife;
+                
+                if(null != $this->wife->mother){
+                    $this->mother = $this->wife->mother()->firstOrCreate([]);
+                }
+                
 			    $flag = true;
 			}
         }
@@ -31,7 +37,7 @@ trait VerifyMother
     private function wifeStatus()
     {
     	foreach(Family::find(session('family')['family'])->admin->profile->husband->marriages as $marriage){
-            if($marriage->is_active == 1 && $marriage->wife->status_id == Status::find($this->data['mother_status'])->id){
+            if($marriage->is_active == 1 && $marriage->wife->status_id == $this->data['mother_status']){
             	$this->status = $marriage->wife->status;
             }
     	}
@@ -40,11 +46,20 @@ trait VerifyMother
     public function motherUserIds()
     {
     	$id = [];
-
-        foreach(User::where(['first_name'=>$this->data['mother_first_name'],
-    		'last_name'=>$this->data['mother_last_name']])->get() as $user){
+        foreach(User::where(['first_name'=>$this->name($this->data['mother_first_name']),
+    		'last_name'=>$this->name($this->data['mother_last_name'])])->get() as $user){
         	$id[] = $user->id;
         }
         return $id;
+    }
+
+    protected function id($name)
+    {
+        return substr($name, strpos($name, '.')+1);
+    }
+
+    protected function name($name)
+    {
+        return substr($name, 0, strpos($name, '.'));
     }
 }

@@ -5,6 +5,7 @@ namespace Modules\Birth\Services\Register;
 use Modules\Birth\Services\Register\Validation\ValidateBirthRequest;
 
 use Modules\Birth\Entities\Deliver;
+use App\User;
 
 class NewBirth
 
@@ -16,17 +17,22 @@ class NewBirth
     
     private $deliver_id;
 
+    private $father;
+
+    private $mother;
+
 	public function __construct($data)
 	{
 		$this->data = $data;
-
+        $this->defineParent();
 		$this->register();
 	}
-
+    
     public function register()
     {
         $this->Validate();
         if($this->error == null){
+
         	empty($this->data['midwifery_name']) || empty($this->data['midwifery_surname']) 
 
 	        	? $this->deliver_id = 0 
@@ -38,9 +44,23 @@ class NewBirth
         }
     }
 
+    protected function defineParent()
+    {
+        $wife = User::find($this->id($this->data['mother_first_name']))->profile->wife;
+        
+        $this->mother = $wife->mother()->firstOrCreate([]);
+        
+        foreach ($wife->marriages as $marriage) {
+            if($marriage->is_active == 1){
+                $this->father = $marriage->husband->father()->firstOrCreate([]);
+            }
+        }
+
+    }
+
+
     public function registerBirth()
     {
-  
         $birth = $this->mother->births()->create([
         	'child_id'=>$this->child->id,
         	'father_id'=>$this->father->id,

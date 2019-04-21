@@ -26,7 +26,7 @@
 				<select name="mother_first_name" class= form-control>
 					<option values="">Mother First Name</option>
 					@foreach($mothers as $mother)
-                        <option value="{{$mother['name']}}">{{$mother['name']}}</option>
+                        <option value="{{$mother['name'].'.'.$mother['user_id']}}">{{$mother['name']}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -37,7 +37,7 @@
 				<select name="mother_last_name" class= form-control>
 					<option values="">Mother Last Name</option>
 					@foreach($mothers as $mother)
-                        <option value="{{$mother['surname']}}">{{$mother['surname']}}</option>
+                        <option value="{{$mother['surname'].'.'.$mother['user_id']}}">{{$mother['surname']}}</option>
 					@endforeach
 				</select>
 			</div>

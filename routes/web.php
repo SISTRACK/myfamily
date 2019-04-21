@@ -22,6 +22,16 @@ use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function(){
+       $name = 'isah.12';
+        echo 'the name is '.substr($name, 0, strpos($name, '.')).'----------';
+       
+   
+        echo 'the id is '.substr($name, strpos($name, '.')+1);
+    
+});
+
 Auth::routes();
 Route::get('/create_plan', function(){
 	Stripe::setApiKey(env('STRIPE_SECRET'));

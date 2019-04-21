@@ -29,4 +29,12 @@ class Wife extends Model
         return $this->hasOne('Modules\Birth\Entities\Mother');
     }
     
+    public function validDatOfMarriage()
+    {
+        foreach ($this->marriages as $marriage) {
+            if($marriage->is_active == 1){
+                return $marriage->date;
+            }
+        }
+    }
 }

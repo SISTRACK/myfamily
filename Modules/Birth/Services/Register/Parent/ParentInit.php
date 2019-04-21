@@ -2,21 +2,25 @@
 
 namespace Modules\Birth\Services\Register\Parent;
 
+use App\User;
 trait ParentInit
 {
-	public function mother()
+	public $father;
+	public $mother;
+	
+	public function createMother()
 	{
-        $this->mother = $this->status->wife[0]->mother()->firstOrCreate([]);
+        $this->mother = User::find($this->id($this->data['mother_first_name']))->profile->wife->mother()->firstOrCreate([]);
 	}
 
-	public function father()
+	public function createFather()
 	{
-        $this->father = $this->status->wife[0]->marriages[0]->husband->father()->firstOrCreate([]);
+        $this->father = User::find($this->data['user_id'])->profile->husband->father()->firstOrCreate([]);
 	}
 
 	public function handleParent()
 	{
-		$this->father();
-		$this->mother();
+		$this->father = $this->createFather();
+		$this->mother = $this->createMother();
 	}
 }
