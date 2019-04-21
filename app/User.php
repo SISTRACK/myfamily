@@ -37,22 +37,22 @@ class User extends Authenticatable
      *
      * @var array
      */
-    public function personalDataExportName(string $realFilename): string {
-        $userName = Str::slug($this->email);
+    // public function personalDataExportName(string $realFilename): string {
+    //     $userName = Str::slug($this->email);
 
-        return "personal-data-{$userName}.zip";
-    }
+    //     return "personal-data-{$userName}.zip";
+    // }
     /**
      * This will select all the information to store in the personal data as zip.
      *
      * @var array
      */
-    public function selectPersonalData(PersonalDataSelection $personalDataSelection) {
-        $personalDataSelection
-            ->add('user.json', ['last_name'=>$this->last_name,'fisrt_name' => $this->first_name, 'email' => $this->email,'phone'=>$this->phone])
-            ->addFile(storage_path("avatars/{$this->id}.jpg");
-            ->addFile('other-user-data.xml', 's3');
-    }
+    // public function selectPersonalData(PersonalDataSelection $personalDataSelection) {
+    //     $personalDataSelection
+    //         ->add('user.json', ['last_name'=>$this->last_name,'fisrt_name' => $this->first_name, 'email' => $this->email,'phone'=>$this->phone])
+    //         ->addFile(storage_path("avatars/{$this->id}.jpg");
+    //         ->addFile('other-user-data.xml', 's3');
+    // }
 
     public function death()
     {
