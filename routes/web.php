@@ -94,8 +94,8 @@ Route::get('/subscribe', function (){
 });
 
 
-Route::PersonalDataExports('personal-data-exports');
+// Route::PersonalDataExports('personal-data-exports');
 
-Route::get('create_personal_data', function(){
-    dispatch(new CreatePersonalDataExportJob(auth()->user()));
-});
+// Route::get('create_personal_data', function(){
+//     dispatch(new CreatePersonalDataExportJob(auth()->user()));
+// });
