@@ -21,8 +21,8 @@ trait VerifyMother
 
 			if($this->id($this->data['mother_first_name']) == $id){
                 $this->wife = User::find($id)->profile->wife;
-                
-                if(null != $this->wife->mother){
+
+                if(!$this->wife->mother){
                     $this->mother = $this->wife->mother()->firstOrCreate([]);
                 }
                 

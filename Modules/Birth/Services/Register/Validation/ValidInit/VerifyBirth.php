@@ -3,6 +3,7 @@
 namespace Modules\Birth\Services\Register\Validation\ValidInit;
 
 use App\User;
+
 trait VerifyBirth
 
 {
@@ -16,7 +17,7 @@ trait VerifyBirth
             $date[] = $birth->data;
         }
 
-        if(strtotime($this->data['date']) - last($date) < 15778476){
+        if(strtotime($this->data['date']) < 15552000 + last($date)){
 
         	$this->error[] = "Birth authentication fails depending of the registered previous birth father and mother are too early to give another birth";
         }
@@ -25,8 +26,10 @@ trait VerifyBirth
 
 	public function firstBirthAuth()
 	{
-        if(strtotime($this->data['date']) - $this->wife->validDatOfMarriage() < 15778476){
-            $this->error[] = "Birth authentication fails depending of the marriage registration date and birth registration date husband and wife are too early to give birth";
+       $wife = User::find($this->mother_id($this->data['mother_first_name']))->profile->wife;
+        
+        if(strtotime($this->data['date']) < 15552000 + $wife->validDatOfMarriage()){
+            $this->error[] = "Birth authentication fails depending of the marriage registration date and birth registration date husband and wife are too early to give first birth";
         }
 
         if(strtotime($this->data['date']) > time()){

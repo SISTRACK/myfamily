@@ -17,8 +17,8 @@ trait ValidateBirthRequest
 	public function Validate(){
         
         $this->nameAuth();
-
-        if($this->mother != null){
+        if($this->mother == null){
+            dd('here');
             $this->nextBirthAuth();
         }else{
         	$this->firstBirthAuth();
