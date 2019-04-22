@@ -52,6 +52,11 @@ class Profile extends Model
         return $this->hasMany(ProfileExpertice::class);
     }
 
+    public function profileExperiences()
+    {
+        return $this->hasMany(ProfileExperience::class);
+    }
+    
     public function userMessage()
     {
     	return $this->hasMany(UserMessage::class);

@@ -167,20 +167,16 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
                             <h4>Experience</h4>
-
+                            @foreach($user->profile->currentProfileExperience() as $experience)
                             <div class=" p-t-10">
-                                <h5 class="text-custom m-b-5">Lead designer / Developer</h5>
-                                <p class="text-custom m-b-5">At websitename.com</b></p>
-                                <p><b> From 2010 To 2015</b></p>
-
-                                <p class="text-muted font-13 m-b-0">Lorem Ipsum is simply dummy text
-                                    of the printing and typesetting industry. Lorem Ipsum has
-                                    been the industry's standard dummy text ever since the
-                                    1500s, when an unknown printer took a galley of type and
-                                    scrambled it to make a type specimen book.
+                                <h5 class="text-custom m-b-5">{{$experience['name']}}</h5>
+                                <p class="text-custom m-b-5">At <a href="{{$experience['address']}}">{{$experience['address']}}</a></b></p>
+                                <p><b> From {{$experience['from']}} To {{$experience['to']}}</b></p>
+                                <p><b> Duration in Months <b class="text-custom m-b-5">{{$experience['duration']}}</b></b></p>
+                                <p class="text-muted font-13 m-b-0">{{$experience['about']}}
                                 </p>
                             </div>
-
+                             @endforeach
                             <hr/>
 
                             

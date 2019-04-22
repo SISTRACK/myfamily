@@ -23,7 +23,7 @@ class CreateProfileExperiencesTable extends Migration
             ->on('profiles')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('experiece_id')
+            $table->integer('experience_id')
             ->unsigned()
             ->nullable()
             ->foreign()

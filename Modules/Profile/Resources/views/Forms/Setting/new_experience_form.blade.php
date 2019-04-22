@@ -26,6 +26,6 @@
     </div>
     <div class="separator bottom"></div>
     <div class="form-actions" style="margin: 0;">
-        <button  name="submit" value="new_skill" type="submit" class="btn btn-primary" /><i class="fa fa-check"></i> Add Skill </button>
+        <button  name="submit" value="new_experience" type="submit" class="btn btn-primary" /><i class="fa fa-check"></i> Add Experience </button>
     </div>
 </form>

@@ -14,9 +14,10 @@ trait Experiences
 			$expe[] = [
 				'name'=>$experience->experience->name,
 				'about'=>$experience->about,
-				'from'    => $experience->from,
-				'to'      => $experience->to,
+				'from'    => date('D:M:Y',$experience->from),
+				'to'      => date('D:M:Y',$experience->to),
 				'address' => $experience->address,
+				'duration'=> floor(($experience->to - $experience->from) / 2628002.88)
 			];
 		}
 		return $expe;
@@ -25,7 +26,7 @@ trait Experiences
 	public function newExperience()
 	{
         $experience = Experience::firstOrCreate(['name'=>$this->data['experience']]);
-        $expertice->profileExperience()->create([
+        $experience->profileExperiences()->create([
         	'profile_id'=>Auth()->User()->profile->id,
         	'about'=>$this->data['about_experience'],
         	'from' => strtotime($this->data['from']),
