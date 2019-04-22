@@ -12,4 +12,9 @@ class Desease extends Model
     {
     	return $this->hasMany(DeseaseUndergoes::class);
     }
+
+    public function profileHealth()
+    {
+    	return $this->hasMany(ProfileHealth::class);
+    }
 }

@@ -83,7 +83,7 @@
         <div class="col-md-9">
             @include('profile::Forms.Setting.new_expertice_form')
         </div>
-    </div><hr />
+    </div> <hr />
 
     <div class="row">
         <div class="col-md-3">
