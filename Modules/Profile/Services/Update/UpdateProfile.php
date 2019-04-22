@@ -7,7 +7,11 @@ use Modules\Address\Services\LivingAddress;
 use Modules\Address\Services\WorkAddress;
 
 use Modules\Profile\Services\Traits\Expertices;
+
+use Modules\Profile\Services\Traits\Health;
+
 use Modules\Profile\Services\Traits\Experiences;
+
 use Modules\Profile\Services\Traits\CreateWorkHistory;
 /**
 * this class will recieved the user information and update his profile
@@ -26,7 +30,7 @@ class UpdateProfile
 	}
 
     use WorkAddress, LivingAddress, Expertices, CreateWorkHistory 
-    , Experiences;
+    , Experiences, Health;
 
     protected function ValidUser()
     {
@@ -45,6 +49,11 @@ class UpdateProfile
             
             case 'new_certificate':
                 # code...
+                break;
+
+            case 'new_health':
+                $this->newHealth();
+                session()->flash('message','The profile health information updated successfully');
                 break;
             
             case 'profile_image':

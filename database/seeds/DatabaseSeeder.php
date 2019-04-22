@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 use Modules\Marriage\Entities\Status;
 use Modules\Family\Entities\Tribe;
 use Modules\Profile\Entities\MaritalStatus;
+use Modules\Profile\Entities\Genotype;
+use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +23,18 @@ class DatabaseSeeder extends Seeder
         }  
       });
 
-
+      $genotype =[
+      'SS','AS','AA'
+      ];
+      $blood = [
+          '0+','0-','A+','A-','B+','B-','AB+','AB-'
+      ];
+      foreach ($blood as $blood) {
+        BloodGroup::firstOrCreate(['name'=>$blood]);
+      }
+      foreach ($genotype as $genotype) {
+        Genotype::firstOrCreate(['name'=>$genotype]);
+      }
       MaritalStatus::firstOrCreate([
         'name'=>'Single'
       ]);

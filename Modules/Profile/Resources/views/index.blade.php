@@ -21,11 +21,11 @@
 
                                 <p class="text-muted font-13"><strong>Status :</strong> <span class="m-l-15">{{$user->profile->life_status_id == 1 ? 'A life' : 'Dead'}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
+                                <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['status']}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Genotype :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
+                                <p class="text-muted font-13"><strong>Genotype :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['genotype']}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
+                                <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['blood']}}</span></p>
 
                                 <p class="text-muted font-13"><strong>Father Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->father->husband->profile->user->first_name.''.$user->profile->child->birth->father->husband->profile->user->last_name : 'Not Available'}}</span></p>
 

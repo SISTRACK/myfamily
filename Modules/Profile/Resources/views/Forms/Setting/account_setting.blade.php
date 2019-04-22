@@ -37,6 +37,18 @@
 
         <!-- Column -->
         <div class="col-md-3">
+            <strong>Update Your Health Information</strong>
+            <p class="muted">You can update your helth information so that your relative know you current situation</p>
+        </div>
+        <div class="col-md-9">
+            @include('profile::Forms.Setting.new_health_form')
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+
+        <!-- Column -->
+        <div class="col-md-3">
             <strong>Add New Business</strong>
             <p class="muted">You can add new business acquire to the list of the business you already have</p>
         </div>

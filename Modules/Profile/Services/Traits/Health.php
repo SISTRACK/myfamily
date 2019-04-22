@@ -8,7 +8,7 @@ use Modules\Profile\Entities\BloodGroup;
 
 use Modules\Profile\Entities\Desease; 
  
-trait Expertices
+trait Health
 
 {
 	public function healthStatus()
@@ -17,27 +17,27 @@ trait Expertices
 			'blood'=>$this->profileHealth->bloodGroup->name,
 			'genotype'=>$this->profileHealth->genotype->name,
 			'weight'=>$this->profileHealth->weight,
-			'status'=>$this->profileHealth->desease->id == 1 ? 'Normal' : 'Sick',
+			'status'=>$this->profileHealth->desease->name,
 		];
 	}
 
 	public function newHealth()
 	{
 		$profile = Auth()->User()->profile;
-		
+
 		$desease_id = $this->getDeseaseId($this->data['desease']);
-        $blood_group_id = $this->getBloodId($this->data['blood_group']);
-        $genotype_id = $this->getGenotypeId($this->data['genotype']);
+        $blood_group_id = $this->data['blood'];
+        $genotype_id = $this->data['genotype'];
 
         if($profile->profileHealth == null){
-            $profile->prfileHealth()->create([
+            $profile->profileHealth()->create([
                 'desease_id'=> $desease_id,
                 'blood_group_id'=> $blood_group_id,
                 'genotype_id'=> $genotype_id,
                 'weight'=> $this->data['weight'],
             ]);
         }else{
-            $profile->prfileHealth()->update([
+            $profile->profileHealth()->update([
                 'desease_id'=> $desease_id,
                 'blood_group_id'=> $blood_group_id,
                 'genotype_id'=> $genotype_id,
@@ -46,16 +46,14 @@ trait Expertices
         }
 
         if ($this->getDeseaseId($this->data['desease']) != 1) {
-        	Desease::find($desease_id))->deseaseUndergoes()->create(['profile_id' => $profile->id]);
+        	Desease::find($desease_id)->deseaseUndergoes()->create(['profile_id' => $profile->id]);
         }
 
 	}
 
-	public function getBloodId($blood)
+	public function blood()
 	{
-        foreach (BloodGroup::where('name',$blood) as $blood) {
-        	return $blood->id;
-        }
+        return BloodGroup::all();
 	}
     public function getDeseaseId($desease)
 	{
@@ -63,10 +61,9 @@ trait Expertices
         
         return $desease->id; 
 	}
-	public function getGenotypeId($gen)
+	public function genotype()
 	{
-		foreach (Genotype::where('name',$gen) as $genotype) {
-        	return $genotype->id;
-        }
+		return Genotype::all();
+        
 	}
 }

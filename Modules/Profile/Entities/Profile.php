@@ -8,13 +8,15 @@ use Modules\Profile\Services\Traits\Expertices;
 
 use Modules\Profile\Services\Traits\Experiences;
 
+use Modules\Profile\Services\Traits\Health;
+
 use Modules\Profile\Services\Traits\CreateWorkHistory;
 
 class Profile extends Model
 {
     protected $guarded = [];
 
-    use Expertices, CreateWorkHistory, Experiences;
+    use Expertices, CreateWorkHistory, Experiences, Health;
 
     public function child()
     {
