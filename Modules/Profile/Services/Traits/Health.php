@@ -14,10 +14,10 @@ trait Health
 	public function healthStatus()
 	{
 		return [
-			'blood'=>$this->profileHealth->bloodGroup->name,
-			'genotype'=>$this->profileHealth->genotype->name,
-			'weight'=>$this->profileHealth->weight,
-			'status'=>$this->profileHealth->desease->name,
+			'blood'=>$this->profileHealth->bloodGroup != null ? $this->profileHealth->bloodGroup->name : 'Not Available',
+			'genotype'=>$this->profileHealth->genotype != null ? $this->profileHealth->genotype->name : 'Not Available',
+			'weight'=>$this->profileHealth != null ? $this->profileHealth->weight : 'Not Available',
+			'status'=>$this->profileHealth->desease != null ? $this->profileHealth->desease->name : 'Not Available',
 		];
 	}
 
