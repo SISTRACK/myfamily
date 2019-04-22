@@ -15,7 +15,23 @@ class CreateProfileExperiencesTable extends Migration
     {
         Schema::create('profile_experiences', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->integer('profile_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->refernces('id')
+            ->on('profiles')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('experiece_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->refernces('id')
+            ->on('experiences')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->string('about');
             $table->timestamps();
         });
     }
