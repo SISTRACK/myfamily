@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
 {
-    protected $fillable = [];
+    protected $guarded = [];
+
+    public function profileExperiences()
+    {
+    	return $this->hasMany(ProfileExperience::class);
+    }
 }
