@@ -15,7 +15,23 @@ class CreateProfileExperticesTable extends Migration
     {
         Schema::create('profile_expertices', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->integer('profile_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->refernces('id')
+            ->on('profiles')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('expertice_id')
+            ->unsigned()
+            ->nullable()
+            ->foreign()
+            ->refernces('id')
+            ->on('expertices')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('percentage');
             $table->timestamps();
         });
     }
