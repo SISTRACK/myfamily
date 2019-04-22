@@ -23,6 +23,10 @@
 
                                 <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
 
+                                <p class="text-muted font-13"><strong>Genotype :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
+
+                                <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->health != null ? $user->profile->health->name : 'Not Available'}}</span></p>
+
                                 <p class="text-muted font-13"><strong>Father Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->father->husband->profile->user->first_name.''.$user->profile->child->birth->father->husband->profile->user->last_name : 'Not Available'}}</span></p>
 
                                 <p class="text-muted font-13"><strong>Mother Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->mother->wife->profile->user->first_name.''.$user->profile->child->birth->mother->wife->profile->user->last_name : 'Not Available'}}</span></p>
@@ -55,7 +59,7 @@
 		                    </div>
                 		</div>
                 	</div>
-                
+                    <hr/>
                     <div class="row">
                 		<div class="col-md-8 col-sm-6">
                 			<h4 class="text-custom m-b-5">Living Address</h4>
@@ -94,6 +98,9 @@
 		                        </p>
 		                    </div>
                 		</div>
+                    </div>
+                    <hr/>
+                    <div class="row">
                         <div class="col-md-8 col-sm-6">
                             <h4 class="text-custom m-b-5">Work Address</h4>
                             <div class="p-t-10">
@@ -132,7 +139,7 @@
                             </div>
                         </div>
                 	</div>
-
+                    <hr/>
                     <h4 class="text-custom m-b-5">Expertise</h4>
                     <div class="row m-t-20">
                         @foreach($user->profile->currentProfileExpertice() as $expertice)
@@ -146,10 +153,10 @@
                         </div><!-- end col-->
                         @endforeach                                               
                     </div> <!-- end row -->
-                    
+                    <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4>Work History</h4>
+                            <h4 class="text-custom m-b-5">Work History</h4>
                             @foreach($user->profile->thisProfileWorkHistory() as $history)
 
                             <div class=" p-t-10">
@@ -163,13 +170,13 @@
                         </div> <!-- end col -->
 
                     </div> <!-- end row -->
-                
+                    <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4>Experience</h4>
+                            <h4 class="text-custom m-b-5">Experience</h4>
                             @foreach($user->profile->currentProfileExperience() as $experience)
                             <div class=" p-t-10">
-                                <h5 class="text-custom m-b-5">{{$experience['name']}}</h5>
+                                <h5 class="">{{$experience['name']}}</h5>
                                 <p class="text-custom m-b-5">At <a href="{{$experience['address']}}">{{$experience['address']}}</a></b></p>
                                 <p><b> From {{$experience['from']}} To {{$experience['to']}}</b></p>
                                 <p><b> Duration in Months <b class="text-custom m-b-5">{{$experience['duration']}}</b></b></p>
@@ -177,9 +184,7 @@
                                 </p>
                             </div>
                              @endforeach
-                            <hr/>
-
-                            
+                            <hr/>   
                         </div> <!-- end col -->
 
                     </div> <!-- end row -->
