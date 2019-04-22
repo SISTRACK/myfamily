@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class BloodGroup extends Model
 {
-    protected $fillable = [];
+    protected $guarded = [];
+
+    public function profileHealth()
+    {
+    	return $this->hasMany(ProfileHealth::class);
+    }
 }

@@ -56,7 +56,7 @@ class Profile extends Model
     {
         return $this->hasMany(ProfileExperience::class);
     }
-    
+
     public function userMessage()
     {
     	return $this->hasMany(UserMessage::class);
@@ -140,9 +140,9 @@ class Profile extends Model
     	return $this->hasMany(UserDetail::class);
     }
     
-    public function health()
+    public function profileHealth()
     {
-    	return $this->hasOne(Health::class);
+    	return $this->hasOne(ProfileHealth::class);
     }
 
     public function workHistories()
