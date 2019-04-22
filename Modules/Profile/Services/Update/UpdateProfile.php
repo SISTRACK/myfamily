@@ -7,6 +7,7 @@ use Modules\Address\Services\LivingAddress;
 use Modules\Address\Services\WorkAddress;
 
 use Modules\Profile\Services\Traits\Expertices;
+use Modules\Profile\Services\Traits\CreateWorkHistory;
 /**
 * this class will recieved the user information and update his profile
 */
@@ -22,7 +23,9 @@ class UpdateProfile
 		$this->user = $this->ValidUser();
 		$this->update();
 	}
-    use WorkAddress, LivingAddress, Expertices;
+
+    use WorkAddress, LivingAddress, Expertices, CreateWorkHistory;
+
     protected function ValidUser()
     {
     	return Auth()->User();
@@ -64,7 +67,8 @@ class UpdateProfile
                 break;
             
             case 'work_history':
-                dd('work ihstory');
+                $this->newWorkHistory();
+                session()->flash('message','The profile work history updated successfully');
                 break;
             case 'new_business':
                 # code...

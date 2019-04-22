@@ -53,7 +53,7 @@
             <p class="muted">You can add new work history acquire to the list of the business you already have</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_business_form')
+            @include('profile::Forms.Setting.new_work_history_form')
         </div>
     </div>
     <hr />

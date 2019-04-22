@@ -150,18 +150,16 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
                             <h4>Work History</h4>
+                            @foreach($user->profile->thisProfileWorkHistory() as $history)
 
                             <div class=" p-t-10">
-                                <p><b>2010-2015</b></p>
+                                <p><b>{{$history['date']}}</b></p>
 
-                                <p class="text-muted font-13 m-b-0">Lorem Ipsum is simply dummy text
-                                    of the printing and typesetting industry. Lorem Ipsum has
-                                    been the industry's standard dummy text ever since the
-                                    1500s, when an unknown printer took a galley of type and
-                                    scrambled it to make a type specimen book. @ <a href="">{{'working place'}}</a>
+                                <p class="text-muted font-13 m-b-0">{{$history['history']}}. @ <a href="#">{{$history['place'] != null ? $history['place'] : 'Workin place not available' }}</a>
                                 </p>
                             </div>
-
+                            
+                            @endforeach
                         </div> <!-- end col -->
 
                     </div> <!-- end row -->
