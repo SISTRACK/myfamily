@@ -18,7 +18,6 @@ trait ValidateBirthRequest
         
         $this->nameAuth();
         if($this->mother == null){
-            dd('here');
             $this->nextBirthAuth();
         }else{
         	$this->firstBirthAuth();

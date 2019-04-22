@@ -4,9 +4,13 @@ namespace Modules\Profile\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Modules\Profile\Services\Traits\Expertices;
+
 class Profile extends Model
 {
     protected $guarded = [];
+
+    use Expertices;
 
     public function child()
     {
@@ -37,6 +41,11 @@ class Profile extends Model
     public function attendEvents()
     {
     	return $this->hasMany('Modules\Event\Entities\AttendEvent');
+    }
+
+    public function profileExpertices()
+    {
+        return $this->hasMany(ProfileExpertice::class);
     }
 
     public function userMessage()

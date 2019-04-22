@@ -135,22 +135,16 @@
 
                     <h4 class="text-custom m-b-5">Expertise</h4>
                     <div class="row m-t-20">
+                        @foreach($user->profile->currentProfileExpertice() as $expertice)
                         <div class="col-md-3 col-sm-6 text-center">
                             <div class="p-t-10">
                                 <input data-plugin="knob" data-width="120" data-height="120" data-linecap=round
-                                       data-fgColor="#2abfcc" value="59" data-skin="tron" data-angleOffset="180"
+                                       data-fgColor="#2abfcc" value="{{($expertice['percentage'])}}" data-skin="tron" data-angleOffset="180"
                                        data-readOnly=true data-thickness=".1"/>
-                                <h6 class="text-muted m-t-10">Laravel</h6>
+                                <h6 class="text-muted m-t-10">{{$expertice['name']}}</h6>
                             </div>
                         </div><!-- end col-->
-                        <div class="col-md-3 col-sm-6 text-center">
-                        	<div class="p-t-10">
-                                <input data-plugin="knob" data-width="120" data-height="120" data-linecap=round
-                                       data-fgColor="#2abfcc" value="40" data-skin="tron" data-angleOffset="180"
-                                       data-readOnly=true data-thickness=".1"/>
-                                <h6 class="text-muted m-t-10">Vue js</h6>
-                            </div>
-                        </div>                                               
+                        @endforeach                                               
                     </div> <!-- end row -->
                     
                     <div class="row">
