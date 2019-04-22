@@ -63,25 +63,25 @@
 
         <!-- Column -->
         <div class="col-md-3">
-            <strong>Add New Skill</strong>
-            <p class="muted">You can add new skill acquire to the list of the skills you already have</p>
+            <strong>Add New Experience</strong>
+            <p class="muted">You can add new experience if any acquire to the list of the experience you already have.</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_skill_form')
+            @include('profile::Forms.Setting.new_experience_form')
         </div>
     </div>
     <hr />
 
     <div class="row">
         <div class="col-md-3">
-            <strong>Add New Experience</strong>
-            <p class="muted">You can add new working experience if acquire to the list of the experiences you already have</p>
+            <strong>Add New Expertice</strong>
+            <p class="muted">You can add new working expertice if acquire to the list of the expertice you already have</p>
         </div>
         <!-- // Column END -->
         
         <!-- Column -->
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_experience_form')
+            @include('profile::Forms.Setting.new_expertice_form')
         </div>
     </div><hr />
 

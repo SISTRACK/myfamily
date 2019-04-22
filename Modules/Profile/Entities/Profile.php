@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use Modules\Profile\Services\Traits\Expertices;
 
+use Modules\Profile\Services\Traits\Experiences;
+
 use Modules\Profile\Services\Traits\CreateWorkHistory;
 
 class Profile extends Model
 {
     protected $guarded = [];
 
-    use Expertices, CreateWorkHistory;
+    use Expertices, CreateWorkHistory, Experiences;
 
     public function child()
     {

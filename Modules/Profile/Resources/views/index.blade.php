@@ -170,8 +170,8 @@
 
                             <div class=" p-t-10">
                                 <h5 class="text-custom m-b-5">Lead designer / Developer</h5>
-                                <p class="m-b-0">websitename.com</p>
-                                <p><b>2010-2015</b></p>
+                                <p class="text-custom m-b-5">At websitename.com</b></p>
+                                <p><b> From 2010 To 2015</b></p>
 
                                 <p class="text-muted font-13 m-b-0">Lorem Ipsum is simply dummy text
                                     of the printing and typesetting industry. Lorem Ipsum has
@@ -183,18 +183,7 @@
 
                             <hr/>
 
-                            <div class="">
-                                <h5 class="text-custom m-b-5">Senior Graphic Designer</h5>
-                                <p class="m-b-0">coderthemes.com</p>
-                                <p><b>2007-2009</b></p>
-
-                                <p class="text-muted font-13">Lorem Ipsum is simply dummy text
-                                    of the printing and typesetting industry. Lorem Ipsum has
-                                    been the industry's standard dummy text ever since the
-                                    1500s, when an unknown printer took a galley of type and
-                                    scrambled it to make a type specimen book.
-                                </p>
-                            </div>
+                            
                         </div> <!-- end col -->
 
                     </div> <!-- end row -->

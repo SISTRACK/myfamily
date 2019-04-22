@@ -32,6 +32,9 @@ class CreateProfileExperiencesTable extends Migration
             ->delete('restrict')
             ->update('cascade');
             $table->string('about');
+            $table->string('address');
+            $table->integer('from');
+            $table->integer('to');
             $table->timestamps();
         });
     }
