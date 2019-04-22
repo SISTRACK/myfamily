@@ -47,6 +47,7 @@ class CreateProfileHealthsTable extends Migration
             ->on('blood_groups')
             ->delete('restrict')
             ->update('cascade');
+            $table->string('weight')->nullable();
             $table->timestamps();
         });
     }
