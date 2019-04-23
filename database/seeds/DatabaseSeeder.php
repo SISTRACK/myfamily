@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
         'Male','Female','Other'
       ];
       
-      $images = ['Male.png','Female.png'];
+      $images = ['male.png','female.png'];
 
       foreach ($bloods as $blood) {
         BloodGroup::firstOrCreate(['name'=>$blood]);
