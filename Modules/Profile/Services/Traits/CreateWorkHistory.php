@@ -23,8 +23,17 @@ trait 	CreateWorkHistory
         $histories = [];
         foreach($this->workHistories as $history)
         {
-        	$histories[] = ['history'=>$history->history, 'date'=>date('M:Y:D',$history->date), 'place'=>$this->work->address->office->company->name];
+        	$histories[] = ['history'=>$history->history, 'date'=>date('M:Y:D',$history->date), 'place'=>$this->getThisProfileOffice()];
         }
         return $histories;
+	}
+
+	protected function getThisProfileOffice()
+	{
+		if($this->work != null){
+			return $this->work->address->office->company->name;
+		}else{
+            return 'Not Registered';
+		}
 	}
 }
