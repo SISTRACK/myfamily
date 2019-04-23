@@ -20,9 +20,9 @@ trait VerifyMother
         foreach($user_id as $id){
 
 			if($this->id($this->data['mother_first_name']) == $id){
-                $this->wife = User::find($id)->profile->wife;
-
-                if($this->wife->mother->isEmpty()){
+                $this->wife = User::find($this->id($this->data['mother_first_name']))->profile->wife;
+               
+                if($this->wife->mother){
                     $this->mother = $this->wife->mother()->firstOrCreate([]);
                 }
                 
