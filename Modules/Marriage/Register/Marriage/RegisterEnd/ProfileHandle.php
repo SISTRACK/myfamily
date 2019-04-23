@@ -23,7 +23,7 @@ trait ProfileHandle
 	            $user->email = $user->first_name.$user->id.'@family.com';
 		        $user->save(); 
 
-	            $this->wifeProfile = $user->profile()->create(['image_id'=>1,'gender_id'=>2,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['wife_date'])]);
+	            $this->wifeProfile = $user->profile()->create(['image_id'=>2,'gender_id'=>2,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['wife_date'])]);
 			}else{
 	            $user = User::where('email',$this->data['wife_email'])->get();
 	            $this->wifeProfile = $user->profile;
@@ -37,8 +37,8 @@ trait ProfileHandle
         $user= User::create(['first_name'=>$this->data['husband_first_name'],
         'last_name'=>$this->data['husband_last_name'],
         'email'=>$this->data['husband_email'],
-        'password' => Hash::make($this->data['husband_email'])]);
-        $this->wifeProfile = $user->profile()->create(['gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
+        'password' => Hash::make('123456')]);
+        $this->husbandProfile = $user->profile()->create(['image_id'=>1,'gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
 		
 	}
     public function handleHusbandProfile()
