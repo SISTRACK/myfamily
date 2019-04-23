@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         'Single','Married','Divorce','Cancel','Engaged','Separate'
       ];
 
-      $wife_statues = [
+      $wife_statuses = [
         'First Wife','Second Wife','Third Wife','Forth Wife'
       ];
 

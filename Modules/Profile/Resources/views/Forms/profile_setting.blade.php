@@ -14,7 +14,7 @@
                     <div class="text-center card-box">
                         <div class="member-card">
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="assets/images/users/avatar-1.jpg" class="img-radius" height="250" width="200">
+                                <img src="assets/images/users/{{$user->profile->image->name}}" class="img-radius" height="250" width="200">
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15">{{$user->phone}}</span></p>

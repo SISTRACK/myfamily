@@ -14,7 +14,7 @@
                     <div class="text-center card-box">
                         <div class="member-card">
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="assets/images/users/male.png" class="img-radius" height="250" width="200">
+                                <img src="assets/images/users/{{$user->profile->image->name}}" class="img-radius" height="250" width="200">
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{$user->first_name.' '.$user->last_name}}</span></p>
@@ -188,9 +188,8 @@
                         </div> <!-- end col -->
 
                     </div> <!-- end row -->
-                </div>
-                <div class="col-md-8 col-lg-9">
-                    <h4 class="m-t-30">Recent Works</h4>
+                    <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">Parents</h4>
                     <div class="row">
                         <div class="col-md-4 col-sm-6">
                             <div class=" thumb">
@@ -198,34 +197,86 @@
                                     <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
                                 </a>
                                 <div class="gal-detail">
-                                    <h4>Travel Guide</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" thumb">
-                                <a href="#" title="Screenshot-2">
-                                    <img src="assets/images/shots/shot-2.png" class="thumb-img" alt="work-thumbnail">
-                                </a>
-                                <div class="gal-detail">
-                                    <h4>Interval timer (app concept)</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" thumb">
-                                <a href="#" class="image-popup" title="Screenshot-3">
-                                    <img src="assets/images/shots/shot-3.png" class="thumb-img" alt="work-thumbnail">
-                                </a>
-                                <div class="gal-detail">
-                                    <h4>Ecommerce app</h4>
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+           
+
+            
+                <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">Wives</h4>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class=" thumb">
+                                <a href="#" class="image-popup" title="Screenshot-1">
+                                    <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
+                                </a>
+                                <div class="gal-detail">
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+                <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">Children</h4>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-6">
+                            <div class=" thumb">
+                                <a href="#" class="image-popup" title="Screenshot-1">
+                                    <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
+                                </a>
+                                <div class="gal-detail">
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            
+                
+           
                 <!-- end col -->
             </div>
         </div>

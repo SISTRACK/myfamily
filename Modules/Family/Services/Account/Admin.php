@@ -61,6 +61,7 @@ trait Admin
 	            $this->data['date'] = $this->data['mdate'];
 	        }
 	    	$this->profile = $user->profile()->create([
+                'image_id'=>1,
 	            'gender_id'         => 1,
 	            'marital_status_id' => 1,
 	            'date_of_birth' => strtotime($this->data['date']),
@@ -70,7 +71,7 @@ trait Admin
             $this->profile = $this->husbandUser->profile;
         }else{
         	$this->husbandUser = $this->user;
-            $this->profile = $this->user->profile()->create(['gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
+            $this->profile = $this->user->profile()->create(['image_id'=>1,'gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
             $this->husbandProfile = $this->profile;
 		}
         
