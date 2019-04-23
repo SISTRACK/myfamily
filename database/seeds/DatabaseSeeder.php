@@ -7,6 +7,7 @@ use Modules\Profile\Entities\MaritalStatus;
 use Modules\Profile\Entities\Genotype;
 use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
+use Modules\Profile\Entities\Image;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,71 +18,69 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      factory(App\User::class, 25)->create()->each(function ($u) {
-        for ($i=0; $i <= 3; $i++) {
-          $u->posts()->save(factory(App\Post::class)->make());
-        }  
-      });
 
-      $genotype =[
-      'SS','AS','AA'
+      $genotypes =[
+        'SS','AS','AA'
       ];
-      $blood = [
-          '0+','0-','A+','A-','B+','B-','AB+','AB-'
+
+      $bloods = [
+        '0+','0-','A+','A-','B+','B-','AB+','AB-'
       ];
-      foreach ($blood as $blood) {
+
+      $marrital_statuses = [
+        'Single','Married','Divorce','Cancel','Engaged','Separate'
+      ];
+
+      $wife_statues = [
+        'First Wife','Second Wife','Third Wife','Forth Wife'
+      ];
+
+      $tribes = [
+        'Hausa','Fulfulde','Yoruba','Chlela'
+      ];
+      
+      $genders = [
+        'Male','Female','Other'
+      ];
+      
+      $images = ['Male.png','Female.png'];
+
+      foreach ($bloods as $blood) {
         BloodGroup::firstOrCreate(['name'=>$blood]);
       }
-      foreach ($genotype as $genotype) {
+
+      foreach ($genotypes as $genotype) {
         Genotype::firstOrCreate(['name'=>$genotype]);
       }
-      MaritalStatus::firstOrCreate([
-        'name'=>'Single'
-      ]);
-      MaritalStatus::firstOrCreate([
-        'name'=>'Married'
-      ]);
-      MaritalStatus::firstOrCreate([
-        'name'=>'Divorce'
-      ]);
-      MaritalStatus::firstOrCreate([
-        'name'=>'Cancel'
-      ]);
-      Status::firstOrCreate([
-        'name'=>'First Wife'
-      ]);
-      Status::firstOrCreate([
-        'name'=>'Second Wife'
-      ]);
-      Status::firstOrCreate([
-        'name'=>'Third Wife'
-      ]);
-      Status::firstOrCreate([
-        'name'=>'Forth Wife'
-      ]);
+      
+      foreach ($images as $image) {
+        Image::firstOrCreate([
+          'name'=>$image
+        ]);
+      }
+      
+      foreach ($marrital_statuses as $marrital_status) {
+        MaritalStatus::firstOrCreate([
+          'name'=>$marrital_status
+        ]);
+      }
+      
+      foreach ($wife_statuses as $wife_status) {
+        Status::firstOrCreate([
+          'name'=>$wife_status
+        ]);
+      }
 
-      Gender::firstOrCreate([
-        'name'=>'Male'
-      ]);
-      Gender::firstOrCreate([
-        'name'=>'Female'
-      ]);
-      Gender::firstOrCreate([
-        'name'=>'Other'
-      ]);
-
-      Tribe::firstOrCreate([
-        'name'=>'Hausa'
-      ]);
-      Tribe::firstOrCreate([
-        'name'=>'Fulfulde'
-      ]);
-      Tribe::firstOrCreate([
-        'name'=>'Yoruba'
-      ]);
-      Tribe::firstOrCreate([
-        'name'=>'Chlela'
-      ]);
-     
+      foreach ($genders as $gender) {
+        Gender::firstOrCreate([
+          'name'=>$gender
+        ]);
+      }
+      
+      foreach ($tribes as $tribe) {
+        Tribe::firstOrCreate([
+          'name'=>$tribe
+        ]);
+      }
     }
 }

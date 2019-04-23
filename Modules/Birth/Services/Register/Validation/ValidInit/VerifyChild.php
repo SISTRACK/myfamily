@@ -26,7 +26,7 @@ trait VerifyChild
 
 	public function childProfile()
 	{
-		$this->profile = $this->user->profile()->firstOrCreate(['gender_id'=>$this->data['gender'],'family_id'=>session('family')['family'],'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
+		$this->profile = $this->user->profile()->firstOrCreate(['image_id'=>1,'gender_id'=>$this->data['gender'],'family_id'=>session('family')['family'],'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
 	}
 
 	public function createChild()
