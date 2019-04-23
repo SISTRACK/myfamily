@@ -102,7 +102,7 @@ class ValidFamilies
     }
 	private function myFamily()
 	{
-		$family = Family::find($this->user->profile->family->id);
+		$family = Family::find($this->user->profile->family_id);
         $this->families[] = $family;
         $this->my_family = $family;
 	}

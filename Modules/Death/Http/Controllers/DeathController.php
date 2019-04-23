@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\Death\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Modules\Death\Http\Requests\DeathFormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -40,7 +40,7 @@ class DeathController extends Controller
     public function store(DeathFormRequest $request)
     {
         if($death = new RegisterDeath($request->all())){
-            broadcast(new NewDeathEvent($death))->toOthers();
+            //broadcast(new NewDeathEvent($death))->toOthers();
         }
         return redirect('/death');
     }

@@ -16,7 +16,7 @@ class DeathFormRequest extends FormRequest
         return [
            'first_name' => 'required|integer',
            'last_name' => 'required|string',
-           'palce' => 'required|string',
+           'place' => 'required|string',
            'date' => 'required',
            'about_death' => 'required|string',
            'death_at' => 'required|string'
