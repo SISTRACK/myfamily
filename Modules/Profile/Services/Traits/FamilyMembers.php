@@ -16,7 +16,7 @@ trait FamilyMembers
         		'name'=>$father->first_name.' '.$father->last_name, 
         		'email'=>$father->email,
         		'status'=>'Father',
-        		'image'=> $father->user->image->name
+        		'image'=> $father->profile->image->name
         	]; 
         	$mother = $this->child->birth->mother->wife->profile->user;
         	$parents[] = [
@@ -32,7 +32,7 @@ trait FamilyMembers
     public function children()
 	{
 		$children = [];
-		if($this->husband->father != null){
+		if($this->husband != null && $this->husband->father != null){
 			foreach ($this->husband->father->births as $birth) {
 				$child = $birth->child->profile->user;
 				$children[] = [
@@ -49,15 +49,35 @@ trait FamilyMembers
 		$wives = [];
         if($this->husband != null){
        	    foreach ($this->husband->marriages as $marriage) {
-				$wife = $marriage->wife->profile->user;
-				$wives[] = [
-					'name'=> $wife->first_name.' '.$wife->last_name,
-				    'email'=>$wife->email,
-				    'image'=>$marriage->wife->profile->image->name,
-				    'status'=>$marriage->wife->status->name
-			    ];
+				if($marriage->is_active == 1){
+					$wife = $marriage->wife->profile->user;
+					$wives[] = [
+						'name'=> $wife->first_name.' '.$wife->last_name,
+					    'email'=>$wife->email,
+					    'image'=>$marriage->wife->profile->image->name,
+					    'status'=>$marriage->wife->status->name
+				    ];
+				}
 			}
         }
        return $wives; 
+	}
+
+	public function thisProfileHusband()
+	{
+		$husband = null;
+		if($this->wife != null){
+            foreach($this->wife->marriages as $marriage){
+            	if($marriage->is_active == 1){
+                    $currentHusband = $marriage->husband->profile->user;
+            		$husband = [
+                        'name'=> $currentHusband->first_name.' '.$currentHusband->last_name,
+					    'email'=>$currentHusband->email,
+					    'image'=>$marriage->husband->profile->image->name
+            		];
+            	}
+            }
+		}
+		return $husband;
 	}
 }

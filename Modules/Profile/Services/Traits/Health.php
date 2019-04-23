@@ -13,7 +13,7 @@ trait Health
 {
 	public function healthStatus()
 	{
-		if($this->profileHealth == null){
+		if($this->profileHealth == null || $this->profileHealth->bloodGroup == null){
             return [
 				'blood'=>'Not Available',
 				'genotype'=>'Not Available',

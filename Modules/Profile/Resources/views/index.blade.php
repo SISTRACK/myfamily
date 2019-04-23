@@ -38,7 +38,13 @@
                                 <p class="text-muted font-13"><strong>Marriage :</strong> <span class="m-l-15">{{$user->profile->maritalStatus != null ? $user->profile->maritalStatus->name : 'Not Available'}}</span></p>
 
                                 @if($user->profile->husband != null || $user->profile->wife != null)
-                                    <p class="text-muted font-13"><strong>Birth :</strong> <span class="m-l-15">{{$user->profile->husband->father != null ? count($user->profile->birth()) : 0}}</span></p>
+                                    <p class="text-muted font-13"><strong>Birth :</strong> <span class="m-l-15">
+                                        @if($user->profile->gender->name == 'Male')
+                                        {{$user->profile->husband->father != null ? count($user->profile->birth()) : 0}}
+                                        @else
+
+                                        @endif
+                                    </span></p>
                                 @endif
 
                             </div>
@@ -200,7 +206,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/shots/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -226,7 +232,7 @@
                 </div>
            
 
-            
+                @if($user->profile->gender->name == 'Male')
                 <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Wives</h4>
                     <div class="row">
@@ -263,6 +269,40 @@
                         @endif
                     </div>
                 </div>
+                @else
+                <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">Husband</h4>
+                    <div class="row">
+                        @if(empty($user->profile->thisProfileHusband()))
+                            <div class="gal-detail">
+                                <h3>Record not found</h3>      
+                            </div>
+                        @else
+                        <?php $husband = $user->profile->thisProfileHusband(); ?>
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/users/{{$husband['image']}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td class="strong">Name </td>
+                                                <td>{{$husband['name']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="strong">Email </td>
+                                                <td>{{$husband['email']}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        @endif
+                    </div>
+                </div>
+                @endif
            
                 <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Children</h4>
@@ -276,7 +316,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/shots/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
