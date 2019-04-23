@@ -191,29 +191,37 @@
                     <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Parents</h4>
                     <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" thumb">
-                                <a href="#" class="image-popup" title="Screenshot-1">
-                                    <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
-                                </a>
-                                <div class="gal-detail">
-                                    <table>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td></td>
-                                        </tr>
-                                    </table>
+                        @if(empty($user->profile->parents()))
+                            <div class="gal-detail">
+                                <h3>Record not found</h3>      
+                            </div>
+                        @else
+                            @foreach($user->profile->parents() as $parent)
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/shots/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>{{$parent['name']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td>{{$parent['email']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <td>{{$parent['status']}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
            
@@ -222,55 +230,71 @@
                 <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Wives</h4>
                     <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" thumb">
-                                <a href="#" class="image-popup" title="Screenshot-1">
-                                    <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
-                                </a>
-                                <div class="gal-detail">
-                                    <table>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Status</td>
-                                            <td></td>
-                                        </tr>
-                                    </table>
+                        @if(empty($user->profile->wives()))
+                            <div class="gal-detail">
+                                <h3>Record not found</h3>      
+                            </div>
+                        @else
+                           @foreach($user->profile->wives() as $wife)
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/users/{{$wife['image']}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td class="strong">Name </td>
+                                                <td>{{$wife['name']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="strong">Email </td>
+                                                <td>{{$wife['email']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="strong">Status </td>
+                                                <td>{{$wife['status']}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
            
                 <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Children</h4>
                     <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class=" thumb">
-                                <a href="#" class="image-popup" title="Screenshot-1">
-                                    <img src="assets/images/shots/shot-1.png" class="thumb-img" alt="work-thumbnail">
-                                </a>
-                                <div class="gal-detail">
-                                    <table>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email</td>
-                                            <td></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                
+                        @if(empty($user->profile->children()))
+                            <div class="gal-detail">
+                                <h3>Record not found</h3>      
                             </div>
-                        </div>
+                        @else
+                            @foreach($user->profile->children() as $child)
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/shots/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>{{$child['name']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td>{{$child['email']}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 </div>

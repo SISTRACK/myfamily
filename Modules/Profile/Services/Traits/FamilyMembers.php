@@ -29,7 +29,7 @@ trait FamilyMembers
         return $parents;
 	}
 
-    public function children($desease)
+    public function children()
 	{
 		$children = [];
 		if($this->husband->father != null){
@@ -53,9 +53,11 @@ trait FamilyMembers
 				$wives[] = [
 					'name'=> $wife->first_name.' '.$wife->last_name,
 				    'email'=>$wife->email,
-				    'image'=>$marriage->wife->profile->image->name
+				    'image'=>$marriage->wife->profile->image->name,
+				    'status'=>$marriage->wife->status->name
 			    ];
 			}
-       } 
+        }
+       return $wives; 
 	}
 }
