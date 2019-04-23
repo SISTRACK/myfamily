@@ -3,7 +3,7 @@
 namespace Modules\Birth\Services\Register\Validation\ValidInit;
 
 use App\User;
-
+use Illuminate\Support\Facades\Hash;
 use Modules\Profile\Entities\Desease;
 
 trait VerifyChild
@@ -19,7 +19,9 @@ trait VerifyChild
 
 	public function createUser()
 	{
-		$this->user = User::create(['first_name'=>$this->data['child_name'],'last_name'=>$this->data['father_first_name']]); 
+		$this->user = User::create(['first_name'=>$this->data['child_name'],'last_name'=>$this->data['father_first_name'],'password'=>Hash::make('123456')]);
+		$this->user->email = $this->user->first_name.$this->user->id.'@family.com';
+		$this->user->save(); 
 	}
 
 	public function childProfile()
@@ -34,13 +36,13 @@ trait VerifyChild
 
 	public function createHealth()
 	{
-		$this->health = Desease::firstOrcreate(['name'=>$this->data['health_status']]);
+		$this->health = Desease::firstOrCreate(['name'=>$this->data['health_status']]);
 	}
     
     public function profileHealth()
     {
     	$this->createHealth();
-    	$this->profile->health()->firstOrcreate(['desease_id'=>$this->health->id]);
+    	$this->profile->profileHealth()->firstOrCreate(['desease_id'=>$this->health->id]);
     }
 	public function handleChildProfile()
 	{
