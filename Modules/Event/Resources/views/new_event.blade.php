@@ -19,24 +19,7 @@
                                     <p class="muted">Here is the section where you will specify the most important information about the event please specific.</p>
                             </div>
                             <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="value">Event Type</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <select name="type" id="inputTitle" class="col-md-6 form-control">
-                                            <option value=""></option>
-                                            <option value="Marriage">Marriage</option>
-                                            <option value="Birth">Birth</option>
-                                            <option value="Death">Death</option>
-                                        </select>
-                                            @if ($errors->has('type'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('type') }}</strong>
-                                            </span>
-                                            @endif
-                                    </div>
-                                </div><br>
+                                
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="value">Event  Date</label>
@@ -50,19 +33,7 @@
                                             @endif
                                     </div>
                                 </div><br>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <label for="value">Event Address</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input type="text" name="address" class="form-control" placeholder="Enter full address of the event">
-                                            @if ($errors->has('address'))
-                                            <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('address') }}</strong>
-                                            </span>
-                                            @endif
-                                    </div>
-                                </div><br>
+                               
                                 <div class="row">
                                     <div class="col-md-3">
                                         <label for="value">Event Start At</label>
@@ -89,12 +60,42 @@
                                             @endif
                                     </div>
                                 </div><br>
+                                 <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="value">Event Address</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="text" name="address" class="form-control" placeholder="Enter full address of the event">
+                                            @if ($errors->has('address'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('address') }}</strong>
+                                            </span>
+                                            @endif
+                                    </div>
+                                </div><br>
                             </div>
                         
                     </section>
                     <h3>Describe Your Event</h3>
                     <section>
-                        
+                            <div class="row">
+                                    <div class="col-md-3">
+                                    <label for="value">Event Type</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <select name="type" id="inputTitle" class="col-md-6 form-control">
+                                        <option value="">Select Event Type</option>
+                                        <option value="Marriage">Marriage</option>
+                                        <option value="Birth">Birth</option>
+                                        <option value="Death">Death</option>
+                                    </select>
+                                    @if ($errors->has('type'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div><br>
                             <div class="row">
                                 <div class="col-md-3">
                                     <strong>What to Announce ?</strong>

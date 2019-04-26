@@ -10,8 +10,8 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-nature-people "></i> <span> Family Event </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('event.index')}}">New Event</a></li>
-            <li><a href="#">Available Event</a></li>
+            <li><a href="{{route('event.create')}}">New Event</a></li>
+            <li><a href="{{route('event.index')}}">Available Event</a></li>
             <li><a href="#">Announce</a></li>
         </ul>
     </li>
