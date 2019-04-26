@@ -53,29 +53,24 @@
     </div>
     <div class="widget">
         <div class="innerAll half">
-            <span class="badge badge-success">{{'1'}}</span> Attending
+            <span class="badge badge-success">{{$family_event->event->attending()}}</span> Attending
             <div class="innerAll half text-center">
+                @foreach($family_event->event->familyMembersThatAreAttending() as $attending)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half">
                 </a>
+                @endforeach
             </div>
         </div>
     
         <div class="innerAll half">
-            <span class="badge badge-warning">{{'4'}}</span> Might Go
+            <span class="badge badge-warning">{{$family_event->event->mightAttend()}}</span> Might Go
             <div class="innerAll half text-center">
+                @foreach($family_event->event->familyMembersThatMightAttend() as $might_attend)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
+                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="35" class="innerB half">
                 </a>
-                <a href="#" class="border-none">
-                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
-                </a>
-                <a href="#" class="border-none">
-                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
-                </a>
-                <a href="#" class="border-none">
-                    <img src="assets/images/users/male.png" alt="photo" width="35" class="innerB half">
-                </a>	
+                @endforeach	
             </div>
         </div>
     </div>

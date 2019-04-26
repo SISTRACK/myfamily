@@ -17,4 +17,14 @@ class AttendEvent extends Model
     {
     	return $this->belongsTo(Event::class);
     }
+
+    public function attending()
+    {
+    	return 1;
+    }
+
+    public function mightAttend()
+    {
+    	return 1;
+    }
 }

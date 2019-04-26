@@ -21,4 +21,49 @@ class Event extends Model
     {
         return Carbon::create(date('Y',$date), date('m',$date), date('d',$date), date('h',$time), date('m',$time), date('s',$time))->diffForHumans();
     }
+
+    public function attending()
+    {
+        $count = 0;
+        foreach ($this->familyEvent->attendEvents() as $attending) {
+            if($attending->status == 1){
+                $count ++;
+            }
+        }
+        return $count;
+    }
+
+    public function mightAttend()
+    {
+        $count = 0;
+        foreach ($this->familyEvent->attendEvents() as $attending) {
+            if($attending->status == 2){
+                $count ++;
+            }
+        }
+        return $count;
+    }
+
+    public function familyMembersThatAreAttending()
+    {
+        $users = [];
+        foreach ($this->familyEvent->attendEvents() as $attending) {
+            if($attending->status == 1){
+                $users[] = $attending->profile;
+            }
+        }
+        return $users;
+    }
+
+    public function familyMembersThatMightAttend()
+    {
+        $users = [];
+        foreach ($this->familyEvent->attendEvents() as $attending) {
+            if($attending->status == 2){
+                $users[] = $attending->profile;
+            }
+        }
+        return $users;
+    }
+
 }

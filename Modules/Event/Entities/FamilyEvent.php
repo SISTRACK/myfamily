@@ -12,8 +12,14 @@ class FamilyEvent extends Model
     {
     	return $this->belongsTo('Modules\Family\Entities\Family');
     }
+
     public function event()
     {
     	return $this->belongsTo(Event::class);
+    }
+
+    public function AttendEvents()
+    {
+    	return $this->hasMany(AttendEvent::class);
     }
 }
