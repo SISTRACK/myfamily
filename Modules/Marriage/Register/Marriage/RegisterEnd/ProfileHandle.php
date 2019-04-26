@@ -16,6 +16,7 @@ trait ProfileHandle
 	{
 		if(session('register')['status'] == 'daughter'){
             $user = User::find($this->data['wife_first_name']);
+            $this->wifeUser = $user;
             $this->wifeProfile = $user->profile;
 		}else{
 			if(empty($this->data['wife_family'])){

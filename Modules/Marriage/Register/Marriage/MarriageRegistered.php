@@ -16,9 +16,11 @@ class MarriageRegistered
 
     public $data;
     
+    public $error;
 
 	public function __construct($data)
 	{
+		$this->error = [];
 		$this->data = $data;
 		$this->data = $this->prepareData($data);
 		$this->registeredNewMarriage();
@@ -56,7 +58,6 @@ class MarriageRegistered
 	        session()->flash('message', $message);
 
         }else{
-        	
         	session()->flash('error', $this->error);
         } 
         

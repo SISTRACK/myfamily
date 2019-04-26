@@ -12,7 +12,7 @@ trait VerifyWife
    
     public function birthAuth(User $user)
     {
-        if(fiiled($user->profile->child->birth)){
+        if(filled($user->profile->child->birth)){
             return true;
         }else{
             $this->error[] = "Sorry the wife birth authentication fails base on the specify email no birth";
@@ -38,7 +38,6 @@ trait VerifyWife
 
     public function wifeMarriageDateAuth()
     {
-
         if(strtotime($this->data['marriage_date']) - strtotime($this->data['wife_date']) < 378432000){
             $this->error[] = "Sorry the wife marriage date authentication fails there must be the interval of atleast 12 years between wife date of birth and marriage date";
         }

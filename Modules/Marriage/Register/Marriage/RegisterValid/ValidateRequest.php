@@ -11,7 +11,7 @@ use App\User;
 trait ValidateRequest
 
 {
-    public $error = [];
+    
 
     public $husbandUser;
 
@@ -37,8 +37,14 @@ trait ValidateRequest
          } 
 
         $this->validateHusband();
-        $this->wifeUser = User::where('email',$this->data['wife_email'])->get();
-
+        $this->wifeUser = $this->getWifeUserObject();
         $this->validateWife();
+    }
+
+    public function getWifeUserObject()
+    {
+        foreach (User::where('email',$this->data['wife_email'])->get() as $user) {
+            return $user;
+        }
     }
 }

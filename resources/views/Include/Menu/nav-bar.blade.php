@@ -83,7 +83,11 @@
                 
                 <li class="dropdown user-box">
                     <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
+                        @if(Auth()->User()->profile != null)
                         <img src="assets/images/users/{{Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
+                        @else
+                        <img src="assets/images/users/male.png" alt="user-img" class="img-circle user-img">
+                        @endif
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
