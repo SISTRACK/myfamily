@@ -56,10 +56,10 @@
             <div class="innerAll half text-center">
                 @foreach($family_event->event->familyMembersThatAreAttending() as $attending)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#attending">
+                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#{{$attending->id}}">
                 </a>
                 <!-- modal -->
-                <div class="modal fade" id="attending" role="dialog">
+                <div class="modal fade" id="{{$attending->id}}" role="dialog">
                     <div class="modal-dialog">
                       <!-- Modal content-->
                         <div class="modal-content">
@@ -85,9 +85,9 @@
                                             <td>Age</td>
                                             <td>
                                                 @if($attending->child == null)
-                                                {{floor($attending->date_of_birth/31556926)}}
+                                                {{floor(time() - $attending->date_of_birth/31556926)}}
                                                 @else
-                                                {{floor((time() - $might_attend->child->birth->date_of_birth)/31556926)}}
+                                                {{floor(time() - $attending->child->birth->date_of_birth/31556926)}}
                                                 @endif
                                             </td>
                                         </tr>
@@ -133,9 +133,9 @@
             <div class="innerAll half text-center">
                 @foreach($family_event->event->familyMembersThatMightAttend() as $might_attend)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#might_attend">
+                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#{{$might_attend->id}}">
                 </a>
-                <div class="modal fade" id="might_attend" role="dialog">
+                <div class="modal fade" id="{{$might_attend->id}}" role="dialog">
                     <div class="modal-dialog">
                 <!-- Modal content-->
                     <div class="modal-content">
@@ -163,7 +163,7 @@
                                                 @if($might_attend->child == null)
                                                 {{floor((time() - $might_attend->date_of_birth)/31556926)}}
                                                 @else
-                                                {{floor((time() - $might_attend->child->birth->date_of_birth)/31556926)}}
+                                                {{floor(time() - $might_attend->child->birth->date_of_birth/31556926)}}
                                                 @endif
                                             </td>
                                         </tr>
