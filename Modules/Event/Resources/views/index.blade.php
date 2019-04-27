@@ -159,7 +159,7 @@
                                             <td>Age</td>
                                             <td>
                                                 @if($might_attend->child == null)
-                                                {{floor($might_attend->date_of_birth/31556926)}}
+                                                {{floor((time() - $might_attend->date_of_birth)/31556926)}}
                                                 @endif
                                             </td>
                                         </tr>
