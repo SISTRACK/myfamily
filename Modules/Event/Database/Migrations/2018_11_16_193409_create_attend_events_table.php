@@ -16,7 +16,7 @@ class CreateAttendEventsTable extends Migration
         Schema::create('attend_events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('profile_id')->unsigned()->nullable()->foreign()->refernces('id')->on('profiles')->delete('restrict')->update('cascade');
-            $table->integer('event_id')->unsigned()->nullable()->foreign()->refernces('id')->on('events')->delete('restrict')->update('cascade');
+            $table->integer('family_event_id')->unsigned()->nullable()->foreign()->refernces('id')->on('family_events')->delete('restrict')->update('cascade');
             $table->integer('status')->unsigned();
             $table->timestamps();
         });

@@ -45,20 +45,83 @@
            
         <div class="innerAll text-center half">
             <div class="btn-group">
-                <a href="event/{{$family_event->event->id}}/attend" class="btn btn-success"><i class="fa fa-fw fa-check"></i> Attend</a>
-                <a href="event/{{$family_event->event->id}}/might_attend" class="btn btn-default">I might go</a>
-                </div>
+                <a href="event/{{$family_event->id}}/attend" class="btn btn-success"><i class="fa fa-fw fa-check"></i>I will Attend</a>
+                <a href="event/{{$family_event->id}}/might_attend" class="btn btn-default">I might Attend</a>
+                
+            </div>
         </div>
-        
-    </div>
     <div class="widget">
         <div class="innerAll half">
             <span class="badge badge-success">{{$family_event->event->attending()}}</span> Attending
             <div class="innerAll half text-center">
                 @foreach($family_event->event->familyMembersThatAreAttending() as $attending)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half">
+                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#attending">
                 </a>
+                <!-- modal -->
+                <div class="modal fade" id="attending" role="dialog">
+                    <div class="modal-dialog">
+                      <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="150" class="innerB half">
+                                </div>
+                                <div class="col-sm-8">
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{{$attending->user->first_name.' '.$attending->user->last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>{{$attending->gender->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Age</td>
+                                            <td>
+                                                @if($attending->child == null)
+                                                {{floor($attending->date_of_birth/31556926)}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marital Status</td>
+                                            <td>{{$attending->maritalStatus->name}}</td>
+                                        </tr>
+                                        @if($attending->husband != null)
+                                        <tr>
+                                            <td>Birth</td>
+                                            <td>
+                                                @if($attending->gender->name == 'Male')
+                                                    {{$attending->husband->father != null ? count($attending->birth()) : 0}}
+                                                @else
+                                                    {{$attending->wife->mother != null ? count($attending->birth()) : 0}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
+                                        <tr>
+                                            <td>Working At</td>
+                                            <td>
+                                                {{$attending->work != null ? $attending->work->address->office->company->name : 'Not Working'}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end modal -->
                 @endforeach
             </div>
         </div>
@@ -68,8 +131,71 @@
             <div class="innerAll half text-center">
                 @foreach($family_event->event->familyMembersThatMightAttend() as $might_attend)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="35" class="innerB half">
+                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#might_attend">
                 </a>
+                <div class="modal fade" id="might_attend" role="dialog">
+                    <div class="modal-dialog">
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img src="assets/images/users/{{$might_attend->image->name}}" alt="photo" width="150" class="innerB half">
+                                </div>
+                                <div class="col-sm-8">
+                                    <table>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>{{$might_attend->user->first_name.' '.$might_attend->user->last_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>{{$might_attend->gender->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Age</td>
+                                            <td>
+                                                @if($might_attend->child == null)
+                                                {{floor($might_attend->date_of_birth/31556926)}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marital Status</td>
+                                            <td>{{$might_attend->maritalStatus->name}}</td>
+                                        </tr>
+                                        @if($might_attend->husband != null)
+                                        <tr>
+                                            <td>Birth</td>
+                                            <td>
+                                                @if($might_attend->gender->name == 'Male')
+                                                    {{$might_attend->husband->father != null ? count($might_attend->birth()) : 0}}
+                                                @else
+                                                    {{$might_attend->wife->mother != null ? count($might_attend->birth()) : 0}}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endif
+                                        <tr>
+                                            <td>Working At</td>
+                                            <td>
+                                                {{$might_attend->work != null ? $might_attend->work->address->office->company->name : 'Not Working'}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end modal -->
                 @endforeach	
             </div>
         </div>

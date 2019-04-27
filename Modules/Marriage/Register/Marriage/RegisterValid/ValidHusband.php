@@ -32,7 +32,7 @@ trait ValidHusband
             }
         }
         
-        if($this->husbandUser->isNotEmpty() && $this->husbandUser->profile->child->isNotEmpty()){
+        if($this->husbandUser != null && $this->husbandUser->profile->child != null){
             
         }else if(filled($this->husbandUser) && filled($this->husbandUser->profile->child)){
             $this->canMarry($this->husbandUser);

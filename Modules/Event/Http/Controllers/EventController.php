@@ -7,8 +7,10 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Events\RegisterFamilyEvent;
 use Modules\Event\Http\Requests\FamilyEventFormRequest;
-use Modules\Event\Services\Registration\RegisterFamilyEvent as FamilyEvent;
+use Modules\Event\Services\Registration\RegisterFamilyEvent as NewFamilyEvent;
 use Modules\Family\Services\Family\RootFamily;
+use Modules\Event\Entities\FamilyEvent;
+use Modules\Event\Entities\AttendEvent;
 
 class EventController extends Controller
 {
@@ -39,7 +41,7 @@ class EventController extends Controller
     public function store(FamilyEventFormRequest $request)
     {
 
-        if($event =new FamilyEvent($request->all()) && session('error') == null){
+        if($event =new NewFamilyEvent($request->all()) && session('error') == null){
             //broadcast(new RegisterNewFamilyEvent($event))->toOthers();
         }
         return redirect('/event');
@@ -50,19 +52,51 @@ class EventController extends Controller
      * Show the specified resource.
      * @return Response
      */
+    public function updateStatus($id,$status)
+    {
+        $event = AttendEvent::where(['family_event_id'=>$id,'profile_id'=>Auth()->User()->profile->id]);
+        if($event->update(['status'=>$status]))
+            return true;
+        else
+            return false;
+        
+    }
+    public function attendingEvent($id)
+    {
+        $flag = false;
+        foreach (Auth()->User()->profile->attendEvents()->get() as $event) {
+            if($event != null && $event->status == 1 && FamilyEvent::find($id)->id == $event->family_event_id){
+                $flag = true;
+            }
+        }
+        return $flag;
+        
+    }
+
+    public function mightAttendEvent($id)
+    {
+        $flag = false;
+        foreach (Auth()->User()->profile->attendEvents()->get() as $event) {
+            if($event != null && $event->status == 2 && FamilyEvent::find($id)->id == $event->family_event_id){
+                $flag = true;
+            }
+        }
+        return $flag;
+    } 
+
     public function attend($id)
     {
         $profile = Auth()->User()->profile;
-        if($profile->attendEvent->where(['event_id'=>$id,'status'=>1])->get()->isNotEmpty()){
-            session()->flash('error',['Sorry you are already in the list of people that attend this event']);        
+
+        if($this->attendingEvent($id)){
+            session()->flash('error',['Sorry you are already in the list of people that attend this event']);      
         }else{
-            $event = $profile->attendEvent->where(['event_id'=>$id,'status'=>2])->get();
-            if($event->isNotEmpty()){
-                $event->update(['status'=>1]);
+            if($this->mightAttendEvent($id)){
+                $this->updateStatus($id,1);
                 session()->flash('message','Congratulation you are remove from people that might attend and added to the list of people  attend this event');
             }else{
-                $profile->attendEvents->create([
-                'event_id'=>$id,
+                $profile->attendEvents()->create([
+                'family_event_id'=>$id,
                 'status'=>1
                 ]);
                 session()->flash('message','Congratulation you are added to the list of people  attend this event');
@@ -71,22 +105,22 @@ class EventController extends Controller
         }
         return redirect()->route('event.index');
     }
-    public function maightAttend($id)
+    public function mightAttend($id)
     {
         $profile = Auth()->User()->profile;
-        if($profile->attendEvent->where(['event_id'=>$id,'status'=>2])->get()->isNotEmpty()){
+        if($this->mightAttendEvent($id)){
             session()->flash('error',['Sorry you are already in the list of people that might attend this event']);
         }else{
-            $event = $profile->attendEvent->where(['event_id'=>$id,'status'=>1])->get();
-            if($event->isNotEmpty()){
-                $event->update(['status'=>2]);
+            
+            if($this->attendingEvent($id)){
+                $this->updateStatus($id,2);
                 session()->flash('message','Congratulation you are remove from people attending and added to the list of people  that might attend this event');
             }else{
-                $profile->attendEvents->create([
-                'event_id'=>$id,
+                $profile->attendEvents()->create([
+                'family_event_id'=>$id,
                 'status'=>2
                 ]);
-                session()->flash('message','Congratulation you are added to the list of people  attend this event');
+                session()->flash('message','Congratulation you are added to the list of people  taht might attend this event');
             }
         }
         return redirect()->route('event.index');

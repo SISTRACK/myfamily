@@ -25,7 +25,7 @@ class Event extends Model
     public function attending()
     {
         $count = 0;
-        foreach ($this->familyEvent->attendEvents() as $attending) {
+        foreach ($this->familyEvent->attendEvents()->get() as $attending) {
             if($attending->status == 1){
                 $count ++;
             }
@@ -36,7 +36,7 @@ class Event extends Model
     public function mightAttend()
     {
         $count = 0;
-        foreach ($this->familyEvent->attendEvents() as $attending) {
+        foreach ($this->familyEvent->attendEvents()->get() as $attending) {
             if($attending->status == 2){
                 $count ++;
             }
@@ -47,7 +47,7 @@ class Event extends Model
     public function familyMembersThatAreAttending()
     {
         $users = [];
-        foreach ($this->familyEvent->attendEvents() as $attending) {
+        foreach ($this->familyEvent->attendEvents()->get() as $attending) {
             if($attending->status == 1){
                 $users[] = $attending->profile;
             }
@@ -58,7 +58,7 @@ class Event extends Model
     public function familyMembersThatMightAttend()
     {
         $users = [];
-        foreach ($this->familyEvent->attendEvents() as $attending) {
+        foreach ($this->familyEvent->attendEvents()->get() as $attending) {
             if($attending->status == 2){
                 $users[] = $attending->profile;
             }
