@@ -86,6 +86,8 @@
                                             <td>
                                                 @if($attending->child == null)
                                                 {{floor($attending->date_of_birth/31556926)}}
+                                                @else
+                                                {{floor((time() - $might_attend->child->birth->date_of_birth)/31556926)}}
                                                 @endif
                                             </td>
                                         </tr>
@@ -160,6 +162,8 @@
                                             <td>
                                                 @if($might_attend->child == null)
                                                 {{floor((time() - $might_attend->date_of_birth)/31556926)}}
+                                                @else
+                                                {{floor((time() - $might_attend->child->birth->date_of_birth)/31556926)}}
                                                 @endif
                                             </td>
                                         </tr>
