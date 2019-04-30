@@ -102,16 +102,27 @@ class ValidFamilies
     }
 	private function myFamily()
 	{
-		$family = Family::find($this->user->profile->family_id);
-        $this->families[] = $family;
-        $this->my_family = $family;
+        if($this->user->profile->wife != null){
+            if($this->user->profile->family_id == null){
+                foreach ($this->user->profile->wife->marriages as $marriage) {
+                    if($marriage->is_active == 1){
+                        $family = $marriage->husband->profile->family;
+                    }
+                }
+            }else{
+                $family = $this->user->profile->family;
+            }
+        }else{
+            $family = $this->user->profile->family;
+        }
+        return $family;
 	}
 
 	private function myFatherFamily()
 	{
-        $family = Family::find(SubFamily::where('sub_family_id',$this->my_family->id)->family_id->get());
-        $this->my_father_family = $family;
-        $this->families[] = $family;
+        if($this->user->profile->child != null ){
+            return $this->user->profile->family->fatherFamily();
+        }
 	}
 
     private function myFatherBrotherFamilies()

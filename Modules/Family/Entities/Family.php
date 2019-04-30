@@ -25,6 +25,7 @@ class Family extends Model
     {
         return $this->belongsTo('Modules\Address\Entities\Location');
     }
+    
     public function user()
     {
     	return $this->belongsTo(User::class);
@@ -53,5 +54,10 @@ class Family extends Model
     public function vedio()
     {
     	return $this->hasMany(Vedio::class);
+    }
+
+    public function fatherFamily()
+    {
+        # code...
     }
 }
