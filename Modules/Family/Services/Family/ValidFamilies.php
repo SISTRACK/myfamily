@@ -15,10 +15,9 @@ class ValidFamilies
 
     protected $my_grand_father_family;
 
-	public $families = [];
+	public $families;
 
 	public function __construct(){
-
         $this->user = Auth()->User();
         $this->getAllFamilies();
 
@@ -26,7 +25,8 @@ class ValidFamilies
     
     protected function getAllFamilies()
     {
-        $this->myFamily();
+        $valid_families = [];
+        $valid_families[] = $this->myFamily();
         // if($this->my_family != null && $this->hasSubFamily($this->my_family)){
         //     $this->mySonFamilies();
         // }
@@ -48,6 +48,8 @@ class ValidFamilies
         //     $this->myGrandFatherFamily();
         //     $this->myFatherBrotherFamilies();
         // }
+
+        $this->families = $valid_families;
 
     }
     private function hasSubFamily(Family $family)
@@ -116,6 +118,7 @@ class ValidFamilies
             $family = $this->user->profile->family;
         }
         return $family;
+
 	}
 
 	private function myFatherFamily()
