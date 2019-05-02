@@ -15,9 +15,7 @@
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^4.0",
         "pusher/pusher-php-server": "~3.0",
-        "spatie/laravel-permission": "^2.23",
-        "spatie/laravel-permission": "^2.23",
-        "writingink/wink": "^0.0.13"
+        "spatie/laravel-permission": "^2.23"
 
     },
     "require-dev": {
