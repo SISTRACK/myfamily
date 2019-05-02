@@ -11,13 +11,12 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "^9.0",
         "laravel/framework": "5.8.*",
-        "laravel/nova": "*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^4.0",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-permission": "^2.23",
-        "vyuldashev/nova-permission": "^1.4"
+        "writingink/wink": "^0.0.13"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -27,12 +26,7 @@
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "./nova"
-        }
-    ],
+    
     "autoload": {
         "classmap": [
             "database/seeds",
