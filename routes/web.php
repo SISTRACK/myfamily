@@ -85,7 +85,7 @@ Route::get('/get_token', function(){
 	]);
 	dd(response()->json($token));
 });
-
+Route::get('/dashboard','DashboardController@index')->name('dashboard');
 Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
 Route::view('/user_dead', 'Include.Pages.dead')->name('user.dead');
