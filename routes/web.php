@@ -73,6 +73,9 @@ Route::get('/all_plans', function(){
 	}
 	
 });
+
+Route::get('/dashboard','DashboardController@index')->name('dashboard');
+
 Route::get('/get_token', function(){
 	Stripe::setApiKey(env('STRIPE_SECRET'));
 	$token = Token::create([
@@ -90,6 +93,7 @@ Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
 Route::view('/user_dead', 'Include.Pages.dead')->name('user.dead');
 
+   
    Route::get('/sms','SubscriptionController@sms')->name('sms-subs');
    Route::get('/slack','SubscriptionController@slack')->name('slack-subs');
    Route::get('/email','SubscriptionController@email')->name('email-subs');
