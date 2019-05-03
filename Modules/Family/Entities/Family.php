@@ -19,7 +19,11 @@ class Family extends Model
     }
     public function subFamilies()
     {
-        return $this->hasMany(SubFamily::class);
+        return $this->hasMany(SubFamily::class,'sub_family_id');
+    }
+    public function headFamily()
+    {
+        return $this->hasOne(SubFamily::class,'family_id');
     }
     public function location()
     {
@@ -56,8 +60,17 @@ class Family extends Model
     	return $this->hasMany(Vedio::class);
     }
 
-    public function fatherFamily()
+    public function getFamiliesUnderThisFamily()
     {
-        # code...
+        $families = [];
+        foreach ($this->subFamilies as $family) {
+            $families[] = $family->family;
+        }
+        return $families;
+    }
+
+    public function getFamilyAheadOfThisFamily()
+    {
+        return $this->headFamily->family;
     }
 }

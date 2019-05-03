@@ -13,6 +13,8 @@ class ValidFamilies
 
     protected $my_father_family;
 
+    protected $my_children_families;
+
     protected $my_grand_father_family;
 
 	public $families;
@@ -27,31 +29,26 @@ class ValidFamilies
     {
         $valid_families = [];
         $valid_families[] = $this->myFamily();
-        // if($this->my_family != null && $this->hasSubFamily($this->my_family)){
-        //     $this->mySonFamilies();
-        // }
 
-        // if($this->my_family != null && $this->hasMarriedDoughters($this->my_family)){
-        // 	$this->myDaughterFamilies();
-        // }
-        
-        // if($this->my_family != null && $this->hasHeadFamily($this->my_family)){
-        // 	$this->myFatherFamily();
-        // 	$this->myBrotherFamilies();
-        // }
+        //check if you are achild and have a family get your father family and put in the array
+        if($this->user->profile->child != null && $this->user->profile->husband != null){
+            $father_family = $this->my_family->getFamilyAheadOfThisFamily();
+            $this->my_father_family = $father_family;
+            $valid_families[] = $this->my_father_family;
+        }
 
-        // if($this->my_father_family != null && $this->hasMarriedDoughters($this->my_father_family)){
-        // 	$this->mySisterFamilies();
-        // }
-
-        // if($this->my_father_family != null && $this->hasHeadFamily($this->my_father_family)){
-        //     $this->myGrandFatherFamily();
-        //     $this->myFatherBrotherFamilies();
-        // }
+        //check if you have children that have families get their families and put them in the array
+        if($this->user->profile->child != null && $this->user->profile->husband != null && $this->user->profile->husband->father != null ){
+            $this->my_children_families = $this->my_family->getFamilyAheadOfThisFamily();
+            foreach ($this->my_children_families as $family) {
+                $valid_families[] = $family;
+            }
+        }
 
         $this->families = $valid_families;
 
     }
+    
     private function hasSubFamily(Family $family)
     {
         if($family->subFamily != null){
