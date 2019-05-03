@@ -15,7 +15,7 @@ class IsAdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth()->User()->profile->admin == null){
+        if(Auth()->User()->profile->systemAdmin == null){
             return redirect('/home');
         }
         return $next($request);

@@ -69,14 +69,6 @@ class DatabaseSeeder extends Seeder
           'name'=>$image
         ]);
       }
-      $user = User::firstOrCreate([
-        'email'=>'admin@family.site',
-        'password'=>Hash::make('nfamilyplus'),
-        'first_name'=>'super',
-        'last_name'=>'admin'
-      ]);
-      $profile = $user->profile()->create(['gender_id'=>1,'image_id'=>1]);
-      $profile->admin()->create(['admin_status_id'=>1]);
 
       foreach ($admins as $admin) {
         AdminStatus::firstOrCreate([
@@ -108,6 +100,14 @@ class DatabaseSeeder extends Seeder
         ]);
       }
 
+      $user = User::firstOrCreate([
+        'email'=>'admin@family.site',
+        'password'=>Hash::make('nfamilyplus'),
+        'first_name'=>'super',
+        'last_name'=>'admin'
+      ]);
+      $profile = $user->profile()->create(['gender_id'=>1,'image_id'=>1]);
+      $profile->systemAdmin()->create(['admin_status_id'=>1]);
       
     }
 }

@@ -28,6 +28,10 @@ class Profile extends Model
     {
         return $this->hasOne('Modules\Admin\Entities\Admin');
     }
+    public function systemAdmin()
+    {
+        return $this->hasOne('Modules\Admin\Entities\SystemAdmin');
+    }
     public function announcement()
     {
     	return $this->hasMany(Announcement::class);

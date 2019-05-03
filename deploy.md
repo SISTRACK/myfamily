@@ -32,13 +32,14 @@ sudo swapon /swapfile
 ///////////to see the space /////////////
 sudo swapon --show
 
+///////////to resize the swap space///////////////
 cat /proc/sys/vm/swappiness
 
 sudo sysctl vm.swappiness=10
 
 vm.swappiness=10
 
-/////////////de activating the swap space/////////////
+/////////////de activating the swap space or remove/////////////
 
 sudo swapoff -v /swapfile
 
