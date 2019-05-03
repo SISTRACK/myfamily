@@ -8,6 +8,8 @@ use Modules\Profile\Entities\Genotype;
 use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Image;
+use Modules\Profile\Entities\Admin;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +23,15 @@ class DatabaseSeeder extends Seeder
 
       $genotypes =[
         'SS','AS','AA'
+      ];
+
+      $admins = [
+        'Super',
+        'Intermediate',
+        'State Cooditaor',
+        'Lga Cooditaor',
+        'Town Cooditaor',
+        'Area Cooditaor'
       ];
 
       $bloods = [
@@ -58,7 +69,12 @@ class DatabaseSeeder extends Seeder
           'name'=>$image
         ]);
       }
-      
+      foreach ($admins as $admin) {
+        Admin::firstOrCreate([
+          'name'=>$admin
+        ]);
+      }
+
       foreach ($marrital_statuses as $marrital_status) {
         MaritalStatus::firstOrCreate([
           'name'=>$marrital_status
@@ -82,5 +98,13 @@ class DatabaseSeeder extends Seeder
           'name'=>$tribe
         ]);
       }
+
+      $admin = User::firstOrCreate([
+        'email'=>'admin@family.site',
+        'password'=>Hash::make('nfamilyplus'),
+        'first_name'=>'super',
+        'last_name'=>'admin'
+      ]);
+      $admin->profile()->create(['admin_status_id'=>1]);
     }
 }
