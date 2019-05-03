@@ -15,7 +15,7 @@ class CreateAdminStatusesTable extends Migration
     {
         Schema::create('admin_statuses', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('name');
             $table->timestamps();
         });
     }
