@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         'first_name'=>'super',
         'last_name'=>'admin'
       ]);
-      $profile = $user->profile()->create(['gender_id'=>1]);
+      $profile = $user->profile()->create(['gender_id'=>1,'image_id'=>1]);
       $profile->admin()->create(['admin_status_id'=>1]);
 
       foreach ($admins as $admin) {

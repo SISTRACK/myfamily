@@ -76,7 +76,7 @@ Route::get('/all_plans', function(){
 	
 });
 
-Route::get('/dashboard','DashboardController@index')->middleware(['auth','admin'])->name('dashboard');
+Route::get('/dashboard','DashboardController@index')->middleware(['auth'])->name('dashboard');
 
 Route::get('/get_token', function(){
 	Stripe::setApiKey(env('STRIPE_SECRET'));

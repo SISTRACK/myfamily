@@ -13,6 +13,10 @@ use Modules\Profile\Entities\Profile;
 use App\User;
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_admin');
+    }
     public function index()
     {
     	return view('Dashboard.index',
