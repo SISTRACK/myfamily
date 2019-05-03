@@ -1,12 +1,15 @@
 <?php
 
-namespace Modules\Profile\Entities;
+namespace Modules\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
+
+
 {
-    protected $guarded = [];
+
+	protected $guarded = [];
 
     public function status()
     {
@@ -32,6 +35,9 @@ class Admin extends Model
 
     public function profile()
     {
-    	$this->belongsTo('Modules\Address\Entities\Profile');
+    	$this->belongsTo('Modules\Profile\Entities\Profile');
     }
+    
+
+
 }

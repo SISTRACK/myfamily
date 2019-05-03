@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Profile\Entities;
+namespace Modules\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +10,6 @@ class AdminStatus extends Model
 
     public function admins()
     {
-    	return $this->hasMany(Amin::class);
+        return $this->hasMany(Admin::class);
     }
 }
