@@ -88,12 +88,12 @@ Route::get('/get_token', function(){
 	]);
 	dd(response()->json($token));
 });
-Route::get('/dashboard','DashboardController@index')->name('dashboard');
+Route::get('/dashboard','DashboardController@index')->middleware('auth')->name('dashboard');
 Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
 Route::view('/user_dead', 'Include.Pages.dead')->name('user.dead');
 
-   
+
    Route::get('/sms','SubscriptionController@sms')->name('sms-subs');
    Route::get('/slack','SubscriptionController@slack')->name('slack-subs');
    Route::get('/email','SubscriptionController@email')->name('email-subs');
