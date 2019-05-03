@@ -8,7 +8,7 @@ use Modules\Profile\Entities\Genotype;
 use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Image;
-use Modules\Profile\Entities\Admin;
+use Modules\Admin\Entities\AdminStatus;
 use App\User;
 
 class DatabaseSeeder extends Seeder
@@ -69,8 +69,17 @@ class DatabaseSeeder extends Seeder
           'name'=>$image
         ]);
       }
+      $user = User::firstOrCreate([
+        'email'=>'admin@family.site',
+        'password'=>Hash::make('nfamilyplus'),
+        'first_name'=>'super',
+        'last_name'=>'admin'
+      ]);
+      $profile = $user->profile()->create(['gender_id'=>1]);
+      $profile->admin()->create(['admin_status_id'=>1]);
+
       foreach ($admins as $admin) {
-        Admin::firstOrCreate([
+        AdminStatus::firstOrCreate([
           'name'=>$admin
         ]);
       }
@@ -99,12 +108,6 @@ class DatabaseSeeder extends Seeder
         ]);
       }
 
-      $admin = User::firstOrCreate([
-        'email'=>'admin@family.site',
-        'password'=>Hash::make('nfamilyplus'),
-        'first_name'=>'super',
-        'last_name'=>'admin'
-      ]);
-      $admin->profile()->create(['admin_status_id'=>1]);
+      
     }
 }

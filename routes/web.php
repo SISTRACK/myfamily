@@ -18,10 +18,12 @@ use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=>'guest'], function(){
+   Route::get('/', function () {
+     return view('welcome');
+   });
 });
+
 
 Route::get('/test', function(){
        $name = 'isah.12';
@@ -74,7 +76,7 @@ Route::get('/all_plans', function(){
 	
 });
 
-Route::get('/dashboard','DashboardController@index')->name('dashboard');
+Route::get('/dashboard','DashboardController@index')->middleware(['auth','admin'])->name('dashboard');
 
 Route::get('/get_token', function(){
 	Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -88,11 +90,9 @@ Route::get('/get_token', function(){
 	]);
 	dd(response()->json($token));
 });
-Route::get('/dashboard','DashboardController@index')->middleware('auth')->name('dashboard');
 Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
 Route::view('/user_dead', 'Include.Pages.dead')->name('user.dead');
-
 
    Route::get('/sms','SubscriptionController@sms')->name('sms-subs');
    Route::get('/slack','SubscriptionController@slack')->name('slack-subs');
