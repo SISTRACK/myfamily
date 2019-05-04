@@ -19,7 +19,7 @@ class Family extends Model
     }
     public function subFamilies()
     {
-        return $this->hasMany(SubFamily::class,'sub_family_id');
+        return $this->hasMany(SubFamily::class);
     }
     public function headFamily()
     {
@@ -64,7 +64,7 @@ class Family extends Model
     {
         $families = [];
         foreach ($this->subFamilies as $family) {
-            $families[] = $family->family;
+            $families[] = $this->find($family->sub_family_id);
         }
         return $families;
     }

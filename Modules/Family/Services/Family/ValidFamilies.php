@@ -21,6 +21,7 @@ class ValidFamilies
 
 	public function __construct(){
         $this->user = Auth()->User();
+        $this->myFamily();
         $this->getAllFamilies();
 
 	}
@@ -28,7 +29,7 @@ class ValidFamilies
     protected function getAllFamilies()
     {
         $valid_families = [];
-        $valid_families[] = $this->myFamily();
+        $valid_families[] = $this->my_family;
 
         //check if you are achild and have a family get your father family and put in the array
         if($this->user->profile->child != null && $this->user->profile->husband != null){
@@ -38,8 +39,8 @@ class ValidFamilies
         }
 
         //check if you have children that have families get their families and put them in the array
-        if($this->user->profile->child != null && $this->user->profile->husband != null && $this->user->profile->husband->father != null ){
-            $this->my_children_families = $this->my_family->getFamilyAheadOfThisFamily();
+        if($this->user->profile->husband != null && $this->user->profile->husband->father != null ){
+            $this->my_children_families = $this->my_family->getFamiliesUnderThisFamily();
             foreach ($this->my_children_families as $family) {
                 $valid_families[] = $family;
             }
@@ -114,7 +115,7 @@ class ValidFamilies
         }else{
             $family = $this->user->profile->family;
         }
-        return $family;
+        $this->my_family = $family;
 
 	}
 
