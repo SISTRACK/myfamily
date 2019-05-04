@@ -4,12 +4,9 @@ namespace Modules\Admin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
-
-
+class FamilyAdmin extends Model
 {
-
-	protected $guarded = [];
+    protected $guarded = [];
 
     public function profile()
     {
@@ -19,8 +16,4 @@ class Admin extends Model
     {
     	return $this->belongsTo('Modules\Family\Entities\Family');
     }
-    
-    
-
-
 }

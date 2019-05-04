@@ -26,7 +26,7 @@ class Profile extends Model
     }
     public function admin()
     {
-        return $this->hasOne('Modules\Admin\Entities\Admin');
+        return $this->hasOne('Modules\Admin\Entities\FamilyAdmin');
     }
     public function systemAdmin()
     {
