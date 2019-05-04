@@ -57,7 +57,7 @@ class ValidFamilies
         }
 
         //get the families of your sisters husband families
-        if($this->my_father_family->hasMarriedFemaleChild()){
+        if($this->my_father_family != null && $this->my_father_family->hasMarriedFemaleChild()){
             $this->sister_husband_families = $this->my_father_family->getHusbandFamilies();
             foreach ($this->sister_husband_families as $sister_husband_family) {
                 $valid_families[] = $sister_husband_family;
@@ -65,7 +65,7 @@ class ValidFamilies
         }
 
         //check if your fathers children has families apart from you add them to the array
-        if($this->my_father_family->hasMarriedMaleChild()){
+        if($this->my_father_family != null && $this->my_father_family->hasMarriedMaleChild()){
             $this->brother_families = $this->my_father_family->getFamiliesUnderThisFamily();
             foreach ($this->brother_families as $brother_family) {
                 $valid_families[] = $brother_family;
