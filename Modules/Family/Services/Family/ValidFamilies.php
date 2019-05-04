@@ -17,6 +17,8 @@ class ValidFamilies
 
     protected $my_grand_father_family;
 
+    protected $brother_families;
+
 	public $families;
 
 	public function __construct(){
@@ -38,16 +40,65 @@ class ValidFamilies
             $valid_families[] = $this->my_father_family;
         }
 
+        //get the families of your daughters husband families
+        if($this->my_family->hasMarriedFemaleChild()){
+            $this->sister_husband_families = $this->my_family->getHusbandFamilies();
+            foreach ($this->sister_husband_families as $sister_husband_family) {
+                $valid_families[] = $sister_husband_family;
+            }
+        }
+        
         //check if you have children that have families get their families and put them in the array
-        if($this->user->profile->husband != null && $this->user->profile->husband->father != null ){
+        if($this->my_family->hasMarriedMaleChild()){
             $this->my_children_families = $this->my_family->getFamiliesUnderThisFamily();
             foreach ($this->my_children_families as $family) {
                 $valid_families[] = $family;
             }
         }
 
-        $this->families = $valid_families;
+        //get the families of your sisters husband families
+        if($this->my_father_family->hasMarriedFemaleChild()){
+            $this->sister_husband_families = $this->my_father_family->getHusbandFamilies();
+            foreach ($this->sister_husband_families as $sister_husband_family) {
+                $valid_families[] = $sister_husband_family;
+            }
+        }
 
+        //check if your fathers children has families apart from you add them to the array
+        if($this->my_father_family->hasMarriedMaleChild()){
+            $this->brother_families = $this->my_father_family->getFamiliesUnderThisFamily();
+            foreach ($this->brother_families as $brother_family) {
+                $valid_families[] = $brother_family;
+            }
+        }
+        
+        //if any of you brother's children has family out side add them to the array been them male or female
+        if(!empty($this->brother_families)){
+            foreach ($this->brother_families as $brother_family) {
+
+                //put each of you brothers children family if any in the array
+
+                if($brother_family->hasMarriedMaleChild()){
+                    $brother_children_families = $brother_family->getFamiliesUnderThisFamily();
+                    foreach ($brother_children_families as $brother_child_family) {
+                        $valid_families[] = $brother_child_family;
+                    }
+                }
+
+                //put each of you brothers children husband's family if any in the array
+
+                if($brother_family->hasMarriedFemaleChild()){
+                    $brother_children_families = $brother_family->getFamiliesUnderThisFamily();
+                    foreach ($brother_children_families as $brother_child_family) {
+                        $valid_families[] = $brother_child_family;
+                    }
+                }
+
+            }
+        }
+        
+        $this->families = $valid_families;
+        
     }
     
     private function hasSubFamily(Family $family)
@@ -57,23 +108,8 @@ class ValidFamilies
         }
     }
 
-    private function hasMarriedDoughters(Family $family)
-    {
-        $flag = false;
-        foreach($family->profiles as $profile){
-        	if($profile->wife != null && $profile->wife->marriage->is_active == 1){
-        		$flag = true;
-        	}
-        }
-        return $flag;
-    }
+    
 
-    private function hasHeadFamily(Family $family)
-    {
-        if(SubFamily::where('sub_family_id',$family->id)->get() != null){
-        	return true;
-        }
-    }
     private function mySisterFamilies()
     {
         $father = $this->myFatherFamily->admin->profile->husband->father;

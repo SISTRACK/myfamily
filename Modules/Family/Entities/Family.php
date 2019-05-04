@@ -71,6 +71,51 @@ class Family extends Model
 
     public function getFamilyAheadOfThisFamily()
     {
-        return $this->headFamily->family;
+        $head_family = null;
+        foreach (SubFamily::where('sub_family_id',$this->id)->get() as $family) {
+            $head_family = $this->find($family->family_id);
+        }
+        return $head_family;
+    }
+
+    public function getHusbandFamilies()
+    {
+        $families = [];
+        foreach($this->admin->profile->husband->father->births as $birth){
+            if($birth->child->profile->gender->name == 'Female'){
+                foreach ($birth->child->profile->wife->mariages as $marriage) {
+                    if($marriage->is_active == 1){
+                        $families[] = $marriage->husband->profile->family;
+                    }
+                }
+            }
+        }
+    }
+
+    public function hasMarriedFemaleChild()
+    {
+        $flag = false;
+        if($this->admin->profile->husabnd != null && $this->admin->profile->husabnd->father != null){
+            foreach($this->admin->profile->husabnd->father->births as $birth){
+                if($birth->child->profile->wife != null){
+                    $flag = true;
+                }
+            } 
+        }
+        return $flag;
+    }
+
+    public function hasMarriedMaleChild()
+    {
+        $flag = false;
+        if($this->admin->profile->husabnd != null && $this->admin->profile->husabnd->father != null){
+            foreach($this->admin->profile->husabnd->father->births as $birth){
+                if($birth->child->profile->husband != null){
+                    $flag = true;
+                }
+            } 
+        }
+        
+        return $flag;
     }
 }
