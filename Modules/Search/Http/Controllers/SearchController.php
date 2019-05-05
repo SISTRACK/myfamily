@@ -5,8 +5,9 @@ namespace Modules\Search\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\BaseController;
 
-class SearchController extends Controller
+class SearchController extends BaseController
 {
     /**
      * Display a listing of the resource.

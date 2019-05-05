@@ -12,10 +12,11 @@ use Modules\Family\Services\Account\RegisterFamily;
 
 use Modules\Family\Services\Account\NewFamily;
 
+use Modules\Core\Http\Controllers\BaseController;
 
 use Modules\Family\Events\NewFamilyEvent;
 
-class FamilyController extends Controller
+class FamilyController extends BaseController
 {
     use RegisterFamily;
 }

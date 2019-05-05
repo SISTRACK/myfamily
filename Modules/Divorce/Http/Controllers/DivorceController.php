@@ -11,8 +11,9 @@ use Modules\Divorce\Services\Registration\ProcessWives;
 use Modules\Divorce\Services\Registration\ReturnDivorce\PrecessDivorcedWives;
 use Modules\Divorce\Services\Registration\DivorceWife;
 use Modules\Divorce\Services\Registration\ReturnDivorce\ReturnWife;
+use Modules\Core\Http\Controllers\BaseController;
 
-class DivorceController extends Controller
+class DivorceController extends BaseController
 {
     /**
      * Display a listing of the resource.

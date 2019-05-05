@@ -9,8 +9,9 @@ use Modules\Family\Services\Family\ValidFamilies;
 use Modules\Family\Services\Family\ValidDeathNames;
 use Modules\Death\Services\Registration\NewDeath as RegisterDeath;
 use Modules\Death\Events\NewDeathEvent;
+use Modules\Core\Http\Controllers\BaseController;
 
-class DeathController extends Controller
+class DeathController extends BaseController
 {
     /**
      * Display a listing of the resource.

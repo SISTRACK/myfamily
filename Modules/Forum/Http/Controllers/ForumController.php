@@ -5,8 +5,8 @@ namespace Modules\Forum\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-
-class ForumController extends Controller
+use Modules\Core\Http\Controllers\BaseController;
+class ForumController extends BaseController
 {
     /**
      * Display a listing of the resource.

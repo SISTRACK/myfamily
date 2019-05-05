@@ -11,8 +11,9 @@ use Modules\Event\Services\Registration\RegisterFamilyEvent as NewFamilyEvent;
 use Modules\Family\Services\Family\RootFamily;
 use Modules\Event\Entities\FamilyEvent;
 use Modules\Event\Entities\AttendEvent;
+use Modules\Core\Http\Controllers\BaseController;
 
-class EventController extends Controller
+class EventController extends BaseController
 {
     /**
      * Display a listing of the resource.

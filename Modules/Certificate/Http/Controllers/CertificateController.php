@@ -5,8 +5,9 @@ namespace Modules\Certificate\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\BaseController;
 
-class CertificateController extends Controller
+class CertificateController extends BaseController
 {
     /**
      * Display a listing of the resource.

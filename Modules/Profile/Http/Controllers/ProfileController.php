@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Profile\Services\Update\UpdateProfile;
+use Modules\Core\Http\Controllers\BaseController;
 
-class ProfileController extends Controller
+class ProfileController extends BaseController
 {
     /**
      * Display a listing of the resource.
