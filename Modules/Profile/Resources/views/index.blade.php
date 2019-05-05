@@ -46,10 +46,10 @@
                                         @endif
                                     </span></p>
                                 @endif
-                                 <p class="text-muted font-13"><strong>Married Daughters :</strong> <span class="m-l-15">{{$user->profile->marriedDaughters()}}
+                                 <p class="text-muted font-13"><strong>Married Daughters :</strong> <span class="m-l-15">{{$user->profile->numberOfMarriedDaughters()}}
                                  </span></p>
 
-                                 <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{$user->profile->marriedSons()}}
+                                 <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{$user->profile->numberOfMarriedSons()}}
                                  </span></p>
                             </div>
 

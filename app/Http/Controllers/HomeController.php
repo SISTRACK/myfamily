@@ -26,7 +26,14 @@ class HomeController extends Controller
         if(Auth()->User()->profile != null && Auth()->User()->profile->systemAdmin != null){
             return redirect('/dashboard');
         }else{
-            return view('home',['profile'=>Auth()->User()->profile]);
+            $profile = null;
+            if(Auth()->User()->profile->husband == null){
+                $profile = Auth()->User()->profile->child->birth->father->husband->profile;
+            }else{
+                $profile = Auth()->User()->profile;
+            }
+
+            return view('home',['profile'=>$profile]);
         }
     }
 }
