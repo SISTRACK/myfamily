@@ -82,7 +82,7 @@ class Family extends Model
     {
         $families = [];
         foreach($this->admin->profile->husband->father->births as $birth){
-            if($birth->child->profile->gender->name == 'Female'){
+            if($birth->child->profile->gender->name == 'Female' && $birth->child->profile){
                 foreach ($birth->child->profile->wife->mariages as $marriage) {
                     if($marriage->is_active == 1){
                         $families[] = $marriage->husband->profile->family;
@@ -95,8 +95,8 @@ class Family extends Model
     public function hasMarriedFemaleChild()
     {
         $flag = false;
-        if($this->admin->profile->husabnd != null && $this->admin->profile->husabnd->father != null){
-            foreach($this->admin->profile->husabnd->father->births as $birth){
+        if($this->admin->profile->husband != null && $this->admin->profile->husband->father != null){
+            foreach($this->admin->profile->husband->father->births as $birth){
                 if($birth->child->profile->wife != null){
                     $flag = true;
                 }
@@ -107,9 +107,10 @@ class Family extends Model
 
     public function hasMarriedMaleChild()
     {
+
         $flag = false;
-        if($this->admin->profile->husabnd != null && $this->admin->profile->husabnd->father != null){
-            foreach($this->admin->profile->husabnd->father->births as $birth){
+        if($this->admin->profile->husband != null && $this->admin->profile->husband->father != null){
+            foreach($this->admin->profile->husband->father->births as $birth){
                 if($birth->child->profile->husband != null){
                     $flag = true;
                 }

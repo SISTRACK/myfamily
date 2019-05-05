@@ -32,7 +32,7 @@ class ValidFamilies
     {
         $valid_families = [];
         $valid_families[] = $this->my_family;
-
+        
         //check if you are achild and have a family get your father family and put in the array
         if($this->user->profile->child != null && $this->user->profile->husband != null){
             $father_family = $this->my_family->getFamilyAheadOfThisFamily();
@@ -41,7 +41,7 @@ class ValidFamilies
         }
 
         //get the families of your daughters husband families
-        if($this->my_family->hasMarriedFemaleChild()){
+        if($this->my_family->hasMarriedFemaleChild() == true){
             $this->sister_husband_families = $this->my_family->getHusbandFamilies();
             foreach ($this->sister_husband_families as $sister_husband_family) {
                 $valid_families[] = $sister_husband_family;
@@ -55,7 +55,6 @@ class ValidFamilies
                 $valid_families[] = $family;
             }
         }
-
         //get the families of your sisters husband families
         if($this->my_father_family != null && $this->my_father_family->hasMarriedFemaleChild()){
             $this->sister_husband_families = $this->my_father_family->getHusbandFamilies();
@@ -101,41 +100,7 @@ class ValidFamilies
         
     }
     
-    private function hasSubFamily(Family $family)
-    {
-        if($family->subFamily != null){
-        	return true;
-        }
-    }
 
-    
-
-    private function mySisterFamilies()
-    {
-        $father = $this->myFatherFamily->admin->profile->husband->father;
-        foreach($father->births as $birth){
-            $profile = $birth->child->profile;
-            if($profile->gender_id == 2){
-            	if($profile->wife != null && $profile->wife->marriage->is_active == 1){
-            		$husband = $profile->wife->marriage->husband;
-            	    $faimilies[] = $husband->profile->admin->family;
-            	}
-            }
-        }
-    }
-    private function myDaughterFamilies()
-    {
-        $father = $this->myFamily->admin->profile->husband->father;
-        foreach($father->births as $birth){
-            $profile = $birth->child->profile;
-            if($profile->gender_id == 2){
-            	if($profile->wife != null && $profile->wife->marriage->is_active == 1){
-            		$husband = $profile->wife->marriage->husband;
-            	    $faimilies[] = $husband->profile->admin->family;
-            	}
-            }
-        }
-    }
 	private function myFamily()
 	{
         if($this->user->profile->wife != null){
@@ -155,43 +120,10 @@ class ValidFamilies
 
 	}
 
-	private function myFatherFamily()
-	{
-        if($this->user->profile->child != null ){
-            return $this->user->profile->family->fatherFamily();
-        }
-	}
+	
+    
 
-    private function myFatherBrotherFamilies()
-	{
-        foreach(SubFamily::where('family_id',$this->myGrangFatherFamily->id)->get() as $family){
-        	if($family->sub_family_id != $this->my_father_family->id){
-        		$this->families[] = Family::find($family->sub_family_id);
-        	}
-        }
-	}
-   
-	private function myGrandfatherFamily()
-	{
-        $family = Family::find(SubFamily::where('sub_family_id',$this->my_father_family->id)->family_id->get());
-        $this->my_grand_father_family = $family;
-        $this->families[] = $family;
-	}
 
-	private function myBrotherFamilies()
-	{
-        foreach(SubFamily::where('family_id',$this->my_father_family->id)->get() as $family){
-        	if($family->sub_family_id != $my_family->id){
-        		$this->families[] = Family::find($family->sub_family_id);
-        	}
-        }
-	}
-
-	private function mySonFamilies()
-	{
-        foreach(SubFamily::where('family_id',$this->my_family->id)->get() as $family){
-        	$this->families[] = Family::find($family->sub_family_id);
-        }
-	}
+	
 
 }
