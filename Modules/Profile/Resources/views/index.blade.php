@@ -46,7 +46,11 @@
                                         @endif
                                     </span></p>
                                 @endif
+                                 <p class="text-muted font-13"><strong>Married Daughters :</strong> <span class="m-l-15">{{$user->profile->marriedDaughters()}}
+                                 </span></p>
 
+                                 <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{$user->profile->marriedSons()}}
+                                 </span></p>
                             </div>
 
                         </div>
@@ -261,6 +265,14 @@
                                                 <td class="strong">Status </td>
                                                 <td>{{$wife['status']}}</td>
                                             </tr>
+                                            <tr>
+                                                <td class="strong">Born At </td>
+                                                <td>{{$wife['birth_date']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="strong">Married At </td>
+                                                <td>{{$wife['married_date']}}</td>
+                                            </tr>
                                         </table>
                                     </div>
                                 </div>
@@ -293,6 +305,10 @@
                                             <tr>
                                                 <td class="strong">Email </td>
                                                 <td>{{$husband['email']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="strong">Married At </td>
+                                                <td>{{$husband['married_date']}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -327,6 +343,10 @@
                                             <tr>
                                                 <td>Email</td>
                                                 <td>{{$child['email']}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Born At</td>
+                                                <td>{{$child['birth_date']}}</td>
                                             </tr>
                                         </table>
                                     </div>

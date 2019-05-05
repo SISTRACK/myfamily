@@ -2,7 +2,8 @@
 
 namespace Modules\Profile\Services\Traits;
  
- 
+use Modules\Marriage\Entities\Marriage;
+
 trait FamilyMembers
 
 {
@@ -38,7 +39,8 @@ trait FamilyMembers
 				$children[] = [
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
-				    'image'=>$birth->child->profile->image->name
+				    'image'=>$birth->child->profile->image->name,
+				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
 			}
 		} 
@@ -55,7 +57,9 @@ trait FamilyMembers
 						'name'=> $wife->first_name.' '.$wife->last_name,
 					    'email'=>$wife->email,
 					    'image'=>$marriage->wife->profile->image->name,
-					    'status'=>$marriage->wife->status->name
+					    'status'=>$marriage->wife->status->name,
+					    'married_date' => date('D/M/Y',$marriage->date),
+					    'birth_date' => date('D/M/Y',$this->getWifeDateOfBirth($marriage))
 				    ];
 				}
 			}
@@ -73,11 +77,98 @@ trait FamilyMembers
             		$husband = [
                         'name'=> $currentHusband->first_name.' '.$currentHusband->last_name,
 					    'email'=>$currentHusband->email,
-					    'image'=>$marriage->husband->profile->image->name
+					    'image'=>$marriage->husband->profile->image->name,
+					    'married_date' => date('D/M/Y',$marriage->date)
             		];
             	}
             }
 		}
 		return $husband;
+	}
+
+	public function getWifeDateOfBirth(Marriage $marriage)
+	{
+		$date = null;
+		if($marriage->wife->profile->date_of_birth != null){
+			$date = $marriage->wife->profile->date_of_birth;
+		}else{
+			$date = $marriage->wife->profile->birth->date;
+		}
+        return $date;
+	}
+	public function marriedDaughters()
+	{
+		$count = 0;
+        if($this->husband != null && $this->husband->father != null){
+        	foreach ($this->husband->father->births as $birth) {
+        		if($birth->child->profile->wife != null){
+        			$count ++ ;
+        		}
+        	}
+        }
+        return $count;
+	}
+
+	public function marriedSons()
+	{
+		$count = 0;
+        if($this->husband != null && $this->husband->father != null){
+        	foreach ($this->husband->father->births as $birth) {
+        		if($birth->child->profile->husband != null){
+        			$count ++ ;
+        		}
+        	}
+        }
+        return $count;
+	}
+
+	public function numberOfWives()
+	{
+		$count = 0;
+		if($this->husband){
+			foreach ($this->husband->marriages as $marriage) {
+				if($marriage->is_active == 1){
+					$count++;
+				}
+			}
+		}
+		return $count;
+	}
+
+	public function numberOfBirths()
+	{
+		$count = 0;
+		if($this->husband){
+			foreach ($this->husband->father->births as $birth) {
+			    $count++;
+			}
+		}
+		return $count;
+	}
+
+	public function numberOfLiveBirths()
+	{
+		$count = 0;
+		if($this->husband){
+			foreach ($this->husband->father->births as $birth) {
+				if($birth->child->profile->life_status_id == 1){
+                    $count++;
+				}
+			}
+		}
+		return $count;
+	}
+
+	public function numberOfDeathBirths()
+	{
+		$count = 0;
+		if($this->husband){
+			foreach ($this->husband->father->births as $birth) {
+				if($birth->child->profile->life_status_id == 0){
+                    $count++;
+				}
+			}
+		}
+		return $count;
 	}
 }

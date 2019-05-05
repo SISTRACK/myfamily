@@ -167,7 +167,7 @@ class Profile extends Model
     {
         $count = [];
         
-        if($this->gender->name = 'Male'){
+        if($this->gender->name = 'Male' && $this->husband != null && $this->husband->father != null){
             foreach ($this->husband->father->births as $birth) {
                 $count[] = $birth;
             }
