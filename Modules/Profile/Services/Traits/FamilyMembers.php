@@ -149,7 +149,7 @@ trait FamilyMembers
 	public function numberOfLiveBirths()
 	{
 		$count = 0;
-		if($this->husband){
+		if($this->husband != null){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->life_status_id == 1){
                     $count++;
@@ -158,7 +158,54 @@ trait FamilyMembers
 		}
 		return $count;
 	}
+    
+    public function numberOfDivorces()
+	{
+		$count = 0;
+		if($this->husband != null){
+			foreach ($this->husband->marriages as $marriage) {
+				if($marriage->divorce != null){
+                    $count++;
+				}
+			}
+		}
+		return $count;
+	}
 
+	public function numberOfMarriages()
+	{
+		$count = 0;
+		if($this->husband != null){
+			foreach ($this->husband->marriages as $marriage) {
+                $count++;
+			}
+		}
+		return $count;
+	}
+    public function numberOfMarriedDaughters()
+	{
+		$count = 0;
+		if($this->husband != null && $this->husband->father != null){
+			foreach ($this->husband->father->births as $birth) {
+				if($birth->child->profile->wife != null){
+					$count++;
+				}
+			}
+		}
+		return $count;
+	}
+	public function numberOfMarriedSons()
+	{
+		$count = 0;
+		if($this->husband != null && $this->husband->father != null){
+			foreach ($this->husband->father->births as $birth) {
+				if($birth->child->profile->husband != null){
+					$count++;
+				}
+			}
+		}
+		return $count;
+	}
 	public function numberOfDeathBirths()
 	{
 		$count = 0;
@@ -171,4 +218,11 @@ trait FamilyMembers
 		}
 		return $count;
 	}
+
+	public function totalFamilyMembers()
+	{
+		return $this->numberOfLiveBirths() + $this->numberOfWives() + 1;
+	}
+
+
 }
