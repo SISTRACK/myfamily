@@ -31,13 +31,23 @@ trait ValidHusband
                 $this->canMarryAgain($this->husbandUser);
             }
         }
-        
-        if($this->husbandUser != null && $this->husbandUser->profile->child != null){
-            
-        }else if(filled($this->husbandUser) && filled($this->husbandUser->profile->child)){
-            $this->canMarry($this->husbandUser);
-            $this->validBirth($this->husbandUser);
+        if(session('register')['status'] == 'son'||session('register')['status'] == 'father'){
+            if($this->husbandUser != null && $this->husbandUser->profile != null && $this->husbandUser->profile->child != null){
+                
+            }else if(filled($this->husbandUser) && filled($this->husbandUser->profile->child)){
+                $this->canMarry($this->husbandUser);
+                $this->validBirth($this->husbandUser);
+            }
+        }else{
+            if($this->husbandUser->isNotEmpty() && $this->husbandUser->profile->isNotEmpty() && $this->husbandUser->profile->child->isNotEmpty()){
+                
+            }else if(filled($this->husbandUser) && filled($this->husbandUser->profile->child)){
+                $this->canMarry($this->husbandUser);
+                $this->validBirth($this->husbandUser);
+            }
         }
+        
+
         if(session('register')['status'] == 'son'){
             $this->emailAuth();
         }

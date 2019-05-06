@@ -24,8 +24,12 @@ trait VerifyWife
 
         if($user->profile->date_of_birth < 378432000){
             $this->error = "Sorry the wife marriage authentication fails the owner of this email was too young to marry";
-        }else if($user->profile->wife->marriages->is_active != 0){
-            $this->error[] = "Sorry the wife marriage authentication fails the owner of this email was already married";
+        }else if($user->profile->wife != null){
+            foreach($user->profile->wife->marriages as $marriage){
+                if($marriage->is_active == 1){
+                    $this->error[] = "Sorry the wife marriage authentication fails the owner of this email was already married";
+                }
+            } 
         }
     }
 

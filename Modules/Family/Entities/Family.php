@@ -82,14 +82,16 @@ class Family extends Model
     {
         $families = [];
         foreach($this->admin->profile->husband->father->births as $birth){
-            if($birth->child->profile->gender->name == 'Female' && $birth->child->profile){
-                foreach ($birth->child->profile->wife->mariages as $marriage) {
+            if($birth->child->profile->gender->name == 'Female' && $birth->child->profile->wife != null){
+
+                foreach ($birth->child->profile->wife->marriages as $marriage) {
                     if($marriage->is_active == 1){
                         $families[] = $marriage->husband->profile->family;
                     }
                 }
             }
         }
+        return $families;
     }
 
     public function hasMarriedFemaleChild()

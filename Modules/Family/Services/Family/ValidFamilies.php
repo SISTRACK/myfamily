@@ -19,6 +19,8 @@ class ValidFamilies
 
     protected $brother_families;
 
+    protected $sister_husband_families;
+
 	public $families;
 
 	public function __construct(){
@@ -43,8 +45,10 @@ class ValidFamilies
         //get the families of your daughters husband families
         if($this->my_family->hasMarriedFemaleChild() == true){
             $this->sister_husband_families = $this->my_family->getHusbandFamilies();
-            foreach ($this->sister_husband_families as $sister_husband_family) {
-                $valid_families[] = $sister_husband_family;
+            if(!empty($this->sister_husband_families)){
+                foreach ($this->sister_husband_families as $sister_husband_family) {
+                    $valid_families[] = $sister_husband_family;
+                }
             }
         }
         
