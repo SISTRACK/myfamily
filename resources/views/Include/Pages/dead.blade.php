@@ -1,1 +1,1 @@
-<h1>Sorry this user has register dead in that case his account is close</h1>
+<h1>Sorry you are un authorized too access this page using this creadential the owner of this credential has registered as death</h1>

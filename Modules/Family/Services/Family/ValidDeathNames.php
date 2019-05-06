@@ -26,7 +26,7 @@ class ValidDeathNames
 	        switch (session('death')['status']) {
 				case 'husband':
 				    $user = $this->family->admin->profile->user;
-				    if(Auth()->User()->id != $user->id){
+				    if(Auth()->User()->id != $user->id && $user->profile->life_status_id != 0){
 						$names[] = [
 							'first_name' => $user->first_name,
 							'last_name' => $user->last_name,
@@ -40,7 +40,7 @@ class ValidDeathNames
 					foreach($this->family->admin->profile->husband->marriages as $marriage){
 	                    if($marriage->is_active == 1){
 	                    	$wife = $marriage->wife->profile->user;
-	                    	if(Auth()->User()->id != $wife->id){
+	                    	if(Auth()->User()->id != $wife->id && $wife->profile->life_status_id != 0){
 		                    	$names[] = [
 		                            'first_name' => $wife->first_name,
 		                            'last_name' => $wife->last_name,
@@ -57,7 +57,7 @@ class ValidDeathNames
 					foreach($this->family->admin->profile->husband->father->births as $birth){
 	                	$profile = $birth->child->profile;
 	                	if($profile->life_status_id ==1){
-	                		if(Auth()->User()->id != $profile->user->id){
+	                		if(Auth()->User()->id != $profile->user->id && $profile->life_status_id != 0){
 		                		$names[] = [
 		                            'first_name' => $profile->user->first_name,
 		                            'last_name' => $profile->user->last_name,

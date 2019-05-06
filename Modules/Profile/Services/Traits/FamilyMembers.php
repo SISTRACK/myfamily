@@ -124,7 +124,26 @@ trait FamilyMembers
 		}
 		return $count;
 	}
-
+    public function numberOfLiveBirthsInTheFamily()
+	{
+		$count = 0;
+		if($this->isFather()){
+			foreach ($this->husband->father->births as $birth) {
+				if($birth->child->profile->life_status_id == 1){
+                    $count++;
+				}
+			}
+		}else if($this->isMother()){
+			foreach ($this->wife->marriages as $marriage) {
+				foreach ($marriage->husband->father->births as $birth) {
+					if($birth->child->profile->life_status_id == 1) {
+	                    $count++;
+					}
+				}
+			}
+		}
+		return $count;
+	}
 	public function numberOfLiveBirths()
 	{
 		$count = 0;
@@ -162,6 +181,10 @@ trait FamilyMembers
 		$count = 0;
 		if($this->husband != null){
 			foreach ($this->husband->marriages as $marriage) {
+                $count++;
+			}
+		}else if($this->wife != null){
+			foreach ($this->wife->marriages as $marriage) {
                 $count++;
 			}
 		}
@@ -224,7 +247,10 @@ trait FamilyMembers
 
 	public function totalFamilyMembers()
 	{
-		return $this->numberOfLiveBirths() + $this->numberOfWives() + 1;
+		
+		return $this->numberOfLiveBirthsInTheFamily() + $this->numberOfWives() + 1;
+		
+		
 	}
     public function isFather()
     {

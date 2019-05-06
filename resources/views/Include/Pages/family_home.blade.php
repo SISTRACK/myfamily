@@ -21,7 +21,7 @@
         </div>
     </div>
 </div><!-- end col -->
-
+@if($profile->gender->name == 'Male')
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div><!-- end col -->
-
+@endif
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
@@ -58,7 +58,6 @@
         </div>
     </div>
 </div><!-- end col -->
-
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
@@ -68,6 +67,7 @@
         </div>
     </div>
 </div><!-- end col -->
+@if($profile->gender->name == 'Male')
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
@@ -77,7 +77,7 @@
         </div>
     </div>
 </div><!-- end col -->
-
+@endif
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
