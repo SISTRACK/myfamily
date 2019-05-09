@@ -8,6 +8,19 @@
         @include('profile::Forms.Setting.update_biography_form')
     </div>
     <hr> 
+
+    <div class="row">
+
+        <!-- Column -->
+        <div class="col-md-3">
+            <strong>Give people permission to see your profile</strong>
+            <p class="muted">You can select specific people that can see your profile this can be done by you and the permission can be rebock by you any time you wish to</p>
+        </div>
+        <div class="col-md-9">
+            @include('profile::Forms.Setting.profile_access_form')
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <strong>Update Home Address</strong>

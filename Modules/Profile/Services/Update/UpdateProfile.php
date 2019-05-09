@@ -13,6 +13,10 @@ use Modules\Profile\Services\Traits\Health;
 use Modules\Profile\Services\Traits\Experiences;
 
 use Modules\Profile\Services\Traits\CreateWorkHistory;
+
+use Modules\Profile\Services\Traits\Access;
+
+
 /**
 * this class will recieved the user information and update his profile
 */
@@ -30,7 +34,7 @@ class UpdateProfile
 	}
 
     use WorkAddress, LivingAddress, Expertices, CreateWorkHistory 
-    , Experiences, Health;
+    , Experiences, Health, Access;
 
     protected function ValidUser()
     {
@@ -72,6 +76,12 @@ class UpdateProfile
                 $this->newExpertice();
                 session()->flash('message','The profile expertice added successfully');
                 break;
+
+            case 'profile access':
+                $this->newAccess();
+                
+                break;
+
 
             case 'new_experience':
                 

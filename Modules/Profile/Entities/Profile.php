@@ -37,14 +37,26 @@ class Profile extends Model
     	return $this->hasMany(Announcement::class);
     }
 
+    public function profileAccessibleBy()
+    {
+        $array = [];
+        foreach (ProfileAccess::where('access_to_id',$this->id)->get() as $access) {
+            $array[] = $access->accessor; 
+        }
+        return $array;
+    }
+
+    public function profileAccessibleTo()
+    {
+        $array = [];
+        foreach ($this->accesses as $access) {
+            $array[] = $this->find($access->access_to_id); 
+        }
+        return $array;
+    }
     public function accesses()
     {
-        return $this->hasMany(ProfileAccess::class,'access_to_id');
-    }
-    
-    public function access()
-    {
-        return $this->hasOne(ProfileAccess::class,'profile_id');
+        return $this->hasMany(ProfileAccess::class);
     }
 
     public function religion()

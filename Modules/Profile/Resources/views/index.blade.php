@@ -357,6 +357,75 @@
                         @endif
                     </div>
                 </div>
+
+                <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">We have access to your profile</h4>
+                    <div class="row">
+                        @if(empty($user->profile->profileAccessibleBy()))
+                            <div class="gal-detail">
+                                <h3>Your profile is invisible to any one</h3>      
+                            </div>
+                        @else
+                            @foreach($user->profile->profileAccessibleBy() as $accessible)
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td>Name </td>
+                                                <td> {{$accessible->user->first_name.' '.$accessible->user->last_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>@ </td>
+                                                <td>{{$accessible->user->email}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-lg-9">
+                    <h4 class="text-custom m-b-5">You have access to these profiles</h4>
+                    <div class="row">
+                        @if(empty($user->profile->profileAccessibleTo()))
+                            <div class="gal-detail">
+                                <h3>You dont have access to any profile</h3>      
+                            </div>
+                        @else
+                            @foreach($user->profile->profileAccessibleTo() as $accessible)
+                            <div class="col-md-4 col-sm-6">
+                                <div class=" thumb">
+                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
+                                    </a>
+                                    <div class="gal-detail">
+                                        <table>
+                                            <tr>
+                                                <td>Name </td>
+                                                <td>{{$accessible->user->first_name.' '.$accessible->user->last_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>@ </td>
+                                                <td>{{$accessible->user->email}}</td>
+                                            </tr>
+                                            
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
                 </div>
             
                 
