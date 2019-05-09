@@ -33,8 +33,18 @@ trait FamilyMembers
     public function children()
 	{
 		$children = [];
-		if($this->husband != null && $this->husband->father != null){
+		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
+				$child = $birth->child->profile->user;
+				$children[] = [
+					'name'=> $child->first_name.' '.$child->last_name,
+					'email'=>$birth->child->profile->user->email,
+				    'image'=>$birth->child->profile->image->name,
+				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
+			    ];
+			}
+		}else if($this->isMother()){
+			foreach ($this->wife->mother->births as $birth) {
 				$child = $birth->child->profile->user;
 				$children[] = [
 					'name'=> $child->first_name.' '.$child->last_name,
