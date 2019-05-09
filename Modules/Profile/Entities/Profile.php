@@ -36,6 +36,17 @@ class Profile extends Model
     {
     	return $this->hasMany(Announcement::class);
     }
+
+    public function accesses()
+    {
+        return $this->hasMany(ProfileAccess::class,'access_to_id');
+    }
+    
+    public function access()
+    {
+        return $this->hasOne(ProfileAccess::class,'profile_id');
+    }
+
     public function religion()
     {
         return $this->belongsTo(Religion::class);
