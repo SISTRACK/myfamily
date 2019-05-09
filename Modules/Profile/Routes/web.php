@@ -17,3 +17,6 @@ Route::middleware(['auth','web','hasProfile'])->group(function() {
     Route::get('/profile_details', 'ProfileController@userDetail')->name('user.detail');
     Route::post('/update_profile', 'ProfileController@update')->name('profile.update');
 });
+
+Route::get('/profile/{id}/view', 'ProfileController@accessProfile');
+Route::get('/profile/{id}/resume', 'ProfileController@resumeProfile');

@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Profile\Services\Update\UpdateProfile;
 use Modules\Core\Http\Controllers\BaseController;
+use App\User;
 
 class ProfileController extends BaseController
 {
@@ -16,9 +17,26 @@ class ProfileController extends BaseController
      */
     public function index()
     {
-        return view('profile::index',['user'=>Auth()->User()]);
+        if(session('gues')){
+            $user = User::find(session('gues'));
+        }else{
+            $user = Auth()->User();
+        }
+        return view('profile::index',['user'=>$user]);
     }
 
+    public function accessProfile($id)
+    {
+        session(['gues'=>$id]);
+
+        return redirect('profile');
+    }
+    public function resumeProfile($id)
+    {
+        session()->forget('gues');
+
+        return redirect('profile');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response

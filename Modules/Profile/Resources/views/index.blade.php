@@ -51,6 +51,9 @@
 
                                  <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{$user->profile->numberOfMarriedSons()}}
                                  </span></p>
+                                 @if(session('gues'))
+                                 <p><a class="btn btn-primary btn-block" href="profile/{{Auth()->User()->id}}/resume">Resume To My Profile</a></p>
+                                 @endif
                             </div>
 
                         </div>
@@ -357,7 +360,7 @@
                         @endif
                     </div>
                 </div>
-
+                @if(!session('gues'))
                 <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">We have access to your profile</h4>
                     <div class="row">
@@ -370,7 +373,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -403,7 +406,7 @@
                             @foreach($user->profile->profileAccessibleTo() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
-                                    <a href="#" class="image-popup" title="Screenshot-1">
+                                    <a href="profile/{{$accessible->user->id}}/view" class="image-popup" title="Screenshot-1">
                                         <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
@@ -426,6 +429,7 @@
                         @endif
                     </div>
                 </div>
+                @endif
                 </div>
             
                 

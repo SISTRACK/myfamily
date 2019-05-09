@@ -41,7 +41,8 @@ class Profile extends Model
     {
         $array = [];
         foreach (ProfileAccess::where('access_to_id',$this->id)->get() as $access) {
-            $array[] = $access->accessor; 
+
+            $array[] = $this->find($access->profile_id); 
         }
         return $array;
     }
