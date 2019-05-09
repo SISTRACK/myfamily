@@ -68,7 +68,6 @@ class ValidDeathNames
 					}
 				    $this->names = $names;
 					break;
-				
 				default:
 					foreach($this->family->admin->profile->husband->father->births as $birth){
 	                	$profile = $birth->child->profile;
