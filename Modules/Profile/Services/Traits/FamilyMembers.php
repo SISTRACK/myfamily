@@ -16,6 +16,7 @@ trait FamilyMembers
         	$parents[] = [
         		'name'=>$father->first_name.' '.$father->last_name, 
         		'email'=>$father->email,
+        		'user'=>$father,
         		'status'=>'Father',
         		'image'=> $father->profile->image->name
         	]; 
@@ -23,6 +24,7 @@ trait FamilyMembers
         	$parents[] = [
         		'name'=>$mother->first_name.' '.$mother->last_name, 
         		'email'=>$mother->email,
+        		'user'=>$mother,
         		'status'=>'Mother',
         		'image'=>$mother->profile->image->name
         	];
@@ -39,6 +41,7 @@ trait FamilyMembers
 				$children[] = [
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
+					'user'=>$birth->child->profile->user,
 				    'image'=>$birth->child->profile->image->name,
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
@@ -49,6 +52,7 @@ trait FamilyMembers
 				$children[] = [
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
+					'user'=>$birth->child->profile->user,
 				    'image'=>$birth->child->profile->image->name,
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
@@ -66,6 +70,7 @@ trait FamilyMembers
 					$wives[] = [
 						'name'=> $wife->first_name.' '.$wife->last_name,
 					    'email'=>$wife->email,
+					    'user'=>$wife,
 					    'image'=>$marriage->wife->profile->image->name,
 					    'status'=>$marriage->wife->status->name,
 					    'married_date' => date('D/M/Y',$marriage->date),
@@ -87,6 +92,7 @@ trait FamilyMembers
             		$husband = [
                         'name'=> $currentHusband->first_name.' '.$currentHusband->last_name,
 					    'email'=>$currentHusband->email,
+					    'user'=>$currentHusband,
 					    'image'=>$marriage->husband->profile->image->name,
 					    'married_date' => date('D/M/Y',$marriage->date)
             		];

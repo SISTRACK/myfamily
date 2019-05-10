@@ -86,6 +86,11 @@ class ProfileController extends BaseController
 
         if($request->submit == 'upload_image'){
             $error = [];
+            if(isset($request->id)){
+                $user = User::find($request->id);
+            }else{
+                $user = Auth()->User();
+            }
             if(!$request->hasFile('file')){
                 $error[] = 'No file selected';
             }
@@ -97,7 +102,7 @@ class ProfileController extends BaseController
                 $name = time().$file->getClientOriginalName();
                 $file->move('assets/images/users',$name);
                 $image = Image::create(['name'=>$name]);
-                Auth()->User()->profile()->update(['image_id'=>$image->id]);
+                $user->profile()->update(['image_id'=>$image->id]);
                 session()->flash('message','Profile image uploaded Successfully');
             }else{
                 session()->flash('error',$error);

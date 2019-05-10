@@ -230,6 +230,19 @@
                                                 <td>{{$parent['status']}}</td>
                                             </tr>
                                         </table>
+                                        @if($parent['user']->profile->image_id == 1 || $parent['user']->profile->image_id == 2)
+                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                            @csrf            
+                                            <label for="inputPasswordOld">choose Picture</label>
+                                            
+                                                <input name="file" type="file" class="form-control" />
+                                                <input type="hidden" value="{{$parent['user']->id}}" name="id">
+                                            <div class="separator bottom"></div>
+                                            <div class="form-actions" style="margin: 0;">
+                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
+                                            </div>
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -277,6 +290,19 @@
                                                 <td>{{$wife['married_date']}}</td>
                                             </tr>
                                         </table>
+                                        @if($wife['user']->profile->image_id == 1 || $wife['user']->profile->image_id == 2)
+                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                            @csrf            
+                                            <label for="inputPasswordOld">choose Picture</label>
+                                            
+                                                <input name="file" type="file" class="form-control" />
+                                                <input type="hidden" value="{{$wife['user']->id}}" name="id">
+                                            <div class="separator bottom"></div>
+                                            <div class="form-actions" style="margin: 0;">
+                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
+                                            </div>
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -314,6 +340,19 @@
                                                 <td>{{$husband['married_date']}}</td>
                                             </tr>
                                         </table>
+                                        @if($husband['user']->profile->image_id == 1 || $husband['user']->profile->image_id == 2)
+                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                            @csrf            
+                                            <label for="inputPasswordOld">choose Picture</label>
+                                            
+                                                <input name="file" type="file" class="form-control" />
+                                                <input type="hidden" value="{{$husband['user']->id}}" name="id">
+                                            <div class="separator bottom"></div>
+                                            <div class="form-actions" style="margin: 0;">
+                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
+                                            </div>
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -334,6 +373,7 @@
                             @foreach($user->profile->children() as $child)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
+
                                     <a href="#" class="image-popup" title="Screenshot-1">
                                         <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
@@ -352,6 +392,19 @@
                                                 <td>{{$child['birth_date']}}</td>
                                             </tr>
                                         </table>
+                                        @if($child['user']->profile->image_id == 1 || $child['user']->profile->image_id == 2)
+                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                            @csrf            
+                                            <label for="inputPasswordOld">choose Picture</label>
+                                            
+                                                <input name="file" type="file" class="form-control" />
+                                                <input type="hidden" value="{{$child['user']->id}}" name="id">
+                                            <div class="separator bottom"></div>
+                                            <div class="form-actions" style="margin: 0;">
+                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
+                                            </div>
+                                        </form>
+                                        @endif
                                     </div>
                                     
                                 </div>
@@ -400,7 +453,7 @@
                                                             </tr>
 
                                                         </table>
-                                                        <P><a class="btn btn-danger btn-block"  href="profile/{{$accessible->id}}/block_access">Block User</a></P>
+                                                        <P><a class="btn btn-danger btn-block"  href="profile/{{$accessible->id}}/block_access">Block Access</a></P>
                                                     </div>
                                                 </div>
                                             </div>
