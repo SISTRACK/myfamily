@@ -373,21 +373,44 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail" data-toggle="modal" data-target="#{{$accessible->user->id}}">
                                     </a>
-                                    <div class="gal-detail">
-                                        <table>
-                                            <tr>
-                                                <td>Name </td>
-                                                <td> {{$accessible->user->first_name.' '.$accessible->user->last_name}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>@ </td>
-                                                <td>{{$accessible->user->email}}</td>
-                                            </tr>
-                                        </table>
+                                    <!-- modal -->
+                                    <div class="modal fade" id="{{$accessible->user->id}}" role="dialog">
+                                        <div class="modal-dialog">
+                                          <!-- Modal content-->
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <img src="assets/images/users/{{$accessible->image->name}}" alt="photo" width="150" class="innerB half">
+                                                    </div>
+                                                    <div class="col-sm-8">
+                                                        <table>
+                                                            <tr>
+                                                                <td>Name </td>
+                                                                <td> {{$accessible->user->first_name.' '.$accessible->user->last_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>@ </td>
+                                                                <td>{{$accessible->user->email}}</td>
+                                                            </tr>
+
+                                                        </table>
+                                                        <P><a class="btn btn-danger btn-block"  href="profile/{{$accessible->id}}/block_access">Block User</a></P>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                          </div>
+                                        </div>
                                     </div>
-                                    
+                                    <!-- end modal -->
                                 </div>
                             </div>
                             @endforeach

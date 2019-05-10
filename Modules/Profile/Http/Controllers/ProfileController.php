@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Profile\Services\Update\UpdateProfile;
 use Modules\Core\Http\Controllers\BaseController;
 use App\User;
+use Modules\Profile\Entities\ProfileAccess;
 
 class ProfileController extends BaseController
 {
@@ -31,11 +32,24 @@ class ProfileController extends BaseController
 
         return redirect('profile');
     }
+
     public function resumeProfile($id)
     {
         session()->forget('gues');
 
         return redirect('profile');
+    }
+
+    public function blockProfileAccess($id)
+    {
+        $access = null;
+        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>Auth()->User()->id])->get() as $user_access) {
+            $access = $user_access;
+        }
+        $access->is_active = 0;
+        $access->save();
+        session()->flash('message','User wass successfully blocked from viewing your profile');
+        return redirect('/profile');
     }
     /**
      * Show the form for creating a new resource.

@@ -40,7 +40,7 @@ class Profile extends Model
     public function profileAccessibleBy()
     {
         $array = [];
-        foreach (ProfileAccess::where('access_to_id',$this->id)->get() as $access) {
+        foreach (ProfileAccess::where(['access_to_id'=>$this->id,'is_active'=>1])->get() as $access) {
 
             $array[] = $this->find($access->profile_id); 
         }
@@ -51,7 +51,9 @@ class Profile extends Model
     {
         $array = [];
         foreach ($this->accesses as $access) {
-            $array[] = $this->find($access->access_to_id); 
+            if($access->is_active == 1){
+                 $array[] = $this->find($access->access_to_id); 
+            }
         }
         return $array;
     }
