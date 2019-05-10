@@ -33,8 +33,7 @@ class UpdateProfile
 		$this->update();
 	}
 
-    use WorkAddress, LivingAddress, Expertices, CreateWorkHistory 
-    , Experiences, Health, Access;
+    use WorkAddress, LivingAddress, Expertices, CreateWorkHistory, Experiences, Health, Access;
 
     protected function ValidUser()
     {
@@ -60,8 +59,9 @@ class UpdateProfile
                 session()->flash('message','The profile health information updated successfully');
                 break;
             
-            case 'profile_image':
-                if($file =  request()->file($this->data['image'])){
+            case 'upload_image':
+                if(collect($this->data)->hasFile('file')){
+                    dd('yes has file');
 	                $name = time().$file->getClientOriginalName();
 	                $file->move('images/profile',$name);
 	                $image = $this->user->profile->image()->create(['image'=>$name]);

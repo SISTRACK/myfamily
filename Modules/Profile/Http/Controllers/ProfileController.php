@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Profile\Services\Update\UpdateProfile;
+use Modules\Profile\Entities\Image;
 use Modules\Core\Http\Controllers\BaseController;
 use App\User;
 use Modules\Profile\Entities\ProfileAccess;
@@ -82,8 +83,29 @@ class ProfileController extends BaseController
      */
     public function update(Request $request)
     {
-        new UpdateProfile($request->all());
 
+        if($request->submit == 'upload_image'){
+            $error = [];
+            if(!$request->hasFile('file')){
+                $error[] = 'No file selected';
+            }
+            if(!$request->file('file')->isValid()){
+                $error[] = 'Invalid file selected';
+            }    
+            if(empty($error)){
+                $file = $request->file('file');
+                $name = time().$file->getClientOriginalName();
+                $file->move('assets/images/users',$name);
+                $image = Image::create(['name'=>$name]);
+                Auth()->User()->profile()->update(['image_id'=>$image->id]);
+                session()->flash('message','Profile image uploaded Successfully');
+            }else{
+                session()->flash('error',$error);
+            }           
+        }else{
+            new UpdateProfile($request->all());
+        }
+       
         return redirect()->route('profile.index');
     }
 
