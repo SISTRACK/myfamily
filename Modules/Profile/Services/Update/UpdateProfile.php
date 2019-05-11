@@ -59,19 +59,6 @@ class UpdateProfile
                 session()->flash('message','The profile health information updated successfully');
                 break;
             
-            case 'upload_image':
-                if(collect($this->data)->hasFile('file')){
-                    dd('yes has file');
-	                $name = time().$file->getClientOriginalName();
-	                $file->move('images/profile',$name);
-	                $image = $this->user->profile->image()->create(['image'=>$name]);
-	                $this->user->profile()->update(['image_id'=>$image->id]);
-	                session()->flash('message','Profile image uploaded Successfully');
-	            }else{
-	            	session()->flash('error',['no file selected']);
-	            }
-                break;
-            
             case 'new_expertice':
                 $this->newExpertice();
                 session()->flash('message','The profile expertice added successfully');

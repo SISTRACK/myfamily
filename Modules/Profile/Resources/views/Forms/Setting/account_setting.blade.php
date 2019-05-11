@@ -111,13 +111,26 @@
     </div> <hr />
 
     <div class="row">
-        <div class="col-md-3">
-            <strong>Update Profile Picture</strong>
-            <p class="muted">So many people may bear with <strong><{{$user->first_name.' '.$user->last_name}}</strong> You can make your profile identical by uploading the picture of your face</p>
-        </div>
-        <div class="col-md-9">
-            @include('profile::Forms.Setting.upload_profile_image_form')
-        </div>
+        @if($user->profile->image_id == 1 || $user->profile->image_id == 2)
+            <div class="col-md-3">
+                <strong>Update Profile Picture</strong>
+                <p class="muted">So many people may bear with <strong><{{$user->first_name.' '.$user->last_name}}</strong> You can make your profile identical by uploading the picture of your face</p>
+            </div>
+            <div class="col-md-9">
+                @include('profile::Forms.Setting.upload_profile_image_form')
+            </div>
+        @else
+            <div class="col-md-3">
+                <strong>Reset Profile Picture</strong>
+                <p class="muted">If your profile picture look old or other reason that warant to change your profile picture you can do it here</p>
+            </div>
+            <div class="col-md-9">
+                <div class="separator bottom"></div>
+                <div class="form-actions" style="margin: 0;">
+                    <button name="reset_picture" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Reset Picture</button>
+                </div>
+            </div>
+        @endif
     </div>
     <hr>
 
@@ -134,25 +147,6 @@
     </div>
     <hr />
 
-    <div class="separator line bottom"></div>
-        
-    <div class="row">
-        <!-- Column -->
-        <div class="col-md-3">
-            <strong>Reset Profile Picture</strong>
-            <p class="muted">If your profile picture look old or other reason that warant to change your profile picture you can do it here</p>
-        </div>
-        <!-- // Column END -->
-        
-        <!-- Column -->
-        <div class="col-md-9">
-            <div class="separator bottom"></div>
-            <div class="form-actions" style="margin: 0;">
-                <button name="add_skill" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Reset Picture</button>
-            </div>
-        </div>
-    </div>
-    <hr />
     <div class="separator line bottom"></div>
 
     <!-- Row -->

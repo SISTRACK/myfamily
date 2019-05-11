@@ -213,7 +213,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -265,7 +265,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$wife['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$wife['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -323,7 +323,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$husband['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$husband['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -375,7 +375,7 @@
                                 <div class=" thumb">
 
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail" class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -426,7 +426,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail" data-toggle="modal" data-target="#{{$accessible->user->id}}">
+                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail" data-toggle="modal" data-target="#{{$accessible->user->id}}"  class="img-radius" height="200" width="200">
                                     </a>
                                     <!-- modal -->
                                     <div class="modal fade" id="{{$accessible->user->id}}" role="dialog">
