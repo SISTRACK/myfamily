@@ -7,7 +7,7 @@
     </div>
     <label for="">History</label>
     <div class="input-group">
-        <textarea name="history" id="" cols="100" rows="5"></textarea>
+        <textarea name="history" id="" cols="60" rows="5"></textarea>
     </div>
     <div class="separator bottom"></div>
     <div class="form-actions" style="margin: 0;">

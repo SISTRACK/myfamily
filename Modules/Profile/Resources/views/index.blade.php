@@ -65,7 +65,25 @@
                 <div class="col-md-8 col-lg-9">
                 	<div class="row">
                 		<div class="col-md-8 col-sm-6">
-                			<h4 class="text-custom m-b-5">Biography</h4>
+                			<h4 href="#"  data-toggle="modal" data-target="#biography"  class="text-custom m-b-5">Update Biography</h4>
+                            <!-- modal -->
+                                <div class="modal fade" id="biography" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @include('profile::Forms.Setting.update_biography_form')
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end modal -->
 		                    <div class="p-t-10">
 		                    	<p class="text-muted font-13">{{$user->profile->about_me}}
 		                        </p>
@@ -74,8 +92,50 @@
                 	</div>
                     <hr/>
                     <div class="row">
+                        <div class="col-md-8 col-sm-6">
+                            <h4 href="#"  data-toggle="modal" data-target="#access"  class="text-custom m-b-5">Give People Access To Your Profile</h4>
+                            <!-- modal -->
+                                <div class="modal fade" id="access" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @include('profile::Forms.Setting.profile_access_form')
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end modal -->
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
                 		<div class="col-md-8 col-sm-6">
-                			<h4 class="text-custom m-b-5">Living Address</h4>
+                			<h4 href="#"  data-toggle="modal" data-target="#living_address"  class="text-custom m-b-5">Update Living Address</h4>
+                            <!-- modal -->
+                                <div class="modal fade" id="living_address" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @include('profile::Forms.Setting.update_home_address_form')
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end modal -->
 		                    <div class="p-t-10">
 		                    	<p class="text-muted font-13">
 		                    		<table>
@@ -115,7 +175,25 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Work Address</h4>
+                            <h4 href="#"  data-toggle="modal" data-target="#work_address" class="text-custom m-b-5">Update Work Address</h4>
+                            <!-- modal -->
+                                <div class="modal fade" id="work_address" role="dialog">
+                                    <div class="modal-dialog">
+                                      <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                @include('profile::Forms.Setting.update_business_address_form')
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- end modal -->
                             <div class="p-t-10">
                                 <p class="text-muted font-13">
                                     <table>
@@ -153,7 +231,25 @@
                         </div>
                 	</div>
                     <hr/>
-                    <h4 class="text-custom m-b-5">Expertise</h4>
+                    <h4 href="#"  data-toggle="modal" data-target="#expertice" class="text-custom m-b-5"> New Expertise</h4>
+                    <!-- modal -->
+                        <div class="modal fade" id="expertice" role="dialog">
+                            <div class="modal-dialog">
+                              <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @include('profile::Forms.Setting.new_expertice_form')
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- end modal -->
                     <div class="row m-t-20">
                         @foreach($user->profile->currentProfileExpertice() as $expertice)
                         <div class="col-md-3 col-sm-6 text-center">
@@ -169,7 +265,25 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Work History</h4>
+                            <h4 href="#"  data-toggle="modal" data-target="#work_history" class="text-custom m-b-5">New Work History</h4>
+                            <!-- modal -->
+                            <div class="modal fade" id="work_history" role="dialog">
+                                <div class="modal-dialog">
+                                  <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @include('profile::Forms.Setting.new_work_history_form')
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end modal -->
                             @foreach($user->profile->thisProfileWorkHistory() as $history)
 
                             <div class=" p-t-10">
@@ -186,7 +300,25 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Experience</h4>
+                            <h4 href="#"  data-toggle="modal" data-target="#experience" class="text-custom m-b-5">New Experience</h4>
+                            <!-- modal -->
+                            <div class="modal fade" id="experience" role="dialog">
+                                <div class="modal-dialog">
+                                  <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @include('profile::Forms.Setting.new_experience_form')
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- end modal -->
                             @foreach($user->profile->currentProfileExperience() as $experience)
                             <div class=" p-t-10">
                                 <h5 class="">{{$experience['name']}}</h5>

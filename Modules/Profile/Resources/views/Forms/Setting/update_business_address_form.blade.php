@@ -34,15 +34,8 @@
                 </div>
             </div>
         </div>
-        <!-- // Group END -->
         
-    </div>
-    <!-- // Column END -->
-    
-    <!-- Column -->
-    <div class="col-md-6">
-    
-        <!-- Group -->
+   
         <div class="form-group">
             <label class="col-md-3 control-label">Town</label>
             <div class="col-md-9">
@@ -73,8 +66,8 @@
         </div>
         <!-- // Group END -->
         
-    </div>
+    
 
-    <button type="submit" name="submit" value="business_address" class="btn btn-primary"><i class="fa fa-fw fa-check"></i> Update Address</button>
+    <button type="submit" name="submit" value="business_address" class="btn btn-primary btn-block"><i class="fa fa-fw fa-check"></i> Update Address</button>
 
 </form>
