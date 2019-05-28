@@ -29,13 +29,24 @@ trait 	Access
 		if (empty($error) && $access_to_user == null) {
 			$error[] = 'This email does not exist in our record';
 		}
-       
-		if(empty($error) && $accessor_user->profile != null && ProfileAccess::where(['profile_id'=>$accessor_user->profile->id,'access_to_id'=>$access_to_user->profile->id])->get() == null){
+
+        $user_access = null;
+        foreach (ProfileAccess::where(['profile_id'=>$access_to_user->profile->id,'access_to_id'=>$accessor_user->profile->id])->get() as $access) {
+        	$user_access = $access;
+        }
+
+		if(empty($error) && $accessor_user->profile != null && $user_access != null && $user_access->is_active == 1){
 			$error[] = 'This email user already have access to your profile';
 		}
 
 		if(empty($error)){
-			ProfileAccess::create(['access_to_id'=>$accessor_user->profile->id,'profile_id'=>$access_to_user->profile->id]);
+			if($user_access != null && $user_access->is_active == 0){
+                $user_access->is_active = 1;
+                $user_access->save();
+			}else{
+				ProfileAccess::create(['access_to_id'=>$accessor_user->profile->id,'profile_id'=>$access_to_user->profile->id]);
+			}
+			
 			session()->flash('message','Congratulations you ware successfully grant permission to'.' '.$this->data['email'].' '.'profile');
 		}else{
             session()->flash('error',$error);

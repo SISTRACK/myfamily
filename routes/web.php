@@ -23,16 +23,8 @@ Route::group(['middleware'=>'guest'], function(){
      return view('welcome');
    });
 });
-
-
-Route::get('/test', function(){
-       $name = 'isah.12';
-        echo 'the name is '.substr($name, 0, strpos($name, '.')).'----------';
-       
-   
-        echo 'the id is '.substr($name, strpos($name, '.')+1);
-    
-});
+Route::get('/test/pages', 'Blogs\BlogPagesController@index')->name('pages.index');
+Route::get('/test/posts', 'Blogs\BlogPagesController@posts')->name('pages.post');
 
 Auth::routes();
 Route::get('/create_plan', function(){

@@ -44,7 +44,7 @@ class ProfileController extends BaseController
     public function blockProfileAccess($id)
     {
         $access = null;
-        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>Auth()->User()->id])->get() as $user_access) {
+        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>Auth()->User()->profile->id])->get() as $user_access) {
             $access = $user_access;
         }
         $access->is_active = 0;
@@ -91,12 +91,12 @@ class ProfileController extends BaseController
             }else{
                 $user = Auth()->User();
             }
-            if(!$request->hasFile('file')){
-                $error[] = 'No file selected';
-            }
-            if(!$request->file('file')->isValid()){
-                $error[] = 'Invalid file selected';
-            }    
+            // if(!$request->hasFile('file')){
+            //     $error[] = 'No file selected';
+            // }
+            // if(!$request->file('file')->isValid()){
+            //     $error[] = 'Invalid file selected';
+            // }    
             if(empty($error)){
                 $file = $request->file('file');
                 $name = time().$file->getClientOriginalName();

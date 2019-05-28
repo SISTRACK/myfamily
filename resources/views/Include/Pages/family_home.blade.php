@@ -16,7 +16,7 @@
     <div class="card-box widget-box-one">
         <i class="mdi mdi-account-convert widget-one-icon"></i>
         <div class="wigdet-one-content">
-            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Total number of People within your own family">Toatal Family Members</p>
+            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Total number of People within your own family">Total Family Members</p>
             <h2>{{$profile->totalFamilyMembers()}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
         </div>
     </div>
