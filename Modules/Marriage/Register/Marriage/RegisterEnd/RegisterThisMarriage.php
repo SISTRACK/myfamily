@@ -42,8 +42,8 @@ trait RegisterThisMarriage
 		        $data['address'] = $this->address($data);
 		        $family = Family::find(session('register')['family']);
 		        $user = User::find($data['husband_first_name']);
-                $data['family'] = $user->first_name.'_'.$family->name.'_child_'.$user->profile->child->birth->id;
-                $data['title'] = $family->name.'_child_'.$user->profile->child->birth->id;
+                $data['family'] = strtolower($family->name.'-'.$user->first_name.'-child-id-'.$user->profile->child->birth->id);
+                $data['title'] = $data['family'];
                 $data['husband_email'] = $user->email;
                 $data['new_husband_email'] = '';
                 $data['tribe'] = $family->tribe_id;
@@ -58,8 +58,8 @@ trait RegisterThisMarriage
                 $data['wife_email'] = $user->email;
                 $data['wife_family'] = $user->profile->family->name;
                 $data['wife_date'] = date('Y-m-d',$user->profile->child->birth->date);
-                $data['family'] = $data['husband_first_name'].'_'.$family->name.'_inlaw_'.$user->profile->child->birth->id;
-                $data['title'] = $family->name.'_inlaw_'.$user->profile->child->birth->id;
+                $data['family'] = strtolower($family->name.'-'.$data['husband_first_name']'-inlaw-'.$user->profile->child->birth->id);
+                $data['title'] = $data['family'];
                 $data['location'] = $this->getLocation(Address::find($data['address']));
     			break;
     		default:
