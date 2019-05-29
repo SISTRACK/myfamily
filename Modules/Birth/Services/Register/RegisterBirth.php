@@ -50,7 +50,7 @@ trait RegisterBirth
 
     public function verify(Request $request)
     {
-        session()->flash('family', $request->all());
+        session(['family'=> $request->all()]);
         return redirect()->route('birth.index');
     }
 

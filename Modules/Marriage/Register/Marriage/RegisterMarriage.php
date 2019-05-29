@@ -47,7 +47,7 @@ trait RegisterMarriage
 
     public function verify(Request $request)
     {
-        session()->flash('register',$request->all());
+        session(['register'=>$request->all()]);
         return redirect('/marriage');
     }
 }

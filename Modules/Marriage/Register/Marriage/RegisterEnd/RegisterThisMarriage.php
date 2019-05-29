@@ -58,7 +58,7 @@ trait RegisterThisMarriage
                 $data['wife_email'] = $user->email;
                 $data['wife_family'] = $user->profile->family->name;
                 $data['wife_date'] = date('Y-m-d',$user->profile->child->birth->date);
-                $data['family'] = strtolower($family->name.'-'.$data['husband_first_name']'-inlaw-'.$user->profile->child->birth->id);
+                $data['family'] = strtolower($family->name.'-'.$data['husband_first_name'].'-inlaw-'.$user->profile->child->birth->id);
                 $data['title'] = $data['family'];
                 $data['location'] = $this->getLocation(Address::find($data['address']));
     			break;

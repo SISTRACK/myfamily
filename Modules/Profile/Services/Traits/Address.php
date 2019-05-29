@@ -7,8 +7,9 @@ trait Address
 {
 	public function address()
 	{
-		$address = $this->leave->address;
-		if ($address != null){
+		
+		if ($this->leave != null){
+			$address = $this->leave->address;
 			$user_address = [
 	            'country' => $address->house->area->town->district->lga->state->country->name,
 	            'state' => $address->house->area->town->district->lga->state->name,
