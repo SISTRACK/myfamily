@@ -18,4 +18,8 @@ class Lga extends Model
         return $this->hasMany(Town::class);
     }
     
+    public function districts()
+    {
+        return $this->hasMany(District::class);
+    }
 }

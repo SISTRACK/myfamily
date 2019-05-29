@@ -15,9 +15,10 @@ trait FamilyLocation
 
     public function location(){
     
-            $this->newCountry($this->data);
+            $this->newCountry();
             $this->newState($this->country);
             $this->newLga($this->state);
+            $this->newDistrict($this->lga);
             $this->newTown($this->lga);
             $this->newLocation($this->town);
           

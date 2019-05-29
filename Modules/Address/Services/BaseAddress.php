@@ -32,10 +32,17 @@ trait BaseAddress
     	$this->lga = $state->lgas()->firstOrCreate(['name'=>$this->data['lga']]);
     }
 
+    public $district;
+    
+    public function newDistrict()
+    {
+        $this->district = $this->lga->districts()->firstOrCreate(['name'=>$this->data['district']]);
+    }
+
     public $town;
 
     public function newTown(Lga $lga)
     {
-        $this->town = $lga->towns()->firstOrCreate(['name'=>$this->data['town']]);
+        $this->town = $lga->towns()->firstOrCreate(['district_id'=>$this->district->id,'name'=>$this->data['town']]);
     }
 }
