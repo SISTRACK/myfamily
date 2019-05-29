@@ -34,7 +34,7 @@ trait BaseAddress
 
     public $district;
     
-    public function newDistrict()
+    public function newDistrict(Lga $lga)
     {
         $this->district = $this->lga->districts()->firstOrCreate(['name'=>$this->data['district']]);
     }

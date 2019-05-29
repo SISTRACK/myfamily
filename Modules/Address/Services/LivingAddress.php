@@ -46,6 +46,7 @@ trait LivingAddress
         $this->newCountry();
         $this->newState($this->country);
         $this->newLga($this->state);
+        $this->newDistrict($this->lga);
         $this->newTown($this->lga);
         $this->newArea($this->town);
         $this->newHouse($this->area);

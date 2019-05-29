@@ -16,7 +16,7 @@ class CreateDistrictsTable extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lga_id')
-            ->default()
+            ->nullable()
             ->unsigned()
             ->foreign()
             ->refernces('id')

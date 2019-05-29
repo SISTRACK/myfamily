@@ -210,43 +210,50 @@
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="country">Country</label>
 			<div class="col-lg-8">
-				<input value="{{$family->location->town->lga->state->country->name}}"  placeholder="Country" class="form-control required" id="country" name="country" type="text" >
+				<input value="{{$family->admin->profile->address()['country']}}"  placeholder="Country" class="form-control required" id="country" name="country" type="text" >
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="state">State</label>
 			<div class="col-lg-8">
-				<input value="{{$family->location->town->lga->state->name}}" placeholder="State"  class="form-control required" id="state" name="state" type="text" >
+				<input value="{{$family->admin->profile->address()['state']}}" placeholder="State"  class="form-control required" id="state" name="state" type="text" >
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="lga">Local Government</label>
 			<div class="col-lg-8">
-				<input value="{{$family->location->town->lga->name}}"  placeholder="Local Government" class="form-control required" id="lga" name="lga" type="text" >
+				<input value="{{$family->admin->profile->address()['lga']}}"  placeholder="Local Government" class="form-control required" id="lga" name="lga" type="text" >
+			</div>
+		</div>
+        <div class="form-group clearfix">
+		<div class="form-group clearfix">
+			<label class="col-lg-4 control-label " for="lga">District</label>
+			<div class="col-lg-8">
+				<input value="{{$family->admin->profile->address()['district']}}"  placeholder="District" class="form-control required" id="district" name="district" type="text" >
 			</div>
 		</div>
         <div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="town">Town/Village</label>
 			<div class="col-lg-8">
-				<input value="{{$family->location->town->name}}"  placeholder="Town/Village" class="form-control required" id="town" name="town" type="text">
+				<input value="{{$family->admin->profile->address()['town']}}"  placeholder="Town/Village" class="form-control required" id="town" name="town" type="text">
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="area">Area</label>
 			<div class="col-lg-8">
-				<input value="{{old('area')}}"  placeholder="Living Area"  class="form-control required" id="area" name="area" type="text">
+				<input value="{{$family->admin->profile->address()['area']}}"  placeholder="Living Area"  class="form-control required" id="area" name="area" type="text">
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="house_no">House No</label>
 			<div class="col-lg-8">
-				<input value="{{old('house_no')}}"  placeholder="House No" class="form-control required" id="house_no" name="house_no" type="text">
+				<input value="{{$family->admin->profile->address()['house_no']}}"  placeholder="House No" class="form-control required" id="house_no" name="house_no" type="text">
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="house_desc">Description</label>
 			<div class="col-lg-8">
-				<input value="{{old('house_desc')}}"  placeholder="House Description" class="form-control required" id="house_desc" name="house_desc" type="text">
+				<input value="{{$family->admin->profile->address()['house_description']}}"  placeholder="House Description" class="form-control required" id="house_desc" name="house_desc" type="text">
 			</div>
 		</div>
 	</section>

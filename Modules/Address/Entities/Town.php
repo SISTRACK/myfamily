@@ -28,4 +28,9 @@ class Town extends Model
         return $this->hasMany(Company::class);
     }
 
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
 }

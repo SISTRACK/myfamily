@@ -38,26 +38,19 @@ trait RegisterBirth
     public function store(Request $request)
     {
 
-        // try {
-
-            $birth = new NewBirth($request->all());
-            if(session('error') == null){
-            	//broadcast(new NewBirthEvent($birth->data))->toOthers();
-	            session()->forget('family');
-	            session()->flash('message','Birth is registered successfully');
-            }
-            return redirect()->route('birth.index');
-
-        // } catch (\Exception $exception) {
-        //     return back()->withInput()
-        //         ->withErrors(['error' => 'Unexpected error occurred while trying to process your request!']);
-        // }
+        $birth = new NewBirth($request->all());
+        if(session('error') == null){
+        	//broadcast(new NewBirthEvent($birth->data))->toOthers();
+            session()->forget('family');
+            session()->flash('message','Birth is registered successfully');
+        }
+        return redirect()->route('birth.index');
 
     }
 
     public function verify(Request $request)
     {
-        session(['family' => $request->all()]);
+        session()->flash('family', $request->all());
         return redirect()->route('birth.index');
     }
 
