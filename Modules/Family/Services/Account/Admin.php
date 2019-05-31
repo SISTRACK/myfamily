@@ -67,7 +67,8 @@ trait Admin
 	            'date_of_birth' => strtotime($this->data['date']),
 	            'family_id' =>$this->family->id
 	        ]);
-        }elseif($this->husbandUser != null){	
+        }elseif($this->husbandUser->isNotEmpty()){
+
             $this->profile = $this->husbandUser->profile;
         }else{
         	$this->husbandUser = $this->user;

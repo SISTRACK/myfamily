@@ -23,14 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth()->User()->profile != null && Auth()->User()->profile->systemAdmin != null){
+        $user = Auth()->User();
+        
+        if($user->profile != null && $user->profile->systemAdmin != null){
             return redirect('/dashboard');
         }else{
             $profile = null;
-            if(Auth()->User()->profile != null && Auth()->User()->profile->child != null && Auth()->User()->profile->husband == null && Auth()->User()->profile->wife == null){
-                $profile = Auth()->User()->profile->child->birth->father->husband->profile;
+            if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
+                $profile = $user->profile->child->birth->father->husband->profile;
             }else{
-                $profile = Auth()->User()->profile;
+                $profile = $user->profile;
             }
 
             return view('home',['profile'=>$profile]);

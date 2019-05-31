@@ -46,10 +46,10 @@
                                         @endif
                                     </span></p>
                                 @endif
-                                 <p class="text-muted font-13"><strong>Married Daughters :</strong> <span class="m-l-15">{{$user->profile->numberOfMarriedDaughters()}}
+                                 <p class="text-muted font-13"><strong>Married Daughters :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedDaughters())}}
                                  </span></p>
 
-                                 <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{$user->profile->numberOfMarriedSons()}}
+                                 <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedSons())}}
                                  </span></p>
                                  @if(session('gues'))
                                  <p><a class="btn btn-primary btn-block" href="profile/{{Auth()->User()->id}}/resume">Resume To My Profile</a></p>

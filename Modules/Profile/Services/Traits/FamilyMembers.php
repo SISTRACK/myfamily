@@ -115,156 +115,171 @@ trait FamilyMembers
 	
 	public function numberOfWives()
 	{
-		$count = 0;
+		$marriages = [];
 		if($this->husband != null){
 			foreach ($this->husband->marriages as $marriage) {
 				if($marriage->is_active == 1){
-					$count++;
+					$marriages[] = $marriage;
 				}
 			}
 		}
-		return $count;
+		return $marriages;
 	}
 
 	public function numberOfBirths()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
-			    $count++;
+			    $births[] = $birth;
 			}
 		}else if($this->isMother()){
             foreach ($this->wife->mother->births as $birth) {
-			    $count++;
+			    $births[] = $birth;
 			}
 		}
-		return $count;
+		return $births;
 	}
     public function numberOfLiveBirthsInTheFamily()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->life_status_id == 1){
-                    $count++;
+                    $births[] = $birth;
 				}
 			}
 		}else if($this->isMother()){
 			foreach ($this->wife->marriages as $marriage) {
 				foreach ($marriage->husband->father->births as $birth) {
 					if($birth->child->profile->life_status_id == 1) {
-	                    $count++;
+	                    $births[] = $birth;
 					}
 				}
 			}
 		}
-		return $count;
+		return $births;
 	}
 	public function numberOfLiveBirths()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->life_status_id == 1){
-                    $count++;
+                    $births[] = $birth;
 				}
 			}
 		}else if($this->isMother()){
 			foreach ($this->wife->mother->births as $birth) {
 				if($birth->child->profile->life_status_id == 1){
-                    $count++;
+                    $births[] = $birth;
 				}
 			}
 		}
-		return $count;
+		return $births;
 	}
     
     public function numberOfDivorces()
 	{
-		$count = 0;
+		$marriages = [];
 		if($this->husband != null){
 			foreach ($this->husband->marriages as $marriage) {
 				if($marriage->divorce != null){
-                    $count++;
+                    $marriages[] = $marriage;
 				}
 			}
 		}
-		return $count;
+		return $marriages;
 	}
 
 	public function numberOfMarriages()
 	{
-		$count = 0;
+		$marriages = [];
 		if($this->husband != null){
 			foreach ($this->husband->marriages as $marriage) {
-                $count++;
+                $marriages[] = $marriage;
 			}
 		}else if($this->wife != null){
 			foreach ($this->wife->marriages as $marriage) {
-                $count++;
+                $marriages[] = $marriage;
 			}
 		}
-		return $count;
+		return $marriages;
 	}
     public function numberOfMarriedDaughters()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->wife != null){
-					$count++;
+					$births[] = $birth;
 				}
 			}
 		}else if($this->isMother()){
 			foreach ($this->wife->mother->births as $birth) {
 				if($birth->child->profile->wife != null){
-					$count++;
+					$births[] = $birth;
 				}
 			}
 		}
-		return $count;
+		return $births;
 	}
 	public function numberOfMarriedSons()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->husband != null){
-					$count++;
+					$births[] = $birth;
 				}
 			}
 		}else if($this->isMother()){
 			foreach ($this->wife->mother->births as $birth) {
 				if($birth->child->profile->husband != null){
-					$count++;
+					$births[] = $birth;
 				}
 			}
 		}
-		return $count;
+		return $births;
 	}
 	public function numberOfDeathBirths()
 	{
-		$count = 0;
+		$births = [];
 		if($this->isFather()){
 			foreach ($this->husband->father->births as $birth) {
 				if($birth->child->profile->life_status_id == 0){
-                    $count++;
+                    $births[] = $birth;
 				}
 			}
 		}else if($this->isMother()){
 			foreach ($this->wife->mother->births as $birth) {
 				if($birth->child->profile->life_status_id == 0){
-                    $count++;
+                    $numberOfLiveBirths[] = $birth;
 				}
 			}
 		}
-		return $count;
+		return $births;
 	}
 
 	public function totalFamilyMembers()
 	{
-		
-		return $this->numberOfLiveBirthsInTheFamily() + $this->numberOfWives() + 1;
+		$users = [];
+		foreach ($this->numberOfWives() as $marriage) {
+			$users[] = $marriage->wife->profile->user;
+		}
+		foreach ($this->numberOfLiveBirthsInTheFamily() as $birth) {
+			$users[] = $birth->child->profile->user;
+		}
+		if($this->husband != null){
+            $users[] = $this->husband->profile->user;
+		}elseif($this->wife != null){
+			foreach($this->wife->marriages as $marriage){
+				if($marriage->is_active == 1){
+					$users[] = $marriage->husband->profile->user;
+				}
+			}
+		}
+		return  $users;
 		
 		
 	}

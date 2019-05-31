@@ -13,5 +13,5 @@ class BirthController extends BaseController
 {
    
     use NewBirth;
-
+    
 }
