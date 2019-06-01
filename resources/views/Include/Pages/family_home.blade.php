@@ -208,6 +208,18 @@
                                         <td>{{$birth->child->profile->maritalStatus->name}}</td>
                                     </tr>
                                     <tr>
+                                        <td>Place Of Birth </td>
+                                        <td>{{$birth->place}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deliver At </td>
+                                        <td>{{$birth->deliver_at}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deliver By </td>
+                                        <td>{{$birth->deliver->first_name.' '.$birth->deliver->last_name}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Life Status </td>
                                         <td>{{$birth->child->profile->life_status_id == 1 ? 'A life' : 'Death'}}</td>
                                     </tr>
@@ -276,6 +288,18 @@
                                     <tr>
                                         <td>Gender </td>
                                         <td>{{$birth->child->profile->gender->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Place Of Birth </td>
+                                        <td>{{$birth->place}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deliver At </td>
+                                        <td>{{$birth->deliver_at}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Deliver By </td>
+                                        <td>{{$birth->deliver->first_name.' '.$birth->deliver->last_name}}</td>
                                     </tr>
                                     <tr>
                                         <td>Marital Status </td>
@@ -502,6 +526,16 @@
                                     <tr>
                                         <td>Life Status </td>
                                         <td>{{$user->profile->life_status_id == 1 ? 'A life' : 'Death'}}</td>
+                                    </tr>
+                                    @if($marriage->divorce != null)
+                                    <tr>
+                                        <td width="150">Divorece Status </td>
+                                        <td>{{$marriage->divorce->is_active == 1 ? 'Active' : 'Returned'}}</td>
+                                    </tr>
+                                    @endif
+                                    <tr>
+                                        <td width="150">Divorece At </td>
+                                        <td>{{date('D:M:Y',$marriage->divorce->date)}}</td>
                                     </tr>
                                     <tr>
                                         <td width="150">Divorece Count </td>

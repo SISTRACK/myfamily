@@ -25,8 +25,11 @@ class ReturnWife
         if ($this->error == null) {
         	foreach($this->wife->marriages as $marriage){
 	        	if($marriage->husband_id == $this->husband->id){
-	        		$marriage->update(['is_active'=>1]);
-	        		$marriage->divorce->update(['is_active'=>0]);
+	        		$marriage->is_active = 1;
+	        		$marriage->save();
+	        		$divorce = $marriage->divorce;
+	        		$divorce->is_active = 0;
+	        		$divorce->save();
 	        		foreach ($marriage->divorce->details as $detail) {
 	        			if($detail->return == null){
 	        			    $detail->return()->create(['date'=>strtotime($this->data['date'])]);
@@ -44,8 +47,13 @@ class ReturnWife
 	{
         $this->wife = User::find($this->data['first_name'])->profile->wife;
         foreach ($this->wife->marriages as $marriage) {
-        	if ($this->husband->id == $marriage->husband_id && $marriage->divorce->date > strtotime($this->data['date'])) {
-			    $this->error[] = 'Divorce date Authentication fails : the divorce date is greater than return date';
+        	if ($this->husband->id == $marriage->husband_id && ) {
+        		if($marriage->divorce->date > strtotime($this->data['date'])){
+        			$this->error[] = 'Divorce date Authentication fails : the divorce date is greater than return date';
+        		}
+			    if($marriage->divorce->counter >= 3){
+			    	$this->error[] = 'Return Attempt Authentication fails : the divorce of this wife has reached the max attempt';
+			    }
         	}
         }
 	}

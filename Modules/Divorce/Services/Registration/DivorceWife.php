@@ -31,6 +31,8 @@ class DivorceWife
 		        			'counter' => $marriage->divorce->counter + 1
 		        	    ]);
 		        	    $divorce = $marriage->divorce;
+		        	    $divorce->is_active = 1;
+		        	    $divorce->save();
 	        		}
 	        		$marriage->update(['is_active'=>0]);
 	        	    $divorce->details()->create([
