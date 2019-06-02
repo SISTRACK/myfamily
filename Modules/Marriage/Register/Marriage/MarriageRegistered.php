@@ -58,6 +58,7 @@ class MarriageRegistered
 	        session()->flash('message', $message);
 
         }else{
+        	dd($this->error);
         	session()->flash('error', $this->error);
         } 
         

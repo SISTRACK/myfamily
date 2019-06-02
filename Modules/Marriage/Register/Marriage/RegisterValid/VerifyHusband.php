@@ -31,7 +31,7 @@ trait VerifyHusband
     public function canMarry(User $user)
     {
         
-        if($user->profile->data_of_birth < 567648000){
+        if(time() - $user->profile->data_of_birth < 567648000){
             return true;
         }else{
             $this->error[] = "marriage authentication fails too early to marry";

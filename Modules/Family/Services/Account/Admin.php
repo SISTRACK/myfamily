@@ -55,7 +55,7 @@ trait Admin
    
     public function newProfile(User $user)
     {
-
+ 
         if(session('register') == null){
 	        if(empty($this->data['date'])){
 	            $this->data['date'] = $this->data['mdate'];
@@ -67,8 +67,9 @@ trait Admin
 	            'date_of_birth' => strtotime($this->data['date']),
 	            'family_id' =>$this->family->id
 	        ]);
-        }elseif($this->husbandUser->isNotEmpty()){
-
+        }elseif(session('register')['status'] == 'daughter' && $this->husbandUser->isNotEmpty()){
+            $this->profile = $this->husbandUser->profile;
+        }elseif(session('register')['status'] == 'son' && $this->husbandUser != null){
             $this->profile = $this->husbandUser->profile;
         }else{
         	$this->husbandUser = $this->user;
