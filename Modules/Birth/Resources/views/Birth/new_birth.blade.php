@@ -1,4 +1,4 @@
-@extends('marriage::layouts.master')
+@extends('birth::layouts.master')
 
 @section('page-title')
 {{'Birth Registration Page'}}
