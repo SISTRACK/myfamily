@@ -83,7 +83,7 @@
 					<div class="form-group clearfix">
 						<label class="col-lg-4 control-label " for="husband_last_name">Husband Email</label>
 						<div class="col-lg-8">
-							<input value="{{old('husband_last_name')}}" placeholder="Husband Email"  id="husband_last_name" name="new_husband_email" type="email" class="required form-control">
+							<input value="{{old('new_husband_email')}}" placeholder="Husband Email"  id="husband_last_name" name="new_husband_email" type="email" class="required form-control">
 						</div>
 					</div>
 					<div class="form-group clearfix">

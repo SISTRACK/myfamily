@@ -208,6 +208,10 @@
                                         <td>{{$birth->child->profile->maritalStatus->name}}</td>
                                     </tr>
                                     <tr>
+                                        <td width="150">Date Of Birth </td>
+                                        <td>{{date('D:M:Y',$birth->child->profile->date_of_birth)}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Place Of Birth </td>
                                         <td>{{$birth->place}}</td>
                                     </tr>
@@ -290,6 +294,10 @@
                                         <td>{{$birth->child->profile->gender->name}}</td>
                                     </tr>
                                     <tr>
+                                        <td width="150">Date Of Birth </td>
+                                        <td>{{date('D:M:Y',$birth->child->profile->date_of_birth)}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Place Of Birth </td>
                                         <td>{{$birth->place}}</td>
                                     </tr>
@@ -368,6 +376,10 @@
                                     <tr>
                                         <td>Phone Number </td>
                                         <td>{{$user->phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="150">Burn On </td>
+                                        <td>{{date('D:M:Y',$user->profile->date_of_birth)}}</td>
                                     </tr>
                                     @if($user->profile->isFather())
                                     <tr>

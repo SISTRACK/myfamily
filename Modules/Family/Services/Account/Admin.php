@@ -47,7 +47,7 @@ trait Admin
         	$this->user = User::firstOrCreate([
         		'first_name'=>$this->data['husband_first_name'],
         		'last_name'=>$this->data['husband_last_name'], 
-        		'email'=>$this->data['husband_email']
+        		'email'=>$this->data['new_husband_email']
         	]);
         }
         
