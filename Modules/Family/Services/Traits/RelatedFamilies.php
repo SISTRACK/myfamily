@@ -2,6 +2,7 @@
 
 namespace Modules\Family\Services\Traits;
 
+use Modules\Family\Entities\SubFamily;
 trait RelatedFamilies
 {
 	
