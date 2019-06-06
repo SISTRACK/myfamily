@@ -14,3 +14,10 @@
 Route::prefix('search')->group(function() {
     Route::get('/', 'SearchController@index');
 });
+Route::get('/search_relative', 'SearchController@relative')->name('search.relative.index');
+Route::get('/search_identity', 'SearchController@identity')->name('search.identity.index');
+
+Route::post('/search', 'SearchController@store')->name('search');
+
+Route::get('/search/{$id}/generation', 'SearchController@getGenerations');
+

@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Search</title>
-
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/search.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/search.js') }}"></script> --}}
-    </body>
-</html>
+@extends('layouts.master')
+@if(!session('gues'))
+@section('side-bar')
+ <li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Search </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="/search_identity">Identity</a></li>
+        <li><a href="{{route('search.relative.index')}}">Relatives</a></li>
+    </ul>
+</li>
+@endsection
+@endif
