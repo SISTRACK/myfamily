@@ -68,7 +68,7 @@ class User extends Authenticatable
         return $flag;
     }
 
-    public function validateIdentitySearchRequest()
+    public function validateIdentitySearchRequest($gen)
     {
         $error = [];
 
@@ -78,24 +78,24 @@ class User extends Authenticatable
         if(!$this->validUserGeneration($gen)){
             $error[] = "Sorry your family was not upto $gen generation";
         }
-        if(!int($gen)){
-            $error[] = "Sorry the generation must be in numbers";
-        }
+        
         return $error;
 
     }
-    public function getSearchGenerationResult()
+    public function getSearchGenerationResult($gen)
     {
         $error = $this->validateIdentitySearchRequest($gen);
         if(empty($error)){
             $generations = [];
-            $user = $this;
-            for($i = 1; $i<=$gen; $i++){        
+            for($i = 1; $i<=$gen; $i++){
+                $user = $this;        
                 $generations[] = [
                     'gen_no'    => $i,
-                    'gen_data'   => getUserGeneration($user)
+                    'gen_data'   => $this->getUserGeneration($user)
                 ];
-                $user = $this->profile->child->birth->father->husband->profile->user;
+                if($user->profile->child != null){
+                    $user = $this->profile->child->birth->father->husband->profile->user;
+                }  
             } 
             return $generations;
         }else{
@@ -104,18 +104,27 @@ class User extends Authenticatable
     }
     public function getUserGeneration($user)
     {
-        $users[] = [
-            'child_name' => $user->first_name.' '.$user->last_name,
-            'father'     => $this->father->user->first_name.' '.$this->father->user->last_name,
-            'mother'     => $this->father->user->first_name.' '.$this->father->user->last_name,
-            'family'    => $this->father->family->name,
-            'father_image'    => $this->father->image->name,
-            'mother_image'    => $this->mother->image->name,
-            'child_image'    => $user->profile->image->name,
-            'child_id'    => $user->id,
-            'father_id'    => $father->user->id,
-            'mother_id'    => $mother->user->id,
-        ];
+        $users = [];
+        if($user->profile->child != null){
+            $users[] = [
+                [
+                    'status' => 'child',
+                    'profile' => $user->profile,
+                ],
+
+                [
+                    'status' => 'father',
+                    'profile' => $user->father(),
+                ],
+                
+                [
+                    'status' => 'mother',
+                    'profile' => $user->mother(),
+                ],
+                
+                
+            ]; 
+        }
         return $users;
     }
 

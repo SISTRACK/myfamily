@@ -52,34 +52,17 @@ class SearchController extends BaseController
      */
     public function store(Request $request)
     {
-        $request->session()->forget('status');
-        $request->session()->forget('user');
+        
         if(isset($request->generation)){
-            $gen = new ValidGeneration(session('user_id'),$request->gen_no);
-            $generation = $gen->generation;
-            session()->flash('gen_result',$generation);
-            return redirect()->route('identity');
+            $user = User::find(session('user_id'));
+            session()->flash('gen_result',$user->getSearchGenerationResult($request->gen_no));
+            return back();
+            
         }elseif(isset($request->search_identity)){
             $users_found = $this->searchUsers($request->fname,$request->lname);
             session()->flash('users_result',$users_found);
             session()->flash('message', count($users_found)." Alternative Users matches result for $request->fname $request->lname");
             return redirect()->route('search.identity.index');
-        }else{
-            if(isset($request->search)){
-                $request->session()->put(['status'=>session('other_status')]);
-                $request->session()->put(['third_party'=>session('other_status')]);
-                $request->session()->put(['user'=>$request->user]);
-            }else{
-                if($request->status == 'Self')
-                {
-                    $request->session()->put(['status'=>$request->file]);
-
-                }else{
-                    $request->session()->put(['other_status'=>$request->file]);
-                }
-                $request->session()->put(['search'=>$request->status]);
-            }
-            return redirect()->route('search.index');
         }
     }
 

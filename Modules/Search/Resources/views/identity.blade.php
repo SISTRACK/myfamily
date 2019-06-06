@@ -15,72 +15,71 @@
                     <button class ="btn btn-primary btn-block h4">{{$result['gen_no'].' Generation'}}</button>
                     </div>
                 </div> <br>
-                @foreach($result['gen_data'] as $data)
-                <div class="row">
-                   <div class="col-sm-4">
-                    </div>
-                    <div class="col-sm-4">
-                    <a href="search/{{$data['child_id']}}/edit">
-                        <div class="row">
-                            <div class="panel panel-default">
-                                <div class="panel-footer text-primary">Child</div>
-                                <div class="panel-body">
-                                <img height="120" width="100%" src="images/user/{{$data['child_image']}}" alt="">                                
-                                </div>
-                                <div class="panel-footer">
-                                {{$data['child_name']}}
-                                </div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                </div> <br>
-                <div class="row">
-                    <div class="col-sm-4">
-                    <a href="search/{{$data['father_id']}}/edit">
-                        <div class="row">
-                            <div class="panel panel-default">
-                                <div class="panel-footer text-primary">Father</div>
-                                <div class="panel-body">
-                                <img height="120" width="100%" src="images/user/{{$data['father_image']}}" alt="">                                    
-                                </div>
-                                <div class="panel-footer">
-                                    {{$data['father']}}
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    </div>
-                    <div class="col-sm-4">
-                    <a href="search/{{$data['mother_id']}}/edit">
+                @foreach($result['gen_data'] as $generation_data)
+                    @foreach($generation_data as $data)
+	                <div class="row">
+	                    <div class="col-sm-4">
+	                    </div>
+	                    <div class="col-sm-4">
+	                    	@if($data['status'] == 'child')
+
+		                    <a href="#" data-toggle="modal" data-target="#{{$data['profile']->user->id}}">
+		                        <div class="row">
+		                            <div class="panel panel-default">
+		                                <div class="panel-footer text-primary">Child</div>
+		                                <div class="panel-body">
+		                                <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">                                
+		                                </div>
+		                                <div class="panel-footer">
+		                                {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </a>
+	                        @endif
+	                    </div>
+	                </div> <br>
                     <div class="row">
-                            <div class="panel panel-default">
-                                <div class="panel-footer text-primary">Mother</div>
-                                <div class="panel-body">
-                                    <img height="120" width="100%" src="images/user/{{$data['mother_image']}}" alt="">                                </div>
-                                <div class="panel-footer">
-                                    {{$data['mother']}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </a>
-                    <div class="col-sm-4">
-                    <div class="row">
-                        <div class="panel panel-default">
-                            <div class="panel-footer text-primary">Family</div>
-                            <div class="panel-body">
-                                <h4>Family biography goes here</h4>
-                            </div>
-                            <div class="panel-footer">
-                                {{$data['family']}}
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    </div>
-                    <br>
-                </div>
+	                	<div class="col-sm-2">
+	                    </div>
+		                <div class="col-sm-4">
+		                    @if($data['status'] == 'father')
+		                    <a href="#" data-toggle="modal" data-target="#{{$data['profile']->user->id}}">
+		                        <div class="row">
+		                            <div class="panel panel-default">
+		                                <div class="panel-footer text-primary">Father</div>
+		                                <div class="panel-body">
+		                                <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">                                    
+		                                </div>
+		                                <div class="panel-footer">
+		                                    {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </a>
+		                    @endif
+		                </div>
+		                <div class="col-sm-4">
+		                	@if($data['status'] == 'mother')
+		                    <a href="#" data-toggle="modal" data-target="#{{$data['profile']->user->id}}">
+		                    <div class="row">
+		                        <div class="panel panel-default">
+		                            <div class="panel-footer text-primary">Mother
+		                            </div>
+	                                <div class="panel-body">
+	                                    <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">
+	                                </div>
+	                                <div class="panel-footer">
+	                                    {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
+	                                </div>
+		                        </div>
+		                    </div>
+		                    </a>
+		                    @endif
+		                </div><br>
+	                </div>
+	                @include('search::Modals.generation')
+	                @endforeach
                 @endforeach
                 <hr>
                 @endforeach
