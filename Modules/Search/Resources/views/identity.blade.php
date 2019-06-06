@@ -134,11 +134,15 @@
                                 <td>Town/Village : </td>
                                 <td>{{$user_result->profile->address()['town']}}</td>
                             </tr>
-                            
+                            <form action="search/generation" method="post">
+                            	@csrf
+                            	<input type="hidden" name="id" value="{{$user_result->id}}">
                             <tr>
                                 <td></td>
-                                <td> <a class="btn btn-primary" href="search/{{$user_result->id}}/generation">Search Generation</a></td>
-                            </tr>
+                                <td> <button type= "submit" class="btn btn-primary">Search Generation</button></td>
+                            </tr>	
+                            </form>
+                            
                         </table>
                     </div>
                 </div>

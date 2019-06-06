@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Http\Controllers\BaseController;
 use Modules\Search\Services\Traits\SearchUser;
+use App\User;
 
 class SearchController extends BaseController
 {
@@ -38,9 +39,11 @@ class SearchController extends BaseController
         return view('search::create');
     }
  
-    public function getGenerations($id)
+    public function getGenerations(Request $request)
     {
-        dd($id);
+        session(['user_id'=>$request->id]); 
+        session()->flash('generation',$request->id);
+        return redirect()->route('search.identity.index');
     }
     /**
      * Store a newly created resource in storage.

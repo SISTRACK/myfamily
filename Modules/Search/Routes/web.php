@@ -19,5 +19,5 @@ Route::get('/search_identity', 'SearchController@identity')->name('search.identi
 
 Route::post('/search', 'SearchController@store')->name('search');
 
-Route::get('/search/{$id}/generation', 'SearchController@getGenerations');
+Route::post('/search/generation', 'SearchController@getGenerations')->name('search.generation');
 
