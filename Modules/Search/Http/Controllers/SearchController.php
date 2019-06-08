@@ -20,6 +20,10 @@ class SearchController extends BaseController
     {
         return view('search::index');
     }
+    public function result()
+    {
+        return view('search::result');
+    }
 
     public function identity()
     {
@@ -28,7 +32,7 @@ class SearchController extends BaseController
 
     public function relative()
     {
-        return view('search::index');
+        return view('search::relative');
     }
     /**
      * Show the form for creating a new resource.
@@ -63,6 +67,17 @@ class SearchController extends BaseController
             session()->flash('users_result',$users_found);
             session()->flash('message', count($users_found)." Alternative Users matches result for $request->fname $request->lname");
             return redirect()->route('search.identity.index');
+        }else{
+            if(session('search')){
+                //search here
+            }else{
+                if($request->status == 'Self'){
+                    session(['profile' => Auth()->User()->profile]);
+                }else{
+                    session(['profile' => App\User::where('email',$request->email)->get()->profile]);
+                }
+            }
+            return redirect()->route('search.result');
         }
     }
 

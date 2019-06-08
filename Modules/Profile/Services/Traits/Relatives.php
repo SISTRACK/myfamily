@@ -27,39 +27,56 @@ trait Relatives
 		$brothers = [];
 		foreach ($this->thisProfileFather()->thisProfileChildren() as $child) {
 			if($child->profile->gender->name == 'Male'){
-				$brothers[] = $child
+				$brothers[] = $child;
 			}
 		}
+		return $brothers;
 	}
 	public function thisProfileSisters()
 	{
 		$sisters = [];
 		foreach ($this->thisProfileFather()->thisProfileChildren() as $child) {
 			if($child->profile->gender->name == 'Female'){
-				$sisters[] = $child
+				$sisters[] = $child;
 			}
 		}
+		return $sisters;
 	}
 	public function thisProfileUncles()
 	{
 		$uncles = [];
-		foreach($this->thisProfileMother()->thisProfileFather()->thisProfileChildren() as $uncle){
-			$uncles[] = $uncle;
+		if($this->thisProfileMother()->child != null){
+			foreach($this->thisProfileMother()->thisProfileFather()->thisProfileChildren() as $uncle){
+				if($uncle->gender->name == 'Male'){
+					$uncles[] = $uncle;
+				}
+			}
 		}
 		return $uncles;
 	}
 	public function thisProfileAunties()
 	{
-		# code...
+		$aunties = [];
+		if($this->thisProfileFather()->child != null){
+			foreach($this->thisProfileFather()->thisProfileFather()->thisProfileChildren() as $aunty){
+				if($uncle->gender->name == 'Female'){
+					$aunties[] = $aunty;
+				}
+			}
+		}
+		return $aunties;
 	}
+
 	public function thisProfileGrandFathers()
 	{
-		$this->thisProfileFather()->profile->thisProfileFather();
+		return $this->thisProfileFather()->thisProfileFather();
 	}
+
 	public function thisProfileGrandMothers()
 	{
-		$this->thisProfileMother()->profile->thisProfileMother();
+		return $this->thisProfileMother()->thisProfileMother();
 	}
+
 	public function thisProfileChildren()
 	{
 		$children = [];
