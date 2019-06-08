@@ -22,6 +22,24 @@ trait Relatives
 		return $mother;
 	}
 
+	public function thisProfileFathers()
+	{
+		$fathers = [];
+		if($this->child != null){
+			$fathers[] = $this->child->birth->father->husband->profile;
+		}
+		return $fathers;
+	}
+
+	public function thisProfileMothers()
+	{
+		$mothers = [];
+		if($this->child != null){
+			$mothers[] = $this->child->birth->mother->wife->profile;
+		}
+		return $mothers;
+	}
+
 	public function thisProfileBrothers()
 	{   
 		$brothers = [];
@@ -89,6 +107,7 @@ trait Relatives
 				$children[] = $birth->child->profile;
 			}
 		}
+		return $children;
 	}
 	
 	public function thisProfileWives()
@@ -99,5 +118,6 @@ trait Relatives
 				$marriages[] = $marriage->wife->profile;
 			}
 		}
+		return $marriages;
 	}
 }

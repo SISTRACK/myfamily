@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Http\Controllers\BaseController;
 use Modules\Search\Services\Traits\SearchUser;
+use Modules\Search\Services\Traits\NewSearch;
 use App\User;
 
 class SearchController extends BaseController
@@ -22,7 +23,13 @@ class SearchController extends BaseController
     }
     public function result()
     {
-        return view('search::result');
+        $results = null;
+        if(session('profile')){
+            $search = new NewSearch();
+            $results = $search->results;
+            session()->forget('profile');
+        }
+        return view('search::result',['results'=>$results]);
     }
 
     public function identity()
@@ -67,18 +74,27 @@ class SearchController extends BaseController
             session()->flash('users_result',$users_found);
             session()->flash('message', count($users_found)." Alternative Users matches result for $request->fname $request->lname");
             return redirect()->route('search.identity.index');
-        }else{
-            if(session('search')){
-                //search here
+        }elseif(isset($request->type)){
+
+            session(['search' => $request->all()]);
+            if($request->status == 'Self'){
+                session(['profile' => Auth()->User()->profile]);
             }else{
-                if($request->status == 'Self'){
-                    session(['profile' => Auth()->User()->profile]);
-                }else{
-                    session(['profile' => App\User::where('email',$request->email)->get()->profile]);
-                }
+                
             }
             return redirect()->route('search.result');
-        }
+        }else{
+            $user = null;
+            foreach(User::where('email',$request->email)->get() as $this_user){
+                $user = $this_user;
+            }
+            
+            if(!is_null($user)){
+                
+                session(['profile' => $user->profile]);
+            }
+            return redirect()->route('search.result');   
+        } 
     }
 
     /**

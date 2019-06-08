@@ -10,7 +10,7 @@
         <form method="post" action="search" >
         {{csrf_field()}}
             <label for="">What do you want to search :</label>
-            <select name="file" id="" class="form-control">
+            <select name="type" id="" class="form-control">
             <option value=""></option>
             <option value="Aunty">Aunties</option>
             <option value="Brother">Brothers</option>
@@ -34,7 +34,4 @@
         </form>
     </div>
 </div>
-@stop
-@section('footer')
-
 @stop
