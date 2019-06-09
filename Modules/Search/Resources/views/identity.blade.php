@@ -95,52 +95,60 @@
         <div class="panel-body">
                 <div class="row">
                 <div class="col-md-3">
-                <img height="160" weight="160" src="assets/images/users/{{$user_result->profile->image->name}}" alt="">
+                <img height="160" weight="160" src="assets/images/users/{{$user_result['user']->profile->image->name}}" alt="">
                 </div>
                     <div class="col-md-7 col-md-offset-2">
                         <table>
                             <tr>
                                 <td>Name : </td>
-                                <td>{{$user_result->first_name.' '.$user_result->last_name}}</td>
+                                <td>{{$user_result['user']->first_name.' '.$user_result['user']->last_name}}</td>
                             </tr>
                            
                             <tr>
                                 <td width="120">Marrital Status : </td>
-                                <td>{{$user_result->profile->maritalStatus->name}}</td>
+                                <td>{{$user_result['user']->profile->maritalStatus->name}}</td>
                             </tr>
                             <tr>
                                 <td width="120">Number Of Wives : </td>
-                                <td>{{ count($user_result->profile->numberOfWives())}}</td>
+                                <td>{{ count($user_result['user']->profile->numberOfWives())}}</td>
                             </tr>
                             <tr>
                                 <td>Birth : </td>
-                                <td>{{count($user_result->profile->numberOfBirths())}}</td>
+                                <td>{{count($user_result['user']->profile->numberOfBirths())}}</td>
                             </tr>
                             
                             <tr>
                                 <td>Family : </td>
-                                <td>{{$user_result->profile->family->name}}</td>
+                                <td>{{$user_result['user']->profile->family->name}}</td>
                             </tr>
                             <tr>
                                 <td>Local Government</td>
-                                <td>{{$user_result->profile->address()['lga']}}</td>
+                                <td>{{$user_result['user']->profile->address()['lga']}}</td>
                             </tr>
                             <tr>
                                 <td>District</td>
-                                <td>{{$user_result->profile->address()['district']}}</td>
+                                <td>{{$user_result['user']->profile->address()['district']}}</td>
                             </tr>
                             <tr>
                                 <td>Town/Village : </td>
-                                <td>{{$user_result->profile->address()['town']}}</td>
+                                <td>{{$user_result['user']->profile->address()['town']}}</td>
                             </tr>
-                            <form action="search/generation" method="post">
-                            	@csrf
-                            	<input type="hidden" name="id" value="{{$user_result->id}}">
-                            <tr>
-                                <td></td>
-                                <td> <button type= "submit" class="btn btn-primary">Search Generation</button></td>
-                            </tr>	
-                            </form>
+                            
+                            	@if($user_result['status'] == 'accessible')
+                            	<form action="search/generation" method="post">
+	                            	@csrf
+	                            	<input type="hidden" name="id" value="{{$user_result['user']->id}}">
+		                            <tr>
+		                                <td></td>
+		                                <td> <button type= "submit" class="btn btn-primary">Search Generation</button></td>
+		                            </tr>
+	                            </form>
+	                            @else
+	                            <tr>
+	                                <td></td>
+	                                <td> <button class="btn btn-primary">Generation access restricted</button></td>
+	                            </tr>
+	                            @endif	
                             
                         </table>
                     </div>

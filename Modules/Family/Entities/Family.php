@@ -63,4 +63,14 @@ class Family extends Model
     	return $this->hasMany(Vedio::class);
     }
 
+    public function nuclearFamilyMessages()
+    {
+        return $this->hasMany('Modules\Forum\Entities\FamilyMessage');
+    }
+
+    public function extendedFamilyMessages()
+    {
+        return $this->hasMany('Modules\Forum\Entities\ExtendFamilyMessage');
+    }
+
 }

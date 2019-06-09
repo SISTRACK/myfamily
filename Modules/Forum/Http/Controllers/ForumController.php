@@ -5,25 +5,42 @@ namespace Modules\Forum\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Forum\Entities\Message;
 use Modules\Core\Http\Controllers\BaseController;
 class ForumController extends BaseController
 {
+    
     /**
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function nuclear()
     {
-        return view('forum::index');
+
+        return view('forum::nuclear',['family'=>$this->profile()->family]);
     }
 
+    /**
+     * Display a listing of the resource.
+     * @return Response
+     */
+    public function extended()
+    {
+
+        return view('forum::extended',['family'=>$this->profile()->family->root()]);
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function create()
+    public function sendNuclearMessage(Request $request)
     {
-        return view('forum::create');
+        
+        $message = Message::firstOrCreate(['message'=>$request->message]);
+        $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
+        $message_sender->familyMessages()->create(['family_id'=>$this->profile()->family_id]);
+        session()->flash('message was sent successfully');
+        return back();
     }
 
     /**
@@ -31,42 +48,14 @@ class ForumController extends BaseController
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
-    {
+    public function sendExtendedMessage(Request $request)
+    { 
+        $message = Message::firstOrCreate(['message'=>$request->message]);
+        $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
+        $message_sender->extendedFamilyMessages()->create(['family_id'=>$this->profile()->family->root()->id]);
+        session()->flash('message was sent successfully');
+        return back();
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('forum::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('forum::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+    
 }

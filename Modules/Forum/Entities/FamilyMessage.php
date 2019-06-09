@@ -8,13 +8,13 @@ class FamilyMessage extends Model
 {
     protected $guarded = [];
 
-    public function message()
+    public function userMessage()
     {
-    	return $this->belongsTo(Message::class);
+    	return $this->belongsTo(UserMessage::class);
     }
 
     public function family()
     {
-    	return $this->belongsTo(Family::class);
+    	return $this->belongsTo('Modules\Family\Entities\Family');
     }
 }

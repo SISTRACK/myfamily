@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Forum</title>
+@extends('layouts.master')
 
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/forum.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/forum.js') }}"></script> --}}
-    </body>
-</html>
+@section('side-bar')
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-forum "></i> <span> Forum </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="{{route('nuclear.forum.index')}}">Nuclear Forum</a></li>
+        <li><a href="{{route('extended.forum.index')}}">Extended Forum</a></li>
+    </ul>
+</li>
+@endsection

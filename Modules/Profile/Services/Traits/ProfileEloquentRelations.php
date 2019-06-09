@@ -170,4 +170,17 @@ trait ProfileEloquentRelations
     {
         return $this->hasOne('Modules\Address\Entities\WorkIn');
     }
+
+    public function thisProfileFamilyId()
+    {
+    	$family = null;
+    	if(is_null($this->family_id) && !is_null($this->wife)){
+            foreach($this->wife->marriages as $marriage){
+             	$family = $marriage->husband->profile->family_id;
+            }
+    	}else{
+    		$family = $this->family_id;
+    	}
+    	return $family;
+    }
 }

@@ -8,23 +8,18 @@ class Message extends Model
 {
     protected $guarded = [];
 
-    public function userMessage()
+    public function userMessages()
     {
     	return $this->hasMany(UserMessage::class);
     }
 
-    public function profile()
-    {
-    	return $this->belongsTo(Profile::class);
-    }
-
-    public function familyMessage()
+    public function familyMessages()
     {
     	return $this->hasMany(FamilyMessage::class);
     }
 
-    public function extendFamilyMessage()
+    public function extendedFamilyMessages()
     {
-    	return $this->hasMany(Family::class);
+    	return $this->hasMany(ExtendFamilyMessage::class);
     }
 }
