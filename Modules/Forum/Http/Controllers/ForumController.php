@@ -38,7 +38,7 @@ class ForumController extends BaseController
         
         $message = Message::firstOrCreate(['message'=>$request->message]);
         $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
-        $message_sender->familyMessages()->create(['family_id'=>$this->profile()->family_id]);
+        $message_sender->nuclearFamilyMessage()->create(['family_id'=>$this->profile()->family_id]);
         session()->flash('message was sent successfully');
         return back();
     }
@@ -52,7 +52,7 @@ class ForumController extends BaseController
     { 
         $message = Message::firstOrCreate(['message'=>$request->message]);
         $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
-        $message_sender->extendedFamilyMessages()->create(['family_id'=>$this->profile()->family->root()->id]);
+        $message_sender->extendFamilyMessage()->create(['family_id'=>$this->profile()->family->root()->id]);
         session()->flash('message was sent successfully');
         return back();
     }

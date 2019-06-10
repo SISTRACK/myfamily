@@ -19,7 +19,7 @@ class Event extends Model
     }
     public function timeRemain($date,$time)
     {
-        return Carbon::create(date('Y',$date), date('m',$date), date('d',$date), date('h',$time), date('m',$time), date('s',$time))->diffForHumans();
+        return Carbon::create(date('Y',$date), date('m',$date), date('d',$date), date('H',$time), date('i',$time), date('s',$time))->diffForHumans();
     }
 
     public function attending()

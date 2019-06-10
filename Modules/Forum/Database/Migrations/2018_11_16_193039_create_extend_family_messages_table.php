@@ -16,7 +16,7 @@ class CreateExtendFamilyMessagesTable extends Migration
         Schema::create('extend_family_messages', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('family_id')->unsigned()->foreign()->refernces('id')->on('families')->delete('restrict')->update('cascade');
-            $table->integer('message_id')->unsigned()->foreign()->refernces('id')->on('messages')->delete('restrict')->update('cascade');
+            $table->integer('user_message_id')->unsigned()->foreign()->refernces('id')->on('user_messages')->delete('restrict')->update('cascade');
             $table->timestamps();
         });
     }
