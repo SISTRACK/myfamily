@@ -264,11 +264,8 @@ trait FamilyMembers
 	public function totalFamilyMembers()
 	{
 		$users = [];
-		foreach ($this->numberOfWives() as $marriage) {
-			$users[] = $marriage->wife->profile->user;
-		}
-		foreach ($this->numberOfLiveBirthsInTheFamily() as $birth) {
-			$users[] = $birth->child->profile->user;
+		if($this->admin != null && $this->husband == null){
+			$users[] = $this->user;
 		}
 		if($this->husband != null){
             $users[] = $this->husband->profile->user;
@@ -279,6 +276,13 @@ trait FamilyMembers
 				}
 			}
 		}
+		foreach ($this->numberOfWives() as $marriage) {
+			$users[] = $marriage->wife->profile->user;
+		}
+		foreach ($this->numberOfLiveBirthsInTheFamily() as $birth) {
+			$users[] = $birth->child->profile->user;
+		}
+
 		return  $users;
 		
 		
