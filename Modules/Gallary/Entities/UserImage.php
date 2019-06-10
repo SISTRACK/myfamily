@@ -11,11 +11,11 @@ class UserImage extends Model
 
     public function image()
     {
-    	return $this->belongsTo(Image::class);
+    	return $this->belongsTo(GallaryImage::class);
     }
 
     public function profile()
     {
-    	return $this->belongsTo(Profile::class);
+    	return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
 }

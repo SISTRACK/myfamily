@@ -15,6 +15,6 @@ class FamilyVedio extends Model
 
     public function family()
     {
-    	return $this->belongsTo(Family::class);
+    	return $this->belongsTo('Modules\Family\Entities\Family');
     }
 }

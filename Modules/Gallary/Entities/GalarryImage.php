@@ -10,25 +10,12 @@ class GalarryImage extends Model
 
     public function userImage()
     {
-    	return $this->hasMany(UserImage::class);
-    }
-
-    public function profile()
-    {
-    	return $this->belongsTo(Profile::class);
+    	return $this->hasOne(UserImage::class,'image_id');
     }
 
     public function familyImage()
     {
-    	return $this->hasMany(FamilyImage::class);
+    	return $this->hasOne(FamilyImage::class,'image_id');
     }
-
-    public function userVedio()
-    {
-    	return $this->hasMany(UserVedio::class);
-    }
-
-    public function familyVedio()
-    {
-    	return $this->hasMany(FamilyVedio::class);
-    }
+   
+}

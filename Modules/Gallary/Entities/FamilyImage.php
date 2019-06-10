@@ -11,11 +11,11 @@ class FamilyImage extends Model
 
     public function image()
     {
-    	return $this->belongsTo(Image::class);
+    	return $this->belongsTo(GallaryImage::class);
     }
 
     public function family()
     {
-    	return $this->belongsTo(Family::class);
+    	return $this->belongsTo('Modules\Family\Entities\Family');
     }
 }

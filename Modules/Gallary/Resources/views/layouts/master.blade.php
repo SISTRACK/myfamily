@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Gallary</title>
+@extends('layout.master')
 
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/gallary.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/gallary.js') }}"></script> --}}
-    </body>
-</html>
+@section('side-var')
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-file-image "></i> <span> Gallary </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="{{route('private.gallary.index')}}">My Gallary</a></li>
+        <li><a href="{{route('nuclear.gallary.index')}}">Nuclear Family Gally</a></li>
+        <li><a href="{{route('extended.gallary.index')}}">Extended Family Gallary</a></li>
+    </ul>
+</li>
+@endsection

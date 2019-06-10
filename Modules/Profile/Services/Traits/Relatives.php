@@ -118,6 +118,6 @@ trait Relatives
 				$marriages[] = $marriage->wife->profile;
 			}
 		}
-		return $marriages;
-	}
+		return $marriages
+;	}
 }
