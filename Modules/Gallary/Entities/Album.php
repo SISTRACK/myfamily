@@ -2,12 +2,11 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Album extends Model
+class Album extends BaseModel
 {
-    protected $fillable = [];
-
+    
     public function profileAlbums()
     {
     	return $this->hasMany(ProfileAlbum::class);
@@ -31,5 +30,19 @@ class Album extends Model
     public function accesses()
     {
     	return $this->hasMany(AccessAlbum::class);
+    }
+
+    public function albumType()
+    {
+    	return $this->belongsTo(AlbumType::class);
+    }
+
+    public function albumContentType()
+    {
+    	return $this->belongsTo(AlbumContentType::class);
+    }
+    public function getName()
+    {
+    	return substr($this->name, 0, strpos($this->name, '_'));
     }
 }

@@ -5,6 +5,8 @@ use Modules\Marriage\Entities\Status;
 use Modules\Family\Entities\Tribe;
 use Modules\Profile\Entities\MaritalStatus;
 use Modules\Profile\Entities\Genotype;
+use Modules\Gallary\Entities\AlbumType;
+use Modules\Gallary\Entities\AlbumContentType;
 use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Image;
@@ -33,7 +35,16 @@ class DatabaseSeeder extends Seeder
         'Town Cooditaor',
         'Area Cooditaor'
       ];
-
+      $albums = [
+        'Private',
+        'Nuclear Family',
+        'Extended Family'
+      ];
+      $album_contents = [
+        'Audio',
+        'Photo',
+        'Vedio'
+      ];
       $bloods = [
         '0+','0-','A+','A-','B+','B-','AB+','AB-'
       ];
@@ -59,7 +70,12 @@ class DatabaseSeeder extends Seeder
       foreach ($bloods as $blood) {
         BloodGroup::firstOrCreate(['name'=>$blood]);
       }
-
+      foreach ($albums as $album) {
+        AlbumType::firstOrCreate(['name'=>$album]);
+      }
+      foreach ($album_contents as $album_content) {
+        AlbumContentType::firstOrCreate(['name'=>$album_content]);
+      }
       foreach ($genotypes as $genotype) {
         Genotype::firstOrCreate(['name'=>$genotype]);
       }

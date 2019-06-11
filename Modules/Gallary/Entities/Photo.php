@@ -2,11 +2,10 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Photo extends Model
+class Photo extends BaseModel
 {
-    protected $guarded = [];
 
     public function album()
     {

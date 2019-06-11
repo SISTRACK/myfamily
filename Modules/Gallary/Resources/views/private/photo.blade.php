@@ -5,13 +5,16 @@
 
 @section('page-content')
 <div id="contents">
+	<?php $profile_album = null; ?>
 <div class="innerAll bg-white border-bottom">
-	<ul class="menubar">
-	<li class="active"><a href="#">Nuclear Family Photo Gallery</a></li>
-	<li><a href="#">Nuclear Family Video Gallery</a></li>
-	</ul>
-</div>
+	@foreach($profile->profileAlbums as $profile_album)
 
+        <button data-toggle="modal" data-target="#private_{{$profile_album->id}}" class="btn btn-primary">{{$profile_album->album->getName().' '.$profile_album->album->albumType->name.' '.$profile_album->album->albumContentType->name.' Album'}}
+        </button>
+        @include('gallary::Modals.private_modal')
+	@endforeach
+</div>
+<br>
 <div class="innerAll spacing-x2">
 	<div class="row">
 		<div class="col-md-6">
@@ -45,7 +48,7 @@
 <!-- // Content END -->
 		
 <div class="clearfix"></div>
-		
+
 @stop
 
 @section('footer')

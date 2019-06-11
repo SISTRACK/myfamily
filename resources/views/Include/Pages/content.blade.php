@@ -13,6 +13,7 @@
 
                 <div class="row">
                     @include('Include.Pages.message')
+                    @include('gallary::Modals.create_album')
                     @yield('page-content')
                 </div>
                 <!-- end row -->

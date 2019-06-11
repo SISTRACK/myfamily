@@ -2,19 +2,14 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Vedio extends Model
+class Vedio extends BaseModel
 {
-    protected $fillable = [];
-
-    public function userVedio()
+    
+    public function album()
     {
-    	return $this->hasOne(UserVedio::class);
+    	return $this->belongsTo(Album::class);
     }
 
-    public function familyVedio()
-    {
-    	return $this->hasOne(FamilyVedio::class);
-    }
 }

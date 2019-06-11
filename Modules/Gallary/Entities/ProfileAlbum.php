@@ -2,20 +2,19 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class UserVedio extends Model
+class ProfileAlbum extends BaseModel
 {
 
-    protected $guarded = [];
-
-    public function vedio()
+    public function album()
     {
-    	return $this->belongsTo(Vedio::class);
+    	return $this->belongsTo(Album::class);
     }
 
     public function profile()
     {
     	return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
+    
 }

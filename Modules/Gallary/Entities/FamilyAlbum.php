@@ -2,15 +2,14 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class FamilyVedio extends Model
+class FamilyAlbum extends BaseModel
 {
-    protected $guarded = [];
 
-    public function vedio()
+    public function album()
     {
-    	return $this->belongsTo(Vedio::class);
+    	return $this->belongsTo(Album::class);
     }
 
     public function family()

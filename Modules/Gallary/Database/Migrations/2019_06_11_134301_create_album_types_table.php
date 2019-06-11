@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamilyAlbumsTable extends Migration
+class CreateAlbumTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateFamilyAlbumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('family_albums', function (Blueprint $table) {
+        Schema::create('album_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('family_id')->unsigned()->foreign()->refernces('id')->on('families')->delete('restrict')->update('cascade');;
-            $table->integer('album_id')->unsigned()->foreign()->refernces('id')->on('albums')->delete('restrict')->update('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateFamilyAlbumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_albums');
+        Schema::dropIfExists('album_types');
     }
 }

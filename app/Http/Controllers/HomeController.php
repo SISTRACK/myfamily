@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Modules\Gallary\Entities\AlbumType;
+use Modules\Gallary\Entities\AlbumContentType;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,8 +35,8 @@ class HomeController extends Controller
             }else{
                 $profile = $user->profile;
             }
-
-            return view('home',['profile'=>$profile]);
+            session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
+            return view('home',['profile'=>$profile,]);
         }
     }
 }

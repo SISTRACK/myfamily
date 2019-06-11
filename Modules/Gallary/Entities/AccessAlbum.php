@@ -2,9 +2,23 @@
 
 namespace Modules\Gallary\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class AccessAlbum extends Model
+class AccessAlbum extends BaseModel
 {
-    protected $fillable = [];
+
+    public function family()
+    {
+    	return $this->belongsTo('Modules\Family\Entities\Family');
+    }
+
+    public function profile()
+    {
+    	return $this->belongsTo('Modules\Profile\Entities\Profile');
+    }
+
+    public function album()
+    {
+    	return $this->belongsTo(Album::class);
+    }
 }

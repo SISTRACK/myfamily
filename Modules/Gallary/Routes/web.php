@@ -18,3 +18,4 @@ Route::prefix('gallary')->group(function() {
 Route::get('private_gallary','GallaryController@privateIndex')->name('private.gallary.index');
 Route::get('nuclear_gallary','GallaryController@nuclearIndex')->name('nuclear.gallary.index');
 Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended.gallary.index');
+Route::post('gallary/album/create','GallaryController@createAlbum')->name('album.create');
