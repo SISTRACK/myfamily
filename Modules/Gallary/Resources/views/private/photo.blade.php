@@ -1,18 +1,8 @@
-@extends('layout.layout')
-
-@section('page-title')
-    {{'Family Information contact page'}}
-@stop
-
-
-
+@extends('gallary::layouts.master')
 @section('page-name')
-    {{'Nuclear family photo gallary'}}
+    {{'My photo gallary'}}
 @stop
 
-@section('content-name')
-   {{'Dashboard'}}
-@stop
 @section('page-content')
 <div id="contents">
 <div class="innerAll bg-white border-bottom">

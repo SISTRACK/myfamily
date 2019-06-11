@@ -13,61 +13,28 @@ class GallaryController extends BaseController
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function privateIndex()
     {
-        return view('gallary::index');
+        return view('gallary::private.photo');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      * @return Response
      */
-    public function create()
+    public function nuclearIndex()
     {
-        return view('gallary::create');
+        return view('gallary::nuclear.photo');
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
+     * Display a listing of the resource.
      * @return Response
      */
-    public function store(Request $request)
+    public function extendedIndex()
     {
+        return view('gallary::extended.photo');
     }
 
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('gallary::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('gallary::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
+    
 }

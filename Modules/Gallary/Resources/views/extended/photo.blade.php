@@ -1,15 +1,8 @@
-@extends('layout.gallary')
-
-@section('page-title')
-    {{'Family Information contact page'}}
-@stop
+@extends('gallary::layouts.master')
 @section('page-name')
-    {{'extended family photo gallary'}}
+    {{'Extended family photo gallary'}}
 @stop
 
-@section('content-name')
-   {{'Dashboard'}}
-@stop
 @section('page-content')
 <div id="contents"><h1 class="content-heading bg-white border-bottom">Photo Gallery <span>Layouts</span></h1>
 <div class="innerAll bg-white border-bottom">

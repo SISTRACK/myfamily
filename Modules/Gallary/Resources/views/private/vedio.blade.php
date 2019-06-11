@@ -1,13 +1,6 @@
-@extends('layout.layout')
-
-@section('page-title')
-    {{'Family Information contact page'}}
-@stop
-
-
-
+@extends('gallary::layouts.master')
 @section('page-name')
-    {{'nuclear family vedio gallary'}}
+    {{'My vedio gallary'}}
 @stop
 
 @section('page-content')

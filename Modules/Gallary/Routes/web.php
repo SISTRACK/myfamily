@@ -14,3 +14,7 @@
 Route::prefix('gallary')->group(function() {
     Route::get('/', 'GallaryController@index');
 });
+
+Route::get('private_gallary','GallaryController@privateIndex')->name('private.gallary.index');
+Route::get('nuclear_gallary','GallaryController@nuclearIndex')->name('nuclear.gallary.index');
+Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended.gallary.index');

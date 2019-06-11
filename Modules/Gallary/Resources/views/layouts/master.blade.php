@@ -1,6 +1,6 @@
-@extends('layout.master')
+@extends('layouts.master')
 
-@section('side-var')
+@section('side-bar')
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="mdi mdi-file-image "></i> <span> Gallary </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
