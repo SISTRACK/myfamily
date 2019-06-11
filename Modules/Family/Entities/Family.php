@@ -73,13 +73,13 @@ class Family extends Model
         return $this->hasMany('Modules\Forum\Entities\ExtendFamilyMessage');
     }
 
-    public function familyImages()
+    public function familyAlbums()
     {
-        return $this->hasMany('Modules\Gallary\Entities\FamilyImage');
+        return $this->hasMany('Modules\Gallary\Entities\FamilyAlbum');
     }
 
-    public function familyVedios()
+    public function accessAlbums()
     {
-        return $this->hasMany('Modules\Gallary\Entities\FamilyVedio');
+        return $this->hasMany('Modules\Gallary\Entities\accessAlbum');
     }
 }

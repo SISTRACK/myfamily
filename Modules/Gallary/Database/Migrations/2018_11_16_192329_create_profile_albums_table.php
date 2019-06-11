@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGalarryImagesTable extends Migration
+class CreateProfileAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateGalarryImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('galarry_images', function (Blueprint $table) {
+        Schema::create('profile_albums', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('profile_id')->unsigned()->foreign()->refernces('id')->on('families')->delete('restrict')->update('cascade');;
-            $table->string('image');
+            $table->integer('profile_id')->unsigned()->foreign()->refernces('id')->on('profiles')->delete('restrict')->update('cascade');
+            $table->integer('album_id')->unsigned()->foreign()->refernces('id')->on('albums')->delete('restrict')->update('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateGalarryImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('galarry_images');
+        Schema::dropIfExists('profile_albums');
     }
 }

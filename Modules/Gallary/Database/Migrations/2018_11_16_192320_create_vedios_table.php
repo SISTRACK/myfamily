@@ -15,7 +15,8 @@ class CreateVediosTable extends Migration
     {
         Schema::create('vedios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('vedio');
+            $table->integer('album_id')->unsigned()->foreign()->refernces('id')->on('albums')->delete('restrict')->update('cascade');;
             $table->timestamps();
         });
     }

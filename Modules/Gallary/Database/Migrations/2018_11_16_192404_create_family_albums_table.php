@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamilyVediosTable extends Migration
+class CreateFamilyAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFamilyVediosTable extends Migration
      */
     public function up()
     {
-        Schema::create('family_vedios', function (Blueprint $table) {
+        Schema::create('family_albums', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('family_id')->unsigned()->foreign()->refernces('id')->on('families')->delete('restrict')->update('cascade');;
-            $table->integer('vedio_id')->unsigned()->foreign()->refernces('id')->on('vedios')->delete('restrict')->update('cascade');
+            $table->integer('album_id')->unsigned()->foreign()->refernces('id')->on('albums')->delete('restrict')->update('cascade');
             $table->integer('status');
             $table->timestamps();
         });
@@ -29,6 +29,6 @@ class CreateFamilyVediosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('family_vedios');
+        Schema::dropIfExists('family_albums');
     }
 }

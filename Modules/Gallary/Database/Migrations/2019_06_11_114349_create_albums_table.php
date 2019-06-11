@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserVediosTable extends Migration
+class CreateAlbumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateUserVediosTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_vedios', function (Blueprint $table) {
+        Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('profile_id')->unsigned()->foreign()->refernces('id')->on('profiles')->delete('restrict')->update('cascade');
-            $table->integer('vedio_id')->unsigned()->foreign()->refernces('id')->on('vedios')->delete('restrict')->update('cascade');
+            $table->string('name');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateUserVediosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_vedios');
+        Schema::dropIfExists('albums');
     }
 }

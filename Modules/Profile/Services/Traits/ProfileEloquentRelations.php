@@ -38,16 +38,16 @@ trait ProfileEloquentRelations
     	return $this->hasMany('Modules\Profile\Entities\Announcement');
     }
     
-    public function userImages()
+    public function profileAlbums()
     {
-    	return $this->hasMany('Modules\Gallary\Entities\UserImage');
-    }
-    
-    public function userVedios()
-    {
-    	return $this->hasMany('Modules\Gallary\Entities\UserVedio');
+    	return $this->hasMany('Modules\Gallary\Entities\ProfileAlbum');
     }
 
+    public function accessAlbums()
+    {
+    	return $this->hasMany('Modules\Gallary\Entities\AccessAlbum');
+    }
+    
     public function accesses()
     {
         return $this->hasMany('Modules\Profile\Entities\ProfileAccess');

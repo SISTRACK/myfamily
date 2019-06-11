@@ -7,6 +7,9 @@
         <li><a href="{{route('private.gallary.index')}}">My Gallary</a></li>
         <li><a href="{{route('nuclear.gallary.index')}}">Nuclear Family Gally</a></li>
         <li><a href="{{route('extended.gallary.index')}}">Extended Family Gallary</a></li>
+        <li><a href="#">Add Photo</a></li>
+        <li><a href="#">Add Vedio</a></li>
+        <li><a href="#">Create Album</a></li>
     </ul>
 </li>
 @endsection
