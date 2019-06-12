@@ -22,7 +22,10 @@ class CreateAudioTable extends Migration
             ->refernces('id')
             ->on('albums')
             ->delete('restrict')
-            ->update('cascade');;
+            ->update('cascade');
+            $table->string('title')->default('audio title');
+            $table->string('description')->default('audio description');
+            $table->string('published')->nullable();
             $table->timestamps();
         });
     }

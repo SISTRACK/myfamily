@@ -4,7 +4,7 @@ namespace Modules\Gallary\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class Vedio extends BaseModel
+class Video extends BaseModel
 {
     
     public function album()

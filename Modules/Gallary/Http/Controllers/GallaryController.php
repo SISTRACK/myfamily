@@ -64,43 +64,54 @@ class GallaryController extends BaseController
     }
 
     /**
-     * store the photo.
+     * store audio vedio or photo to their respective album.
      * @return Response
      */
-    public function uploadPhoto(Request $request)
+    public function upload(Request $request)
     {
-        dd($request->all());
-    }
-
-    /**
-     * store vedio.
-     * @return Response
-     */
-    public function uploadVedio(Request $request)
-    {
-        dd($request->all());
-    }
-
-    /**
-     * store audio.
-     * @return Response
-     */
-    public function uploadAudio(Request $request)
-    {
-       $album = Album::find($request->album_id);
-       $album_owner = null;
-       foreach ($album->profileAlbums as $owner) {
-           $album_owner = $owner;
-       }
-       if(is_null($album_owner)){
-            foreach ($album->familyAlbums as $owner) {
-               $album_owner = $owner;
-            }
-            dd('this family album');
-       }else{
-    
-           dd('this profile album');
-       }
-    }
-    
+        $album = Album::find($request->album_id);
+        $flag = null;
+        switch ($album->albumContentType->name) {
+            case 'Audio':
+                $flag = 'Audio';
+                $request->validate([
+                    'file' => 'required|mimes:wav,mpeg,ogg',
+                ]);
+                break;
+            case 'Vedio':
+            $flag = 'Video';
+                $request->validate([
+                    'file' => 'required|mimes:avi,mpeg,quicktime',
+                ]);
+                break;
+            default:
+            $flag = 'Photo';
+                $request->validate([
+                    'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
+                ]);
+                break;
+        }
+        $file = $request->file('file');
+        $filename = time().$file->getClientOriginalName();
+        $album_type_folder = $album->albumContentType->name;
+        $file->move("assets/Gallary/$album_type_folder/$album->name/",$filename);
+        switch ($flag) {
+            case 'Audio':
+                $album->audios()->create(['audio'=>$filename,'title'=>$request->title,'description'=>$request->description,'published'=>$request->published]);
+                break;
+            case 'Video':
+                $album->videos()->create(['video'=>$filename,'title'=>$request->title,'description'=>$request->description,'published'=>$request->published]);
+                break;
+            
+            case 'Photo':
+                $album->photos()->create(['photo'=>$filename,'title'=>$request->title,'description'=>$request->description,'published'=>$request->published]);
+                break;
+            default:
+                # code...
+                break;
+        }
+        
+        session()->flash('message',$flag.' was added successfully to '.$album->getName().' Album');
+        return back();
+    } 
 }

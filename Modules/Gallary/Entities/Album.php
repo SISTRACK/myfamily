@@ -17,9 +17,9 @@ class Album extends BaseModel
     	return $this->hasMany(FamilyAlbum::class);
     }
 
-    public function vedios()
+    public function videos()
     {
-    	return $this->hasMany(Vedio::class);
+    	return $this->hasMany(Video::class);
     }
     public function audios()
     {
