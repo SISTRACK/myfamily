@@ -8,7 +8,7 @@
 	<?php $profile_album = null; ?>
 <div class="innerAll bg-white border-bottom">
 	@foreach($profile->profileAlbums as $profile_album)
-
+        <?php $album = $profile_album->album; ?>
         <button data-toggle="modal" data-target="#private_{{$profile_album->id}}" class="btn btn-primary">{{$profile_album->album->getName().' '.$profile_album->album->albumType->name.' '.$profile_album->album->albumContentType->name.' Album'}}
         </button>
         @include('gallary::Modals.private_modal')

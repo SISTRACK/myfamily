@@ -16,7 +16,7 @@ class GallaryController extends BaseController
      */
     public function privateIndex()
     {
-        return view('gallary::private.photo',['profile'=>$this->profile()]);
+        return view('gallary::private.index',['profile'=>$this->profile()]);
     }
 
     /**
@@ -63,6 +63,44 @@ class GallaryController extends BaseController
         return back();
     }
 
+    /**
+     * store the photo.
+     * @return Response
+     */
+    public function uploadPhoto(Request $request)
+    {
+        dd($request->all());
+    }
 
+    /**
+     * store vedio.
+     * @return Response
+     */
+    public function uploadVedio(Request $request)
+    {
+        dd($request->all());
+    }
+
+    /**
+     * store audio.
+     * @return Response
+     */
+    public function uploadAudio(Request $request)
+    {
+       $album = Album::find($request->album_id);
+       $album_owner = null;
+       foreach ($album->profileAlbums as $owner) {
+           $album_owner = $owner;
+       }
+       if(is_null($album_owner)){
+            foreach ($album->familyAlbums as $owner) {
+               $album_owner = $owner;
+            }
+            dd('this family album');
+       }else{
+    
+           dd('this profile album');
+       }
+    }
     
 }

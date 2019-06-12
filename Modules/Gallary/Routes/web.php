@@ -19,3 +19,6 @@ Route::get('private_gallary','GallaryController@privateIndex')->name('private.ga
 Route::get('nuclear_gallary','GallaryController@nuclearIndex')->name('nuclear.gallary.index');
 Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended.gallary.index');
 Route::post('gallary/album/create','GallaryController@createAlbum')->name('album.create');
+Route::post('gallary/album/upload/photo','GallaryController@uploadPhoto')->name('upload.photo');
+Route::post('gallary/album/upload/audio','GallaryController@uploadAudio')->name('upload.audio');
+Route::post('gallary/album/upload/vedio','GallaryController@uploadVedio')->name('upload.vedio');

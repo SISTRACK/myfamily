@@ -21,7 +21,10 @@ class Album extends BaseModel
     {
     	return $this->hasMany(Vedio::class);
     }
-
+    public function audios()
+    {
+    	return $this->hasMany(Audio::class);
+    }
     public function photos()
     {
     	return $this->hasMany(Photo::class);
