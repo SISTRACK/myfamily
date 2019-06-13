@@ -25,7 +25,7 @@ class GallaryController extends BaseController
      */
     public function nuclearIndex()
     {
-        return view('gallary::nuclear.photo',['profile'=>$this->profile()]);
+        return view('gallary::nuclear.index',['profile'=>$this->profile()]);
     }
 
     /**
@@ -34,7 +34,7 @@ class GallaryController extends BaseController
      */
     public function extendedIndex()
     {
-        return view('gallary::extended.photo',['profile'=>$this->profile()]);
+        return view('gallary::extended.index',['profile'=>$this->profile()]);
     }
 
     /**
@@ -74,9 +74,9 @@ class GallaryController extends BaseController
         switch ($album->albumContentType->name) {
             case 'Audio':
                 $flag = 'Audio';
-                $request->validate([
-                    'file' => 'required|mimes:wav,mpeg,ogg',
-                ]);
+                // $request->validate([
+                //     'file' => 'required|mimes:wav,mpeg,ogg,mp3,opus'
+                // ]);
                 break;
             case 'Vedio':
             $flag = 'Video';
@@ -87,7 +87,7 @@ class GallaryController extends BaseController
             default:
             $flag = 'Photo';
                 $request->validate([
-                    'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
+                    'file' => 'required|image|mimes:jpeg,bmp,png,jpg,mp3,opus',
                 ]);
                 break;
         }

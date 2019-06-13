@@ -68,7 +68,7 @@
 					<div class="widget widget-heading-simple widget-body-white widget-pinterest">
 						<div class="widget-body padding-none">
 							<audio controls>
-							    <source src="{{$path.$audio->audio}}" type="audio/mpeg">
+							    <source src="{{$path.$audio->audio}}" type="audio/mp3">
 							</audio>
 							<div class="description">
 								<h5 class="text-uppercase">{{$audio->title}}</h5>
