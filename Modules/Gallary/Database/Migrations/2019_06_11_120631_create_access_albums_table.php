@@ -17,6 +17,7 @@ class CreateAccessAlbumsTable extends Migration
             $table->increments('id');
             $table->integer('family_id')
             ->unsigned()
+            ->nullable()
             ->foreign()
             ->refernces('id')
             ->on('families')
@@ -25,6 +26,7 @@ class CreateAccessAlbumsTable extends Migration
             $table->integer('profile_id')
             ->unsigned()
             ->foreign()
+            ->nullable()
             ->refernces('id')
             ->on('profiles')
             ->delete('restrict')

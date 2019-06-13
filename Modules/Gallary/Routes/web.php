@@ -21,4 +21,7 @@ Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended
 Route::post('gallary/album/create','GallaryController@createAlbum')->name('album.create');
 Route::post('gallary/album/{type}/upload','GallaryController@upload')->name('upload');
 Route::post('gallary/album/{type}/delete','GallaryController@delete')->name('album.delete');
+Route::post('gallary/album/{type}/grant-access','GallaryController@grantAccess')->name('album.access');
+Route::post('gallary/album/{type}/published','GallaryController@published')->name('album.published');
+Route::post('gallary/album/{type}/info-update','GallaryController@update')->name('album.update');
 

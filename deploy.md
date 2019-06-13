@@ -47,3 +47,15 @@ Next, remove the swap file entry /swapfile swap swap defaults 0 0 from the /etc/
 
 sudo rm /swapfile
 
+
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+
+
+GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+
+FLUSH PRIVILEGES;
+
+DROP USER ‘username’@‘localhost’;
+
+REVOKE type_of_permission ON database_name.table_name FROM ‘username’@‘localhost’;
+

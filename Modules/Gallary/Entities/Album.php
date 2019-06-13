@@ -30,7 +30,7 @@ class Album extends BaseModel
     	return $this->hasMany(Photo::class);
     }
 
-    public function accesses()
+    public function accessAlbums()
     {
     	return $this->hasMany(AccessAlbum::class);
     }

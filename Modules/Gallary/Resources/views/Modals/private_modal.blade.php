@@ -23,12 +23,17 @@
                     @include('gallary::Modals.upload')
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-primary btn-block">Publish Album
-                    </button>
+                    <form action="gallary/album/{{strtolower($profile_album->album->albumContentType->name)}}/published" method="post">
+                        @csrf
+                        <input type="hidden" name="album_id" value="{{$profile_album->album->id}}">
+                        <button class="btn btn-primary btn-block">Publish Album
+                        </button>
+                    </form>
                 </div>
                 <div class="col-sm-3">
-                    <button class="btn btn-primary btn-block">Grant Access
+                    <button data-toggle="modal" data-target="#access_{{$album->id}}" class="btn btn-primary btn-block">Grant Access
                     </button>
+                    @include('gallary::Modals.access')
                 </div>
             </div>
         </div>

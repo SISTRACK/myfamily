@@ -18,6 +18,7 @@ class CreateAlbumsTable extends Migration
             $table->string('name');
             $table->integer('album_type_id')->unsigned()->foreign()->refernces('id')->on('album_types')->delete('restrict')->update('cascade');
             $table->integer('album_content_type_id')->unsigned()->foreign()->refernces('id')->on('album_content_types')->delete('restrict')->update('cascade');
+             $table->string('published')->nullable();
             $table->timestamps();
         });
     }
