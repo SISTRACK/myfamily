@@ -7,14 +7,14 @@ use Modules\Core\Entities\BaseModel;
 class Album extends BaseModel
 {
     
-    public function profileAlbums()
+    public function profileAlbum()
     {
-    	return $this->hasMany(ProfileAlbum::class);
+    	return $this->hasOne(ProfileAlbum::class);
     }
 
-    public function familyAlbums()
+    public function familyAlbum()
     {
-    	return $this->hasMany(FamilyAlbum::class);
+    	return $this->hasOne(FamilyAlbum::class);
     }
 
     public function videos()

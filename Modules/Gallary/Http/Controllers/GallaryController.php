@@ -49,13 +49,13 @@ class GallaryController extends BaseController
         $new_album = $album->create($request->all());
         switch ($data['album_type_id']) {
             case '1':
-                $new_album->profileAlbums()->create(['profile_id'=>$this->profile()->id]);
+                $new_album->profileAlbum()->create(['profile_id'=>$this->profile()->id]);
                 break;
             case '2':
-                $new_album->familyAlbums()->create(['family_id'=>$this->profile()->family->id]);
+                $new_album->familyAlbum()->create(['family_id'=>$this->profile()->family->id]);
                 break;
             default:
-                $new_album->familyAlbums()->create(['family_id'=>$this->profile()->family->root()->id]);
+                $new_album->familyAlbum()->create(['family_id'=>$this->profile()->family->root()->id]);
                 break;
         }
         
@@ -114,4 +114,39 @@ class GallaryController extends BaseController
         session()->flash('message',$flag.' was added successfully to '.$album->getName().' Album');
         return back();
     } 
+
+    public function delete(Request $request)
+    {
+        $album = Album::find($request->album_id);
+        if($album->profileAlbum == null){
+            $album->familyAlbum()->delete();
+        }else{
+            $album->profileAlbum()->delete();
+        }
+        $path = 'assets/Gallary/'.$album->albumContentType->name.'/'.$album->name.'/';
+        switch ($album->albumContentType->name) {
+            case 'Audio':
+                foreach($album->audios as $audio){
+                   unlink($path.$audio->audio);
+                   $audio->delete();
+                }
+               break;
+            case 'Video':
+                foreach($album->videos as $video){
+                    unlink($path.$video->video);
+                    $video->delete();
+                }
+               break;
+            default:
+                foreach($album->photos as $photo){
+                   unlink($path.$photo->photo);
+                   $photo->delete();
+                }
+               break;
+        }
+        rmdir($path);
+       $album->delete();
+       session()->flash('message','Album was successfully deleted');
+       return back();
+    }
 }

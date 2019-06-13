@@ -20,4 +20,5 @@ Route::get('nuclear_gallary','GallaryController@nuclearIndex')->name('nuclear.ga
 Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended.gallary.index');
 Route::post('gallary/album/create','GallaryController@createAlbum')->name('album.create');
 Route::post('gallary/album/{type}/upload','GallaryController@upload')->name('upload');
+Route::post('gallary/album/{type}/delete','GallaryController@delete')->name('album.delete');
 
