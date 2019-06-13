@@ -81,7 +81,7 @@ class GallaryController extends BaseController
             case 'Vedio':
             $flag = 'Video';
                 $request->validate([
-                    'file' => 'required|mimes:avi,mpeg,quicktime',
+                    'file' => 'required|mimes:avi,mpeg,quicktime,mp4'
                 ]);
                 break;
             default:
