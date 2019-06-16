@@ -14,11 +14,10 @@
                     <div class="text-center card-box">
                         <div class="member-card">
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" class="img-radius" height="250" width="200">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" class="img-radius" height="250" width="200">
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{$user->first_name.' '.$user->last_name}}</span></p>
-
                                 <p class="text-muted font-13"><strong>Status :</strong> <span class="m-l-15">{{$user->profile->life_status_id == 1 ? 'A life' : 'Dead'}}</span></p>
 
                                 <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['status']}}</span></p>
@@ -340,7 +339,7 @@
                     <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Parents</h4>
                     <div class="row">
-                        @if(empty($user->profile->parents()))
+                        @if($user->profile->parents()))
                             <div class="gal-detail">
                                 <h3>Record not found</h3>      
                             </div>
@@ -551,13 +550,14 @@
                 </div>
                 @if(!session('gues'))
                 <div class="col-md-8 col-lg-9">
-                    <h4 class="text-custom m-b-5">We have access to your profile</h4>
+                    
                     <div class="row">
                         @if(empty($user->profile->profileAccessibleBy()))
                             <div class="gal-detail">
                                 <h3>Your profile is invisible to any one</h3>      
                             </div>
                         @else
+                            <h4 class="text-custom m-b-5">We have access to your profile</h4>
                             @foreach($user->profile->profileAccessibleBy() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
@@ -608,13 +608,14 @@
                 </div>
 
                 <div class="col-md-8 col-lg-9">
-                    <h4 class="text-custom m-b-5">You have access to these profiles</h4>
+                    
                     <div class="row">
                         @if(empty($user->profile->profileAccessibleTo()))
                             <div class="gal-detail">
                                 <h3>You dont have access to any profile</h3>      
                             </div>
                         @else
+                        <h4 class="text-custom m-b-5">You have access to these profiles</h4>
                             @foreach($user->profile->profileAccessibleTo() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">

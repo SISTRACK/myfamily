@@ -90,17 +90,18 @@ class ProfileController extends BaseController
                 $user = User::find($request->id);
             }else{
                 $user = Auth()->User();
-            }
-            // if(!$request->hasFile('file')){
-            //     $error[] = 'No file selected';
-            // }
-            // if(!$request->file('file')->isValid()){
-            //     $error[] = 'Invalid file selected';
-            // }    
+            }   
+            $profile = $user->profile;
+            
             if(empty($error)){
+                $path = $profile->profileImageLocation('upload');
+                if($profile->image_id > 2){
+                    unlink($path.$profile->image->name);
+                    $profile->image->delete();
+                }
                 $file = $request->file('file');
                 $name = time().$file->getClientOriginalName();
-                $file->move('assets/images/users',$name);
+                $file->move($path,$name);
                 $image = Image::create(['name'=>$name]);
                 $user->profile()->update(['image_id'=>$image->id]);
                 session()->flash('message','Profile image uploaded Successfully');

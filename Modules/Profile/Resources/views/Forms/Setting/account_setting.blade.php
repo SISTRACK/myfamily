@@ -54,7 +54,25 @@
             <div class="col-md-9">
                 <div class="separator bottom"></div>
                 <div class="form-actions" style="margin: 0;">
-                    <button name="reset_picture" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Reset Picture</button>
+                    <button name="reset_picture" data-toggle="modal" data-target="#upload" class="btn btn-primary"><i class="fa fa-check"></i> Reset Picture</button>
+                    <!-- modal -->
+                    <div class="modal fade" id="upload" role="dialog">
+                        <div class="modal-dialog">
+                          <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    @include('profile::Forms.Setting.upload_profile_image_form')
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal -->
                 </div>
             </div>
         @endif

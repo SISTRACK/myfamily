@@ -192,4 +192,28 @@ trait ProfileEloquentRelations
     	}
     	return $family;
     }
+    public function profileImageLocation($flag)
+    {
+    	$location = null;
+    	if($this->image_id > 2 || $flag == 'upload'){
+            if($this->child != null && $this->gender_id == 1){
+	            $location = $this->thisProfileFather()->family->location;
+	    	}elseif($this->wife != null && $this->family_id === null){
+	            foreach($this->wife->marriages as $marriage){
+		           	if($marriage->is_active == 1){
+	                    $location = $marraige->husband->profile->family->location;
+		           	}
+	            }
+	    	}elseif($this->wife != null && !is_null($this->family_id)){
+	    		$location = $this->family->location;
+	    	}else{
+	    		$location = $this->family->location;
+	    	}
+    	}
+        if(is_null($location) && $flag == 'display'){
+            return "assets/Profile/Images/";
+        }else{
+        	return "assets/Profile/Images/".$location->town->district->lga->state->name.'/'.$location->town->district->lga->name.'/'.$location->town->district->name.'/'.$location->town->name.'/';
+        }
+    }
 }
