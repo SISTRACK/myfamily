@@ -2,12 +2,11 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Experience extends Model
+class Experience extends BaseModel
 {
-    protected $guarded = [];
-
+    
     public function profileExperiences()
     {
     	return $this->hasMany(ProfileExperience::class);

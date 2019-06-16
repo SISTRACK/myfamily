@@ -2,12 +2,11 @@
 
 namespace Modules\Divorce\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class ReturnDetail extends Model
+class ReturnDetail extends BaseModel
 {
-    protected $guarded = [];
-
+    
     public function divorceDetail()
     {
     	return $this->belongsTo(DivorceDetail::class);

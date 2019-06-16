@@ -2,11 +2,10 @@
 
 namespace Modules\Event\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Announcement extends Model
+class Announcement extends BaseModel
 {
-    protected $guarded = [];
 
     public function profile()
     {

@@ -2,11 +2,10 @@
 
 namespace Modules\Birth\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Children extends Model
+class Children extends BaseModel
 {
-    protected $giuarded = [];
 
     public function profile()
     {

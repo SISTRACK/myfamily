@@ -2,12 +2,11 @@
 
 namespace Modules\Address\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Office extends Model
+class Office extends BaseModel
 {
-    protected $guarded = [];
-
+   
     public function company()
     {
         return $this->belongsTo(Company::class);

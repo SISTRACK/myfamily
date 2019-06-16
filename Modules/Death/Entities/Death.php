@@ -2,11 +2,10 @@
 
 namespace Modules\Death\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Death extends Model
+class Death extends BaseModel
 {
-    protected $guarded = [];
 
     public function profile()
     {

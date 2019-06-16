@@ -2,11 +2,10 @@
 
 namespace Modules\Birth\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Mother extends Model
+class Mother extends BaseModel
 {
-    protected $guaerded = [];
 
     public function wife()
     {

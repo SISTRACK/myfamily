@@ -2,12 +2,11 @@
 
 namespace Modules\Event\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class FamilyEvent extends Model
+class FamilyEvent extends BaseModel
 {
-    protected $guarded = [];
-
+   
     public function family()
     {
     	return $this->belongsTo('Modules\Family\Entities\Family');

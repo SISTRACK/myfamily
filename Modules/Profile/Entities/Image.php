@@ -2,12 +2,10 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Image extends Model
+class Image extends BaseModel
 {
-    protected $guarded = [];
-
     public function profile()
     {
     	return $this->belongsTo(Profile::class);

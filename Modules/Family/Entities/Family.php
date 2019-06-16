@@ -2,14 +2,13 @@
 
 namespace Modules\Family\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
+
 use Modules\Family\Services\Traits\RelatedFamilies;
 
-class Family extends Model
+class Family extends BaseModel
 {
     use RelatedFamilies;
-
-    protected $guarded = [];
     
     public function admin()
     {

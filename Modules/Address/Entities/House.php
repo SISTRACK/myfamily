@@ -2,12 +2,10 @@
 
 namespace Modules\Address\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class House extends Model
+class House extends BaseModel
 {
-    protected $guarded = [];
-
     public function area()
     {
         return $this->belongsTo(Area::class);

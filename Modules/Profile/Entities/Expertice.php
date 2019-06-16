@@ -2,11 +2,10 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Expertice extends Model
+class Expertice extends BaseModel
 {
-    protected $fillable = ['name'];
 
     public function profileExpertice()
     {

@@ -2,9 +2,12 @@
 
 namespace Modules\Birth\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Deliver extends Model
+class Deliver extends BaseModel
 {
-    protected $guarded = [];
+    public function births()
+    {
+    	return $this->belongsToMany(Birth::class);
+    }
 }

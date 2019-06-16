@@ -2,11 +2,10 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Gender extends Model
+class Gender extends BaseModel
 {
-    protected $guarded = [];
 
     public function profile()
     {

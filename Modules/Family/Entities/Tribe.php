@@ -2,11 +2,10 @@
 
 namespace Modules\Family\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Tribe extends Model
+class Tribe extends BaseModel
 {
-    protected $guarded = [];
 
     public function family()
     {

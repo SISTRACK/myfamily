@@ -2,12 +2,11 @@
 
 namespace Modules\Family\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Religion extends Model
+class Religion extends BaseModel
 {
-    protected $guarded = [];
-
+    
     public function family()
     {
     	return $this->hasMany(Family::class);

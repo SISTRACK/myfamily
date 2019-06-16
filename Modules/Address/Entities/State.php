@@ -2,11 +2,10 @@
 
 namespace Modules\Address\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class State extends Model
+class State extends BaseModel
 {
-    protected $guarded = [];
 
     public function country()
     {

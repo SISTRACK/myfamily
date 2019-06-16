@@ -2,11 +2,10 @@
 
 namespace Modules\Forum\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class FamilyMessage extends Model
+class FamilyMessage extends BaseModel
 {
-    protected $guarded = [];
 
     public function userMessage()
     {

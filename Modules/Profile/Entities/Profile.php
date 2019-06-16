@@ -2,13 +2,12 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
 use Modules\Profile\Services\Traits\ProfileEloquentRelations;
 
-class Profile extends Model
+class Profile extends BaseModel
 {
-    protected $guarded = [];
 
     use ProfileEloquentRelations;
 

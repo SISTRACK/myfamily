@@ -2,11 +2,10 @@
 
 namespace Modules\Admin\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class FamilyAdmin extends Model
+class FamilyAdmin extends BaseModel
 {
-    protected $guarded = [];
 
     public function profile()
     {

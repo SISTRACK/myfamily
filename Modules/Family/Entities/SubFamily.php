@@ -2,11 +2,10 @@
 
 namespace Modules\Family\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class SubFamily extends Model
+class SubFamily extends BaseModel
 {
-    protected $guarded = [];
 
     public function family()
     {

@@ -2,11 +2,10 @@
 
 namespace Modules\Admin\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class AdminStatus extends Model
+class AdminStatus extends BaseModel
 {
-    protected $guarded = [];
 
     public function admins()
     {

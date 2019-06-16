@@ -2,12 +2,11 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class DeseaseUndergoes extends Model
+class DeseaseUndergoes extends BaseModel
 {
-    protected $guarded = [];
-
+ 
     public function desease()
     {
     	return $this->belongsTo(Desease::class);

@@ -2,11 +2,10 @@
 
 namespace Modules\Profile\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class BloodGroup extends Model
+class BloodGroup extends BaseModel
 {
-    protected $guarded = [];
 
     public function profileHealth()
     {

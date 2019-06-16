@@ -2,12 +2,11 @@
 
 namespace Modules\Event\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 use Illuminate\Support\Carbon;
 
-class Event extends Model
+class Event extends BaseModel
 {
-    protected $guarded = [];
 
     public function profile()
     {

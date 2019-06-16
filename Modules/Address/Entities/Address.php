@@ -2,11 +2,10 @@
 
 namespace Modules\Address\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Address extends Model
+class Address extends BaseModel
 {
-    protected $guarded = [];
 
     public function leave()
     {

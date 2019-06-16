@@ -2,11 +2,10 @@
 
 namespace Modules\Divorce\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Divorce extends Model
+class Divorce extends BaseModel
 {
-    protected $guarded = [];
 
     public function marriage()
     {

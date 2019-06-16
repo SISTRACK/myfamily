@@ -3,12 +3,11 @@
 namespace Modules\Forum\Entities;
 
 use Modules\Core\Entities\BaseModel;
+
 use Illuminate\Support\Carbon;
 
 class UserMessage extends BaseModel
 {
-
-    protected $guarded = [];
 
     public function extendFamilyMessage()
     {
