@@ -151,6 +151,10 @@
 		                    				<td>Local Government</td>
 		                    				<td>{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->lga->name : ''}}</td>
 		                    			</tr>
+                                        <tr>
+                                            <td>District</td>
+                                            <td>{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->district->name : ''}}</td>
+                                        </tr>
 		                    			<tr>
 		                    				<td>Town / Village</td>
 		                    				<td>{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->name : ''}}</td>

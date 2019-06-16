@@ -24,14 +24,20 @@
         <div class="col-md-3"><label class="control-label">Local Govt</label></div>
         <div class="col-md-9">
             <div class="input-group">
-                <div class="input-group">
-                    <input type="text" name="lga" class="form-control" value="{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->lga->name : ''}}" />
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                </div>
+                <input type="text" name="lga" class="form-control" value="{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->lga->name : ''}}" />
+                <span class="input-group-addon"><i class="fa fa-question-circle"></i></span>
             </div>
         </div>
     </div>   
-
+    <div class="row">
+        <div class="col-md-3"><label class="control-label">District</label></div>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input type="text" name="district" class="form-control" value="{{$user->profile->leave != null ? $user->profile->leave->address->house->area->town->district->name : ''}}" />
+                <span class="input-group-addon"><i class="fa fa-question-circle"></i></span>
+            </div>
+        </div>
+    </div> 
     <div class="row">
         <div class="col-md-3">
             <label class=" control-label">Town</label>

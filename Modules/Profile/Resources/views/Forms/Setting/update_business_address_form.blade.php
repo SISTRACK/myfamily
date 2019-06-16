@@ -30,7 +30,7 @@
             <div class="col-md-9">
                 <div class="input-group">
                     <input type="text" name="lga" id="datepicker1" class="form-control" value="{{$user->profile->work != null ? $user->profile->work->address->office->company->town->lga->name : ''}}" />
-                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-question-circle"></i></span>
                 </div>
             </div>
         </div>
