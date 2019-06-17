@@ -201,7 +201,7 @@ trait ProfileEloquentRelations
 	    	}elseif($this->wife != null && $this->family_id === null){
 	            foreach($this->wife->marriages as $marriage){
 		           	if($marriage->is_active == 1){
-	                    $location = $marraige->husband->profile->family->location;
+	                    $location = $marriage->husband->profile->family->location;
 		           	}
 	            }
 	    	}elseif($this->wife != null && !is_null($this->family_id)){
@@ -213,7 +213,7 @@ trait ProfileEloquentRelations
         if(is_null($location) && $flag == 'display'){
             return "assets/Profile/Images/";
         }else{
-        	return "assets/Profile/Images/".$location->town->district->lga->state->name.'/'.$location->town->district->lga->name.'/'.$location->town->district->name.'/'.$location->town->name.'/';
+        	return "assets/Profile/Images/".$location->town->district->lga->state->name.' State/'.$location->town->district->lga->name.' Local Government/'.$location->town->district->name.' District/'.$location->town->name.' Town/';
         }
     }
 }

@@ -18,7 +18,7 @@ trait FamilyMembers
         		'email'=>$father->email,
         		'user'=>$father,
         		'status'=>'Father',
-        		'image'=> $father->profile->image->name
+        		'image'=> $father->profile->profileImageLocation('display').$father->profile->image->name
         	]; 
         	$mother = $this->child->birth->mother->wife->profile->user;
         	$parents[] = [
@@ -26,7 +26,7 @@ trait FamilyMembers
         		'email'=>$mother->email,
         		'user'=>$mother,
         		'status'=>'Mother',
-        		'image'=>$mother->profile->image->name
+        		'image'=> $mother->profile->profileImageLocation('display').$mother->profile->image->name
         	];
         }
         return $parents;
@@ -42,7 +42,7 @@ trait FamilyMembers
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
 					'user'=>$birth->child->profile->user,
-				    'image'=>$birth->child->profile->image->name,
+					'image'=> $birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name,
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
 			}
@@ -53,7 +53,7 @@ trait FamilyMembers
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
 					'user'=>$birth->child->profile->user,
-				    'image'=>$birth->child->profile->image->name,
+				    'image'=> $birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name,
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
 			}
@@ -71,7 +71,7 @@ trait FamilyMembers
 						'name'=> $wife->first_name.' '.$wife->last_name,
 					    'email'=>$wife->email,
 					    'user'=>$wife,
-					    'image'=>$marriage->wife->profile->image->name,
+					    'image'=> $marriage->wife->profile->profileImageLocation('display').$marriage->wife->profile->image->name,
 					    'status'=>$marriage->wife->status->name,
 					    'married_date' => date('D/M/Y',$marriage->date),
 					    'birth_date' => date('D/M/Y',$this->getWifeDateOfBirth($marriage))
@@ -93,7 +93,7 @@ trait FamilyMembers
                         'name'=> $currentHusband->first_name.' '.$currentHusband->last_name,
 					    'email'=>$currentHusband->email,
 					    'user'=>$currentHusband,
-					    'image'=>$marriage->husband->profile->image->name,
+					    'image'=> $marriage->husband->profile->profileImageLocation('display').$marriage->husband->profile->image->name,
 					    'married_date' => date('D/M/Y',$marriage->date)
             		];
             	}
@@ -276,9 +276,20 @@ trait FamilyMembers
 				}
 			}
 		}
-		foreach ($this->numberOfWives() as $marriage) {
-			$users[] = $marriage->wife->profile->user;
+		if(!is_null($this->wife)){
+            foreach ($this->wife->marriages as $marriage) {
+            	if($marriage->is_active == 1){
+            		foreach ($marriage->husband->profile->numberOfWives() as $valid_wife) {
+            			$users[] = $valid_wife->wife->profile->user;
+            		}
+            	}
+            }
+		}else{
+			foreach ($this->numberOfWives() as $marriage) {
+				$users[] = $marriage->wife->profile->user;
+			}
 		}
+		
 		foreach ($this->numberOfLiveBirthsInTheFamily() as $birth) {
 			$users[] = $birth->child->profile->user;
 		}

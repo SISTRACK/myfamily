@@ -35,7 +35,7 @@
                         
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -60,6 +60,16 @@
                                     <tr>
                                         <td>Status </td>
                                         <td>{{'Mother'}}</td>
+                                    </tr>
+                                    @elseif(!is_null($user->profile->husband))
+                                    <tr>
+                                        <td>Status </td>
+                                        <td>{{'Husband'}}</td>
+                                    </tr>
+                                    @elseif(!is_null($user->profile->wife))
+                                    <tr>
+                                        <td>Status </td>
+                                        <td>{{'Wife'}}</td>
                                     </tr>
                                     @else
                                     <tr>
@@ -104,11 +114,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if(empty($profile->numberOfWives()))
+                        <h2>No record found</h2>
+                    @endif
                     @foreach($profile->numberOfWives() as $marriage)
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -179,11 +192,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if(empty($profile->numberOfBirths()))
+                        <h2>No record found</h2>
+                    @endif
                     @foreach($profile->numberOfBirths() as $birth)
                        
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -269,11 +285,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if(empty($profile->numberOfLiveBirths()))
+                        <h2>No record found</h2>
+                    @endif
                     @foreach($profile->numberOfLiveBirths() as $birth)
                        
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -361,7 +380,7 @@
                         <?php $user = $birth->child->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -433,11 +452,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if(empty($profile->numberOfMarriages()))
+                        <h2>No record found</h2>
+                    @endif
                     @foreach($profile->numberOfMarriages() as $marriage)
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -519,7 +541,7 @@
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -600,11 +622,14 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
+                    @if(empty($profile->numberOfLiveBirths()))
+                        <h2>No record found</h2>
+                    @endif
                     @foreach($profile->numberOfLiveBirths() as $birth)
                        
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -678,7 +703,7 @@
                         
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="assets/images/users/{{$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -723,7 +748,7 @@
                                         <?php $husband_profile = $marriage->husband->profile; ?>
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <img src="assets/images/users/{{$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                                <img src="{{$husband_profile->profileImageLocation('display').$husband_profile->image->name}}" alt="photo" width="150" class="innerB half">
                                             </div>
                                             <div class="col-sm-8">
                                                 <table>

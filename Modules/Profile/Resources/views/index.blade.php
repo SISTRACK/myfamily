@@ -348,7 +348,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$parent['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                                        <img src="{{$parent['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -400,7 +400,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$wife['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                                        <img src="{{$wife['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -458,7 +458,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$husband['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                                        <img src="{{$husband['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -510,7 +510,7 @@
                                 <div class=" thumb">
 
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$child['image']}}" class="thumb-img" alt="work-thumbnail" class="img-radius" height="200" width="200">
+                                        <img src="{{$child['image']}}" class="thumb-img" alt="work-thumbnail" class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -562,7 +562,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail" data-toggle="modal" data-target="#{{$accessible->user->id}}"  class="img-radius" height="200" width="200">
+                                        <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" class="thumb-img" alt="work-thumbnail" data-toggle="modal" data-target="#{{$accessible->user->id}}"  class="img-radius" height="200" width="200">
                                     </a>
                                     <!-- modal -->
                                     <div class="modal fade" id="{{$accessible->user->id}}" role="dialog">
@@ -575,7 +575,7 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-sm-4">
-                                                        <img src="assets/images/users/{{$accessible->image->name}}" alt="photo" width="150" class="innerB half">
+                                                        <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" alt="photo" width="150" class="innerB half">
                                                     </div>
                                                     <div class="col-sm-8">
                                                         <table>
@@ -620,7 +620,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="profile/{{$accessible->user->id}}/view" class="image-popup" title="Screenshot-1">
-                                        <img src="assets/images/users/{{$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
+                                        <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -644,9 +644,6 @@
                 </div>
                 @endif
                 </div>
-            
-                
-           
                 <!-- end col -->
             </div>
         </div>
