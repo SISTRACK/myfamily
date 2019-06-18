@@ -86,7 +86,6 @@ class ProfileController extends BaseController
      */
     public function update(Request $request)
     {
-        
 
         if($request->submit == 'upload_image'){
             $request->validate([
