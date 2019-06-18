@@ -86,11 +86,12 @@ class ProfileController extends BaseController
      */
     public function update(Request $request)
     {
-        $request->validate([
-            'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
-        ]);
+        
 
         if($request->submit == 'upload_image'){
+            $request->validate([
+                'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            ]);
             $error = [];
             if(isset($request->id)){
                 $user = User::find($request->id);
@@ -100,6 +101,7 @@ class ProfileController extends BaseController
             $profile = $user->profile;
             if(empty($error)){
                 $path = $profile->profileImageLocation('upload');
+                dd($path);
                 $image = $this->storeFile($request->file('file'),$path);
                 if($profile->image_id > 2){
                     Storage::disk($this->fileSystem())->delete(storage_url($path.$profile->image->name));
