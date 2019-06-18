@@ -86,6 +86,9 @@ class ProfileController extends BaseController
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
+        ]);
 
         if($request->submit == 'upload_image'){
             $error = [];
