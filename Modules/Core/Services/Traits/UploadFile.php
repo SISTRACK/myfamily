@@ -105,6 +105,35 @@ trait UploadFile
    	    	}
    	    
     }
+
+    public function storeFile($file, $path)
+    {
+        
+        $filename = time().'_'.$file->getClientOriginalName();
+
+        $file->storeAs($path, $filename, $this->fileSystem());
+        
+        return $filename;
+    }
+
+    public function updateFile($model, $field, $data, $location)
+    {
+        Storage::disk($this->fileSystem())->delete($model->$field);
+
+        $file = $this->storeFile($data, $location);
+
+        $model->$field = $file;
+        
+        $model->save();
+    }
+    public function deleteFile($file)
+    {
+        Storage::disk($this->fileSystem())->delete($file);
+    }
+    private function fileSystem()
+    {
+        return app()->environment('production') ? 's3' : 'public';
+    }
     
 }
 

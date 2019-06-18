@@ -13,6 +13,7 @@
                 <div class="col-lg-3 col-md-4">
                     <div class="text-center card-box">
                         <div class="member-card">
+                            
                             <div class=" member-thumb m-b-10 center-block">
                                 <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" class="img-radius" height="250" width="200">
                             </div>

@@ -10,9 +10,11 @@ use Modules\Gallary\Entities\Album;
 use Modules\Gallary\Entities\Photo;
 use Modules\Gallary\Entities\Video;
 use Modules\Gallary\Entities\Audio;
+use Modules\Core\Services\Traits\UploadFile;
 use App\User;
 class GallaryController extends BaseController
 {
+    use UploadFile;
     /**
      * Display a listing of the resource.
      * @return Response
@@ -94,10 +96,9 @@ class GallaryController extends BaseController
                 ]);
                 break;
         }
-        $file = $request->file('file');
-        $filename = time().$file->getClientOriginalName();
-        $album_type_folder = $album->albumContentType->name;
-        $file->move("assets/Gallary/$album_type_folder/$album->name/",$filename);
+        $path = 'Nfamily/Gallary/'.$album->albumContentType->name.'/'.$album->name;
+        $filename = $this->storeFile($request->file('file'),$path);
+        
         switch ($flag) {
             case 'Audio':
                 $album->audios()->create(['audio'=>$filename,'title'=>$request->title,'description'=>$request->description,'published'=>$request->published]);
@@ -126,7 +127,7 @@ class GallaryController extends BaseController
         }else{
             $album->profileAlbum()->delete();
         }
-        $path = 'assets/Gallary/'.$album->albumContentType->name.'/'.$album->name.'/';
+        $path = 'nfamilyplus/Gallary/'.$album->albumContentType->name.'/'.$album->name.'/';
         switch ($album->albumContentType->name) {
             case 'Audio':
                 foreach($album->audios as $audio){

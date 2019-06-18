@@ -32,8 +32,8 @@
 						<div class="col-md-6">
 							<div class="widget widget-heading-simple widget-body-white widget-pinterest">
 								<div class="widget-body padding-none">
-									<a href="{{$path.$photo->photo}}" class="thumb no-ajaxify" data-gallery>
-										<img width="400" height="500" class="img img-responsive" src="{{$path.$photo->photo}}" alt="photo" />
+									<a href="{{storage_url($path.$photo->photo)}}" class="thumb no-ajaxify" data-gallery>
+										<img width="400" height="500" class="img img-responsive" src="{{storage_url($path.$photo->photo)}}" alt="photo" />
 									</a>
 									<div class="description">
 										<a href="#" data-toggle="modal" data-target="#update_{{strtolower($data['type']).'_'.$photo->id}}">
@@ -58,7 +58,7 @@
 						<div class="widget widget-heading-simple widget-body-white widget-pinterest">
 							<div class="widget-body padding-none">
 								<video width="320" height="240" controls>
-								    <source src="{{$path.$video->video}}" type="video/mp4">
+								    <source src="{{storage_url($path.$video->video)}}" type="video/mp4">
 								</video>
 								<a href="#" data-toggle="modal" data-target="#update_{{strtolower($data['type']).'_'.$video->id}}">
 								<div class="description">
@@ -82,7 +82,7 @@
 						<div class="widget widget-heading-simple widget-body-white widget-pinterest">
 							<div class="widget-body padding-none">
 								<audio controls>
-								    <source src="{{$path.$audio->audio}}" type="audio/mp3">
+								    <source src="{{storage_url($path.$audio->audio)}}" type="audio/mp3">
 								</audio>
 								<a href="#" data-toggle="modal" data-target="#update_{{strtolower($data['type']).'_'.$audio->id}}">
 								<div class="description">

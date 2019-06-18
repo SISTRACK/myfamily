@@ -8,11 +8,13 @@ use Illuminate\Routing\Controller;
 use Modules\Profile\Services\Update\UpdateProfile;
 use Modules\Profile\Entities\Image;
 use Modules\Core\Http\Controllers\BaseController;
+use Modules\Core\Services\Traits\UploadFile;
 use App\User;
 use Modules\Profile\Entities\ProfileAccess;
 
 class ProfileController extends BaseController
 {
+    use UploadFile;
     /**
      * Display a listing of the resource.
      * @return Response
@@ -92,18 +94,16 @@ class ProfileController extends BaseController
                 $user = Auth()->User();
             }   
             $profile = $user->profile;
-            
             if(empty($error)){
                 $path = $profile->profileImageLocation('upload');
+                $image = $this->storeFile($request->file('file'),$path);
                 if($profile->image_id > 2){
                     unlink($path.$profile->image->name);
-                    $profile->image->delete();
+                    $image = $profile->image()->update(['name'=>$image]);
+                }else{
+                    $image = Image::create(['name'=>$image]);
+                    $user->profile()->update(['image_id'=>$image->id]); 
                 }
-                $file = $request->file('file');
-                $name = time().$file->getClientOriginalName();
-                $file->move($path,$name);
-                $image = Image::create(['name'=>$name]);
-                $user->profile()->update(['image_id'=>$image->id]);
                 session()->flash('message','Profile image uploaded Successfully');
             }else{
                 session()->flash('error',$error);
