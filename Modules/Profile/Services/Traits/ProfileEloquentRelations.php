@@ -217,7 +217,7 @@ trait ProfileEloquentRelations
         	$path = "Nfamily/Profile/Images/".$location->town->district->lga->state->name.' State/'.$location->town->district->lga->name.' Local Government/'.$location->town->district->name.' District/'.$location->town->name.' Town/';
         	
         }
-        if($flag == 'display'){
+        if($flag == 'display' && app()->environment()=='production'){
             return storage_url($path);
     	}else{
     		return $path;

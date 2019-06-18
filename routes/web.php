@@ -71,16 +71,17 @@ Route::get('/all_plans', function(){
 Route::get('/dashboard','DashboardController@index')->middleware(['auth'])->name('dashboard');
 
 Route::get('/get_token', function(){
-	Stripe::setApiKey(env('STRIPE_SECRET'));
-	$token = Token::create([
-	  "card" => [
-	    "number" => "4242424242424242",
-	    "exp_month" => 12,
-	    "exp_year" => 2019,
-	    "cvc" => "314"
-	  ]
-	]);
-	dd(response()->json($token));
+	// Stripe::setApiKey(env('STRIPE_SECRET'));
+	// $token = Token::create([
+	//   "card" => [
+	//     "number" => "4242424242424242",
+	//     "exp_month" => 12,
+	//     "exp_year" => 2019,
+	//     "cvc" => "314"
+	//   ]
+	// ]);
+	// dd(response()->json($token));
+	return app()->environment('production') ? 's3' : 'public';
 });
 Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');

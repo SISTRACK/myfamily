@@ -6,3 +6,11 @@ if (!function_exists('storage_url')) {
         return blank($url) ? $url: Storage::url($url);
     }
 }
+
+if (!function_exists('profile')) {
+    function profile()
+    {
+        return auth()->user()->profile;
+    }
+}
+

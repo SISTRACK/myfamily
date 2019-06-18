@@ -10,6 +10,7 @@ use Modules\Gallary\Entities\Album;
 use Modules\Gallary\Entities\Photo;
 use Modules\Gallary\Entities\Video;
 use Modules\Gallary\Entities\Audio;
+use Illuminate\Support\Facades\Storage;
 use Modules\Core\Services\Traits\UploadFile;
 use App\User;
 class GallaryController extends BaseController
@@ -131,19 +132,19 @@ class GallaryController extends BaseController
         switch ($album->albumContentType->name) {
             case 'Audio':
                 foreach($album->audios as $audio){
-                   unlink($path.$audio->audio);
+                    Storage::disk($this->fileSystem())->delete(storage_url($path.$audio->audio));
                    $audio->delete();
                 }
                break;
             case 'Video':
                 foreach($album->videos as $video){
-                    unlink($path.$video->video);
+                     Storage::disk($this->fileSystem())->delete(storage_url($path.$video->video));
                     $video->delete();
                 }
                break;
             default:
                 foreach($album->photos as $photo){
-                   unlink($path.$photo->photo);
+                    Storage::disk($this->fileSystem())->delete(storage_url($path.$photo->photo));
                    $photo->delete();
                 }
                break;

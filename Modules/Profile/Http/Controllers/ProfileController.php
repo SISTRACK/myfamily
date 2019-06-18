@@ -10,6 +10,7 @@ use Modules\Profile\Entities\Image;
 use Modules\Core\Http\Controllers\BaseController;
 use Modules\Core\Services\Traits\UploadFile;
 use App\User;
+use Illuminate\Support\Facades\Storage;
 use Modules\Profile\Entities\ProfileAccess;
 
 class ProfileController extends BaseController
@@ -98,7 +99,7 @@ class ProfileController extends BaseController
                 $path = $profile->profileImageLocation('upload');
                 $image = $this->storeFile($request->file('file'),$path);
                 if($profile->image_id > 2){
-                    unlink($path.$profile->image->name);
+                    Storage::disk($this->fileSystem())->delete(storage_url($path.$profile->image->name));
                     $image = $profile->image()->update(['name'=>$image]);
                 }else{
                     $image = Image::create(['name'=>$image]);
