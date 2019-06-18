@@ -100,7 +100,6 @@ class ProfileController extends BaseController
             $profile = $user->profile;
             if(empty($error)){
                 $path = $profile->profileImageLocation('upload');
-                dd($path);
                 $image = $this->storeFile($request->file('file'),$path);
                 if($profile->image_id > 2){
                     Storage::disk($this->fileSystem())->delete(storage_url($path.$profile->image->name));
