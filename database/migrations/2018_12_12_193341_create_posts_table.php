@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->text('content');
+            $table->string('image')->nullable();
             $table->boolean('published')->default(false);
             $table->timestamps();
         });

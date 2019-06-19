@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Auth;
-
+use Modules\Core\Services\Traits\UploadFile;
 class PostController extends Controller
 {
+    use UploadFile;
+
     public function __construct()
     {
       $this->middleware('auth', ['except' => ['show']]);
@@ -42,18 +44,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, [
+      $validate_this = [
         'title' => 'required|max:255',
         'content' => 'required',
-      ]);
-
+      ];
+      if($request->has('file')){
+        $validate_this['file'] = 'required|image|mimes:jpeg,bmp,png,jpg';
+      } 
+      
+      $this->validate($request, $validate_this);
       $user = Auth::user();
-
       $post = $user->posts()->create([
         'title' => $request->title,
         'content' => $request->content,
-        'published' => $request->has('published')
+        'published' => $request->has('published'),
       ]);
+      if($request->has('file')){
+        $file = $this->storeFile($request->file, 'Nfamily/Post/Images');
+        $post->update(['image'=>$file]);
+      }
 
       return redirect()->route('posts.show', $post->id);
     }
@@ -91,15 +100,23 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validate($request, [
+      $validate_this = [
         'title' => 'required|max:255',
         'content' => 'required',
-      ]);
+      ];
+      if($request->has('file')){
+        $validate_this['file'] = 'required|image|mimes:jpeg,bmp,png,jpg';
+      } 
 
       $post = Post::findOrFail($id);
       $post->title = $request->title;
       $post->content = $request->content;
       $post->published = ($request->has('published') ? true : false);
+      if($request->has('file')){
+        $file = $this->storeFile($request->file, 'Nfamily/Post/Images');
+        $post->image = $file;
+      }
+
       $post->save();
 
       return redirect()->route('posts.show', $post->id);

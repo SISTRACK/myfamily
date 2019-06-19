@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
   protected $fillable = [
-      'title', 'content', 'published'
+    'title', 'content', 'published'
   ];
 
   public function user()
@@ -18,5 +18,10 @@ class Post extends Model
   public function comments()
   {
     return $this->hasMany('App\Comment');
+  }
+
+  public function blogImage()
+  {
+    return $this->hasOne(BlogImage::class);
   }
 }
