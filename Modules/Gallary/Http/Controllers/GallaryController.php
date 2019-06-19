@@ -149,7 +149,7 @@ class GallaryController extends BaseController
                 }
                break;
         }
-        storag::disk($this->fileSystem())->deleteDirectory(storage_url($path));
+        Storage::disk($this->fileSystem())->deleteDirectory(storage_url($path));
        $album->delete();
        session()->flash('message','Album was successfully deleted');
        return back();
