@@ -19,7 +19,7 @@
                                         <div class="list-group email-item-list">
                                             @foreach($family->nuclearFamilyMessages as $nuclear_message)
 	                                            <span class="media">
-	                                                <img width="40" height="40" src="assets/images/users/{{$nuclear_message->userMessage->image()}}"   class="img-circle user-img" />
+	                                                <img width="40" height="40" src="{{$nuclear_message->userMessage->image()}}"   class="img-circle user-img" />
 	                                                <span class="media-body">
 	                                                    <span class="label label-inverse pull-right">{{$nuclear_message->userMessage->send_at()}}</span>
 	                                                    <h4 class="strong">{{$nuclear_message->userMessage->sender()}} <i class="icon-flag text-primary icon-2x"></i></h4>
