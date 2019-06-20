@@ -2,13 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Post extends Model
+class Post extends BaseModel
 {
-  protected $fillable = [
-    'title', 'content', 'published'
-  ];
 
   public function user()
   {

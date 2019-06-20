@@ -3,36 +3,36 @@
 @section('content')
   <div class="container">
     <div class="row">
+      <div class="col-md-2"></div>
       <div class="col-md-8">
-        <h1>All Posts</h1>
-      </div>
-
-      <div class="col-md-4">
-        <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right" style="margin-top:15px;">Create New Post</a>
+        <h1>NFamilyPlus Posts</h1>
+        <hr />
+        @foreach ($posts as $post)
+          @if ($post->image)
+            <div><img width="800" height="400" class="img img-responsive" src="{{storage_url('Nfamily/Post/Images/'.$post->image)}}"></div><br>
+          @endif
+          <h1>{{ $post->title }}</h1>
+          {{ $post->updated_at->toFormattedDateString() }}
+          @if ($post->published)
+            <span class="label label-success" style="margin-left:15px;">Published</span>
+          @else
+            <span class="label label-default" style="margin-left:15px;">Draft</span>
+          @endif
+          <hr />
+          <p class="lead">
+            {{ $post->content }}
+          </p>
+          <p>
+            <button class="btn btn-primary" href="{{route('post.show',$post->id)}}">Comment</button>
+          </p>
+          <hr />
+        @endforeach
       </div>
     </div>
-    <hr />
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-          <th>Published</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        @foreach ($posts as $post)
-          <tr>
-            <th>{{ $post->id }}</th>
-            <td>{{ $post->title }}</td>
-            <td>{{ $post->published ? "Published" : "Draft" }}</td>
-            <td><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-default">Edit</a></td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8"><a href="{{ route('posts.create') }}" class="btn btn-primary pull-right" style="margin-top:15px;">{{'+'}}</a></div>
+    </div>
     <div class="text-center">
       {{ $posts->links() }}
     </div>

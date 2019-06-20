@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Auth;
 use Modules\Core\Services\Traits\UploadFile;
+
 class PostController extends Controller
 {
     use UploadFile;
@@ -44,6 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
       $validate_this = [
         'title' => 'required|max:255',
         'content' => 'required',
@@ -63,8 +65,7 @@ class PostController extends Controller
         $file = $this->storeFile($request->file, 'Nfamily/Post/Images');
         $post->update(['image'=>$file]);
       }
-
-      return redirect()->route('posts.show', $post->id);
+      return redirect()->route('post.index');
     }
 
     /**
@@ -107,7 +108,6 @@ class PostController extends Controller
       if($request->has('file')){
         $validate_this['file'] = 'required|image|mimes:jpeg,bmp,png,jpg';
       } 
-
       $post = Post::findOrFail($id);
       $post->title = $request->title;
       $post->content = $request->content;

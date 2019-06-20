@@ -5,9 +5,18 @@
     	@if(session('message'))
             <div class="alert alert->success">{{session('message')}}</div>
     	@endif
-	    @foreach($pages as $page)
-	        <h1 style="style: none"><a href="/blog/page/{{$page->slug()}}/{{$page->id}}/view">{{$page->page}}</a></h1>
-	    @endforeach
+    	<ul>
+    		@foreach($pages as $page)
+		        <li>
+		        	<h2 style="style: none">
+		        		<a href="/blog/page/{{$page->slug()}}/{{$page->id}}/view">
+		        			{{$page->page}}
+		        		</a>
+		        	</h2>
+		        </li>
+		    @endforeach
+    	</ul>
+	   
 		<button data-toggle="modal" data-target="#create_page" class="btn btn-primary">{{'+'}}</button>
 		<!-- modal -->
 		<div class="modal fade" id="create_page" role="dialog">
