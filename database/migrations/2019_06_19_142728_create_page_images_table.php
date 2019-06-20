@@ -16,6 +16,7 @@ class CreatePageImagesTable extends Migration
         Schema::create('page_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');
+            $table->integer('page_id');
             $table->string('description',1000);
             $table->timestamps();
         });

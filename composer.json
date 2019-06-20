@@ -12,13 +12,11 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "^9.0",
         "laravel/framework": "5.8.*",
-        "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "nwidart/laravel-modules": "^4.0",
         "pusher/pusher-php-server": "~3.0",
-        "spatie/laravel-permission": "^2.23",
-        "writingink/wink": "^0.0.13"
+        "spatie/laravel-permission": "^2.23"
     },
 
     "require-dev": {
@@ -53,6 +51,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
+                "laravel/telescope"
             ]
         }
     },

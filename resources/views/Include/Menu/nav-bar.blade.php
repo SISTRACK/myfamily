@@ -96,7 +96,15 @@
                         </li>
                         <li><a href="{{route('profile.index')}}"><i class="ti-user m-r-5"></i>Profile</a></li>
                         
-                        <li><a href="{{route('profile.setting')}}"><i class="ti-settings m-r-5"></i> Profile Configuration</
+                        <li><a href="{{route('profile.setting')}}"><i class="ti-settings m-r-5"></i> Profile Configuration</a>
+                        </li>
+
+                        <li><a href="{{route('page.index')}}"><i class="ti-settings m-r-5"></i> Pages</a>
+                        </li>
+
+                        <li><a href="{{route('post.index')}}"><i class="ti-settings m-r-5"></i> Blog post</a>
+                        </li>
+
                         <li><a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();"><i class="ti-power-off m-r-5"></i> Logout</a></li>

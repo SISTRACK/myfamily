@@ -32,7 +32,7 @@ class UserMessage extends BaseModel
 
     public function image()
     {
-    	return $this->profile->image->name;
+    	return $this->profile->profileImageLocation();
     }
 
     public function send_at()

@@ -2,17 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class BlogImage extends Model
+class PageImage extends BaseModel
 {
-    public function post()
-    {
-    	retirn $this->belongsTo(Post::class);
-    }
-
     public function page()
     {
-    	retirn $this->belongsTo(Page::class);
+    	return $this->belongsTo(Page::class);
     }
 }

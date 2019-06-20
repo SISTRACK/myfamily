@@ -26,6 +26,12 @@ Route::group(['middleware'=>'guest'], function(){
 Route::get('/test/pages', 'Blogs\BlogPagesController@index')->name('pages.index');
 Route::get('/test/posts', 'Blogs\BlogPagesController@posts')->name('pages.post');
 
+Route::get('/blog/posts', 'PostController@index')->name('post.index');
+Route::get('/blog/pages', 'PageController@viewPages')->name('page.index');
+Route::get('/blog/page/{slug}/{page_id}/view', 'PageController@view')->name('page.view');
+Route::post('/blog/page/{slug}/{page_id}/update', 'PageController@updatePage')->name('update.page');
+Route::post('/blog/pages/create', 'PageController@createPage')->name('page.create');
+
 Auth::routes();
 Route::get('/create_plan', function(){
 	Stripe::setApiKey(env('STRIPE_SECRET'));
@@ -71,17 +77,16 @@ Route::get('/all_plans', function(){
 Route::get('/dashboard','DashboardController@index')->middleware(['auth'])->name('dashboard');
 
 Route::get('/get_token', function(){
-	// Stripe::setApiKey(env('STRIPE_SECRET'));
-	// $token = Token::create([
-	//   "card" => [
-	//     "number" => "4242424242424242",
-	//     "exp_month" => 12,
-	//     "exp_year" => 2019,
-	//     "cvc" => "314"
-	//   ]
-	// ]);
-	// dd(response()->json($token));
-	return app()->environment('production') ? 's3' : 'public';
+	Stripe::setApiKey(env('STRIPE_SECRET'));
+	$token = Token::create([
+	  "card" => [
+	    "number" => "4242424242424242",
+	    "exp_month" => 12,
+	    "exp_year" => 2019,
+	    "cvc" => "314"
+	  ]
+	]);
+	dd(response()->json($token));
 });
 Route::view('/room','room')->name('room');
 Route::get('/home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
