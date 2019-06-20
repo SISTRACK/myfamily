@@ -23,7 +23,7 @@
             {{ $post->content }}
           </p>
           <p>
-            <button class="btn btn-primary" href="{{route('post.show',$post->id)}}">Comment</button>
+            <button class="btn btn-primary" href="{{route('posts.show',$post->id)}}">Comment</button>
           </p>
           <hr />
         @endforeach
