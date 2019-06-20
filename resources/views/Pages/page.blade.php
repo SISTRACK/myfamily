@@ -10,9 +10,8 @@
 	    
 	    @foreach($page->pageImages as $pageImage)
 	    
-		 <div><img width="800" height="500" src="{{storage_url('$pageImage->image')}}"></div>
+		 <div><img width="800" height="500" src="{{storage_url($pageImage->image)}}"></div>
 		 <div class="strong h4">{{$pageImage->description}}</div>
-		
 	    @endforeach
 	    
 		<button data-toggle="modal" data-target="#update_page" class="btn btn-primary">{{'+'}}</button>
