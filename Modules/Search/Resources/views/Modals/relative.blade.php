@@ -9,7 +9,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="assets/images/users/{{$result->image->name}}" alt="photo" width="150" class="innerB half">
+                        <img src="{{$result->profileImageLocation('display').$result->image->name}}" alt="photo" width="150" class="innerB half">
                     </div>
                     <div class="col-sm-8">
                         <table>

@@ -28,7 +28,7 @@
 		                            <div class="panel panel-default">
 		                                <div class="panel-footer text-primary">Child</div>
 		                                <div class="panel-body">
-		                                <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">                                
+		                                <img height="120" width="100%" src="{{$data['profile']->profileImageLocation('display').$data['profile']->image->name}}" alt="">                                
 		                                </div>
 		                                <div class="panel-footer">
 		                                {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
@@ -49,7 +49,7 @@
 		                            <div class="panel panel-default">
 		                                <div class="panel-footer text-primary">Father</div>
 		                                <div class="panel-body">
-		                                <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">                                    
+		                                <img height="120" width="100%" src="{{$data['profile']->profileImageLocation('display').$data['profile']->image->name}}" alt="">                                    
 		                                </div>
 		                                <div class="panel-footer">
 		                                    {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
@@ -67,7 +67,7 @@
 		                            <div class="panel-footer text-primary">Mother
 		                            </div>
 	                                <div class="panel-body">
-	                                    <img height="120" width="100%" src="assets/images/users/{{$data['profile']->image->name}}" alt="">
+	                                    <img height="120" width="100%" src="{{$data['profile']->profileImageLocation('display').$data['profile']->image->name}}" alt="">
 	                                </div>
 	                                <div class="panel-footer">
 	                                    {{$data['profile']->user->first_name.' '.$data['profile']->user->last_name}}
@@ -95,7 +95,7 @@
         <div class="panel-body">
                 <div class="row">
                 <div class="col-md-3">
-                <img height="160" weight="160" src="assets/images/users/{{$user_result['user']->profile->image->name}}" alt="">
+                <img height="160" weight="160" src="{{$user_result['user']->profile->profileImageLocation('display').$user_result['user']->profile->image->name}}" alt="">
                 </div>
                     <div class="col-md-7 col-md-offset-2">
                         <table>
