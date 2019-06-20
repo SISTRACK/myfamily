@@ -38,7 +38,7 @@
            <tbody>
                @foreach($results as $result)
                <tr>
-                   <td><a href="#" data-toggle="modal" data-target="#{{$result->id}}"><img width="35" height="35" src="assets/images/users/{{$result->profileImageLocation('display').$result->image->name}}"></a>
+                   <td><a href="#" data-toggle="modal" data-target="#{{$result->id}}"><img width="35" height="35" src="{{$result->profileImageLocation('display').$result->image->name}}"></a>
                      @include('search::Modals.relative')
                    </td>
                    <td>{{$result->user->first_name}}</td>
