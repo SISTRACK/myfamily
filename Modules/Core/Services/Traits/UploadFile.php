@@ -1,5 +1,8 @@
 <?php
 namespace Modules\Core\Services\Traits;
+
+use Illuminate\Support\Facades\Storage;
+
 trait UploadFile
 
 {

@@ -30,6 +30,9 @@ Route::get('/blog/posts', 'PostController@index')->name('post.index');
 Route::get('/blog/pages', 'PageController@viewPages')->name('page.index');
 Route::get('/blog/page/{slug}/{page_id}/view', 'PageController@view')->name('page.view');
 Route::post('/blog/page/{slug}/{page_id}/update', 'PageController@updatePage')->name('update.page');
+Route::post('/blog/page/{page_slug}/{page_id}/update-content-content', 'PageController@updatePageContent')->name('update.page.content');
+
+
 Route::post('/blog/pages/create', 'PageController@createPage')->name('page.create');
 
 Auth::routes();
