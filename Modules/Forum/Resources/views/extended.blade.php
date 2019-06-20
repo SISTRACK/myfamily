@@ -14,7 +14,7 @@
                                         <div class="list-group email-item-list">
                                         	@foreach($family->extendedFamilyMessages as $extended_message)
 	                                            <span class="media">
-	                                                <img width="40" height="40" src="{{$extended_message->userMessage->image()}}"   class="img-circle user-img" />
+	                                                <img width="40" height="40" src="{{$extended_message->userMessage->image().$extended_message->userMessage->profile->image->name}}"   class="img-circle user-img" />
 	                                                <span class="media-body">
 	                                                    <span class="label label-inverse pull-right">{{$extended_message->userMessage->send_at()}}</span>
 	                                                    <h4 class="strong">{{$extended_message->userMessage->sender()}} <i class="icon-flag text-primary icon-2x"></i></h4>
