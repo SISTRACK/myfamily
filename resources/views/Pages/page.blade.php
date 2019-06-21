@@ -12,10 +12,15 @@
 		    <h1 style="style: none">{{$page->page}} Page</a></h1>
 		    <hr>
 		    @foreach($page->pageImages as $pageImage)
-		      <a href="#" data-toggle="modal" data-target="#{{'image_'.$pageImage->id}}">
-		      	<div><img width="800" height="400" class="img img-responsive" src="{{storage_url('Nfamily/Pages/Images/'.$pageImage->image)}}"></div><br>
+		    @if(isAdmin())
+		      <a style="color: white;" href="#" data-toggle="modal" data-target="#{{'image_'.$pageImage->id}}">
+		    @endif  	
+		      	<div><img width="800" height="400" class="img img-responsive" src="{{storage_url('Nfamily/Pages/Images/'.$page->slug().'/'.$pageImage->image)}}"></div><br>
 			     <div class="strong h4">{{$pageImage->description}}</div>
-		      </a>
+		      
+		    @if(isAdmin())
+		        </a> 
+		    @endif
 			 <!-- modal -->
 			<div class="modal fade" id="{{'image_'.$pageImage->id}}" role="dialog">
 			    <div class="modal-dialog">
@@ -44,8 +49,10 @@
 
 			 <br><br>
 		    @endforeach
-		    
-			<button data-toggle="modal" data-target="#update_page" class="btn btn-primary">{{'+'}}</button>
+		    @if(isAdmin())
+		      <button data-toggle="modal" data-target="#update_page" class="btn btn-primary">{{'+'}}</button>
+		    @endif
+			
 			<!-- modal -->
 			<div class="modal fade" id="update_page" role="dialog">
 			    <div class="modal-dialog">

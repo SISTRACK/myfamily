@@ -22,7 +22,7 @@
 </head>
 <body style="background-color: black; color: white;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar->inverse navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar->default navbar-laravel"  style="background-color: black; color: white;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -51,17 +51,33 @@
                             </li>
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name.' '.Auth::user()->last_name }} <span class="caret"></span>
+                                <a data-target="#navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    @if(Auth()->User()->profile != null)
+                                    <img src="{{Auth()->User()->profile->profileImageLocation('display').Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
+                                    @else
+                                    <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                                    @endif
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                                    <h5>Hi, {{Auth()->User()->first_name.' '.Auth()->User()->last_name}}</h5>
+                                    
+                                    <a class="dropdown-item" href="/home">Dashboard</a>
+
+                                    <a class="dropdown-item" href="{{route('profile.index')}}">Profile</a>
+
+                                    <a class="dropdown-item" href="{{route('profile.setting')}}">Profile Configuration</a>
+
+                                    <a class="dropdown-item" href="{{route('page.index')}}">Pages</a>
+
+                                    <a class="dropdown-item" href="{{route('post.index')}}">Posts</a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                        
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

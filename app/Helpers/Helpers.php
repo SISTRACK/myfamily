@@ -14,3 +14,14 @@ if (!function_exists('profile')) {
     }
 }
 
+if (!function_exists('isAdmin')) {
+    function isAdmin()
+    {
+        if(!is_null(auth()->user()) && !is_null(auth()->user()->profile->systemAdmin)){
+        	return true;
+        }else{
+        	return false;
+        }
+    }
+}
+

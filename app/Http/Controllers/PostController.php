@@ -113,6 +113,9 @@ class PostController extends Controller
       $post->content = $request->content;
       $post->published = ($request->has('published') ? true : false);
       if($request->has('file')){
+        if($post->image){
+          $this->deleteFile('Nfamily/Post/Images/'.$post->image);
+        }
         $file = $this->storeFile($request->file, 'Nfamily/Post/Images');
         $post->image = $file;
       }

@@ -36,7 +36,7 @@ class PageController extends Controller
     	$page = Page::find($request->page);
     	$image = null;
         if($request->file){
-        	$image = $this->storeFile($request->file,'Nfamily/Pages/Images');
+        	$image = $this->storeFile($request->file,'Nfamily/Pages/Images/'.$page->slug());
         }
         $page->pageImages()->create(['description'=>$request->description,'image'=>$image]);
         return back()->with('message','Page created successfully');
@@ -57,12 +57,11 @@ class PageController extends Controller
         $page_image = PageImage::find($request->page_image);
         $image = null;
         if($request->file){
-            $this->deleteFile('Nfamily/Pages/Images/'.$page_image->image);
-            $image = $this->storeFile($request->file,'Nfamily/Pages/Images');
+            $this->deleteFile('Nfamily/Pages/Images/'.$page_image->$page->slug().'/'.$page_image->image);
+            $image = $this->storeFile($request->file,'Nfamily/Pages/Images/'.$page_image->$page->slug());
         }
         $page_image->update(['description'=>$request->description,'image'=>$image]);
         return back()->with('message','Page content update successfully');
-        
     }
     public function view($slug,$page_id)
     {
