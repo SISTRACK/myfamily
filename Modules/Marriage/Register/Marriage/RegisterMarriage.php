@@ -36,7 +36,7 @@ trait RegisterMarriage
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(MarriageFormRequest $request)
     {
         if(new MarriageRegistered($request->all()) && session('error') == null){
             //broadcast(new NewMarriageEvent($this->marriage))->toOthers();
@@ -47,6 +47,10 @@ trait RegisterMarriage
 
     public function verify(Request $request)
     {
+        $request->validate([
+            'family' => 'required',
+            'status'=> 'required'
+        ]);
         session(['register'=>$request->all()]);
         return redirect('/marriage');
     }

@@ -35,7 +35,9 @@ class ForumController extends BaseController
      */
     public function sendNuclearMessage(Request $request)
     {
-        
+        $request->validate([
+            'message' => 'required'
+        ]);
         $message = Message::firstOrCreate(['message'=>$request->message]);
         $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
         $message_sender->nuclearFamilyMessage()->create(['family_id'=>$this->profile()->family_id]);
@@ -50,6 +52,9 @@ class ForumController extends BaseController
      */
     public function sendExtendedMessage(Request $request)
     { 
+        $request->validate([
+            'message' => 'required'
+        ]);
         $message = Message::firstOrCreate(['message'=>$request->message]);
         $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
         $message_sender->extendFamilyMessage()->create(['family_id'=>$this->profile()->family->root()->id]);

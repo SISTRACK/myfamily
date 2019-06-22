@@ -18,7 +18,7 @@ class FamilyEventFormRequest extends FormRequest
             'end' => 'required',
             'start' => 'required',
             'date' => 'required',
-            'message' => 'required|string'
+            'message' => 'required'
         ];
     }
 

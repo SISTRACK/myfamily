@@ -2,6 +2,7 @@
 
 namespace Modules\Profile\Http\Controllers;
 
+use Modules\Profile\Http\Requests\UpdateProfileFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -84,7 +85,7 @@ class ProfileController extends BaseController
      * @param  Request $request
      * @return Response
      */
-    public function update(Request $request)
+    public function update(UpdateProfileFormRequest $request)
     {
 
         if($request->submit == 'upload_image'){

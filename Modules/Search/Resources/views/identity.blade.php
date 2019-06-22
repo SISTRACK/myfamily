@@ -168,7 +168,7 @@
             <label for="">Number Of Generation :</label>
             <input type="text" name="gen_no" class="form-control" placeholder="Enter Number of geration "/>
             <label for=""></label>
-            <input type="submit" name="generation" value="Search" class="form-control btn btn-primary btn-block"/>
+            <input type="submit" name="generation" value="Contenue Search" class="form-control btn btn-primary btn-block"/>
         </form>
     </div>
 </div>

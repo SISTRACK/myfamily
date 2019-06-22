@@ -71,6 +71,7 @@
                     <div class="form-group clearfix">
 						<label class="col-lg-4 control-label " for="husband_first_name">Husband First Name</label>
 						<div class="col-lg-8">
+							<input type="hidden" name="inlaw" value="inlaw">
 							<input placeholder="Husband First Name" class="form-control required" id="userName1" name="husband_first_name" type="text" value="{{old('husband_first_name')}}">
 						</div>
 					</div>

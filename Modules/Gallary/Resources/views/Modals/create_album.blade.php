@@ -3,7 +3,6 @@
 <!-- modal -->
 <div class="modal fade" id="create_album" role="dialog">
     <div class="modal-dialog">
-      
       <!-- Modal content-->
         <div class="modal-content">
         <div class="modal-header">

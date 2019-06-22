@@ -29,6 +29,10 @@ class DeathController extends BaseController
      */
     public function verify(Request $request)
     {
+        $request->validate([
+            'family' => 'required',
+            'status'=> 'required'
+        ]);
         session(['death'=>$request->all()]);
         return redirect('/death');
     }
@@ -43,6 +47,7 @@ class DeathController extends BaseController
         if($death = new RegisterDeath($request->all())){
             //broadcast(new NewDeathEvent($death))->toOthers();
         }
+        session()->forget('death');
         return redirect('/death');
     }
 

@@ -12,6 +12,8 @@ use Modules\Birth\Events\NewBirthEvent;
 
 use Illuminate\Http\Request;
 
+use Modules\Birth\Http\Requests\NewBirthFormRequest;
+
 trait RegisterBirth
 {
 	use ValidateRequest;
@@ -35,7 +37,7 @@ trait RegisterBirth
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(NewBirthFormRequest $request)
     {
 
         $birth = new NewBirth($request->all());
@@ -43,13 +45,19 @@ trait RegisterBirth
         	//broadcast(new NewBirthEvent($birth->data))->toOthers();
             session()->forget('family');
             session()->flash('message','Birth is registered successfully');
+            return redirect()->route('birth.index');
         }
-        return redirect()->route('birth.index');
+            return back()->withIput();
+       
+        
 
     }
 
     public function verify(Request $request)
     {
+        $request->validate([
+            'family' => 'required'
+        ]);
         session(['family'=> $request->all()]);
         return redirect()->route('birth.index');
     }

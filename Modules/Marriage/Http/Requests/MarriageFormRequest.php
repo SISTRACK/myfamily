@@ -28,7 +28,11 @@ class MarriageFormRequest extends FormRequest
             'wife_status' => 'required|integer|',
             'marriage_date' => 'required',
         ];
-
+        if($this->has('inlaw')){
+            $rules['husband_date'] = 'required';
+            $rules['tribe'] = 'required';
+            $rules['new_husband_email'] = 'required|email|users:unique';
+        }
         if($this->has('wife_family')){
             $rules['wife_email'] = 'required|email';
             $rules['wife_family'] = 'required|string';

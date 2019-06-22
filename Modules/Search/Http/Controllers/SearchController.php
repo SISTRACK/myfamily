@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Core\Http\Controllers\BaseController;
 use Modules\Search\Services\Traits\SearchUser;
 use Modules\Search\Services\Traits\NewSearch;
+use Modules\Search\Http\Requests\SearchFormRequest;
 use App\User;
 
 class SearchController extends BaseController
@@ -61,26 +62,22 @@ class SearchController extends BaseController
      * @param  Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(SearchFormRequest $request)
     {
         
         if(isset($request->generation)){
             $user = User::find(session('user_id'));
             session()->flash('gen_result',$user->getSearchGenerationResult($request->gen_no));
-            return back();
-            
+            return back();  
         }elseif(isset($request->search_identity)){
             $users_found = $this->searchUsers($request->fname,$request->lname);
             session()->flash('users_result',$users_found);
             session()->flash('message', count($users_found)." Alternative Users matches result for $request->fname $request->lname");
             return redirect()->route('search.identity.index');
         }elseif(isset($request->type)){
-
             session(['search' => $request->all()]);
             if($request->status == 'Self'){
                 session(['profile' => Auth()->User()->profile]);
-            }else{
-                
             }
             return redirect()->route('search.result');
         }else{
