@@ -35,4 +35,35 @@ trait Address
 		}
 		return $user_address;
 	}
+
+	public function businessAddress()
+	{
+		
+		if ($this->work != null){
+			$address = $this->work->address;
+			$busibess_address = [
+	            'country' => $address->office->company->town->lga->state->country->name,
+	            'state' => $address->office->company->town->district->lga->state->name,
+	            'lga' => $address->office->company->town->district->lga->name,
+	            'company' => $address->office->company->name,
+	            'town' => $address->office->company->town->name,
+	            'office' => $address->office->name,
+	            'position' => $address->position,
+	            
+	        ];
+		}else{
+			
+			$busibess_address = [
+	            'country' => '',
+	            'state' => '',
+	            'lga' => '',
+	            'company' => '',
+	            'town' => '',
+	            'office' => '',
+	            'position' => '',
+	            
+	        ];
+		}
+		return $busibess_address;
+	}
 }

@@ -180,15 +180,15 @@ trait ProfileEloquentRelations
         return $this->hasOne('Modules\Address\Entities\WorkIn');
     }
 
-    public function thisProfileFamilyId()
+    public function thisProfileFamily()
     {
     	$family = null;
     	if(is_null($this->family_id) && !is_null($this->wife)){
             foreach($this->wife->marriages as $marriage){
-             	$family = $marriage->husband->profile->family_id;
+             	$family = $marriage->husband->profile->family;
             }
     	}else{
-    		$family = $this->family_id;
+    		$family = $this->family;
     	}
     	return $family;
     }

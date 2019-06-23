@@ -18,6 +18,13 @@ class ProfileResource extends Resource
             'fname' => $this->user->first_name,
             'lname' => $this->user->last_name,
             'email' => $this->user->email,
+            'gender' => $this->gender->name,
+            'family' => $this->thisProfileFamily()->name,
+            'marrital_status' => $this->maritalStatus->name,
+            'religion' => '',
+            'date_of_birth' => date('d:M:Y',$this->date_of_birth),
+            'biography' => $this->about_me,
+            'created_at' => $this->created_at,
             'image' => $this->profileIMageLocation('display').$this->image->name,
             'home_address' => [
                 'country'=>$this->address()['country'],
@@ -26,7 +33,20 @@ class ProfileResource extends Resource
                 'district'=>$this->address()['district'],
                 'town'=>$this->address()['town'],
                 'area'=>$this->address()['area'],
+                'house_no'=>$this->address()['house_no'],
+                'house_description'=>$this->address()['house_description'],
             ],
+            'business_address' =>[
+                'country'=>$this->businessAddress()['country'],
+                'state'=>$this->businessAddress()['state'],
+                'lga'=>$this->businessAddress()['lga'],
+                'town'=>$this->businessAddress()['town'],
+                'company'=>$this->businessAddress()['company'],
+                'office'=>$this->businessAddress()['office'],
+                'position'=>$this->businessAddress()['position'],
+            ],
+            'father'=>[],
+            'mother'=>[],
         ];
     }
     public function with($request)
