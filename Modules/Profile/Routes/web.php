@@ -21,3 +21,4 @@ Route::middleware(['auth','web','hasProfile'])->group(function() {
 Route::get('/profile/{id}/view', 'ProfileController@accessProfile');
 Route::get('/profile/{id}/resume', 'ProfileController@resumeProfile');
 Route::get('/profile/{id}/block_access', 'ProfileController@blockProfileAccess');
+Route::get('/profile/api/{id}','ProfileController@api');

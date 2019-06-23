@@ -13,6 +13,8 @@ use Modules\Core\Services\Traits\UploadFile;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Modules\Profile\Entities\ProfileAccess;
+use Modules\Profile\Entities\Profile;
+use Modules\Profile\Transformers\ProfileResource;
 
 class ProfileController extends BaseController
 {
@@ -120,5 +122,8 @@ class ProfileController extends BaseController
         return redirect()->route('profile.index');
     }
 
-    
+    public function api($id)
+    {
+        return new ProfileResource(Profile::find($id));
+    }
 }

@@ -18,6 +18,15 @@ class ProfileResource extends Resource
             'fname' => $this->user->first_name,
             'lname' => $this->user->last_name,
             'email' => $this->user->email,
+            'image' => $this->profileIMageLocation('display').$this->image->name,
+            'home_address' => [
+                'country'=>$this->address()['country'],
+                'state'=>$this->address()['state'],
+                'lga'=>$this->address()['lga'],
+                'district'=>$this->address()['district'],
+                'town'=>$this->address()['town'],
+                'area'=>$this->address()['area'],
+            ],
         ];
     }
     public function with($request)
