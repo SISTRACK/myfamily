@@ -340,7 +340,7 @@
                     <div class="col-md-8 col-lg-9">
                     <h4 class="text-custom m-b-5">Parents</h4>
                     <div class="row">
-                        @if($user->profile->parents())
+                        @if(empty($user->profile->parents()))
                             <div class="gal-detail">
                                 <h3>Record not found</h3>      
                             </div>
