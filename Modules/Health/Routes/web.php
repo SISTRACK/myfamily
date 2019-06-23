@@ -14,3 +14,7 @@
 Route::prefix('health')->group(function() {
     Route::get('/', 'HealthController@index');
 });
+
+Route::post('/view_patient_profile','HealthController@view')->name('view.patient.profile');
+
+Route::post('/append_patient_file','HealthController@appendFile')->name('append.patient.file');

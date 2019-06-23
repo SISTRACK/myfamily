@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Modules\Profile\Services\Traits\ProfileEloquentRelations;
 
 
-class Profile extends BaseModel
+class Profile extends BaseModel implements HasMedia
 {
 
     use ProfileEloquentRelations, HasMediaTrait;

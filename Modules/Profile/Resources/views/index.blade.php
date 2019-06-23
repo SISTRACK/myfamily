@@ -93,6 +93,19 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
+                            <h4 class="text-custom m-b-5">Health Report</h4>
+                            <div class="p-t-10">
+                                <div class="row">
+                                    @foreach($user->profile->medicalReports as $report)
+                                    <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$user->profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
+                                    @endforeach
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6">
                             <h4 href="#"  data-toggle="modal" data-target="#access"  class="text-custom m-b-5">Give People Access To Your Profile</h4>
                             <!-- modal -->
                                 <div class="modal fade" id="access" role="dialog">

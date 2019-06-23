@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Health</title>
+@extends('layouts.master')
 
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/health.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/health.js') }}"></script> --}}
-    </body>
-</html>
+@section('page-content')
+<div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form>
+             <input type="text" name="profile_id" class="form-control" placeholder ="Enter Profile ID"><br>
+             <button class="btn btn-primary">View</button>
+         </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+     
+@endsection

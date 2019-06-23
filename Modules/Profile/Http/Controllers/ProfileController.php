@@ -124,6 +124,10 @@ class ProfileController extends BaseController
 
     public function api($id)
     {
+        $profile = Profile::find($id);
+        if(is_null($profile)){
+            return 'Invalid Profile ID';
+        }
         return new ProfileResource(Profile::find($id));
     }
 }

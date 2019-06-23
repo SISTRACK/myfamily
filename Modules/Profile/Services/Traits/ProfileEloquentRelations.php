@@ -57,6 +57,10 @@ trait ProfileEloquentRelations
     {
         return $this->belongsTo('Modules\Profile\Entities\Religion');
     }
+    public function medicalReports()
+    {
+        return $this->hasMany('Modules\Health\Entities\MedicalReport');
+    }
     public function events()
     {
     	return $this->hasMany('Modules\Event\Entities\Event');
@@ -180,17 +184,29 @@ trait ProfileEloquentRelations
         return $this->hasOne('Modules\Address\Entities\WorkIn');
     }
 
-    public function thisProfileFamily()
+    public function thisProfileFamilyId()
     {
     	$family = null;
     	if(is_null($this->family_id) && !is_null($this->wife)){
             foreach($this->wife->marriages as $marriage){
-             	$family = $marriage->husband->profile->family;
+             	$family = $marriage->husband->profile->family_id;
             }
     	}else{
-    		$family = $this->family;
+    		$family = $this->family_id;
     	}
     	return $family;
+    }
+    public function thisProfileFamily()
+    {
+        $family = null;
+        if(is_null($this->family_id) && !is_null($this->wife)){
+            foreach($this->wife->marriages as $marriage){
+                $family = $marriage->husband->profile->family;
+            }
+        }else{
+            $family = $this->family;
+        }
+        return $family;
     }
     public function profileImageLocation($flag)
     {
