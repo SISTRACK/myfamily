@@ -5,7 +5,6 @@ namespace Modules\Admin\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Core\Http\Controllers\BaseController;
 use Modules\Family\Entities\Family;
 use Modules\Marriage\Entities\Marriage;
 use Modules\Birth\Entities\Birth;
@@ -16,14 +15,17 @@ use Modules\Divorce\Entities\ReturnDetail;
 // use Modules\Admin\Entities\Admin;
 use App\User;
 
-class AdminController extends BaseController
+class AdminController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth:admin',['only' => 'index','edit']);
     }
-
+    public function verify()
+    {
+        return redirect()->route('admin.dashboard');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -14,7 +14,7 @@
             <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
         </div>
         <div class="account-content">
-            <form class="form-horizontal" action="{{route('login')}}" method="post">
+            <form class="form-horizontal" action="{{route('user.login')}}" method="post">
                 @csrf
                 <div class="form-group ">
                     <div class="col-xs-12">
@@ -74,7 +74,7 @@
 
     <div class="row m-t-50">
         <div class="col-sm-12 text-center">
-            <p class="text-muted">Don't have an account? <a href="{{route('register')}}" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+            <p class="text-muted">Don't have an account? <a href="{{route('signup')}}" class="text-primary m-l-5"><b>Sign Up</b></a></p>
         </div>
     </div>
 @endsection

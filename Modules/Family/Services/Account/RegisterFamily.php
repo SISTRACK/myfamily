@@ -11,7 +11,7 @@ trait RegisterFamily
 {
     public function index()
     {
-        return view('family::index');
+        return redirect()->route('home');
     }
 
     /**

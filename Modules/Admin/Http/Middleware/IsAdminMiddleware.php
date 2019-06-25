@@ -17,9 +17,10 @@ class IsAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (!auth()->guest("auth:admin")) {
+            
             return $next($request);
         }
-        $urlLogin = route('admin.auth.login');
-        return redirect()->guest($urlLogin);
+
+        return redirect()->route('admin.login');
     }
 }

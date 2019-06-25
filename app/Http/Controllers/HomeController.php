@@ -33,6 +33,9 @@ class HomeController extends Controller
         }
         session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
         return view('home',['profile'=>$profile,]);
-       
+    }
+    public function verifyUser()
+    {
+        return redirect()->route('home');
     }
 }

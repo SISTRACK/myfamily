@@ -29,7 +29,6 @@ Route::get('/blog/page/{slug}/{page_id}/view', 'PageController@view')->name('pag
 Route::post('/blog/page/{slug}/{page_id}/update', 'PageController@updatePage')->name('update.page');
 Route::post('/blog/page/{page_slug}/{page_id}/update-content-content', 'PageController@updatePageContent')->name('update.page.content');
 
-
 Route::post('/blog/pages/create', 'PageController@createPage')->name('page.create');
 
 Route::resource('/posts', 'PostController');
@@ -38,7 +37,15 @@ Route::view('/family/member/death/page', 'Include.Pages.dead')->name('user.dead'
 
 Auth::routes();
 
+Route::get('user/create/account','Auth\RegisterController@showRegistrationForm')->name('signup');
+
+Route::post('user/account/register','Auth\RegisterController@register')->name('register');                                               
+Route::get('famil/login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('user/login','Auth\LoginController@login')->name('user.login');
+
 Route::get('/family/home', 'HomeController@index')->name('home');
+
+Route::get('/home', 'HomeController@verifyUser');
 
 
 
