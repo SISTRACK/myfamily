@@ -6,10 +6,8 @@
 <div class="wrapper-page">
     <div class="m-t-40 account-pages">
         <div class="text-center account-logo-box">
-            <h2 class="text-uppercase">
-                <a href="#" class="text-success">
-                    <span><img src="assets/images/logo_sm.png" alt="" height="36"></span>
-                </a>
+            <h2 class="text-uppercase" style="color: white;">
+                admin login
             </h2>
             <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
         </div>

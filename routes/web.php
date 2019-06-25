@@ -31,22 +31,14 @@ Route::post('/blog/page/{page_slug}/{page_id}/update-content-content', 'PageCont
 
 
 Route::post('/blog/pages/create', 'PageController@createPage')->name('page.create');
+
 Route::resource('/posts', 'PostController');
-
-Route::group(['middleware'=>'auth','prefix'=>'family/'], function(){
-   Route::get('home', 'HomeController@index')->middleware(['auth','dead'])->name('home');
-
-});
 
 Route::view('/family/member/death/page', 'Include.Pages.dead')->name('user.dead');
 
 Auth::routes();
 
-Route::prefix('family')->group(function () {
-    Route::get('/', 'HomeController@index')->middleware(['auth','dead'])->name('home');
-});
-
-
+Route::get('/family/home', 'HomeController@index')->name('home');
 
 
 
