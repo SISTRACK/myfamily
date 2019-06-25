@@ -23,6 +23,11 @@ class RedirectIfAuthenticated
                   return redirect()->route('admin.dashboard');
                 }
                 break;
+            case 'doctor':
+                if (Auth::guard($guard)->check()) {
+                  return redirect()->route('health.dashboard');
+                }
+                break;    
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect('/family/home');

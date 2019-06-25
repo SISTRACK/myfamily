@@ -43,11 +43,19 @@ return [
         'admin' => [
            'driver' => 'session',
            'provider' => 'admins',
-       ],
-       'admin-api' => [
+        ],
+        'admin-api' => [
            'driver' => 'token',
            'provider' => 'admins',
-       ],
+        ],
+        'doctor' => [
+           'driver' => 'session',
+           'provider' => 'doctors',
+        ],
+        'doctor-api' => [
+           'driver' => 'token',
+           'provider' => 'doctors',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -72,12 +80,13 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' =>  Modules\Admin\Entities\Admin::class,
         ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'doctor' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Health\Entities\Doctor::class,
+        ],
+        
     ],
     /*
     |--------------------------------------------------------------------------
@@ -102,7 +111,12 @@ return [
         'admins' => [
             'provider' => 'admins',
             'table' => 'password_resets',
-            'expire' => 15,
+            'expire' => 60,
+        ],
+        'doctors' => [
+            'provider' => 'doctors',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 ];

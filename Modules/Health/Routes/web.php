@@ -12,9 +12,9 @@
 */
 
 Route::prefix('health')->group(function() {
-    Route::get('/', 'HealthController@index');
+    Route::get('/', 'HealthController@index')->name('health.dasboard');
+    Route::post('/view/patient/profile','HealthController@view')->name('view.patient.profile');
+    Route::post('/append/patient/file','HealthController@appendFile')->name('append.patient.file');
 });
 
-Route::post('/view_patient_profile','HealthController@view')->name('view.patient.profile');
 
-Route::post('/append_patient_file','HealthController@appendFile')->name('append.patient.file');

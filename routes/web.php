@@ -40,7 +40,8 @@ Auth::routes();
 Route::get('user/create/account','Auth\RegisterController@showRegistrationForm')->name('signup');
 
 Route::post('user/account/register','Auth\RegisterController@register')->name('register');                                               
-Route::get('famil/login','Auth\LoginController@showLoginForm')->name('login');
+Route::get('family/login','Auth\LoginController@showLoginForm')->name('login');
+
 Route::post('user/login','Auth\LoginController@login')->name('user.login');
 
 Route::get('/family/home', 'HomeController@index')->name('home');
