@@ -6,15 +6,13 @@
 <div class="wrapper-page">
     <div class="m-t-40 account-pages">
         <div class="text-center account-logo-box">
-            <h2 class="text-uppercase">
-                <h2 class="text-uppercase" style="color: white;">
-                    family login
-                </h2>
+            <h2 class="text-uppercase" style="color: white;">
+                admin login
             </h2>
             <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
         </div>
         <div class="account-content">
-            <form class="form-horizontal" action="{{route('login')}}" method="post">
+            <form class="form-horizontal" action="{{route('admin.login')}}" method="post">
                 @csrf
                 <div class="form-group ">
                     <div class="col-xs-12">

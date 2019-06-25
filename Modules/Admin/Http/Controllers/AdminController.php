@@ -6,68 +6,118 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Http\Controllers\BaseController;
+use Modules\Family\Entities\Family;
+use Modules\Marriage\Entities\Marriage;
+use Modules\Birth\Entities\Birth;
+use Modules\Death\Entities\Death;
+use Modules\Divorce\Entities\Divorce;
+use Modules\Divorce\Entities\ReturnDetail;
+// use Modules\Admin\Entities\Admin;
+// use Modules\Admin\Entities\Admin;
+use App\User;
 
 class AdminController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin',['only' => 'index','edit']);
+    }
+
     /**
      * Display a listing of the resource.
-     * @return Response
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin::index');
+        return view('admin::Admin.dashboard',[
+            'users'=>User::all(),
+            'families'=>Family::all(),
+            'marriages'=>Marriage::all(),
+            'births'=>Birth::all(),
+            'deaths'=>Death::all(),
+            'divorces'=>Divorce::all(),
+            'returns'=>ReturnDetail::all(),
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
-     * @return Response
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin::create');
+        return view('admin::Admin.Auth.register');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        // validate the data
+        $this->validate($request, [
+          'name'          => 'required',
+          'email'         => 'required',
+          'password'      => 'required'
+        ]);
+        // store in the database
+        $admins = new Admin;
+        $admins->name = $request->name;
+        $admins->email = $request->email;
+        $admins->password=bcrypt($request->password);
+        $admins->save();
+        return redirect()->route('admin.auth.login');
     }
 
     /**
-     * Show the specified resource.
-     * @return Response
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        return view('admin::show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
-     * @return Response
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('admin::edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
-     * @return Response
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
+        //
     }
+
 }

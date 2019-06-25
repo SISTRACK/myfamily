@@ -12,16 +12,14 @@
         <title>@yield('title')</title>
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-
-
-        <script src="assets/js/modernizr.min.js"></script>
+        <link href=" {{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/core.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/components.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/pages.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/menu.css') }}" rel="stylesheet" type="text/css" />
+        <link href=" {{ asset('css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <script src=" {{ asset('js/modernizr.min.js') }}"></script>
         @yield('head')
     </head>
 
@@ -49,18 +47,18 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
+        <script src=" {{ asset('js/jquery.min.js') }}"></script>
+        <script src=" {{ asset('js/bootstrap.min.js') }}"></script>
+        <script src=" {{ asset('js/detect.js') }}"></script>
+        <script src=" {{ asset('js/fastclick.js') }}"></script>
+        <script src=" {{ asset('js/jquery.blockUI.js') }}"></script>
+        <script src=" {{ asset('js/waves.js') }}"></script>
+        <script src=" {{ asset('js/jquery.slimscroll.js') }}"></script>
+        <script src=" {{ asset('js/jquery.scrollTo.min.js') }}"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src=" {{ asset('js/jquery.core.js') }}"></script>
+        <script src=" {{ asset('js/jquery.app.js') }}"></script>
 
     </body>
 </html>

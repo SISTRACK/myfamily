@@ -25,18 +25,14 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth()->User();
-        
-        if($user->profile != null && $user->profile->systemAdmin != null){
-            return redirect('/dashboard');
+        $profile = null;
+        if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
+            $profile = $user->profile->child->birth->father->husband->profile;
         }else{
-            $profile = null;
-            if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
-                $profile = $user->profile->child->birth->father->husband->profile;
-            }else{
-                $profile = $user->profile;
-            }
-            session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
-            return view('home',['profile'=>$profile,]);
+            $profile = $user->profile;
         }
+        session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
+        return view('home',['profile'=>$profile,]);
+       
     }
 }

@@ -14,8 +14,8 @@
 Route::prefix('family')->middleware('auth')->group(function() {
 
     Route::middleware(['hasFamily','used'])->group(function() {
-	    Route::post('/account', 'FamilyController@store')->name('family.store');
-	    Route::get('/', 'FamilyController@create')->name('family.create');
+	    Route::post('/account/register', 'FamilyController@store')->name('family.store');
+	    Route::get('/create/account', 'FamilyController@create')->name('family.create');
     });
     
 });
