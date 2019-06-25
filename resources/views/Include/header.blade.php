@@ -11,22 +11,23 @@
         <title>@yield('title')</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="plugins/morris/morris.css">
+		<link rel="stylesheet" href="{{ asset('css/morris.css') }}">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/core.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/components.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/pages.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/switchery.min.css') }}" rel="stylesheet">
+        
 
         <!--form wizard CSS -->
-        <link rel="stylesheet" type="text/css" href="../plugins/jquery.steps/css/jquery.steps.css" />
+        <link rel="stylesheet" href="{{ asset('css/jquery.steps.css') }}" />
         
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="{{ asset('js/modernizr.min.js') }}"></script>
          
         @yield('header')
     </head>

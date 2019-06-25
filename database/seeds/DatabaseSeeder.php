@@ -11,7 +11,8 @@ use Modules\Profile\Entities\BloodGroup;
 use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Image;
 use Modules\Admin\Entities\AdminStatus;
-use App\User;
+use Modules\Admin\Entities\Admin;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -116,14 +117,13 @@ class DatabaseSeeder extends Seeder
         ]);
       }
 
-      $user = User::firstOrCreate([
-        'email'=>'admin@family.site',
-        'password'=>Hash::make('nfamilyplus'),
+      $user = Admin::firstOrCreate([
+        'email'=>'isahlabbo@family.com',
+        'password'=>Hash::make('isahlabbo'),
+        'phone'=>'08162463010',
         'first_name'=>'super',
-        'last_name'=>'admin'
+        'last_name'=>'admin',
+        'role_id'=>1,
       ]);
-      $profile = $user->profile()->create(['gender_id'=>1,'image_id'=>1]);
-      $profile->systemAdmin()->create(['admin_status_id'=>1]);
-      
     }
 }
