@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Core\Http\Controllers\BaseController;
+use Modules\Family\Entities\Family;
+use Modules\Marriage\Entities\Marriage;
+use Modules\Birth\Entities\Birth;
+use Modules\Death\Entities\Death;
+use Modules\Divorce\Entities\Divorce;
+use Modules\Divorce\Entities\ReturnDetail;
+// use Modules\Admin\Entities\Admin;
+// use Modules\Admin\Entities\Admin;
+use App\User;
 
 class AdminController extends BaseController
 {
@@ -22,7 +31,15 @@ class AdminController extends BaseController
      */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin::Admin.dashboard',[
+            'users'=>User::all(),
+            'families'=>Family::all(),
+            'marriages'=>Marriage::all(),
+            'births'=>Birth::all(),
+            'deaths'=>Death::all(),
+            'divorces'=>Divorce::all(),
+            'returns'=>ReturnDetail::all(),
+        ]);
     }
 
     /**
@@ -32,7 +49,7 @@ class AdminController extends BaseController
      */
     public function create()
     {
-        return view('admin.auth.register');
+        return view('admin::Admin.Auth.register');
     }
 
     /**
@@ -102,5 +119,5 @@ class AdminController extends BaseController
     {
         //
     }
-    
+
 }

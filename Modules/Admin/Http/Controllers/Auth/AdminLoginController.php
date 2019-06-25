@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Admin;
+namespace Modules\Admin\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
-class LoginController extends Controller
+
+class AdminLoginController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,8 +37,9 @@ class LoginController extends Controller
      */
     public function login()
     {
-        return view('admin.auth.login');
+        return view('admin::Admin.Auth.login');
     }
+
     public function loginAdmin(Request $request)
     {
       // Validate the form data
@@ -52,7 +55,7 @@ class LoginController extends Controller
       // if unsuccessful, then redirect back to the login with the form data
       return redirect()->back()->withInput($request->only('email', 'remember'));
     }
-    
+
     public function logout()
     {
         Auth::guard('admin')->logout();

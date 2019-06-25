@@ -11,15 +11,12 @@
 |
 */
 
-Route::prefix('admin')->group(function() {
-    Route::get('/', 'AdminController@index');
+Route::get('/admin', function(){
+	return redirect('/admin/dashboard');
 });
 Route::prefix('admin')->group(function () {
-  Route::get('/', 'AdminController@index')->name('admin.dashboard');
-  Route::get('dashboard', 'AdminController@index')->name('admin.dashboard');
-  Route::get('register', 'AdminController@create')->name('admin.register');
-  Route::post('register', 'AdminController@store')->name('admin.register.store');
-  Route::get('login', 'Auth\LoginController@login')->name('admin.auth.login');
-  Route::post('login', 'Auth\LoginController@loginAdmin')->name('admin.auth.loginAdmin');
-  Route::post('logout', 'Auth\LoginController@logout')->name('admin.auth.logout');
+  Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
+  Route::get('login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
+  Route::post('login', 'Auth\AdminLoginController@loginAdmin')->name('admin.login');
+  Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
 });
