@@ -56,6 +56,14 @@ return [
            'driver' => 'token',
            'provider' => 'doctors',
         ],
+        'teacher' => [
+           'driver' => 'session',
+           'provider' => 'teachers',
+        ],
+        'teacher-api' => [
+           'driver' => 'token',
+           'provider' => 'teachers',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -86,6 +94,10 @@ return [
             'driver' => 'eloquent',
             'model' => Modules\Health\Entities\Doctor::class,
         ],
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Education\Entities\Teacher::class,
+        ],
         
     ],
     /*
@@ -115,6 +127,11 @@ return [
         ],
         'doctors' => [
             'provider' => 'doctors',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'teachers' => [
+            'provider' => 'teachers',
             'table' => 'password_resets',
             'expire' => 60,
         ],

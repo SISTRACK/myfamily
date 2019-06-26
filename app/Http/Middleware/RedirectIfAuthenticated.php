@@ -27,7 +27,12 @@ class RedirectIfAuthenticated
                 if (Auth::guard($guard)->check()) {
                   return redirect()->route('health.dashboard');
                 }
-                break;    
+                break;
+            case 'teacher':
+                if (Auth::guard($guard)->check()) {
+                  return redirect()->route('education.dashboard');
+                }
+                break;        
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect('/family/home');
