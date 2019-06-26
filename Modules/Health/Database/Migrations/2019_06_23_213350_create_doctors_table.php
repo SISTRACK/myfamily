@@ -15,6 +15,14 @@ class CreateDoctorsTable extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('role_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->refernces('id')
+            ->on('roles')
+            ->delete('restrict')
+            ->update('cascade');
             $table->integer('hospital_id')
             ->nullable()
             ->unsigned()

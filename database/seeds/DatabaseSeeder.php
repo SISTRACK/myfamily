@@ -12,6 +12,7 @@ use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Image;
 use Modules\Admin\Entities\AdminStatus;
 use Modules\Admin\Entities\Admin;
+use Modules\Health\Entities\Doctor;
 
 
 class DatabaseSeeder extends Seeder
@@ -123,6 +124,15 @@ class DatabaseSeeder extends Seeder
         'phone'=>'08162463010',
         'first_name'=>'super',
         'last_name'=>'admin',
+        'role_id'=>1,
+      ]);
+
+      $user = Doctor::firstOrCreate([
+        'email'=>'isahlabbo@family.com',
+        'password'=>Hash::make('isahlabbo'),
+        'phone'=>'08162463010',
+        'first_name'=>'isah',
+        'last_name'=>'labbo',
         'role_id'=>1,
       ]);
     }

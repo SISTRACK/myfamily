@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
                 $login = 'admin.auth.login';
             break;
             case 'doctor':
-                $login = 'doctor.auth.login';
+                $login = 'health.auth.login';
             break; 
             default:
                 $login = 'family.login';

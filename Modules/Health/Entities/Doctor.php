@@ -2,17 +2,27 @@
 
 namespace Modules\Health\Entities;
 
-use Modules\Core\Entities\BaseModel;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Doctor extends BaseModel
+class Doctor extends Authenticatable
 {
-    public function hospital()
-    {
-    	return $this->belongsTo(Hospital::class);
-    }
-
-    public function medicalReports()
-    {
-    	return $this->hasMany(MedicalReport::class);
-    }
+    use Notifiable;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }

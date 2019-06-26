@@ -7,12 +7,12 @@
     <div class="m-t-40 account-pages">
         <div class="text-center account-logo-box">
             <h2 class="text-uppercase" style="color: white;">
-                admin login
+                health login
             </h2>
             <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
         </div>
         <div class="account-content">
-            <form class="form-horizontal" action="{{route('admin.login')}}" method="post">
+            <form class="form-horizontal" action="{{route('health.login')}}" method="post">
                 @csrf
                 <div class="form-group ">
                     <div class="col-xs-12">
@@ -68,4 +68,11 @@
         </div>
     </div>
     <!-- end card-box-->
+
+
+    <div class="row m-t-50">
+        <div class="col-sm-12 text-center">
+            <p class="text-muted">Don't have an account? <a href="{{route('register')}}" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+        </div>
+    </div>
 @endsection

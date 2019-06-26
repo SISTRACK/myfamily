@@ -4,13 +4,24 @@ namespace Modules\Health\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 use Modules\Profile\Entities\Profile;
 use Modules\Core\Services\Traits\UploadFile;
 use Modules\Core\Http\Controllers\BaseController;
-class HealthController extends BaseController
+
+class HealthController extends Controller
 {
     use UploadFile;
 
+    public function __construct()
+    {
+        $this->middleware('auth:doctor');
+    }
+
+    public function verify()
+    {
+        return redirect()->route('health.dashboard');
+    }
     /**
      * Display a listing of the resource.
      * @return Response

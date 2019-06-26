@@ -82,7 +82,7 @@ return [
             'driver' => 'eloquent',
             'model' =>  Modules\Admin\Entities\Admin::class,
         ],
-        'doctor' => [
+        'doctors' => [
             'driver' => 'eloquent',
             'model' => Modules\Health\Entities\Doctor::class,
         ],
