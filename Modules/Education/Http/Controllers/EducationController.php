@@ -8,15 +8,23 @@ use Illuminate\Routing\Controller;
 
 class EducationController extends Controller
 {
+
+    public function __construct()
+        {
+           $this->middleware('auth:teacher');
+        }
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('education::index');
+        return view('education::Education.dashboard');
     }
-
+    public function verify()
+    {
+        return redirect()->route('education.dashboard');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response

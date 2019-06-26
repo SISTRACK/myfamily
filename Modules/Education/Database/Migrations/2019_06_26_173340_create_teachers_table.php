@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTechersTable extends Migration
+class CreateTeachersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTechersTable extends Migration
      */
     public function up()
     {
-        Schema::create('techers', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('role_id')->nullable();
             $table->string('first_name');
@@ -33,6 +33,6 @@ class CreateTechersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('techers');
+        Schema::dropIfExists('teachers');
     }
 }

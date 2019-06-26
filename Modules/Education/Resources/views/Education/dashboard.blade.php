@@ -1,11 +1,11 @@
-@extends('admin::layouts.master')
+@extends('education::layouts.master')
 
 @section('side-bar')
-	@include('Include.Menu.admin-side-bar')
+	
 @endsection
 
 @section('page-content')
-	@include('Include.Pages.dashboard')
+	<h1>EDUCATIONAL DASHBOARD</h1>
 @endsection
 
 

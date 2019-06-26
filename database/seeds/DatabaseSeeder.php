@@ -13,6 +13,7 @@ use Modules\Profile\Entities\Image;
 use Modules\Admin\Entities\AdminStatus;
 use Modules\Admin\Entities\Admin;
 use Modules\Health\Entities\Doctor;
+use Modules\Education\Entities\Teacher;
 
 
 class DatabaseSeeder extends Seeder
@@ -119,8 +120,8 @@ class DatabaseSeeder extends Seeder
       }
 
       $user = Admin::firstOrCreate([
-        'email'=>'isahlabbo@family.com',
-        'password'=>Hash::make('isahlabbo'),
+        'email'=>'admin@family.com',
+        'password'=>Hash::make('admin'),
         'phone'=>'08162463010',
         'first_name'=>'super',
         'last_name'=>'admin',
@@ -128,12 +129,22 @@ class DatabaseSeeder extends Seeder
       ]);
 
       $user = Doctor::firstOrCreate([
-        'email'=>'isahlabbo@family.com',
-        'password'=>Hash::make('isahlabbo'),
+        'email'=>'health@family.com',
+        'password'=>Hash::make('health'),
         'phone'=>'08162463010',
         'first_name'=>'isah',
         'last_name'=>'labbo',
         'role_id'=>1,
       ]);
+
+      $user = Teacher::firstOrCreate([
+        'email'=>'educatio@family.com',
+        'password'=>Hash::make('education'),
+        'phone'=>'08162463010',
+        'first_name'=>'isah',
+        'last_name'=>'labbo',
+        'role_id'=>1,
+      ]);
+
     }
 }
