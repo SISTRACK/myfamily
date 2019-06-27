@@ -64,6 +64,14 @@ return [
            'driver' => 'token',
            'provider' => 'teachers',
         ],
+        'police' => [
+           'driver' => 'session',
+           'provider' => 'police',
+        ],
+        'police-api' => [
+           'driver' => 'token',
+           'provider' => 'police',
+        ],
     ],
     /*
     |--------------------------------------------------------------------------
@@ -97,6 +105,10 @@ return [
         'teachers' => [
             'driver' => 'eloquent',
             'model' => Modules\Education\Entities\Teacher::class,
+        ],
+        'police' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Security\Entities\Police::class,
         ],
         
     ],
@@ -132,6 +144,11 @@ return [
         ],
         'teachers' => [
             'provider' => 'teachers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'police' => [
+            'provider' => 'police',
             'table' => 'password_resets',
             'expire' => 60,
         ],
