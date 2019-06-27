@@ -8,15 +8,25 @@ use Illuminate\Routing\Controller;
 
 class GovernmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:government');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
+
     public function index()
     {
-        return view('government::index');
+        return view('government::Government.dashboard');
     }
 
+    public function verify()
+    {
+        return redirect()->route('government.dashboard');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response

@@ -37,7 +37,12 @@ class RedirectIfAuthenticated
                 if (Auth::guard($guard)->check()) {
                   return redirect()->route('security.dashboard');
                 }
-                break;           
+                break;
+            case 'government':
+                if (Auth::guard($guard)->check()) {
+                  return redirect()->route('government.dashboard');
+                }
+                break;                
             default:
                 if (Auth::guard($guard)->check()) {
                     return redirect('/family/home');

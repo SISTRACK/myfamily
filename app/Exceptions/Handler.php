@@ -65,6 +65,9 @@ class Handler extends ExceptionHandler
             break;
             case 'police':
                 $login = 'security.auth.login';
+            break;
+            case 'government':
+                $login = 'government.auth.login';
             break;    
             default:
                 $login = 'family.login';

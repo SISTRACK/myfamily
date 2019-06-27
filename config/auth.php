@@ -12,7 +12,7 @@ return [
     |
     */
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'family',
         'passwords' => 'users',
     ],
     /*
@@ -32,11 +32,11 @@ return [
     |
     */
     'guards' => [
-        'web' => [
+        'family' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'api' => [
+        'family_api' => [
             'driver' => 'token',
             'provider' => 'users',
         ],
@@ -71,6 +71,14 @@ return [
         'police-api' => [
            'driver' => 'token',
            'provider' => 'police',
+        ],
+        'government' => [
+           'driver' => 'session',
+           'provider' => 'governments',
+        ],
+        'government-api' => [
+           'driver' => 'token',
+           'provider' => 'governments',
         ],
     ],
     /*
@@ -109,6 +117,10 @@ return [
         'police' => [
             'driver' => 'eloquent',
             'model' => Modules\Security\Entities\Police::class,
+        ],
+        'governments' => [
+            'driver' => 'eloquent',
+            'model' => Modules\Government\Entities\Government::class,
         ],
         
     ],
@@ -149,6 +161,11 @@ return [
         ],
         'police' => [
             'provider' => 'police',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'governments' => [
+            'provider' => 'governments',
             'table' => 'password_resets',
             'expire' => 60,
         ],
