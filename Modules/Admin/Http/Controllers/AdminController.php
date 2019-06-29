@@ -11,8 +11,6 @@ use Modules\Birth\Entities\Birth;
 use Modules\Death\Entities\Death;
 use Modules\Divorce\Entities\Divorce;
 use Modules\Divorce\Entities\ReturnDetail;
-// use Modules\Admin\Entities\Admin;
-// use Modules\Admin\Entities\Admin;
 use App\User;
 
 class AdminController extends Controller

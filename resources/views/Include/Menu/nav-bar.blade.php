@@ -83,17 +83,25 @@
                 
                 <li class="dropdown user-box">
                     <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
-                        @if(Auth()->User()->profile != null)
-                        <img src="{{Auth()->User()->profile->profileImageLocation('display').Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
-                        @else
+                        @if(auth()->guard('government')||auth()->guard('admin')||auth()->guard('doctor')||auth()->guard('teachar'))
                         <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                        @else
+                            @if(Auth()->User()->profile != null)
+                            <img src="{{Auth()->User()->profile->profileImageLocation('display').Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
+                            @else
+                            <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                            @endif
                         @endif
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                        @if(auth()->guard('government')||auth()->guard('admin')||auth()->guard('doctor')||auth()->guard('teachar'))
+
+                        @else
                         <li>
                             <h5>Hi, {{Auth()->User()->first_name.' '.Auth()->User()->last_name}}</h5>
                         </li>
+                        @endif
                         <li><a href="{{route('profile.index')}}"><i class="ti-user m-r-5"></i>Profile</a></li>
                         
                         <li><a href="{{route('profile.setting')}}"><i class="ti-settings m-r-5"></i> Profile Configuration</a>

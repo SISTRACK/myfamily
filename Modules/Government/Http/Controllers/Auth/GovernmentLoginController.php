@@ -26,10 +26,10 @@ class GovernmentLoginController extends Controller
      * @var string
      */
     // protected $redirectTo = '/home';
-       public function __construct()
-       {
+        public function __construct()
+        {
            $this->middleware('guest:government')->except('logout');
-       }
+        }
     /**
      * Display a listing of the resource.
      *

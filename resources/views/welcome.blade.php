@@ -42,8 +42,6 @@
             <div class="topbar">
 
                 <!-- LOGO -->
-                
-
                 <!-- Button mobile view to collapse sidebar menu -->
                 <div class="navbar navbar-inverse" role="navigation">
                     <div class="container">
