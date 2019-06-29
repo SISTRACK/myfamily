@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Module Government</title>
+@extends('layouts.master')
 
-       {{-- Laravel Mix - CSS File --}}
-       {{-- <link rel="stylesheet" href="{{ mix('css/government.css') }}"> --}}
-
-    </head>
-    <body>
-        @yield('content')
-
-        {{-- Laravel Mix - JS File --}}
-        {{-- <script src="{{ mix('js/government.js') }}"></script> --}}
-    </body>
-</html>
+@section('side-bar')
+<li><a href="#">Population</a></li>
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Health Report </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="#"><span> Polio</span></a></li>
+        <li><a href="#"><span> Maleria </span></a></li>
+        <li><a href="#"><span> HIV </span></a></li>
+        <li><a href="#"><span> Tv </span></a></li>
+        <li><a href="#"><span> Diabetes </span></a></li>
+    </ul>
+</li>
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Education Report </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="#"><span> Nursery </span></a></li>
+        <li><a href="#"><span> Primary </span></a></li>
+        <li><a href="#"><span> Secondary </span></a></li>
+        <li><a href="#"><span> COE </span></a></li>
+        <li><a href="#"><span> Poly Technic </span></a></li>
+        <li><a href="#"><span> University </span></a></li>
+    </ul>
+</li>
+@endsection

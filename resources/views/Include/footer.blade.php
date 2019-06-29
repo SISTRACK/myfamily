@@ -4,6 +4,12 @@
     </script>
      <script src="{{ asset('js/app.js') }}"> </script>
     <script type="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fusioncharts@3.12.2/fusioncharts.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.1.0/dist/frappe-charts.min.iife.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.6.7/c3.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <!-- jQuery  -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -44,7 +50,7 @@
    
 
     <!--wizard initialization-->
-    <script src="assets/pages/{{ asset('js/jquery.wizard-init.js') }}"></script>
+    <script src="{{ asset('js/jquery.wizard-init.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"> </script>
 
     @yield('footer')

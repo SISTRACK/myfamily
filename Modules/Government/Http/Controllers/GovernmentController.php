@@ -5,12 +5,16 @@ namespace Modules\Government\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-
+use App\Charts\ResultChart;
+use App\Charts\ResultHighChart;
+use App\Charts\ResultFusionChart;
 class GovernmentController extends Controller
 {
+    
     public function __construct()
     {
         $this->middleware('auth:government');
+        
     }
 
     /**
@@ -18,9 +22,9 @@ class GovernmentController extends Controller
      * @return Response
      */
 
-    public function index()
+    public function index(ResultFusionChart $chart)
     {
-        return view('government::Government.dashboard');
+        return view('government::Government.dashboard',['presidentialChart' => $chart->createChart()]);
     }
 
     public function verify()

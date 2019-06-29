@@ -12,14 +12,14 @@
         <title>Nigerian family information system</title>
 
         <!-- App css -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/core.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/components.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/icons.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/pages.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/menu.css')}}" rel="stylesheet" />
+        <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset('css/switchery.min.css')}}" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="assets/js/modernizr.min.js"></script>
+        <script src="{{asset('js/modernizr.min.js')}}"></script>
 
     </head>
 
@@ -64,7 +64,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="{{route('login')}}">Sign In</a>
+                                <a href="{{route('family.login')}}">Sign In</a>
 
                             </li>
 
@@ -167,7 +167,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2017 - 2018 © Nigerian Family information system.
+                    2017 - {{date('Y',time())}} © Nigerian Family information system.
                 </footer>
 
             </div>
@@ -184,19 +184,19 @@
         </script>
 
         <!-- jQuery  -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/detect.js"></script>
-        <script src="assets/js/fastclick.js"></script>
-        <script src="assets/js/jquery.blockUI.js"></script>
-        <script src="assets/js/waves.js"></script>
-        <script src="assets/js/jquery.slimscroll.js"></script>
-        <script src="assets/js/jquery.scrollTo.min.js"></script>
-        <script src="../plugins/switchery/switchery.min.js"></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('js/detect.js')}}"></script>
+        <script src="{{asset('js/fastclick.js')}}"></script>
+        <script src="{{asset('js/jquery.blockUI.js')}}"></script>
+        <script src="{{asset('js/waves.js')}}"></script>
+        <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
+        <script src="{{asset('js/jquery.scrollTo.min.js')}}"></script>
+        <script src="{{asset('js/switchery.min.js')}}"></script>
 
         <!-- App js -->
-        <script src="assets/js/jquery.core.js"></script>
-        <script src="assets/js/jquery.app.js"></script>
+        <script src="{{asset('js/jquery.core.js')}}"></script>
+        <script src="{{asset('js/jquery.app.js')}}"></script>
 
     </body>
 </html>

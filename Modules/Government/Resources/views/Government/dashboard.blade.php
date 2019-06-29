@@ -1,7 +1,11 @@
-@extends('admin::layouts.master')
+@extends('government::layouts.master')
 
 @section('page-content')
-	<h1>GOVERNMENT DASHBOARD</h1>
+
+<div class="col md-12">
+    {!! $presidentialChart->container() !!}
+    {!! $presidentialChart->script() !!}
+</div>
 @endsection
 
 

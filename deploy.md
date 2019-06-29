@@ -60,3 +60,21 @@ DROP USER ‘username’@‘localhost’;
 
 REVOKE type_of_permission ON database_name.table_name FROM ‘username’@‘localhost’;
 
+
+
+///////chart types////////////
+
+line
+bar
+pie
+progress
+
+
+/////libries /////
+
+Chartjs
+Highcharts
+Fusioncharts
+Echarts
+Frappe
+C3

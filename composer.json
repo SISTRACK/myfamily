@@ -8,6 +8,7 @@
     "require": {
         "php": "^7.2.3",
         "beyondcode/laravel-websockets": "^1.0",
+        "consoletvs/charts": "6.*",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/cashier": "^9.0",
