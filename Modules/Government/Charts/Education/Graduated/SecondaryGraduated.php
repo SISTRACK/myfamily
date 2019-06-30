@@ -2,48 +2,20 @@
 
 namespace Modules\Government\Charts\Education\Graduated;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class SecondaryGraduated extends Chart
+class SecondaryGraduated extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+   
     
     public function graduated()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('Secondary School Report 2019', 'Bar',[
             
             '10',
@@ -69,7 +41,7 @@ class SecondaryGraduated extends Chart
             '6',
             '6',
             '8'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

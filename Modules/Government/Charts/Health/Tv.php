@@ -2,47 +2,19 @@
 
 namespace Modules\Government\Charts\Health;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class Tv extends Chart
+class Tv extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
     public function createChart()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('Tv  Report 2019', 'Bar',[
             
             '0',
@@ -68,7 +40,7 @@ class Tv extends Chart
             '2',
             '2',
             '1'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

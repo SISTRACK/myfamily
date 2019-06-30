@@ -2,44 +2,16 @@
 
 namespace Modules\Government\Charts\Health;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class Malaria extends Chart
+class Malaria extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
     public function createChart()
     {
         $this->labels($this->lga);
@@ -68,7 +40,7 @@ class Malaria extends Chart
             '60',
             '60',
             '80',
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

@@ -2,44 +2,16 @@
 
 namespace Modules\Government\Charts\Health;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class Hiv extends Chart
+class Hiv extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
     public function createChart()
     {
         $this->labels($this->lga);
@@ -68,7 +40,7 @@ class Hiv extends Chart
             '6',
             '6',
             '8'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

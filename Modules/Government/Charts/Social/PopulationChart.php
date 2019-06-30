@@ -2,47 +2,19 @@
 
 namespace Modules\Government\Charts\Social;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class PopulationChart extends Chart
+class PopulationChart extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
     public function createChart()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('People Register', 'Bar',[
             '7888929',
             '657575585',
@@ -67,7 +39,7 @@ class PopulationChart extends Chart
             '65757585',
             '657575856',
             '65756585'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

@@ -2,44 +2,16 @@
 
 namespace Modules\Government\Charts\Education\Graduated;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class CoeGraduated extends Chart
+class CoeGraduated extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
    
     public function graduated()
     {
@@ -69,7 +41,7 @@ class CoeGraduated extends Chart
             '6',
             '6',
             '8'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }

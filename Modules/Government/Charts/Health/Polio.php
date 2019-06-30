@@ -2,47 +2,19 @@
 
 namespace Modules\Government\Charts\Health;
 
-use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
+use Modules\Core\Charts\BaseChart;
 
-class Polio extends Chart
+class Polio extends BaseChart
 {
     /**
      * Initializes the chart.
      *
      * @return void
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->lga = [
-            'Binji',
-            'Bodinga',
-            'Dange Shuni',
-            'Gada',
-            'Goronyo',
-            'Gudu',
-            'Gwadabawa',
-            'Illela',
-            'Isa',
-            'Kebbe',
-            'Kware',
-            'Rabah',
-            'Sabon Birni',
-            'Shagari',
-            'Silame',
-            'Sokoto North',
-            'Sokoto South',
-            'Tambuwal',
-            'Tangaza',
-            'Tureta',
-            'Wamakko',
-            'Wurno',
-            'Yabo'
-        ];
-    }
+    
     public function createChart()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('Polio  Report 2019', 'Bar',[
             
             '0',
@@ -68,7 +40,7 @@ class Polio extends Chart
             '2',
             '6',
             '8'
-        ])->color('#6da252');
+        ])->color($this->color);
         return $this;
     }
 }
