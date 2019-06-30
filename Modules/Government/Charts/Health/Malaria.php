@@ -14,7 +14,7 @@ class Malaria extends BaseChart
     
     public function createChart()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('Malaria  Report 2019', 'Bar',[
             
             '100',

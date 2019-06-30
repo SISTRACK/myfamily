@@ -14,7 +14,7 @@ class Hiv extends BaseChart
     
     public function createChart()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('Hiv  Report 2019', 'Bar',[
             
             '10',
