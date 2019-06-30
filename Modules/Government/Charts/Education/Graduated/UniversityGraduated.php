@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Government\Charts\Education;
+namespace Modules\Government\Charts\Education\Graduated;
 
 use ConsoleTVs\Charts\Classes\Fusioncharts\Chart;
 
-class Primary extends Chart
+class UniversityGraduated extends Chart
 {
     /**
      * Initializes the chart.
@@ -40,41 +40,11 @@ class Primary extends Chart
             'Yabo'
         ];
     }
-    public function admitted()
-    {
-        $this->labels($this->lga);
-        $this->dataset('Primary School Report 2019', 'Bar',[
-            
-            '10',
-            '3',
-            '4',
-            '4',
-            '4',
-            '3',
-            '9',
-            '7',
-            '20',
-            '5',
-            '15',
-            '7',
-            '8',
-            '7',
-            '0',
-            '6',
-            '6',
-            '2',
-            '2',
-            '4',
-            '6',
-            '6',
-            '8'
-        ])->color('#6da252');
-        return $this;
-    }
+    
     public function graduated()
     {
         $this->labels($this->lga);
-        $this->dataset('Primary School Report 2019', 'Bar',[
+        $this->dataset('Universities Report 2019', 'Bar',[
             
             '10',
             '3',

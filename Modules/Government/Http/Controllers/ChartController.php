@@ -10,12 +10,22 @@ use Modules\Government\Charts\Health\Malaria;
 use Modules\Government\Charts\Health\Tv;
 use Modules\Government\Charts\Health\Hiv;
 use Modules\Government\Charts\Health\Diabetes;
-use Modules\Government\Charts\Education\Primary;
-use Modules\Government\Charts\Education\Secondary;
-use Modules\Government\Charts\Education\Poly;
-use Modules\Government\Charts\Education\Coe;
-use Modules\Government\Charts\Education\Nursing;
-use Modules\Government\Charts\Education\University;
+
+use Modules\Government\Charts\Education\Graduated\PrimaryGraduated;
+use Modules\Government\Charts\Education\Graduated\SecondaryGraduated;
+use Modules\Government\Charts\Education\Graduated\PolyGraduated;
+use Modules\Government\Charts\Education\Graduated\CoeGraduated;
+use Modules\Government\Charts\Education\Graduated\NursingGraduated;
+use Modules\Government\Charts\Education\Graduated\UniversityGraduated;
+
+
+use Modules\Government\Charts\Education\Admitted\PrimaryAdmitted;
+use Modules\Government\Charts\Education\Admitted\SecondaryAdmitted;
+use Modules\Government\Charts\Education\Admitted\PolyAdmitted;
+use Modules\Government\Charts\Education\Admitted\CoeAdmitted;
+use Modules\Government\Charts\Education\Admitted\NursingAdmitted;
+use Modules\Government\Charts\Education\Admitted\UniversityAdmitted;
+
 class ChartController extends Controller
 {
     //health
@@ -49,30 +59,30 @@ class ChartController extends Controller
     //educational
 
 
-    public function primary(Primary $primary)
+    public function primary(PrimaryAdmitted $admitted, PrimaryGraduated $graduated)
     {
         return view('government::Government.Charts.Education.primary',
             [
-                'admitted'=>$primary->admitted(),
-                'graduated'=>$primary->graduated()
+                'admitted'=>$admitted->admitted(),
+                'graduated'=>$graduated->graduated()
             ]);
     }
 
-    public function secondary(Secondary $secondary)
+    public function secondary(SecondaryAdmitted $admitted, SecondaryGraduated $graduated)
     {
         return view('government::Government.Charts.Education.secondary',
             [
-                'admitted'=>$secondary->admitted(),
-                'graduated'=>$secondary->graduated()
+                'admitted'=>$admitted->admitted(),
+                'graduated'=>$graduated->graduated()
             ]);
     }
 
-    public function coe(Coe $coe)
+    public function coe(CoeAdmitted $admitted, CoeGraduated $graduated)
     {
         return view('government::Government.Charts.Education.coe',
             [
-                'admitted'=>$coe->admitted(),
-                'graduated'=>$coe->graduated()
+                'admitted'=>$admitted->admitted(),
+                'graduated'=>$graduated->graduated()
             ]);
     }
 
@@ -85,20 +95,20 @@ class ChartController extends Controller
             ]);
     }
 
-    public function poly(Poly $poly)
+    public function poly(PolyAdmitted $admitted, PolyGraduated $graduated)
     {
         return view('government::Government.Charts.Education.poly',[
-            'admitted'=>$poly->admitted(),
-            'graduated'=>$poly->graduated()
+            'admitted'=>$admitted->admitted(),
+            'graduated'=>$graduated->graduated()
         ]);
     }
 
-     public function university(University $university)
+     public function university(UniversityAdmitted $admitted, UniversityGraduated $graduated)
     {
         return view('government::Government.Charts.Education.university',
             [
-                'admitted'=>$university->admitted(),
-                'graduated'=>$university->graduated()
+                'admitted'=>$admitted->admitted(),
+                'graduated'=>$graduated->graduated()
             ]);
     }
 }
