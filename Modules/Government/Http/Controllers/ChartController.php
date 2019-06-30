@@ -5,11 +5,19 @@ namespace Modules\Government\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+
 use Modules\Government\Charts\Health\Polio;
 use Modules\Government\Charts\Health\Malaria;
 use Modules\Government\Charts\Health\Tv;
 use Modules\Government\Charts\Health\Hiv;
 use Modules\Government\Charts\Health\Diabetes;
+
+use Modules\Government\Charts\Social\MarriageChart;
+use Modules\Government\Charts\Social\DivorceChart;
+use Modules\Government\Charts\Social\DeathChart;
+use Modules\Government\Charts\Social\BirthChart;
+use Modules\Government\Charts\Social\AccidentChart;
+use Modules\Government\Charts\Social\PopulationChart;
 
 use Modules\Government\Charts\Education\Graduated\PrimaryGraduated;
 use Modules\Government\Charts\Education\Graduated\SecondaryGraduated;
@@ -28,6 +36,10 @@ use Modules\Government\Charts\Education\Admitted\UniversityAdmitted;
 
 class ChartController extends Controller
 {
+    public function population(PopulationChart $population)
+    {
+        return view('government::Government.Charts.Social.population',['population'=>$population->createChart()]);
+    }
     //health
 
     public function polio(Polio $polio)
@@ -110,5 +122,32 @@ class ChartController extends Controller
                 'admitted'=>$admitted->admitted(),
                 'graduated'=>$graduated->graduated()
             ]);
+    }
+
+    //social routes
+
+    public function birth(BirthChart $birth)
+    {
+        return view('government::Government.Charts.Social.birth',['birth'=>$birth->createChart()]);
+    }
+
+    public function marriage(MarriageChart $marriage)
+    {
+        return view('government::Government.Charts.Social.marriage',['marriage'=>$marriage->createChart()]);
+    }
+
+    public function death(DeathChart $death)
+    {
+        return view('government::Government.Charts.Social.death',['death'=>$death->createChart()]);
+    }
+
+    public function accident(AccidentChart $accident)
+    {
+        return view('government::Government.Charts.Social.accident',['accident'=>$accident->createChart()]);
+    }
+
+    public function divorce(DivorceChart $divorce)
+    {
+        return view('government::Government.Charts.Social.divorce',['divorce'=>$divorce->createChart()]);
     }
 }

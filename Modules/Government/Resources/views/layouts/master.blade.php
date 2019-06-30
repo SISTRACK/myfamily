@@ -1,7 +1,17 @@
 @extends('layouts.master')
 
 @section('side-bar')
-<li><a href="#">Population</a></li>
+<li><a href="{{route('population','sokoto')}}">Population</a></li>
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Social Report </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        <li><a href="{{route('report.birth')}}"><span> Births </span></a></li>
+        <li><a href="{{route('report.death')}}"><span> Deaths </span></a></li>
+        <li><a href="{{route('report.marriage')}}"><span> Marriages </span></a></li>
+        <li><a href="{{route('report.divorce')}}"><span> Divorces </span></a></li>
+        <li><a href="{{route('report.accident')}}"><span> Accidens </span></a></li>
+    </ul>
+</li>
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Health Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
