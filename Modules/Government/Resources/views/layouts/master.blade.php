@@ -15,12 +15,12 @@
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Education Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
-        <li><a href="#"><span> Nursery </span></a></li>
-        <li><a href="#"><span> Primary </span></a></li>
-        <li><a href="#"><span> Secondary </span></a></li>
-        <li><a href="#"><span> COE </span></a></li>
-        <li><a href="#"><span> Poly Technic </span></a></li>
-        <li><a href="#"><span> University </span></a></li>
+        <li><a href="{{route('report.primary')}}"><span> Primary </span></a></li>
+        <li><a href="{{route('report.secondary')}}"><span> Secondary </span></a></li>
+        <li><a href="{{route('report.coe')}}"><span> COE </span></a></li>
+        <li><a href="{{route('report.poly')}}"><span> Poly Technic </span></a></li>
+        <li><a href="{{route('report.nursing')}}"><span> Nursing </span></a></li>
+        <li><a href="{{route('report.university')}}"><span> University </span></a></li>
     </ul>
 </li>
 @endsection
