@@ -16,7 +16,10 @@ class Lga extends BaseModel
     {
         return $this->hasMany(Town::class);
     }
-    
+    public function government()
+    {
+        return $this->hasOne('Modules\Government\Entities\Government');
+    }
     public function districts()
     {
         return $this->hasMany(District::class);

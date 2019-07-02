@@ -16,4 +16,8 @@ class State extends BaseModel
     {
         return $this->hasMany(Lga::class);
     }
+    public function government()
+    {
+        return $this->hasOne('Modules\Government\Entities\Government');
+    }
 }
