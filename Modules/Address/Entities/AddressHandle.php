@@ -183,8 +183,8 @@ class AddressHandle
 					}
 					break;
 				case '22':
-					foreach($this->kebbi() as $lga){
-						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
+					foreach($this->kebbi() as $this_lga){
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$this_lga]);
 						$this->createUser($local_govt);
 						$this->generateKebbiInformation($state);
 					}
