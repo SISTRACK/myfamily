@@ -3,7 +3,7 @@ namespace App\States\Kebbi;
 
 trait KokoBesse
 {
-	public function koko()
+	public function kokoBesse()
 	{
 		return [
             [

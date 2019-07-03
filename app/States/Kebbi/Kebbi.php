@@ -1,180 +1,207 @@
 <?php
 namespace App\States\Kebbi;
 
+use Modules\Address\Entities\State;
+
 trait Kebbi
 
-use Aliero, ArewaDandi, Argungu, Augie, Bagudo, BirninKebbi, Bunza, Dandi, DankoWasagu, Fakai, Gwandu, Jega,Kalgo, KokoBesse, Mayyama, Ngaski, Sakaba, Shanga, Suru, Yauri, Zuru;
 {
-    public function kebbi(State $state)
+	use Aliero, ArewaDandi, Argungu, Augie, Bagudo, BirninKebbi, Bunza, Dandi, DankoWasagu, Fakai, Gwandu, Jega,Kalgo, KokoBesse, Mayyama, Ngaski, Sakaba, Shanga, Suru, Yauri, Zuru;
+
+    public $lga_id;
+
+    public function generateKebbiInformation(State $state)
     {
     	foreach ($state->lgas as $lga) {
-    		switch ($lga->name) {
-    			case 'Aliero':
-    				foreach ($this->aliero() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    		$this->lga_id = $lga->id;
+    		switch ($this->lga_id) {
+    			case '426':
+    				foreach ($this->aliero() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'ArewaDandi':
-    				foreach ($this->arewaDandi() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '427':
+    				foreach ($this->arewaDandi() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Argungu':
-    				foreach ($this->argungu() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '428':
+    				foreach ($this->argungu() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Augie':
-    				foreach ($this->augie() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '429':
+    				foreach ($this->augie() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Bagudo':
-    				foreach ($this->bagudo() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '430':
+    				foreach ($this->bagudo() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'BirninKebbi':
-    				foreach ($this->birninKebbi() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '431':
+    				foreach ($this->birninKebbi() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Bunza':
-    				foreach ($this->bunza() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '432':
+    				foreach ($this->bunza() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Dandi':
-    				foreach ($this->dandi() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '433':
+    				foreach ($this->dandi() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'DankoWasagu':
-    				foreach ($this->dankoWasagu() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '434':
+    				foreach ($this->dankoWasagu() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Fakai':
-    				foreach ($this->fakai() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '435':
+    				foreach ($this->fakai() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Gwandu':
-    				foreach ($this->gwandu() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '436':
+    				foreach ($this->gwandu() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Jega':
-    				foreach ($this->jega() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '437':
+    				foreach ($this->jega() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Kalgo':
-    				foreach ($this->kalgo() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '438':
+    				foreach ($this->kalgo() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'KokoBesse':
-    				foreach ($this->kokoBesse() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '439':
+    				foreach ($this->kokoBesse() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Mayyama':
-    				foreach ($this->mayyama() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '440':
+    				foreach ($this->mayyama() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Ngaski':
-    				foreach ($this->ngaski() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '441':
+    				foreach ($this->ngaski() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Sakaba':
-    				foreach ($this->sakaba() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '442':
+    				foreach ($this->sakaba() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Shanga':
-    				foreach ($this->shanga() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '443':
+    				foreach ($this->shanga() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Suru':
-    				foreach ($this->suru() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '444':
+    				foreach ($this->suru() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Yauri':
-    				foreach ($this->yauri() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '445':
+    				foreach ($this->yauri() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
-    			case 'Zuru':
-    				foreach ($this->zuru() as $current_lga) {
-    					$current_district = $current_lga->districts()->create(['name'=>$current_lga['district']]);
-    					foreach ($current_lga['towns'] as $town) {
-    						$current_district->towns()->create(['lga_id'=>$lga->id,'name'=>$town]);
+    			case '446':
+    				foreach ($this->zuru() as $current_data) {
+    					$current_district = $lga->districts()->firstOrCreate(['name'=>$current_data['district']]);
+    					foreach ($current_data['towns'] as $town) {
+    						$current_district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
+    					$this->createDistrictUser($current_district);
     				}
     				break;
     			
@@ -182,6 +209,7 @@ use Aliero, ArewaDandi, Argungu, Augie, Bagudo, BirninKebbi, Bunza, Dandi, Danko
     				# code...
     				break;
     		}
+    		$this->lga_id = $this->lga_id + 1;
     	}
     }
 }

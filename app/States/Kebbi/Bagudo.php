@@ -62,19 +62,6 @@ trait Bagudo
             [
             	'district'=>'Zagga','towns'=>
             	[
-            		'Bakin Ruwa',
-					'G/Fadama',
-					'Gandome',
-					'Ganten Tudu',
-					'Gwamba',
-					'Kaoje',
-					'Lafagu Grande',
-					'Yemusa'
-				]
-            ],
-            [
-            	'district'=>'Zagga','towns'=>
-            	[
             		'Kende',
 					'Kumbobo',
 					'Kurgu',

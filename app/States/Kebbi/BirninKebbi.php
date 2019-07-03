@@ -1,8 +1,10 @@
 <?php
 
-trait birnnKebbi
+namespace App\States\Kebbi;
+
+trait BirninKebbi
 {
-	public function birnnKebbi()
+	public function birninKebbi()
 	{
 		return [
             [

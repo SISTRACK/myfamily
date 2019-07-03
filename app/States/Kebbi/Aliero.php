@@ -7,10 +7,10 @@ trait Aliero
 	{
 		return [
             [
-            	'district'=>'Alero','towns'=>[
+            	'district'=>'Aliero','towns'=>[
             		'Agwada',
 					'Alelu',
-					'Alero',
+					'Aliero',
 					'Birnin Mallam',
 					'Dangaladima',
 					'Fagada',

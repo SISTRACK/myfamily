@@ -39,6 +39,6 @@ class AddressInformationUpdate extends Command
      */
     public function handle(AddressHandle $address)
     {
-        echo info('Address information was successfully updated');
+        info('Address information was successfully updated');
     }
 }

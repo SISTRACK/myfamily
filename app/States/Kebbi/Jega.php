@@ -1,4 +1,5 @@
 <?php
+
 namespace App\States\Kebbi;
 
 trait Jega

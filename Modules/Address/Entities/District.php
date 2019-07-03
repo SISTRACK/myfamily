@@ -15,4 +15,9 @@ class District extends BaseModel
 	{
 		return $this->belongsTo(Lga::class);
 	}
+
+	public function government()
+    {
+        return $this->hasOne('Modules\Government\Entities\Government');
+    }
 }

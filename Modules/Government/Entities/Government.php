@@ -35,5 +35,10 @@ class Government extends Authenticatable
     {
     	return $this->belongsTo('Modules\Address\Entities\Lga');
     }
+
+    public function district()
+    {
+    	return $this->belongsTo('Modules\Address\Entities\District');
+    }
 }
 

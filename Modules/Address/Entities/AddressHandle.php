@@ -3,6 +3,7 @@
 namespace Modules\Address\Entities;
 
 use App\States\Kebbi\Kebbi;
+
 use Illuminate\Support\Facades\Hash;
 
 class AddressHandle
@@ -13,15 +14,16 @@ class AddressHandle
 
 	public function __construct()
 	{
+		
 		$this->country = Country::firstOrCreate(['name'=>'Nigeria']);
 		$this->createStates();
 		$this->createLgas();
+		
 	}
 
-	
     public function createUser($lga)
     {
-    	$lga->government()->create([
+    	$lga->government()->firstOrCreate([
 	        'email'=>strtolower($lga->name).'@family.com',
 	        'password'=>Hash::make(strtolower($lga->name)),
 	        'phone'=>'11111111111',
@@ -30,10 +32,21 @@ class AddressHandle
 	        'role_id'=>2,
 	    ]);
     }
+    public function createDistrictUser($district)
+    {
+    	$district->government()->firstOrCreate([
+	        'email'=>strtolower($district->name).'district@family.com',
+	        'password'=>Hash::make(strtolower($district->name)),
+	        'phone'=>'11111111111',
+	        'first_name'=>$district->name.' District',
+	        'last_name'=>$district->name.' District',
+	        'role_id'=>3,
+	    ]);
+    }
     public function createStates()
 	{
 		foreach ($this->state() as $current_state) {
-			$state = $this->country->states()->create(['name'=>$current_state]);
+			$state = $this->country->states()->firstOrCreate(['name'=>$current_state]);
 			$this->createUser($state);
 		}
 	}
@@ -43,226 +56,226 @@ class AddressHandle
 			switch ($state->id) {
 				case '1':
 					foreach($this->abia() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 						
 					}
 					break;
 				case '2':
 					foreach($this->adamawa() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '3':
 					foreach($this->anambra() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '4':
 					foreach($this->akwaIbom() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '5':
 					foreach($this->bauchi() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '6':
 					foreach($this->bayelsa() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '7':
 					foreach($this->benue() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '8':
 					foreach($this->borno() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 
 				case '9':
 					foreach($this->crossRiver() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '10':
-					foreach($this->delte() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+					foreach($this->delta() as $lga){
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '11':
 					foreach($this->ebonyi() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '12':
 					foreach($this->edo() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '13':
 					foreach($this->ekiti() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '14':
 					foreach($this->enugu() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '15':
 					foreach($this->gombe() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '16':
 					foreach($this->imo() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '17':
 					foreach($this->jigawa() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '18':
 					foreach($this->kaduna() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '19':
 					foreach($this->abuja() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '20':
 					foreach($this->kano() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '21':
 					foreach($this->katsina() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '22':
 					foreach($this->kebbi() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
-						$this->kebbi($state);
+						$this->generateKebbiInformation($state);
 					}
 					break;
 				case '23':
 					foreach($this->kogi() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '24':
 					foreach($this->kwara() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '25':
 					foreach($this->lagos() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '26':
 					foreach($this->nasarawa() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '27':
 					foreach($this->niger() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '28':
 					foreach($this->ogun() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '29':
 					foreach($this->ondo() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '30':
 					foreach($this->osun() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '31':
 					foreach($this->oyo() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '32':
 					foreach($this->plateu() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '33':
 					foreach($this->rivers() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '34':
 					foreach($this->sokoto() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '35':
 					foreach($this->taraba() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 				case '36':
 					foreach($this->yobe() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;
 			    case '37':
 					foreach($this->zamfara() as $lga){
-						$local_govt = $state->lgas()->create(['name'=>$lga]);
+						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
 					break;		
@@ -462,7 +475,7 @@ class AddressHandle
     public function kebbi()
     {
     	return [
-    		'Aliero', 'Arewa Dandi', 'Argungu', 'Augie', 'Bagudo', 'Birnin Kebbi', 'Bunza', 'Dandi', 'Danko Wasugu', 'Fakai', 'Gwandu', 'Jeda', 'Kalgo', 'Koko-besse', 'Maiyaama', 'Ngaski', 'Sakaba', 'Shanga', 'Suru', 'Yauri', 'Zuru'
+    		'Aliero', 'Arewa Dandi', 'Argungu', 'Augie', 'Bagudo', 'Birnin Kebbi', 'Bunza', 'Dandi', 'Danko Wasugu', 'Fakai', 'Gwandu', 'Jeda', 'Kalgo', 'Koko Besse', 'Maiyaama', 'Ngaski', 'Sakaba', 'Shanga', 'Suru', 'Yauri', 'Zuru'
         ];
     }
 
