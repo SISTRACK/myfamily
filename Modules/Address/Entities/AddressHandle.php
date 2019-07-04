@@ -4,11 +4,13 @@ namespace Modules\Address\Entities;
 
 use App\States\Kebbi\Kebbi;
 
+use App\States\Sokoto\Sokoto;
+
 use Illuminate\Support\Facades\Hash;
 
 class AddressHandle
 {
-    use Kebbi;
+    use Kebbi, Sokoto;
 
 	public $country;
 
@@ -186,8 +188,8 @@ class AddressHandle
 					foreach($this->kebbi() as $this_lga){
 						$local_govt = $state->lgas()->firstOrCreate(['name'=>$this_lga]);
 						$this->createUser($local_govt);
-						$this->generateKebbiInformation($state);
 					}
+					$this->generateKebbiInformation($state);
 					break;
 				case '23':
 					foreach($this->kogi() as $lga){
@@ -260,6 +262,7 @@ class AddressHandle
 						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
+					$this->generateSokotoInformation($state);
 					break;
 				case '35':
 					foreach($this->taraba() as $lga){
@@ -557,7 +560,7 @@ class AddressHandle
     public function sokoto()
     {
     	return [
-    		'Binji', 'Bodinga', 'Dange/shuni', 'Gada', 'Goronyo', 'Gudu', 'Gwadabawa', 'Illella', 'Kebbe', 'Kware', 'Rabah', 'Sabon -Birni', 'Shagari', 'Silame', 'Sokoto south', 'Sokoto north', 'Tambuwal', 'Tangaza', 'Tureta', 'Wamakko','Wurno', 'Yabo'
+    		'Binji', 'Bodinga', 'Dange/Shuni', 'Gada', 'Goronyo', 'Gudu', 'Gwadabawa', 'Illela', 'Isa', 'Kebbe', 'Kware', 'Rabah', 'Sabon Birni', 'Shagari', 'Silame', 'Sokoto South', 'Sokoto North', 'Tambuwal', 'Tangaza', 'Tureta', 'Wamakko','Wurno', 'Yabo'
         ];
     }
 

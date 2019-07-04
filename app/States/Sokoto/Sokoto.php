@@ -1,19 +1,19 @@
 <?php
-namespace App\States\Kebbi;
+namespace App\States\Sokoto;
 
 use Modules\Address\Entities\State;
 
-trait Kebbi
+trait Sokoto
 
 {
-	use Aliero, ArewaDandi, Argungu, Augie, Bagudo, BirninKebbi, Bunza, Dandi, DankoWasagu, Fakai, Gwandu, Jega,Kalgo, KokoBesse, Mayyama, Ngaski, Sakaba, Shanga, Suru, Yauri, Zuru;
+	use Binji, Bodinga, DangeShuni, Gada, Goronyo, Gudu,Gwadabawa, Illela, Isa, Kebbe, Kware, Rabah, SabonBirni,Shagari, Silame, SokotoNorth, SokotoSouth, Tambuwal, Tangaza, Tureta, Wamakko, Wurno, Yabo;
 
-    public function generateKebbiInformation(State $state)
+    public function generateSokotoInformation($state)
     {
     	foreach ($state->lgas as $lga) {
     		switch ($lga->id) {
-    			case '426':
-    				foreach ($this->aliero() as $data) {
+    			case '679':
+    				foreach ($this->binji() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -21,8 +21,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '427':
-    				foreach ($this->arewaDandi() as $data) {
+    			case '680':
+    				foreach ($this->bodinga() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -30,8 +30,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '428':
-    				foreach ($this->argungu() as $data) {
+    			case '681':
+    				foreach ($this->dangeShuni() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -39,8 +39,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '429':
-    				foreach ($this->augie() as $data) {
+    			case '682':
+    				foreach ($this->gada() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -48,8 +48,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '430':
-    				foreach ($this->bagudo() as $data) {
+    			case '683':
+    				foreach ($this->goronyo() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -57,8 +57,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '431':
-    				foreach ($this->birninKebbi() as $data) {
+    			case '684':
+    				foreach ($this->gudu() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -66,8 +66,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '432':
-    				foreach ($this->bunza() as $data) {
+    			case '685':
+    				foreach ($this->gwadabawa() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -75,8 +75,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '433':
-    				foreach ($this->dandi() as $data) {
+    			case '686':
+    				foreach ($this->illela() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -84,8 +84,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '434':
-    				foreach ($this->dankoWasagu() as $data) {
+    			case '687':
+    				foreach ($this->isa() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -93,8 +93,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '435':
-    				foreach ($this->fakai() as $data) {
+    			case '688':
+    				foreach ($this->kebbe() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -102,8 +102,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '436':
-    				foreach ($this->gwandu() as $data) {
+    			case '689':
+    				foreach ($this->kware() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -111,8 +111,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '437':
-    				foreach ($this->jega() as $data) {
+    			case '690':
+    				foreach ($this->rabah() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -120,8 +120,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '438':
-    				foreach ($this->kalgo() as $data) {
+    			case '691':
+    				foreach ($this->sabonBirni() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -129,8 +129,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '439':
-    				foreach ($this->kokoBesse() as $data) {
+    			case '692':
+    				foreach ($this->shagari() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -138,8 +138,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '440':
-    				foreach ($this->mayyama() as $data) {
+    			case '693':
+    				foreach ($this->silame() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -147,8 +147,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '441':
-    				foreach ($this->ngaski() as $data) {
+    			case '694':
+    				foreach ($this->sokotoSouth() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -156,8 +156,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '442':
-    				foreach ($this->sakaba() as $data) {
+    			case '695':
+    				foreach ($this->sokotoNorth() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -165,8 +165,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '443':
-    				foreach ($this->shanga() as $data) {
+    			case '696':
+    				foreach ($this->tambuwal() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -174,8 +174,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '444':
-    				foreach ($this->suru() as $data) {
+    			case '697':
+    				foreach ($this->tangaza() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -183,8 +183,8 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '445':
-    				foreach ($this->yauri() as $data) {
+    			case '698':
+    				foreach ($this->tureta() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
@@ -192,8 +192,26 @@ trait Kebbi
     					$this->createDistrictUser($district);
     				}
     				break;
-    			case '446':
-    				foreach ($this->zuru() as $data) {
+    			case '699':
+    				foreach ($this->wamakko() as $data) {
+    					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
+    					foreach ($data['towns'] as $town) {
+    						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
+    					}
+    					$this->createDistrictUser($district);
+    				}
+    				break;
+    			case '700':
+    				foreach ($this->wurno() as $data) {
+    					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
+    					foreach ($data['towns'] as $town) {
+    						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
+    					}
+    					$this->createDistrictUser($district);
+    				}
+    				break;
+    			case '701':
+    				foreach ($this->yabo() as $data) {
     					$district = $lga->districts()->firstOrCreate(['name'=>$data['district']]);
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);

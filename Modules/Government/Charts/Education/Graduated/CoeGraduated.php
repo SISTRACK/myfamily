@@ -15,7 +15,7 @@ class CoeGraduated extends BaseChart
    
     public function graduated()
     {
-        $this->labels($this->lga);
+        $this->labels($this->label);
         $this->dataset('College Of Education Report 2019', 'Bar',[
             
             '10',
