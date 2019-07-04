@@ -6,21 +6,23 @@ use App\States\Kebbi\Kebbi;
 
 use App\States\Sokoto\Sokoto;
 
+use App\States\Zamfara\Zamfara;
+
 use Illuminate\Support\Facades\Hash;
+
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class AddressHandle
 {
-    use Kebbi, Sokoto;
+    use Kebbi, Sokoto, Zamfara;
 
 	public $country;
 
 	public function __construct()
 	{
-		
 		$this->country = Country::firstOrCreate(['name'=>'Nigeria']);
 		$this->createStates();
 		$this->createLgas();
-		
 	}
 
     public function createUser($lga)
@@ -281,6 +283,7 @@ class AddressHandle
 						$local_govt = $state->lgas()->firstOrCreate(['name'=>$lga]);
 						$this->createUser($local_govt);
 					}
+					$this->generateZamfaraInformation($state);
 					break;		
 				default:
 					# code...
@@ -580,8 +583,7 @@ class AddressHandle
     public function zamfara()
     {
     	return [
-            'Anka', 'bukkuyum', 'Dungudu', 'Chafe', 'Gummi', 'Gusau', 'Isa', 'Kaura/Namoda' 
-            , 'Maru', 'Shinkafi', 'Talata/Mafara', 'Zumi'
+            'Anka', 'Bakura','Birnin Magaji','Bukkuyum', 'Bungudu', 'Gummi', 'Gusau', 'Kaura Namoda','Maradun', 'Maru', 'Shinkafi', 'Talata Mafara', 'Zurmi'
     	];
     }
 
