@@ -15,7 +15,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     				case '737':
@@ -24,7 +23,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '738':
@@ -33,7 +31,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '739':
@@ -42,7 +39,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '740':
@@ -51,7 +47,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '741':
@@ -60,7 +55,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '742':
@@ -69,7 +63,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '741':
@@ -78,7 +71,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '743':
@@ -87,7 +79,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '744':
@@ -96,7 +87,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '745':
@@ -105,7 +95,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '746':
@@ -114,7 +103,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '747':
@@ -123,7 +111,6 @@ trait Zamfara
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			

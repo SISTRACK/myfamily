@@ -20,4 +20,10 @@ class District extends BaseModel
     {
         return $this->hasOne('Modules\Government\Entities\Government');
     }
+
+    public function admin()
+    {
+        return $this->hasOne('Modules\Admin\Entities\Admin');
+    }
+    
 }

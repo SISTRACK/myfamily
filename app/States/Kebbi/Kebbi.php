@@ -18,7 +18,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '427':
@@ -27,7 +26,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '428':
@@ -36,7 +34,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '429':
@@ -45,7 +42,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '430':
@@ -54,7 +50,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '431':
@@ -63,7 +58,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '432':
@@ -72,7 +66,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '433':
@@ -81,7 +74,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '434':
@@ -90,7 +82,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '435':
@@ -99,7 +90,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '436':
@@ -108,7 +98,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '437':
@@ -117,7 +106,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '438':
@@ -126,7 +114,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '439':
@@ -135,7 +122,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '440':
@@ -144,7 +130,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '441':
@@ -153,7 +138,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '442':
@@ -162,7 +146,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '443':
@@ -171,7 +154,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '444':
@@ -180,7 +162,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '445':
@@ -189,7 +170,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '446':
@@ -198,7 +178,6 @@ trait Kebbi
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			

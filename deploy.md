@@ -78,3 +78,12 @@ Fusioncharts
 Echarts
 Frappe
 C3
+
+////genrate all the admins of the applictaion///////
+php artisan system:admins-generate
+
+///////////generate all the government users///////////////
+php artisan government:users-generate
+
+///////////generate all the system address informations////////
+php artisan system:address-generate

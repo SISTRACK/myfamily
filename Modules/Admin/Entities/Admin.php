@@ -15,7 +15,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name','last_name', 'email', 'password','phone'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -25,5 +25,20 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function state()
+    {
+        return $this->belongsTo('Modules\Address\Entities\State');
+    }
+
+    public function lga()
+    {
+        return $this->belongsTo('Modules\Address\Entities\Lga');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('Modules\Address\Entities\District');
+    }
 }
 

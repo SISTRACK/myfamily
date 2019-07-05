@@ -8,12 +8,13 @@ use Modules\Address\Entities\AddressHandle;
 
 class AddressInformationUpdate extends Command
 {
+    use AddressHandle;
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'address:update';
+    protected $signature = 'system:address-generate';
 
     /**
      * The console command description.
@@ -29,6 +30,7 @@ class AddressInformationUpdate extends Command
      */
     public function __construct()
     {
+
         parent::__construct();
     }
 
@@ -37,8 +39,8 @@ class AddressInformationUpdate extends Command
      *
      * @return mixed
      */
-    public function handle(AddressHandle $address)
+    public function handle()
     {
-        info('Address information was successfully updated');
+        $this->start();
     }
 }

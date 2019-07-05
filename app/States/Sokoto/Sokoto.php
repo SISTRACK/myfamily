@@ -18,7 +18,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '680':
@@ -27,7 +26,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '681':
@@ -36,7 +34,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '682':
@@ -45,7 +42,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '683':
@@ -54,7 +50,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '684':
@@ -63,7 +58,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '685':
@@ -72,7 +66,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '686':
@@ -81,7 +74,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '687':
@@ -90,7 +82,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '688':
@@ -99,7 +90,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '689':
@@ -108,7 +98,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '690':
@@ -117,7 +106,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '691':
@@ -126,7 +114,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '692':
@@ -135,7 +122,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '693':
@@ -144,7 +130,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '694':
@@ -153,7 +138,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '695':
@@ -162,7 +146,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '696':
@@ -171,7 +154,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '697':
@@ -180,7 +162,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '698':
@@ -189,7 +170,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '699':
@@ -198,7 +178,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '700':
@@ -207,7 +186,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			case '701':
@@ -216,7 +194,6 @@ trait Sokoto
     					foreach ($data['towns'] as $town) {
     						$district->towns()->firstOrCreate(['lga_id'=>$lga->id,'name'=>$town]);
     					}
-    					$this->createDistrictUser($district);
     				}
     				break;
     			
