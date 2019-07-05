@@ -24,7 +24,7 @@ class GovernmentController extends Controller
 
     public function index(ResultFusionChart $chart)
     {
-        return view('government::Government.dashboard',['presidentialChart' => $chart->createChart()]);
+        return view('government::Government.dashboard',['presidentialChart' => $chart->createChart(),'user'=>auth()->guard('government')->user()]);
     }
 
     public function verify()

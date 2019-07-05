@@ -11,13 +11,13 @@ class BaseController extends Controller
     
     public function __construct()
     {
-        $this->middleware(['auth','dead']);
+        $this->middleware(['auth:family','dead']);
         
     }
 
     public function profile()
     {
-    	return Auth()->User()->profile;
+    	return auth()->guard('family')->User()->profile;
     }
     
 }
