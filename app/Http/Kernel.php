@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'dead' => \Modules\Death\Http\Middleware\UserDeathMiddleware::class,
         'admin' => \Modules\Admin\Http\Middleware\IsAdminMiddleware::class,
         'user' => \Modules\Family\Http\Middleware\IsUserMiddleware::class,
+        'landOnLga'=> \Modules\Admin\Http\Middleware\LandOnLgaDashboardMiddleware::class,
+        'landOnDistrict'=> \Modules\Admin\Http\Middleware\LandOnDistrictDashboardMiddleware::class,
     ];
 }

@@ -18,4 +18,8 @@ Route::prefix('admin')->group(function () {
   Route::get('/login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
   Route::post('/login', 'Auth\AdminLoginController@loginAdmin')->name('admin.login');
   Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
+
+  Route::get('/{state}/lga/{lga}/dashboard', 'AdminController@lgaDashboard')->name('lga.dashboard')->middleware('landOnLga');
+
+  Route::get('/{state}/{lga}/district/{district}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
 });

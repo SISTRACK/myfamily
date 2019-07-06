@@ -11,6 +11,7 @@ use Modules\Birth\Entities\Birth;
 use Modules\Death\Entities\Death;
 use Modules\Divorce\Entities\Divorce;
 use Modules\Divorce\Entities\ReturnDetail;
+use Modules\Address\Entities\Lga;
 use App\User;
 
 class AdminController extends Controller
@@ -18,7 +19,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:admin',['only' => 'index','edit']);
+        $this->middleware('auth:admin');
     }
     public function verify()
     {
@@ -29,17 +30,33 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function lgaDashboard($state,$lga)
+    {
+        $lga = Lga::find($lga);
+        return view('admin::Admin.lga_dashboard',['lga'=>$lga, 'districts'=>$lga->districts]);
+    }
+
+    public function districtDashboard($id)
+    {
+        return view('admin::Admin.district_dashboard',[
+                'users'=>User::all(),
+                'families'=>Family::all(),
+                'marriages'=>Marriage::all(),
+                'births'=>Birth::all(),
+                'deaths'=>Death::all(),
+                'divorces'=>Divorce::all(),
+                'returns'=>ReturnDetail::all(),
+            ]);
+    }
     public function index()
     {
-        return view('admin::Admin.dashboard',[
-            'users'=>User::all(),
-            'families'=>Family::all(),
-            'marriages'=>Marriage::all(),
-            'births'=>Birth::all(),
-            'deaths'=>Death::all(),
-            'divorces'=>Divorce::all(),
-            'returns'=>ReturnDetail::all(),
-        ]);
+        $admin = auth()->guard('admin')->user();
+        if($admin->role_id == 1){
+            $view = view('admin::Admin.dashboard',['states' => State::all()]);
+        }else{
+            $view = view('admin::Admin.dashboard',['lgas' => $admin->state->lgas]);
+        }
+        return $view; 
     }
 
     /**
