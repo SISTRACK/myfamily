@@ -25,3 +25,17 @@ if (!function_exists('isAdmin')) {
     }
 }
 
+if(!function_exists('governmentChartPage')){
+    function governmentChartPage(){
+        $user = auth()->guard('government')->user();
+        if($user->lga){
+            $status = $user->lga->name." Local Government's";
+        }elseif ($user->state) {
+            $status = $user->state->name." State's";
+        }elseif ($user->district) {
+            $status = $user->district->name." District's";
+        }
+        return $status;
+    }
+}
+

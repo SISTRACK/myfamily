@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Hiv Cases in Sokoto State 2019'}}
+    {{'Reported Hiv Cases in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

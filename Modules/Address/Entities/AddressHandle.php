@@ -18,28 +18,22 @@ trait AddressHandle
 
 	public $country;
 
-	public function start()
+	public function startGeneratingStatesInformation($bar)
 	{
 		$this->country = Country::firstOrCreate(['name'=>'Nigeria']);
-		$this->createStates();
-		$this->createLgas();
+		$this->createStatesInfo($bar);
 	}
 
-    public function createStates()
+    public function createStatesInfo($bar)
 	{
-		foreach ($this->state() as $current_state) {
-			$this->country->states()->firstOrCreate(['name'=>$current_state]);
-		}
-	}
-	public function createLgas()
-	{
-		foreach ($this->country->states as $state) {
+		foreach ($this->states() as $current_state) {
+			$state = $this->country->states()->firstOrCreate(['name'=>$current_state]);
 			switch ($state->id) {
 				case '1':
 					foreach($this->abia() as $lga){
 						$state->lgas()->firstOrCreate(['name'=>$lga]);
-						
 					}
+					
 					break;
 				case '2':
 					foreach($this->adamawa() as $lga){
@@ -229,9 +223,12 @@ trait AddressHandle
 					# code...
 					break;
 			}
+			$bar->advance();
+			echo $bar->setMessage('Nigerian states, local governments, districts, and towns generation is in progress ......');
 		}
 	}
-	public function state()
+	
+	public function states()
 	{
 		return [
             'Abia',

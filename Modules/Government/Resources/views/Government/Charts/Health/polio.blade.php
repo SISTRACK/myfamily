@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Polio Cases in Sokoto State 2019'}}
+    {{'Reported Polio Cases in '}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

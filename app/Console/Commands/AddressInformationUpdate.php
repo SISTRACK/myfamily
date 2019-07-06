@@ -41,6 +41,16 @@ class AddressInformationUpdate extends Command
      */
     public function handle()
     {
-        $this->start();
+        
+        $bar = $this->output->createProgressBar(37);
+
+        $bar->setBarWidth(100);
+
+        $bar->start();
+
+        $this->startGeneratingStatesInformation($bar);
+
+        $bar->finish();
+
     }
 }

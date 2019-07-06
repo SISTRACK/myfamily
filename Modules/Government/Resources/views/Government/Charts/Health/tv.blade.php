@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Tv Cases in Sokoto State 2019'}}
+    {{'Reported Tv Cases in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

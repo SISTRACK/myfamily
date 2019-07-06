@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Deaths in Sokoto State'}}
+    {{'Reported Deaths in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

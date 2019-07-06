@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Divorces in Sokoto State'}}
+    {{'Reported Divorces in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

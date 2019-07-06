@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Marriages Cases in Sokoto State'}}
+    {{'Reported Marriages Cases in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

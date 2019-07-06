@@ -1,7 +1,17 @@
 @extends('layouts.master')
 
 @section('side-bar')
-<li><a href="{{route('population','sokoto')}}">Population</a></li>
+<?php 
+$user = auth()->guard('government')->user();
+if($user->lga){
+    $status = $user->lga->name.'-local-government';
+}elseif ($user->state) {
+    $status = $user->state->name.'-state';
+}elseif ($user->district) {
+    $status = $user->district->name.'-district';
+}
+?>
+<li><a href="{{route('population',strtolower($status))}}">Population</a></li>
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Social Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">

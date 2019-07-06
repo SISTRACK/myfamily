@@ -1,7 +1,7 @@
 @extends('government::layouts.master')
 
 @section('page-title')
-    {{'Reported Diabetes Cases in Sokoto State'}}
+    {{'Reported Diabetes Cases in'}} {{governmentChartPage()}}
 @endsection
 
 @section('page-content')

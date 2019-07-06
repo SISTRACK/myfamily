@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 
 use Modules\Address\Entities\State;
 
+use Illuminate\Support\Facades\Hash;
+
 class GovernmentUserCommand extends Command
 {
     /**
@@ -36,8 +38,8 @@ class GovernmentUserCommand extends Command
         $object->government()->firstOrCreate([
             'first_name'=> 'Admin',
             'last_name' => 'Admin',
-            'email' => strtolower(str_replace(['/','-',' '],'',$object->name.$type)).'@family.com',
-            'password' =>strtolower(str_replace(['/','-',' '],'',$object->name.$type)),
+            'email' => strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type)).'@family.com',
+            'password' =>Hash::make(strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type))),
             'role_id' => $role,
             'phone' => '00000000000'
         ]);
@@ -50,6 +52,8 @@ class GovernmentUserCommand extends Command
     public function handle()
     {
         $bar = $this->output->createProgressBar(37);
+
+        $bar->setBarWidth(100);
 
         $bar->start();
 

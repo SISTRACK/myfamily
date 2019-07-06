@@ -36,10 +36,10 @@ Route::prefix('government')->group(function() {
 
     //social report route
 
-    Route::get('report/social/marriage', 'ChartController@marriage')->name('report.marriage');
-    Route::get('report/social/accident', 'ChartController@accident')->name('report.accident');
-    Route::get('report/social/death', 'ChartController@death')->name('report.death');
+    Route::get('report/social/marriages', 'ChartController@marriage')->name('report.marriage');
+    Route::get('report/social/accidents', 'ChartController@accident')->name('report.accident');
+    Route::get('report/social/deaths', 'ChartController@death')->name('report.death');
     Route::get('report/social/divorce', 'ChartController@divorce')->name('report.divorce');
-    Route::get('report/social/birth', 'ChartController@birth')->name('report.birth');
+    Route::get('report/social/births', 'ChartController@birth')->name('report.birth');
 
 });

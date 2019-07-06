@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Illuminate\Support\Facades\Hash;
+
 use Modules\Address\Entities\State;
 
 class SystemAdminCommand extends Command
@@ -36,8 +38,8 @@ class SystemAdminCommand extends Command
         $object->admin()->firstOrCreate([
             'first_name'=> 'Admin',
             'last_name' => 'Admin',
-            'email' => strtolower(str_replace(['/','-',' '],'',$object->name.$type)).'@family.com',
-            'password' =>strtolower(str_replace(['/','-',' '],'',$object->name.$type)),
+            'email' => strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type)).'@family.com',
+            'password' =>Hash::make(strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type))),
             'role_id' => $role,
             'phone' => '00000000000'
         ]);
@@ -50,6 +52,8 @@ class SystemAdminCommand extends Command
     public function handle()
     {
         $bar = $this->output->createProgressBar(37);
+        
+        $bar->setBarWidth(100);
 
         $bar->start();
 
