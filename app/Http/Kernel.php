@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'landOnLga'=> \Modules\Admin\Http\Middleware\LandOnLgaDashboardMiddleware::class,
         'landOnDistrict'=> \Modules\Admin\Http\Middleware\LandOnDistrictDashboardMiddleware::class,
         'landOnState'=> \Modules\Admin\Http\Middleware\LandOnStateDashboardMiddleware::class,
+        'landOnGeneral'=> \Modules\Admin\Http\Middleware\LandOnGeneralDashboardMiddleware::class,
     ];
 }

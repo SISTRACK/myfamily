@@ -65,11 +65,11 @@ class GovernmentUserCommand extends Command
 
             foreach ($state->lgas as $lga) {
 
-                $this->createUser($lga,2,'lga');
+                $this->createUser($lga,3,'lga');
 
                 foreach ($lga->districts as $district) {
 
-                   $this->createUser($district,2,'district');
+                   $this->createUser($district,4,'district');
 
                 }
 

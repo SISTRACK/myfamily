@@ -34,7 +34,7 @@ class LandOnDistrictDashboardMiddleware
             }
         }
         
-        if($admin->district_id == $request->route('district') || in_array($request->route('district'), $accessibleDistricts)){
+        if($admin->role_id == 1 || $admin->district_id == $request->route('district') || in_array($request->route('district'), $accessibleDistricts)){
             return $next($request);
         }
         session()->flash('error',['Sorry you dont have access to the requested District']);

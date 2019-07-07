@@ -61,15 +61,15 @@ class SystemAdminCommand extends Command
 
             $bar->advance();
 
-            $this->createUser($state,1,'state');
+            $this->createUser($state,2,'state');
 
             foreach ($state->lgas as $lga) {
 
-                $this->createUser($lga,1,'lga');
+                $this->createUser($lga,3,'lga');
 
                 foreach ($lga->districts as $district) {
 
-                   $this->createUser($district,1,'district');
+                   $this->createUser($district,4,'district');
 
                 }
 

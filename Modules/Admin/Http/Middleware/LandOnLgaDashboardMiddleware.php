@@ -26,7 +26,7 @@ class LandOnLgaDashboardMiddleware
             }
         }
         
-        if($admin->lga_id == $request->route('lga') || in_array($request->route('lga'), $accessibleLga)){
+        if($admin->role_id == 1 || $admin->lga_id == $request->route('lga') || in_array($request->route('lga'), $accessibleLga)){
             return $next($request);
         }
         session()->flash('error',['Sorry you dont have access to the requested Local Government']);
