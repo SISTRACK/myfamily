@@ -21,5 +21,8 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/lga/{lga}/dashboard', 'AdminController@lgaDashboard')->name('lga.dashboard')->middleware('landOnLga');
 
+  Route::get('/{state}/{state_id}/dashboard', 'AdminController@stateDashboard')->name('state.dashboard')->middleware('landOnState');
+
   Route::get('/{state}/{lga}/district/{district}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
+
 });

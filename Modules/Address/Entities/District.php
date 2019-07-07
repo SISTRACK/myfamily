@@ -4,8 +4,12 @@ namespace Modules\Address\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
+use Modules\Address\Services\DistrictInforUpdate;
+
 class District extends BaseModel
 {
+	use DistrictInforUpdate;
+	
 	public function towns()
 	{
 		return $this->hasMany(Town::class);

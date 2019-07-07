@@ -1,5 +1,6 @@
 <?php
 use App\User;
+use Modules\Address\Entities\State;
 use App\Comment;
 use App\Events\NewComment;
 use \Stripe\Stripe;
@@ -18,6 +19,9 @@ use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test-chain', function(){
+	dd(State::find(37)->districts->towns);
+});
 Route::group(['middleware'=>'guest'], function(){
    Route::get('/', function () {
      return view('welcome');

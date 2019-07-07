@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 @section('page-title')
-    {{' District Dashboard'}}
+    {{$district->name.' District Dashboard'}}
 @endsection
 @section('page-content')
     @include('Include.Pages.dashboard')    

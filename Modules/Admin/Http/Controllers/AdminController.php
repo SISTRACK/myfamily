@@ -12,6 +12,8 @@ use Modules\Death\Entities\Death;
 use Modules\Divorce\Entities\Divorce;
 use Modules\Divorce\Entities\ReturnDetail;
 use Modules\Address\Entities\Lga;
+use Modules\Address\Entities\State;
+use Modules\Address\Entities\District;
 use App\User;
 
 class AdminController extends Controller
@@ -36,26 +38,33 @@ class AdminController extends Controller
         return view('admin::Admin.lga_dashboard',['lga'=>$lga, 'districts'=>$lga->districts]);
     }
 
-    public function districtDashboard($id)
+    public function stateDashboard($state,$state_id)
     {
-        return view('admin::Admin.district_dashboard',[
-                'users'=>User::all(),
-                'families'=>Family::all(),
-                'marriages'=>Marriage::all(),
-                'births'=>Birth::all(),
-                'deaths'=>Death::all(),
-                'divorces'=>Divorce::all(),
-                'returns'=>ReturnDetail::all(),
-            ]);
+        $state = State::find($state_id);
+        return view('admin::Admin.state_dashboard',['state'=>$state]);
     }
+
+    public function districtDashboard($state,$lga,$id)
+    {
+        return view('admin::Admin.district_dashboard',['district'=>District::find($id)]);
+    }
+    
     public function index()
     {
         $admin = auth()->guard('admin')->user();
-        if($admin->role_id == 1){
-            $view = view('admin::Admin.dashboard',['states' => State::all()]);
+        if($admin->state){
+            $view = redirect()->route('state.dashboard',[str_replace(' ','-',strtolower($admin->state->name)),$admin->state->id]);
+        }elseif ($admin->lga) {
+            $view = redirect()->route('lga.dashboard',[strtolower(str_replace(' ','-',$admin->lga->state->name)),$admin->lga->id]);
+        }elseif ($admin->district) {
+            $view = redirect()->route('district.dashboard',[
+                strtolower(str_replace(' ','-',$admin->district->lga->state->name)),
+                strtolower(str_replace(' ','-',$admin->district->lga->name)),$district->id
+                ]); 
         }else{
-            $view = view('admin::Admin.dashboard',['lgas' => $admin->state->lgas]);
+            $view = view('admin::Admin.dashboard',['districts' => State::all()]);
         }
+
         return $view; 
     }
 

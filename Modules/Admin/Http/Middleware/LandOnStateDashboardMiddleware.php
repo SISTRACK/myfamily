@@ -5,7 +5,7 @@ namespace Modules\Admin\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class LandOnLgaDashboardMiddleware
+class LandOnStateDashboardMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,21 +16,19 @@ class LandOnLgaDashboardMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $accessibleLga = [];
+        $accessibleStates = [];
 
         $admin = auth()->guard('admin')->user();
 
         if($admin->state){
-            foreach ($admin->state->lgas as $lga) {
-                $accessibleLga[] = $lga->id;
-            }
+            $accessibleStates[] = $admin->state->id;
         }
         
-        if($admin->lga_id == $request->route('lga') || in_array($request->route('lga'), $accessibleLga)){
+        if($admin->role_id == 1 || in_array($request->route('state_id'), $accessibleStates)){
             return $next($request);
         }
-        session()->flash('error',['Sorry you dont have access to the requested Local Government']);
+        session()->flash('error',['Sorry you dont have access to the requested State']);
         return back();
-        
+
     }
 }
