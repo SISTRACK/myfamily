@@ -8,7 +8,7 @@
 	                      <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                    </div>
 	                    <div class="modal-body">
-	                        <table>
+	                        <table class="table">
 	                            <thead>
 	                                <tr>
 	                                    <th>{{'Family Name'}}</th>
@@ -17,6 +17,7 @@
 	                                    <th>{{'Location'}}</th>
 	                                    <th>{{'Head E-mail'}}</th>
 	                                    <th>{{'Head Phone'}}</th>
+	                                    <th></th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
@@ -25,10 +26,14 @@
 	                                    <tr>
 	                                        <td>{{$family->name}}</td>
 	                                        <td>{{$family->title}}</td>
-	                                        <td>{{$family->family->tribe->name}}</td>
+	                                        <td>{{$family->tribe->name}}</td>
 	                                        <td>{{$family->location->town->name}}</td>
 	                                        <td>{{$family->admin->profile->user->email}}</td>
 	                                        <td>{{$family->admin->profile->user->phone}}</td>
+	                                        <td>
+                                                <a href="{{route('district.family.edit',[$district->lga->state->name,$district->lga->name,$district->name,$family->id])}}" class="btn btn-warning">Edit</a>
+                                                <a href="" class="btn btn-danger">Delete</a>
+	                                        </td>
 	                                    </tr>
 	                                   
 	                                @endforeach

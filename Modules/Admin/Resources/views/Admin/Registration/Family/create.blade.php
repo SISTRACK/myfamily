@@ -8,7 +8,7 @@
  <div class="row" id="family">
     <div class="col-sm-12">
         <div class="card-box">
-            <form id="wizard-validation-form" action="{{route('district.family.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" method="POST">
+            <form id="wizard-validation-form" action="{{route('district.family.register',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" method="POST">
                 @csrf
                 <div>
                     <h3>Family Location</h3>

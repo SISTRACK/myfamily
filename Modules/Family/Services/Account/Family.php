@@ -31,19 +31,19 @@ trait Family
 	}
 
     private function newFamily(Location $location){
-        if(auth()->gaurd('family')->user()){
+        if(auth()->guard('family')->user()){
             $this->family = $location->families()->firstOrCreate([
             'name'=>$this->data['family'],
             'title' => $this->data['title'],
             'tribe_id'=>$this->data['tribe'],
             'user_id'=>Auth()->User()->id,
             ]);
-        }esle{
+        }else{
             $this->family = $location->families()->firstOrCreate([
             'name'=>$this->data['family'],
             'title' => $this->data['title'],
             'tribe_id'=>$this->data['tribe'],
-            'admin_id'=>auth()->gaurd('family')->user()->id,
+            'admin_id'=>admin()->id,
             ]);
         }
         

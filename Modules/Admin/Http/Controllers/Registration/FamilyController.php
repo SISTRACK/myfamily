@@ -7,6 +7,9 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Address\Entities\District;
 use Modules\Family\Entities\Tribe;
+use Modules\Family\Http\Requests\FamilyFormRequest;
+use Modules\Family\Services\Account\NewFamily;
+use Modules\Family\Events\NewFamilyEvent;
 
 class FamilyController extends Controller
 {
@@ -33,9 +36,15 @@ class FamilyController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function registerFamily(FamilyFormRequest $request)
     {
-        //
+        if($family = new NewFamily($request->all())){
+            if(session('error') == null){
+                //broadcast(new NewFamilyEvent($family->family))->toOthers();
+                session()->flash('message','Family account crated successfully');
+            }
+            return redirect('/admin');
+        }
     }
 
     /**

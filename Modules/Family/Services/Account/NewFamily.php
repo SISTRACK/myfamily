@@ -23,7 +23,12 @@ class NewFamily
         $this->data = $data;
         $this->location();
         $this->data = $this->prepareData($data);
-        $this->registerer = Auth()->User();
+        if(auth()->guard('family')->user()){
+            $this->registerer = Auth()->User();
+        }else{
+            $this->registerer = admin();
+        }
+        
         $this->validateFamilyRequest(); 
         $this->error == null ? $this->registerFamily() : session()->flash('error',$this->error);
     }
@@ -31,6 +36,9 @@ class NewFamily
     private function prepareData($data)
     {
         $data['location'] = $this->location;
+        if(!is_null(admin())){
+            $data['mdate'] = null;
+        }
         return $data;
     }
 

@@ -16,7 +16,7 @@ class FamilyFormRequest extends FormRequest
         $rules = [
             'family' => 'required|string|min:3|max:25|',
             'tribe' => 'required|integer',
-            'town' => 'required|string|min:5|max:255',
+            'town' => 'required',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'lga' => 'required|string|'
@@ -32,7 +32,7 @@ class FamilyFormRequest extends FormRequest
             $rules['name'] = 'required|string|min:2|max:255';
             $rules['sname'] = 'required|string|min:2|max:255';
             $rules['date_of_birth'] = 'string|min:3|max:255';
-            $rules['password'] = 'required|file|mimes:pdf';
+            $rules['password'] = 'required|min:6';
         }
 
         return $rules;
