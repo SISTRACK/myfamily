@@ -31,13 +31,22 @@ trait Family
 	}
 
     private function newFamily(Location $location){
-        
-        $this->family = $location->families()->firstOrCreate([
+        if(auth()->gaurd('family')->user()){
+            $this->family = $location->families()->firstOrCreate([
             'name'=>$this->data['family'],
             'title' => $this->data['title'],
             'tribe_id'=>$this->data['tribe'],
             'user_id'=>Auth()->User()->id,
-        ]);
+            ]);
+        }esle{
+            $this->family = $location->families()->firstOrCreate([
+            'name'=>$this->data['family'],
+            'title' => $this->data['title'],
+            'tribe_id'=>$this->data['tribe'],
+            'admin_id'=>auth()->gaurd('family')->user()->id,
+            ]);
+        }
+        
 
     }
 

@@ -25,4 +25,8 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/{lga}/district/{district}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
 
+  Route::get('/{state}/{lga}/{district}/{id}/family/create', 'Registration\FamilyController@createFamily')->name('district.family.create')->middleware('landOnDistrict');
+
+  Route::get('/{state}/{lga}/{district}/{id}/family/register', 'Registration\FamilyController@registerFamily')->name('district.family.register')->middleware('landOnDistrict');
+
 });
