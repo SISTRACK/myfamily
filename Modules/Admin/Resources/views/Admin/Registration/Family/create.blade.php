@@ -53,7 +53,7 @@
                                         <select name="town" class="form-control">
                                         	<option value="">Select Location</option>
                                         	@foreach($district->towns as $town)
-                                                <option value="{{$town->id}}">{{$town->name}}</option>
+                                                <option value="{{$town->name}}">{{$town->name}}</option>
                                         	@endforeach
                                         </select>
                                     </div>

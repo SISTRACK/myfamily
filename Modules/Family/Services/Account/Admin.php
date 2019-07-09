@@ -22,7 +22,7 @@ trait Admin
 
 	public function newAdmin(Profile $profile, Family $family){
 
-    	$this->admin = $family->admin()->create(['profile_id'=>$this->profile->id]);
+    	$this->admin = $family->familyAdmin()->create(['profile_id'=>$this->profile->id]);
         $profile->update(['family_id'=>$family->id]);
 
     }
@@ -57,7 +57,7 @@ trait Admin
     {
  
         if(session('register') == null){
-	        if(empty($this->data['date'])){
+	        if(!admin() && empty($this->data['date'])){
 	            $this->data['date'] = $this->data['mdate'];
 	        }
 	    	$this->profile = $user->profile()->create([
