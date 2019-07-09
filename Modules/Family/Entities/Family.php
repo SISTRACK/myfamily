@@ -10,9 +10,14 @@ class Family extends BaseModel
 {
     use RelatedFamilies;
     
-    public function admin()
+    public function familyAdmin()
     {
     	return $this->hasOne('Modules\Admin\Entities\FamilyAdmin');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo('Modules\Admin\Entities\Admin');
     }
 
     public function events()

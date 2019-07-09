@@ -8,7 +8,14 @@
  <div class="row" id="family">
     <div class="col-sm-12">
         <div class="card-box">
-            <form id="wizard-validation-form" action="{{route('district.family.register',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" method="POST">
+            <form id="wizard-validation-form" action="{{route('district.family.update',
+            [
+	            $family->location->town->lga->state->name,
+	            $family->location->town->lga->name,
+	            $family->location->town->district->name, 
+	            $family->id
+            ]
+            )}}" method="POST">
                 @csrf
                 <div>
                     <h3>Family Location</h3>
@@ -22,13 +29,14 @@
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="Country">Country</label>
                                     <div class="col-lg-10">
-                                        <input placeholder="Country" class="form-control" id="country" value="{{$district->lga->state->country->name}}" name="country" type="text">
+                                    	<input type="hidden" name="update" value="update">
+                                        <input placeholder="Country" class="form-control" id="country" value="{{$family->location->town->lga->state->country->name}}" name="country" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="state">State</label>
                                     <div class="col-lg-10">
-                                        <input placeholder="State" id="password2" value="{{$district->lga->state->name}}" name="state" type="text" class="required form-control">
+                                        <input placeholder="State" id="password2" value="{{$family->location->town->lga->state->name}}" name="state" type="text" class="required form-control">
 
                                     </div>
                                 </div>
@@ -36,14 +44,14 @@
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="lga">Local Government</label>
                                     <div class="col-lg-10">
-                                        <input id="confirm2" placeholder="Local Government" name="lga" value="{{$district->lga->name}}" type="text" class="required form-control">
+                                        <input id="confirm2" placeholder="Local Government" name="lga" value="{{$family->location->town->lga->name}}" type="text" class="required form-control">
                                     </div>
                                 </div>
                                 
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="lga">District</label>
                                     <div class="col-lg-10">
-                                        <input id="confirm2" placeholder="District" name="district" value="{{$district->name}}" type="text" class="required form-control">
+                                        <input id="confirm2" placeholder="District" name="district" value="{{$family->location->town->district->name}}" type="text" class="required form-control">
                                     </div>
                                 </div>
 
@@ -51,8 +59,8 @@
                                     <label class="col-lg-2 control-label " for="location">Town / Village / Street</label>
                                     <div class="col-lg-10">
                                         <select name="town" class="form-control">
-                                        	<option value="">Select Location</option>
-                                        	@foreach($district->towns as $town)
+                                        	<option value="{{$family->location->town->id}}">{{$family->location->town->name}}</option>
+                                        	@foreach($family->location->town->district->towns as $town)
                                                 <option value="{{$town->id}}">{{$town->name}}</option>
                                         	@endforeach
                                         </select>
@@ -111,42 +119,42 @@
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="name">First Name</label>
                                         <div class="col-lg-10">
-                                            <input placeholder="Root First Name" class="form-control" value="{{ $family->admin->profile->user->first_name }}" id="name" name="name" type="text">
+                                            <input placeholder="Root First Name" class="form-control" value="{{ $family->familyAdmin->profile->user->first_name }}" id="name" name="name" type="text">
                                         </div>
                                     </div>
 
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="sname">Last Name</label>
                                         <div class="col-lg-10">
-                                            <input placeholder="Root Last Name" class="form-control" value="{{ $family->admin->profile->user->last_name }}" id="sname" name="sname" type="text">
+                                            <input placeholder="Root Last Name" class="form-control" value="{{ $family->familyAdmin->profile->user->last_name }}" id="sname" name="sname" type="text">
                                         </div>
                                     </div>
 
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="date">Date Of Birth</label>
                                         <div class="col-lg-10">
-                                            <input class="form-control" value="{{ date('M/D/Y',$family->admin->profile->date_of_birth) }}" id="date" name="date" type="date">
+                                            <input class="form-control" value="{{ date('M/D/Y',$family->familyAdmin->profile->date_of_birth) }}" id="date" name="date" type="date">
                                         </div>
                                     </div>
 
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="email">Email</label>
                                         <div class="col-lg-10">
-                                            <input placeholder="Root E-mail Address" class="form-control" value="{{ $family->admin->profile->user->email }}" id="email" name="email" type="text">
+                                            <input placeholder="Root E-mail Address" class="form-control" value="{{ $family->familyAdmin->profile->user->email }}" id="email" name="email" type="text">
                                         </div>
                                     </div>
 
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="password">Password</label>
                                         <div class="col-lg-10">
-                                            <input id="password" name="password" type="password" class="required form-control">
+                                            <input id="password" name="password" type="password" class=" form-control">
                                         </div>
                                     </div>
 
                                     <div class="form-group clearfix">
                                         <label class="col-lg-2 control-label " for="confirm2">Confirm Password</label>
                                         <div class="col-lg-10">
-                                            <input id="confirm2" name="password_confirmation" type="password" class="required form-control">
+                                            <input id="confirm2" name="password_confirmation" type="password" class="form-control">
                                         </div>
                                     </div>
                                 </div>  
@@ -165,7 +173,7 @@
                                 For information refer to our manual.
                                 </label>
                             </div>
-                            <input type="submit" class="btb btn-primary" value="Create Account">
+                            <input type="submit" class="btb btn-primary" value="Save Changes">
                         </div>
 
                     </section>

@@ -29,6 +29,10 @@ Route::prefix('admin')->group(function () {
 
   Route::post('/{state}/{lga}/{district}/{id}/family/register', 'Registration\FamilyController@registerFamily')->name('district.family.register')->middleware('landOnDistrict');
 
-  Route::post('/{state}/{lga}/{district}/family/{id}/edit', 'Registration\FamilyController@editFamily')->name('district.family.edit')->middleware('landOnDistrict');
+  Route::post('/{state}/{lga}/{district}/family/{id}/update-changes', 'Registration\FamilyController@updateFamily')->name('district.family.update')->middleware('landOnDistrict');
+
+  Route::get('/{state}/{lga}/{district}/family/{id}/edit', 'Registration\FamilyController@editFamily')->name('district.family.edit')->middleware('landOnDistrict');
+
+  Route::get('/{state}/{lga}/{district}/family/{id}/delete', 'Registration\FamilyController@destroyFamily')->name('district.family.delete')->middleware('landOnDistrict');
 
 });

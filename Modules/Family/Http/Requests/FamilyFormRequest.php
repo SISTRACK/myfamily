@@ -3,6 +3,7 @@
 namespace Modules\Family\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class FamilyFormRequest extends FormRequest
 {
@@ -33,6 +34,10 @@ class FamilyFormRequest extends FormRequest
             $rules['sname'] = 'required|string|min:2|max:255';
             $rules['date_of_birth'] = 'string|min:3|max:255';
             $rules['password'] = 'required|min:6';
+        }
+        if ($this->has('update')) {
+            $rules['password'] = '';
+            $rules['email'] = 'required|email';
         }
 
         return $rules;

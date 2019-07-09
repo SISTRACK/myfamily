@@ -28,11 +28,11 @@
 	                                        <td>{{$family->title}}</td>
 	                                        <td>{{$family->tribe->name}}</td>
 	                                        <td>{{$family->location->town->name}}</td>
-	                                        <td>{{$family->admin->profile->user->email}}</td>
-	                                        <td>{{$family->admin->profile->user->phone}}</td>
+	                                        <td>{{$family->familyAdmin->profile->user->email}}</td>
+	                                        <td>{{$family->familyAdmin->profile->user->phone}}</td>
 	                                        <td>
                                                 <a href="{{route('district.family.edit',[$district->lga->state->name,$district->lga->name,$district->name,$family->id])}}" class="btn btn-warning">Edit</a>
-                                                <a href="" class="btn btn-danger">Delete</a>
+                                                <a href="{{route('district.family.delete',[$district->lga->state->name,$district->lga->name,$district->name,$family->id])}}" class="btn btn-danger">Delete</a>
 	                                        </td>
 	                                    </tr>
 	                                   
