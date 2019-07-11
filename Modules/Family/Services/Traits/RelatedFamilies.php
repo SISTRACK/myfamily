@@ -36,7 +36,7 @@ trait RelatedFamilies
     public function getHusbandFamilies()
     {
         $families = [];
-        foreach($this->admin->profile->husband->father->births as $birth){
+        foreach($this->familyAdmin->profile->husband->father->births as $birth){
             if($birth->child->profile->gender->name == 'Female' && $birth->child->profile->wife != null){
 
                 foreach ($birth->child->profile->wife->marriages as $marriage) {
@@ -52,8 +52,8 @@ trait RelatedFamilies
     public function hasMarriedFemaleChild()
     {
         $flag = false;
-        if($this->admin->profile->husband != null && $this->admin->profile->husband->father != null){
-            foreach($this->admin->profile->husband->father->births as $birth){
+        if($this->familyAdmin->profile->husband != null && $this->familyAdmin->profile->husband->father != null){
+            foreach($this->familyAdmin->profile->husband->father->births as $birth){
                 if($birth->child->profile->wife != null){
                     $flag = true;
                 }
@@ -66,8 +66,8 @@ trait RelatedFamilies
     {
 
         $flag = false;
-        if($this->admin->profile->husband != null && $this->admin->profile->husband->father != null){
-            foreach($this->admin->profile->husband->father->births as $birth){
+        if($this->familyAdmin->profile->husband != null && $this->familyAdmin->profile->husband->father != null){
+            foreach($this->familyAdmin->profile->husband->father->births as $birth){
                 if($birth->child->profile->husband != null){
                     $flag = true;
                 }

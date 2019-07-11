@@ -22,11 +22,11 @@ class birthCore
 	{
 		if(session('family')){
             $this->family = Family::find(session('family')['family']);
-            $admin = $this->family->admin;
+            $admin = $this->family->familyAdmin;
             $this->father = [
-                'name'=>$this->family->admin->profile->user->first_name,
-                'surname'=>$this->family->admin->profile->user->last_name,
-                'user_id' => $this->family->admin->profile->user->id
+                'name'=>$this->family->familyAdmin->profile->user->first_name,
+                'surname'=>$this->family->familyAdmin->profile->user->last_name,
+                'user_id' => $this->family->familyAdmin->profile->user->id
             ];
             foreach($admin->profile->husband->marriages as $marriage){
             	$mother = $marriage->wife->profile->user;

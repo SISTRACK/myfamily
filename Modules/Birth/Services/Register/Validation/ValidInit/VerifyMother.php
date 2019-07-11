@@ -36,7 +36,7 @@ trait VerifyMother
     }
     private function wifeStatus()
     {
-    	foreach(Family::find(session('family')['family'])->admin->profile->husband->marriages as $marriage){
+    	foreach(Family::find(session('family')['family'])->familyAdmin->profile->husband->marriages as $marriage){
             if($marriage->is_active == 1 && $marriage->wife->status_id == $this->data['mother_status']){
             	$this->status = $marriage->wife->status;
             }

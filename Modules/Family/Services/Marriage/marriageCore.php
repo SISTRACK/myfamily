@@ -30,13 +30,13 @@ class marriageCore
 	{
 		if(session('register')){
             $this->family = Family::find(session('register')['family']);
-            $admin = $this->family->admin;
+            $admin = $this->family->familyAdmin;
             switch (session('register')['status']) {
                 case 'father':
                     $this->husbands = [
-                        'name'=>$this->family->admin->profile->user->first_name,
-                        'surname'=>$this->family->admin->profile->user->last_name,
-                        'user_id' => $this->family->admin->profile->user->id
+                        'name'=>$this->family->familyAdmin->profile->user->first_name,
+                        'surname'=>$this->family->familyAdmin->profile->user->last_name,
+                        'user_id' => $this->family->familyAdmin->profile->user->id
                     ];
                         //create array that will hold valid wife statuses
 			            $valid_status = [];
