@@ -33,14 +33,17 @@
 
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-	    <div class="card-box widget-box-one">
-	        <i class="mdi mdi-account-convert widget-one-icon"></i>
-	        <div class="wigdet-one-content">
-	            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User Today">Marriages</p>
-	            <h2>{{count($district->marriages())}}<small><i class="mdi mdi-arrow-down text-danger"></i></small></h2>
-	            <p class="text-muted m-0"><b>Last:</b> 1250</p>
-	        </div>
-	    </div>
+		<a href="#"  data-toggle="modal" data-target="#marriages">
+		    <div class="card-box widget-box-one">
+		        <i class="mdi mdi-account-convert widget-one-icon"></i>
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User Today">Marriages</p>
+		            <h2>{{count($district->marriages())}}<small><i class="mdi mdi-arrow-down text-danger"></i></small></h2>
+		            <p class="text-muted m-0"><b>Last:</b> 1250</p>
+		        </div>
+		    </div>
+		    @include('admin::Admin.Modals.marriages')
+	    </a>
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">

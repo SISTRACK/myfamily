@@ -3,6 +3,7 @@
 namespace Modules\Family\Services\Traits;
 
 use Modules\Family\Entities\SubFamily;
+use Modules\Marriage\Entities\Status;
 
 trait RelatedFamilies
 {
@@ -74,5 +75,33 @@ trait RelatedFamilies
         }
         
         return $flag;
+    }
+    public function familyWivesStatusRemain()
+    {
+        $valid_statuses = [];
+        $invalid_statuses = [];
+        $available_statuses = [];
+        //if admin has married
+        if($this->familyAdmin->profile->husband){
+            //get all his valid wife status and put in the array valid status
+            foreach ($this->familyAdmin->profile->husband->marriages as $marriage) {
+                if($marriage->is_active == 1){
+                    $valid_statuses[] = $marriage->wife->status->id;
+                }
+            }
+        }
+        
+        foreach(Status::all() as $status){
+            if(!in_array($status->id,$valid_statuses)){
+                $invalid_statuses[] = $status->id;
+            }
+        }
+       
+        foreach($invalid_statuses as $status_id){
+           
+            $available_statuses[] = Status::find($status_id);
+       
+        }
+        return $available_statuses;
     }
 }

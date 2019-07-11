@@ -17,8 +17,8 @@ class MarriageFormRequest extends FormRequest
         $rules = [
             'husband_first_name' => 'required|string|min:3|max:25|',
             'husband_last_name' => 'required|string|min:3|max:25|',
-            'wife_first_name' => 'required|string|min:4|max:15',
-            'wife_last_name' => 'required|string|min:5|max:255',
+            'wife_first_name' => 'required|string|min:3|max:15',
+            'wife_last_name' => 'required|string|min:3|max:255',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'town' => 'required|string|',
@@ -42,6 +42,11 @@ class MarriageFormRequest extends FormRequest
             $rules['wife_family'] = '';
         }
 
+        if ($this->has('update')) {
+            $rules['marriage_date'] = '';
+            $rules['wife_date'] = '';
+        }
+        
         return $rules;
         
     }

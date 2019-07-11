@@ -50,7 +50,6 @@ trait Admin
         		'email'=>$this->data['new_husband_email']
         	]);
         }
-        
     }
    
     public function newProfile(User $user)

@@ -19,8 +19,8 @@ class LandOnDistrictDashboardMiddleware
         $accessibleDistricts = [];
 
         $admin = auth()->guard('admin')->user();
-
-        if($admin->state){
+        
+        if($admin->role_id > 1 && $admin->state){
             foreach ($admin->state->lgas as $lga) {
                 foreach ($lga->districts as $district) {
                     $accessibleDistricts[] = $district->id;

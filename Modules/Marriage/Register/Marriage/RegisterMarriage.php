@@ -1,7 +1,6 @@
 <?php
 namespace Modules\Marriage\Register\Marriage;
 
-use Modules\Marriage\Register\Marriage\MarriageRegistered;
 
 use Modules\Family\Entities\Family;
 
@@ -10,6 +9,9 @@ use Illuminate\Http\Request;
 use Modules\Marriage\Events\NewMarriageEvent;
 
 use Modules\Marriage\Http\Requests\MarriageFormRequest;
+
+use Modules\Marriage\Register\Marriage\MarriageRegistered;
+
 
 use Modules\Family\Services\Marriage\marriageCore;
 

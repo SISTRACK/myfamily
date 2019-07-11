@@ -8,6 +8,9 @@
 	                      <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                    </div>
 	                    <div class="modal-body">
+	                    	@if(empty($district->families()))
+                                <h3>{{'Families record not found in '.$district->name.' District'}}</h3>
+	                        @else
 	                        <table class="table">
 	                            <thead>
 	                                <tr>
@@ -39,6 +42,7 @@
 	                                @endforeach
 	                            </tbody>
 	                        </table>
+	                        @endif
 	                    </div>
 	                    <div class="modal-footer">
 	                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

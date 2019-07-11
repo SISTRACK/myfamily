@@ -20,7 +20,7 @@ class LandOnLgaDashboardMiddleware
 
         $admin = auth()->guard('admin')->user();
 
-        if($admin->state){
+        if($admin->role_id > 1 && $admin->state){
             foreach ($admin->state->lgas as $lga) {
                 $accessibleLga[] = $lga->id;
             }

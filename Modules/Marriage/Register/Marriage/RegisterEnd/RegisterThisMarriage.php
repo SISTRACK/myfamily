@@ -34,6 +34,8 @@ trait RegisterThisMarriage
     		case 'father':
 
     			//data was already prepared
+                $family = Family::find(session('register')['family']);
+                $this->family = $family;
     		    $data['address'] = $this->address($data);
     			break;
 
@@ -41,6 +43,7 @@ trait RegisterThisMarriage
     		    //prepare family data
 		        $data['address'] = $this->address($data);
 		        $family = Family::find(session('register')['family']);
+                $this->family = $family;
 		        $user = User::find($data['husband_first_name']);
                 $data['family'] = strtolower($family->name.'-'.$user->first_name.'-child-id-'.$user->profile->child->birth->id);
                 $data['title'] = $data['family'];

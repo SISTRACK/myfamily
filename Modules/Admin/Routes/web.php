@@ -25,6 +25,8 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/{lga}/district/{district}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
 
+ //administrative family crude
+
   Route::get('/{state}/{lga}/{district}/{id}/family/create', 'Registration\FamilyController@createFamily')->name('district.family.create')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/{id}/family/register', 'Registration\FamilyController@registerFamily')->name('district.family.register')->middleware('landOnDistrict');
@@ -34,5 +36,18 @@ Route::prefix('admin')->group(function () {
   Route::get('/{state}/{lga}/{district}/family/{id}/edit', 'Registration\FamilyController@editFamily')->name('district.family.edit')->middleware('landOnDistrict');
 
   Route::get('/{state}/{lga}/{district}/family/{id}/delete', 'Registration\FamilyController@destroyFamily')->name('district.family.delete')->middleware('landOnDistrict');
+
+  // Marriage administration
+
+  Route::get('/{state}/{lga}/{district}/{id}/marriages/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/{id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/family/{family_id}marriage/register-family', 'Registration\MarriageController@registerMarriage')->name('district.family.marriage.register')->middleware('landOnDistrict');
+
+  Route::get('/{state}/{lga}/{district}/{town}/{family}/marriage/{marriage_id}/edit', 'Registration\MarriageController@editMarriage')->name('district.family.marriage.edit')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/{town}/{family}/marriage/{marriage_id}/update', 'Registration\MarriageController@updateMarriage')->name('district.family.marriage.update')->middleware('landOnDistrict');
+
 
 });

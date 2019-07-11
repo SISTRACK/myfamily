@@ -22,7 +22,7 @@ trait ValidateRequest
     public function validateMarriageRequest(){
         switch (session('register')['status']) {
             case 'father':
-                $this->husbandUser = User::find($this->data['user_id']);
+                $this->husbandUser = $this->family->familyAdmin->profile->user;
                 break;
             case 'son':
                 $this->husbandUser = User::find($this->data['husband_first_name']);

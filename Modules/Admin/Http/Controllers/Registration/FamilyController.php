@@ -14,15 +14,7 @@ use Modules\Family\Events\NewFamilyEvent;
 
 class FamilyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
-    {
-        return view('admin::index');
-    }
-
+   
     /**
      * Show the form for creating a new resource.
      * @return Response
