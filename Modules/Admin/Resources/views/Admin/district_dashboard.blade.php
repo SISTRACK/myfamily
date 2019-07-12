@@ -47,14 +47,17 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-	    <div class="card-box widget-box-one">
-	        <i class="mdi mdi-layers widget-one-icon"></i>
-	        <div class="wigdet-one-content">
-	            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Births</p>
-	            <h2>{{count($district->births())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
-	            <p class="text-muted m-0"><b>Last:</b> 40.33k</p>
-	        </div>
-	    </div>
+		<a href="#"  data-toggle="modal" data-target="#births">
+		    <div class="card-box widget-box-one">
+		        <i class="mdi mdi-layers widget-one-icon"></i>
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Births</p>
+		            <h2>{{count($district->births())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+		            <p class="text-muted m-0"><b>Last:</b> 40.33k</p>
+		        </div>
+		    </div>
+		    @include('admin::Admin.Modals.births')
+	    </a>
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">

@@ -19,9 +19,7 @@ use Spatie\PersonalDataExport\Jobs\CreatePersonalDataExportJob;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test-chain', function(){
-	dd(State::find(37)->districts->towns);
-});
+
 Route::group(['middleware'=>'guest'], function(){
    Route::get('/', function () {
      return view('welcome');

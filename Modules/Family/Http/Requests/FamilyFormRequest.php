@@ -18,7 +18,7 @@ class FamilyFormRequest extends FormRequest
             'family' => 'required|string|min:3|max:25|',
             'tribe' => 'required|integer',
             'town' => 'required',
-            'country' => 'required|string|max:255',
+            'country' => '',
             'state' => 'required|string|max:255',
             'lga' => 'required|string|'
         ];

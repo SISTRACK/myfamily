@@ -31,7 +31,9 @@ class FamilyController extends Controller
      */
     public function registerFamily(FamilyFormRequest $request)
     {
-        if($family = new NewFamily($request->all())){
+        $data = $request->all();
+        $data['country'] = 'Nigeria';
+        if($family = new NewFamily($data)){
             if(session('error') == null){
                 //broadcast(new NewFamilyEvent($family->family))->toOthers();
                 session()->flash('message','Family account created successfully');

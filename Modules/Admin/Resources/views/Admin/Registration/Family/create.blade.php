@@ -20,12 +20,6 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="Country">Country</label>
-                                    <div class="col-lg-10">
-                                        <input placeholder="Country" class="form-control" id="country" value="{{$district->lga->state->country->name}}" name="country" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="state">State</label>
                                     <div class="col-lg-10">
                                         <input placeholder="State" id="password2" value="{{$district->lga->state->name}}" name="state" type="text" class="required form-control">
