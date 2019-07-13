@@ -16,11 +16,12 @@ class LandOnGeneralDashboardMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $admin = auth()->guard('admin')->user();
-        if($admin->lga_id == null && $admin->state_id == null && $admin->district_id == null){
-            return $next($request);
-        }
-        session()->flash('error',['Sorry you dont have access to the General system Dashboard']);
-        return back();
+        // $admin = auth()->guard('admin')->user();
+        // if($admin->role_id == 1){   
+        // }
+        // session()->flash('error',['Sorry you dont have access to the General system Dashboard']);
+        // return back();
+
+        return $next($request);
     }
 }

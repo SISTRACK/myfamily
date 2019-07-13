@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Illuminate\Support\Facades\Hash;
-
 use Modules\Address\Entities\State;
+
+use Illuminate\Support\Facades\Hash;
 
 class SystemAdminCommand extends Command
 {
@@ -33,13 +33,15 @@ class SystemAdminCommand extends Command
     {
         parent::__construct();
     }
+    
     public function createUser($object, $role,$type)
     {
+        $domain = strtolower(str_replace(['/','-',' ','`'],'',$object->name)).$type;
         $object->admin()->firstOrCreate([
             'first_name'=> 'Admin',
             'last_name' => 'Admin',
-            'email' => strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type)).'@family.com',
-            'password' =>Hash::make(strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type))),
+            'email' => $domain.'@family.com',
+            'password' =>Hash::make($domain),
             'role_id' => $role,
             'phone' => '00000000000'
         ]);

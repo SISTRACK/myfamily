@@ -30,10 +30,15 @@ class NewBirthFormRequest extends FormRequest
             'weight'=>'required',
         ];
 
+        if($this->has('update')){
+            $rules['date'] = '';
+        }
+
         if($this->has('midwifery_name')){
             $rules['midwifery_name'] = 'required|string';
             $rules['midwifery_surname'] = 'required|string';
         }
+        
         return $rules;
     }
 

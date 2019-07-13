@@ -44,4 +44,8 @@ if(!function_exists('admin')){
         return auth()->guard('admin')->user();
     }
 }
-
+if(!function_exists('slug')){
+    function slug($value){
+        return strtolower(str_replace(['/',' ','`'],'-',$value));
+    }
+}

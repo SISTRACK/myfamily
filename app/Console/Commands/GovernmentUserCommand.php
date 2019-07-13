@@ -35,11 +35,12 @@ class GovernmentUserCommand extends Command
     }
     public function createUser($object, $role,$type)
     {
+        $domain = strtolower(str_replace(['/','-',' ','`'],'',$object->name)).$type;
         $object->government()->firstOrCreate([
             'first_name'=> 'Admin',
             'last_name' => 'Admin',
-            'email' => strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type)).'@family.com',
-            'password' =>Hash::make(strtolower(str_replace(['/','-',' ','`'],'',$object->name.$type))),
+            'email' => $domain.'@family.com',
+            'password' =>Hash::make($domain),
             'role_id' => $role,
             'phone' => '00000000000'
         ]);

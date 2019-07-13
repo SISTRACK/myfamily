@@ -45,8 +45,10 @@ trait DistrictInforUpdate
 		foreach ($this->towns as $town) {
 			foreach ($town->locations as $location) {
                 foreach ($location->families as $family) {
-                	foreach ($family->familyAdmin->profile->husband->marriages as $marriage) {
-                		$marriages[] = $marriage;
+                	if($family->familyAdmin->profile->husband){
+                        foreach ($family->familyAdmin->profile->husband->marriages as $marriage) {
+                		    $marriages[] = $marriage;
+                	    }
                 	}
 				}
 			}
@@ -58,11 +60,13 @@ trait DistrictInforUpdate
 	{
 		$births = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->areas as $area) {
-				if($area->house){
-					foreach ($area->house->address->profile->husband->father->births as $birth) {
-						$births[] = $birth;
-					}
+			foreach ($town->locations as $location) {
+                foreach ($location->families as $family) {
+                	if($family->familyAdmin->profile->husband && $family->familyAdmin->profile->husband->father){
+	                    foreach ($family->familyAdmin->profile->husband->father->births as $birth) {
+							$births[] = $birth;
+						}
+                	}
 				}
 			}
 		}

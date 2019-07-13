@@ -14,7 +14,7 @@
 
 Route::prefix('admin')->group(function () {
   Route::get('/', 'AdminController@verify')->name('admin');
-  Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard')->middleware('landOnGeneral');
+  Route::get('/dashboard', 'AdminController@index')->name('admin.dashboard');
   Route::get('/login', 'Auth\AdminLoginController@login')->name('admin.auth.login');
   Route::post('/login', 'Auth\AdminLoginController@loginAdmin')->name('admin.login');
   Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
@@ -27,9 +27,9 @@ Route::prefix('admin')->group(function () {
 
  //administrative family crude
 
-  Route::get('/{state}/{lga}/{district}/{id}/family/create', 'Registration\FamilyController@createFamily')->name('district.family.create')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/family/create', 'Registration\FamilyController@createFamily')->name('district.family.create')->middleware('landOnDistrict');
 
-  Route::post('/{state}/{lga}/{district}/{id}/family/register', 'Registration\FamilyController@registerFamily')->name('district.family.register')->middleware('landOnDistrict');
+  Route::post('/{state}/{lga}/{district}/{district_id}/family/register', 'Registration\FamilyController@registerFamily')->name('district.family.register')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/family/{id}/update-changes', 'Registration\FamilyController@updateFamily')->name('district.family.update')->middleware('landOnDistrict');
 
@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function () {
 
   // Marriage administration
 
-  Route::get('/{state}/{lga}/{district}/{id}/marriages/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/marriages/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/{id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
 
@@ -49,5 +49,15 @@ Route::prefix('admin')->group(function () {
 
   Route::post('/{state}/{lga}/{district}/{town}/{family}/marriage/{marriage_id}/update', 'Registration\MarriageController@updateMarriage')->name('district.family.marriage.update')->middleware('landOnDistrict');
 
+  //birth administration
+  Route::get('/{state}/{lga}/{district}/{district_id}/birth/create', 'Registration\BirthController@createBirth')->name('district.births.create')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/{district_id}/birth/verify-family', 'Registration\BirthController@verifyFamily')->name('district.births.verify.family')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/{family}/{family_id}/birth/register', 'Registration\BirthController@registerBirth')->name('district.family.birth.register')->middleware('landOnDistrict');
+
+  Route::get('/{state}/{lga}/{district}/{family}/birth/{birth_id}/edit', 'Registration\BirthController@editBirth')->name('district.family.birth.edit')->middleware('landOnDistrict');
+
+  Route::post('/{state}/{lga}/{district}/{family}/birth/{birth_id}/update', 'Registration\BirthController@updateBirth')->name('district.family.birth.update')->middleware('landOnDistrict');
 
 });

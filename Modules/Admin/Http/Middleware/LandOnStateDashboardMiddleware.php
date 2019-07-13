@@ -20,7 +20,7 @@ class LandOnStateDashboardMiddleware
 
         $admin = auth()->guard('admin')->user();
 
-        if($admin->role_id > 1 && $admin->state){
+        if($admin->state){
             $accessibleStates[] = $admin->state->id;
         }
         
