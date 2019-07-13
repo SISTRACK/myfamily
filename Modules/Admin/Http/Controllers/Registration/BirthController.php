@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Http\Controllers\Registration;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -74,30 +75,47 @@ class BirthController extends Controller
      */
     public function updateBirth(NewBirthFormRequest $request, $state,$lga,$dist,$family,$id)
     {
-        $birth = Birth::find($id);
-        //update mother information
-        
-        //update delivery information
-        $deliver = Deliver::firstOrCreate(['first_name'=>$request->midwifery_name,'last_name'=>$request->midwifery_surname]);
-        //update birth information
-        $birth->update([
-            'place' => $request->place,
-            'weight' => $request->weight,
-            'date' => strtotime($request->date),
-            'deliver_at' => $request->deliver_at,
-            'deliver_id' => $deliver->id,
-        ]);
+        $error = [];
+        if($request->mother_first_name != $request->mother_last_name){
+            $error[] = 'Invalid Mother name and surname selection';
+        }
 
-        $health = Desease::firstOrCreate(['name'=>$request->health_status]);
+        $user = null;
+        foreach (User::where('email',$request->mother_first_name)->get() as $user_mother) {
+            $user = $user_mother;
+        }
+    
+        if($user->profile->wife->status->id != $request->mother_status){
+            $error[] = 'Invalid Mother status selection';
+        }
+        $mother = $user->profile->wife->mother()->firstOrCreate([]);
+        if(empty($error)){
+            $birth = Birth::find($id);
+            //update delivery information
+            $deliver = Deliver::firstOrCreate(['first_name'=>$request->midwifery_name,'last_name'=>$request->midwifery_surname]);
+            //update birth information
+            $birth->update([
+                'mother_id' => $mother->id,
+                'place' => $request->place,
+                'weight' => $request->weight,
+                'date' => strtotime($request->date),
+                'deliver_at' => $request->deliver_at,
+                'deliver_id' => $deliver->id,
+            ]);
 
-        $birth->child->profile->update(['gender_id'=>$request->gender]);
+            $health = Desease::firstOrCreate(['name'=>$request->health_status]);
 
-        $birth->child->profile->profileHealth->update(['desease_id'=>$health->id]);
+            $birth->child->profile->update(['gender_id'=>$request->gender]);
 
-        //update child first name
-        $birth->child->profile->user->update(['first_name'=>$request->child_name]);
-        session()->flash('message', 'Birth information was successfully updated');
+            $birth->child->profile->profileHealth->update(['desease_id'=>$health->id]);
+
+            //update child first name
+            $birth->child->profile->user->update(['first_name'=>$request->child_name]);
+            session()->flash('message', 'Birth information was successfully updated');
+        }
+        session()->flash('error',$error);
         return back();
+        
     }
 
     /**

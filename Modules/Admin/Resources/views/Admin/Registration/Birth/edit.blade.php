@@ -36,9 +36,11 @@
 			<label class="col-lg-4 control-label " for="wife_first_name">Mother First Name</label>
 			<div class="col-lg-8">
 				<select name="mother_first_name" class= form-control>
-					<option values="{{$birth->mother->wife->profile->user->first_name.'.'.$birth->mother->wife->profile->user->id}}">{{$birth->mother->wife->profile->user->first_name}}</option>
+					<option value="{{$birth->mother->wife->profile->user->email}}">{{$birth->mother->wife->profile->user->first_name}}</option>
 					@foreach($birth->father->husband->marriages as $marriage)
-                        <option value="{{$birth->mother->wife->profile->user->first_name.'.'.$birth->mother->wife->profile->user->id}}">{{$marriage->wife->profile->user->first_name}}</option>
+					    @if($marriage->wife->profile->user->email != $birth->mother->wife->profile->user->email)
+                        <option value="{{$marriage->wife->profile->user->email}}">{{$marriage->wife->profile->user->first_name}}</option>
+                        @endif
 					@endforeach
 				</select>
 			</div>
@@ -47,9 +49,11 @@
 			<label class="col-lg-4 control-label" for="wife_last_name">Mother last Name</label>
 			<div class="col-lg-8">
 				<select name="mother_last_name" class= form-control>
-					<option values="{{$birth->mother->wife->profile->user->last_name.'.'.$birth->mother->wife->profile->user->id}}">{{$birth->mother->wife->profile->user->last_name}}</option>
+					<option value="{{$birth->mother->wife->profile->user->email}}">{{$birth->mother->wife->profile->user->last_name}}</option>
 					@foreach($birth->father->husband->marriages as $marriage)
-                        <option value="{{$marriage->wife->profile->user->last_name.'.'.$marriage->wife->profile->user->id}}">{{$marriage->wife->profile->user->last_name}}</option>
+					    @if($marriage->wife->profile->user->email != $birth->mother->wife->profile->user->email)
+                            <option value="{{$marriage->wife->profile->user->email}}">{{$marriage->wife->profile->user->last_name}}</option>
+                        @endif
 					@endforeach
 				</select>
 			</div>
@@ -61,7 +65,9 @@
 					<option value="{{$birth->mother->wife->status->id}}">{{$birth->mother->wife->status->name}}</option>
 					
                         @foreach($birth->father->husband->marriages as $marriage)
-                            <option value="{{$marriage->wife->status->id}}">{{$marriage->wife->status->name}}</option>
+                            @if($birth->mother->wife->status->id != $marriage->wife->status->id)
+                                <option value="{{$marriage->wife->status->id}}">{{$marriage->wife->status->name}}</option>
+                            @endif
                         @endforeach
 					
 				</select>
