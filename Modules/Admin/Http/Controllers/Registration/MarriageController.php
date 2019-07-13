@@ -16,6 +16,10 @@ use Modules\Marriage\Register\Marriage\MarriageRegistered;
 
 class MarriageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     use LivingAddress;
     /**
      * Show the form for creating a new resource.

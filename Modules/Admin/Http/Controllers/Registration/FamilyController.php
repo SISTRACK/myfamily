@@ -14,7 +14,10 @@ use Modules\Family\Events\NewFamilyEvent;
 
 class FamilyController extends Controller
 {
-   
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response

@@ -31,7 +31,12 @@ trait VerifyChild
 		}else if($this->data['gender'] == 2){
 			$image_id = 2;
 		}
-		$this->profile = $this->user->profile()->firstOrCreate(['image_id'=>$image_id,'gender_id'=>$this->data['gender'],'family_id'=>session('family')['family'],'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
+		if(admin()){
+			$family_id = session('family')->id;
+		}else{
+			$family_id = session('family')['family'];
+		}
+		$this->profile = $this->user->profile()->firstOrCreate(['image_id'=>$image_id,'gender_id'=>$this->data['gender'],'family_id'=>$family_id,'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
 	}
 
 	public function createChild()

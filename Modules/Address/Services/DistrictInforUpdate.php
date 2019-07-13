@@ -77,9 +77,13 @@ trait DistrictInforUpdate
 	{
 		$deaths = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->areas as $area) {
-				if($area->house){
-					$births[] = $area->house->address->profile->death;
+			foreach ($town->locations as $location) {
+				foreach ($location->families as $family) {
+					foreach ($family->profiles as $profile) {
+						if($profile->death){
+							$deaths[] = $profile->death;
+						}
+					}
 				}
 			}
 		}

@@ -16,6 +16,10 @@ use Modules\Birth\Services\Register\NewBirth;
 
 class BirthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      * @return Response
