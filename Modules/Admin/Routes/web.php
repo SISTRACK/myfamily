@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/{state_id}/dashboard', 'AdminController@stateDashboard')->name('state.dashboard')->middleware('landOnState');
 
-  Route::get('/{state}/{lga}/district/{district}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/district/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
 
  //administrative family crude
 

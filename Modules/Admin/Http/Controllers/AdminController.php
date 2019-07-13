@@ -52,11 +52,22 @@ class AdminController extends Controller
     public function index()
     {
         if(admin()->state){
-            return redirect()->route('state.dashboard',[slug(admin()->state->name),admin()->state->id]);
+            return redirect()->route('state.dashboard',[
+                admin()->state->name,
+                admin()->state->id
+            ]);
         }elseif(admin()->lga){
-            return redirect()->route('lga.dashboard',[admin()->lga->name,admin()->lga_id]);
+            return redirect()->route('lga.dashboard',[
+                admin()->lga->state->name,
+                admin()->lga->name,
+                admin()->lga_id
+            ]);
         }elseif(admin()->district){
-            return redirect()->route('district.dashboard',[admin()->district->name,admin()->district_id]);
+            return redirect()->route('district.dashboard',[
+                admin()->district->lga->state->name,
+                admin()->district->lga->name,
+                admin()->district_id
+            ]);
         }
         return view('admin::Admin.dashboard',['states' => State::all()]);
     }
