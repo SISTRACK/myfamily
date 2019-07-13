@@ -24,8 +24,10 @@ class NewDeath
 			$user = User::find($this->data['first_name']);
 			switch (session('death')['status']) {
 				case 'husband':
-					foreach($user->profile->husband->marriages as $marriage){
-						$marriage->update(['is_active'=> 0]);
+					if($user->profile->husband){
+						foreach($user->profile->husband->marriages as $marriage){
+							$marriage->update(['is_active'=> 0]);
+						}
 					}
 					break;
 				case 'wife':
@@ -66,7 +68,7 @@ class NewDeath
 	protected function validate()
 	{
 		if(strtotime($this->data['date']) > time()){
-			$this->error[] = "Sorry you cannot use data ahead of todays date to register death";
+			$this->error[] = "Sorry you cannot use data ahead of today's date to register death";
 		}
 	}
 	

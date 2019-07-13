@@ -13,7 +13,7 @@ class DeathFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
            'first_name' => 'required|integer',
            'last_name' => 'required|string',
            'place' => 'required|string',
@@ -21,6 +21,13 @@ class DeathFormRequest extends FormRequest
            'about_death' => 'required|string',
            'death_at' => 'required|string'
         ];
+
+        if($this->has('update')){
+          $rules['date'] = '';
+          $rules['first_name'] = 'required|string';
+        }
+
+        return $rules;
     }
 
     /**

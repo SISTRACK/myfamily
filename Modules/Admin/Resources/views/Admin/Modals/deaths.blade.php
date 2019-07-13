@@ -4,7 +4,7 @@
       <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-            	<a class="btn btn-success" href="{{route('district.births.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Death</a>
+            	<a class="btn btn-success" href="{{route('district.deaths.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Death</a>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
@@ -31,23 +31,22 @@
 		                            
 		                            <tr>
 		                                <td>
-		                                	{{$birth->father->husband->profile->user->first_name}} {{$birth->father->husband->profile->user->last_name}}
+		                                	{{$death->profile->user->first_name}} {{$death->profile->user->last_name}}
 		                                </td>
 		                                <td>
-		                                	{{$birth->mother->wife->profile->user->first_name}} 
-		                                	{{$birth->mother->wife->profile->user->last_name}}
+		                                	{{$death->profile->family->name}} 
 		                                </td>
 		                                <td>
-		                                	{{$birth->child->profile->user->first_name}} 
-		                                	{{$birth->child->profile->user->last_name}}
+		                                	{{$death->profile->family->location->town->name}} 
 		                                </td>
 		                                <td>
-		                                	{{date('d/M/Y',$birth->date)}}
+		                                	{{date('d/M/Y',$death->date)}}
 		                                </td>
-		                                <td>{{$birth->place}}</td>
-		                                <td>{{$birth->deliver_at}}</td>
+		                                <td>{{$death->place}}</td>
+		                                <td>{{count($death->profile->numberOfWives())}}</td>
+		                                <td>{{count($death->profile->numberOfBirths())}}</td>
 		                                <td>
-		                                    <a href="{{route('district.family.birth.edit',[$district->lga->state->name,$district->lga->name,$district->name,$birth->father->husband->profile->family->name,$birth->id])}}" class="btn btn-warning">Edit</a>
+		                                    <a href="{{route('district.family.death.edit',[$district->lga->state->name,$district->lga->name,$district->name,$death->profile->family->name,$death->id])}}" class="btn btn-warning">Edit</a>
 		                              
 		                                </td>
 		                            </tr>

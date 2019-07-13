@@ -60,4 +60,15 @@ Route::prefix('admin')->group(function () {
 
   Route::post('/{state}/{lga}/{district}/{family}/birth/{birth_id}/update', 'Registration\BirthController@updateBirth')->name('district.family.birth.update')->middleware('landOnDistrict');
 
+  //Death routes
+   Route::get('/{state}/{lga}/{district}/{district_id}/death/create', 'Registration\DeathController@createDeath')->name('district.deaths.create')->middleware('landOnDistrict');
+
+   Route::post('/{state}/{lga}/{district}/{district_id}/death/family/verify', 'Registration\DeathController@verifyFamily')->name('district.death.family.verify')->middleware('landOnDistrict');
+
+   Route::post('/{state}/{lga}/{district}/{district_id}/family/death/register', 'Registration\DeathController@registerDeath')->name('district.family.death.register')->middleware('landOnDistrict');
+
+   Route::get('/{state}/{lga}/{district}/{family}/death/{death_id}/edit', 'Registration\DeathController@editDeath')->name('district.family.death.edit')->middleware('landOnDistrict');
+
+   Route::post('/{state}/{lga}/{district}/{family}/death/{death_id}/update', 'Registration\DeathController@updateDeath')->name('district.family.death.update')->middleware('landOnDistrict');
+
 });
