@@ -156,7 +156,7 @@
 				<div class="checkbox checkbox-primary">
 					<input id="checkbox-v" type="checkbox">
 					<label for="checkbox-v"> I agree with the Terms and Conditions. </label>
-					<input type="submit" value="Register" class="btn btn-primary">
+					<input type="submit" value="Save Changes" class="btn btn-primary">
 				</div>
 			</div>
 		</div>
