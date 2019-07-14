@@ -1,10 +1,8 @@
 @extends('admin::layouts.master')
 
-@section('side-bar')
-	@include('Include.Menu.admin-side-bar')
-@endsection
+
 @section('page-title')
-    {{'General System Dashboard'}}
+    {{ Breadcrumbs::render('admin.dashboard') }}
 @endsection
 @section('page-content')
 	@if(isset($states))

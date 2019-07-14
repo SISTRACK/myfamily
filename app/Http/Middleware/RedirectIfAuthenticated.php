@@ -24,7 +24,10 @@ class RedirectIfAuthenticated
                     if($admin->state){
                         $view = redirect()->route('state.dashboard',[str_replace(' ','-',strtolower($admin->state->name)),$admin->state->id]);
                     }elseif ($admin->lga) {
-                        $view = redirect()->route('lga.dashboard',[strtolower(str_replace(' ','-',$admin->lga->state->name)),$admin->lga->id]);
+                        $view = redirect()->route('lga.dashboard',[
+                            strtolower(str_replace(' ','-',$admin->lga->state->name)),
+                            strtolower(str_replace(' ','-',$admin->lga->name)),
+                            $admin->lga->id]);
                     }elseif ($admin->district) {
                         $view = redirect()->route('district.dashboard',[
                             strtolower(str_replace(' ','-',$admin->district->lga->state->name)),

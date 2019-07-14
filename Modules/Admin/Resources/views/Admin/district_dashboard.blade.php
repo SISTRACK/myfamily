@@ -1,6 +1,6 @@
 @extends('admin::layouts.master')
 @section('page-title')
-    {{$district->name.' District Dashboard'}}
+    {{ Breadcrumbs::render('admin.district.dashboard',$district) }}
 @endsection
 @section('page-content')
     <div class="col-lg-4 col-md-6 col-sm-8">

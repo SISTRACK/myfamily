@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-title')
-{{'New Marriage Registration in'.$district->name.' District'}}
+{{ Breadcrumbs::render('admin.district.family.marriage.edit',$marriage) }}
 @endsection
 
 @section('page-content')

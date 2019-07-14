@@ -19,11 +19,11 @@ Route::prefix('admin')->group(function () {
   Route::post('/login', 'Auth\AdminLoginController@loginAdmin')->name('admin.login');
   Route::post('logout', 'Auth\AdminLoginController@logout')->name('admin.auth.logout');
 
-  Route::get('/{state}/lga/{lga}/dashboard', 'AdminController@lgaDashboard')->name('lga.dashboard')->middleware('landOnLga');
+  Route::get('/{state}/{lga}/{lga_id}/dashboard', 'AdminController@lgaDashboard')->name('lga.dashboard')->middleware('landOnLga');
 
   Route::get('/{state}/{state_id}/dashboard', 'AdminController@stateDashboard')->name('state.dashboard')->middleware('landOnState');
 
-  Route::get('/{state}/{lga}/district/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
 
  //administrative family crude
 

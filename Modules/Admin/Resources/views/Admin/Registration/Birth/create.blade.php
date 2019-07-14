@@ -2,7 +2,7 @@
 
 @section('page-title')
 
-{{'Register new birth'}}
+{{ Breadcrumbs::render('admin.district.family.birth.create',$district) }}
 
 @endsection
 

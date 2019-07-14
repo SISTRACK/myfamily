@@ -2,7 +2,7 @@
 
 @section('page-title')
 
-{{'Edit Birth birth'}}
+{{ Breadcrumbs::render('admin.district.family.birth.edit',$birth) }}
 
 @endsection
 

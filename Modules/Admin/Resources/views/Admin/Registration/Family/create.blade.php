@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-title')
-{{'Add New Family Account'}}
+{{ Breadcrumbs::render('admin.district.family.create',$district) }}
 @endsection
 
 @section('page-content')

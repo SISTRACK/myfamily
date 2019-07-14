@@ -32,10 +32,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function lgaDashboard($state,$lga)
+    public function lgaDashboard($state,$lga, $lga_id)
     {
-        $lga = Lga::find($lga);
-        return view('admin::Admin.lga_dashboard',['lga'=>$lga, 'districts'=>$lga->districts]);
+        $lga = Lga::find($lga_id);
+        return view('admin::Admin.lga_dashboard',['lga'=>$lga]);
     }
 
     public function stateDashboard($state,$state_id)
@@ -44,7 +44,7 @@ class AdminController extends Controller
         return view('admin::Admin.state_dashboard',['state'=>$state]);
     }
 
-    public function districtDashboard($state,$lga,$id)
+    public function districtDashboard($state,$lga,$dist,$id)
     {
         return view('admin::Admin.district_dashboard',['district'=>District::find($id)]);
     }
@@ -66,7 +66,8 @@ class AdminController extends Controller
             return redirect()->route('district.dashboard',[
                 admin()->district->lga->state->name,
                 admin()->district->lga->name,
-                admin()->district_id
+                admin()->district->name,
+                admin()->district->id,
             ]);
         }
         return view('admin::Admin.dashboard',['states' => State::all()]);
