@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
 					<div class="col-xs-12">
-						<div class="page-title-box">
+						<div class="block-header">
                             <h4>@yield('page-title')</h4>
                         </div>
 					</div>

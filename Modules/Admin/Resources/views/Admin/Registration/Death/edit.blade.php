@@ -2,7 +2,7 @@
 
 @section('page-title')
 
-{{'Edit death information'}}
+{{ Breadcrumbs::render('home',$death) }}
 
 @endsection
 
