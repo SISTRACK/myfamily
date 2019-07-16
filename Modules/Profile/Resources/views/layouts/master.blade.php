@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @if(!session('gues'))
 @section('side-bar')
-<li><a href="{{route('profile.index')}}">My Profile</a></li>
-<li><a href="{{route('profile.setting')}}">My Profile Settings</a></li>
+<li><a href="{{route('family.member.profile',[profile()->family->name,profile()->id])}}">My Profile</a></li>
+<li><a href="{{route('family.member.profile.setting',[profile()->family->name,profile()->id])}}">My Profile Settings</a></li>
 @endsection
 @endif

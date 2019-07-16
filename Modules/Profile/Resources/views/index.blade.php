@@ -1,6 +1,6 @@
 @extends('profile::layouts.master')
 @section('page-title')
-    {{$user->first_name.' '.$user->last_name}}{{"'s Profile"}}
+    {{ Breadcrumbs::render('family.member.profile',$user->profile) }}
 @endsection
 @section('page-content')
 
@@ -380,7 +380,7 @@
                                             </tr>
                                         </table>
                                         @if($parent['user']->profile->image_id == 1 || $parent['user']->profile->image_id == 2)
-                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -440,7 +440,7 @@
                                             </tr>
                                         </table>
                                         @if($wife['user']->profile->image_id == 1 || $wife['user']->profile->image_id == 2)
-                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -490,7 +490,7 @@
                                             </tr>
                                         </table>
                                         @if($husband['user']->profile->image_id == 1 || $husband['user']->profile->image_id == 2)
-                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -542,7 +542,7 @@
                                             </tr>
                                         </table>
                                         @if($child['user']->profile->image_id == 1 || $child['user']->profile->image_id == 2)
-                                        <form action="{{route('profile.update')}}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             

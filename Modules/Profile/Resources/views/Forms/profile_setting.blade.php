@@ -1,6 +1,6 @@
 @extends('profile::layouts.master')
 @section('page-title')
-    {{$user->first_name.' '.$user->last_name}}{{"'s Profile"}}
+    {{ Breadcrumbs::render('family.member.profile.setting',$user->profile) }}
 @endsection
 @section('page-content')
 

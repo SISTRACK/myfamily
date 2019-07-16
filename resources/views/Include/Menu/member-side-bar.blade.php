@@ -18,7 +18,7 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-face-profile "></i> <span> Profiles </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('profile.index')}}">My Profile</a></li>
+            <li><a href="{{route('family.member.profile',[profile()->family->name,profile()->id])}}">My Profile</a></li>
             <li><a href="#">My Child Profile</a></li>
             <li><a href="#">My Wife Profile</a></li>
         </ul>

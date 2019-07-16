@@ -11,13 +11,15 @@
 |
 */
 
-Route::middleware(['hasProfile'])->group(function() {
-    Route::get('/profile', 'ProfileController@index')->name('profile.index');
-    Route::get('/profile_setting', 'ProfileController@setting')->name('profile.setting');
-    Route::get('/profile_details', 'ProfileController@userDetail')->name('user.detail');
-    Route::post('/update_profile', 'ProfileController@update')->name('profile.update');
+Route::middleware(['hasProfile'])->prefix('{family}/profile')->group(function() {
+    Route::get('/{profile_id}/home', 'ProfileController@index')->name('family.member.profile');
+    Route::get('/{profile_id}/setting', 'ProfileController@setting')->name('family.member.profile.setting');
+    Route::post('/{profile_id}/update', 'ProfileController@update')->name('family.member.profile.update');
+    
 });
 
+  
+    
 Route::get('/profile/{id}/view', 'ProfileController@accessProfile');
 Route::get('/profile/{id}/resume', 'ProfileController@resumeProfile');
 Route::get('/profile/{id}/block_access', 'ProfileController@blockProfileAccess');

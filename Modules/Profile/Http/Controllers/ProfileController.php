@@ -44,7 +44,7 @@ class ProfileController extends BaseController
     {
         session()->forget('gues');
 
-        return redirect('profile');
+        return back();
     }
 
     public function blockProfileAccess($id)
@@ -56,7 +56,7 @@ class ProfileController extends BaseController
         $access->is_active = 0;
         $access->save();
         session()->flash('message','User wass successfully blocked from viewing your profile');
-        return redirect('/profile');
+        return back();
     }
     /**
      * Show the form for creating a new resource.
@@ -118,8 +118,8 @@ class ProfileController extends BaseController
         }else{
             new UpdateProfile($request->all());
         }
-       
-        return redirect()->route('profile.index');
+        
+        return back();
     }
 
     public function api($id)

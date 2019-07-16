@@ -5,6 +5,7 @@ require __DIR__ . '/../Modules/Marriage/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Birth/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Divorce/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Death/Routes/breadcrumbs.php';
+require __DIR__ . '/../Modules/Profile/Routes/breadcrumbs.php';
 
 Breadcrumbs::for('family.home', function ($trail) {
 	$member = auth()->guard('family')->user();
@@ -21,7 +22,6 @@ Breadcrumbs::for('family.dashboard', function ($breadcrumbs) {
 	if($user->profile){
         $page = $user->profile->family->name;
 	}
-
     $family_page = $user->first_name.' '.$user->last_name;
     if($user->profile){
         $family_page = $user->profile->family->name;
