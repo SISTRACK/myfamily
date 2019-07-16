@@ -6,7 +6,7 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="{{route('home')}}" class="logo"><span>NFa<span>mily</span></span><i class="mdi mdi-layers"></i></a>
+        <a href="{{url('/')}}" class="logo"><span>NFa<span>mily</span></span><i class="mdi mdi-layers"></i></a>
     </div>
 
     <!-- Button mobile view to collapse sidebar menu -->

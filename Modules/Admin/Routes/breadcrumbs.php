@@ -5,16 +5,17 @@ Breadcrumbs::for('admin.dashboard', function ($trail) {
 });
 
 Breadcrumbs::for('admin.state.dashboard', function ($trail,$state) {
-	if(admin()->role_id == 1){
-	    $trail->parent('admin.dashboard');
-	}
+	
+    $trail->parent('admin.dashboard');
     $trail->push($state->name.' State', route('state.dashboard',[$state->name,$state->id]));
 });
 
 Breadcrumbs::for('admin.lga.dashboard', function ($trail,$lga) {
 	if(admin()->role_id == 1 || admin()->state){
 	    $trail->parent('admin.state.dashboard',$lga->state);
-	}
+	}else{
+        $trail->parent('admin.dashboard');
+    }
     $trail->push($lga->name.' Lga', route('lga.dashboard',[
     	$lga->state->name,
     	$lga->name,
@@ -25,7 +26,9 @@ Breadcrumbs::for('admin.lga.dashboard', function ($trail,$lga) {
 Breadcrumbs::for('admin.district.dashboard', function ($trail,$district) {
 	if(admin()->role_id == 1 || admin()->lga || admin()->state){
 		$trail->parent('admin.lga.dashboard', $district->lga);
-	}
+	}else{
+        $trail->parent('admin.dashboard');
+    }
     $trail->push($district->name.' District', route('district.dashboard',[
     	$district->lga->state->name,
     	$district->lga->name,

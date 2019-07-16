@@ -1,5 +1,5 @@
 
-<form id="wizard-vertical" action="birth/register" method="POST">
+<form id="wizard-vertical" action="{{route('family.birth.register',[profile()->family->name])}}" method="POST">
 	@csrf
 	<h3>Father Info</h3>
 	<section>

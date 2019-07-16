@@ -45,7 +45,7 @@ trait RegisterBirth
         	//broadcast(new NewBirthEvent($birth->data))->toOthers();
             session()->forget('family');
             session()->flash('message','Birth is registered successfully');
-            return redirect()->route('birth.index');
+            return back();
         }
             return back()->withIput();
        
@@ -59,7 +59,7 @@ trait RegisterBirth
             'family' => 'required'
         ]);
         session(['family'=> $request->all()]);
-        return redirect()->route('birth.index');
+        return back();
     }
 
 }

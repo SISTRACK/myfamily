@@ -44,7 +44,7 @@ trait RegisterMarriage
             //broadcast(new NewMarriageEvent($this->marriage))->toOthers();
             session()->forget('register');
         }
-        return redirect()->route('marriage.index');
+        return back();
     }
 
     public function verify(Request $request)
@@ -54,6 +54,6 @@ trait RegisterMarriage
             'status'=> 'required'
         ]);
         session(['register'=>$request->all()]);
-        return redirect('/marriage');
+        return back();
     }
 }

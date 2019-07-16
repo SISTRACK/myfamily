@@ -46,7 +46,7 @@ Route::get('family/login','Auth\LoginController@showLoginForm')->name('family.lo
 
 Route::post('user/login','Auth\LoginController@login')->name('user.login');
 
-Route::get('/family/home', 'HomeController@index')->name('home');
+Route::get('/{family}/home', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@verifyUser');
 

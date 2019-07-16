@@ -45,7 +45,7 @@ class DivorceController extends BaseController
         if(empty($return->error)){
             //broadcast(new NewReturnDivorceEvent($return));
         }
-        return redirect('/return_wife');
+        return back();
     }
     /**
      * Store a newly created resource in storage.
@@ -58,7 +58,7 @@ class DivorceController extends BaseController
         if(empty($divorce->error)){
             //broadcast(new NewDivorceEvent($divorce));
         }
-        return redirect('/divorce_wife');
+        return back();
     }
 
     /**

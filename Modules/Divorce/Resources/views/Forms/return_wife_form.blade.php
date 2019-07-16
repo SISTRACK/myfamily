@@ -1,4 +1,4 @@
-<form id="wizard-vertical" action="{{route('divorce.return')}}" method="POST">
+<form id="wizard-vertical" action="{{route('family.wife.divorce.return',[profile()->family->name])}}" method="POST">
 	@csrf
 	<section>
 		<div class="form-group clearfix">

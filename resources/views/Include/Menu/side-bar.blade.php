@@ -8,7 +8,14 @@
             	<li class="menu-title">Navigation</li>
 
                 <li >
-                    <a href="{{route('home')}}" ><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                    @php 
+                    $member = auth()->guard('family')->user();
+                    $page = $member->first_name.' '.$member->last_name;
+                    if($member->profile){
+                        $page = $member->profile->family->name;
+                    }
+                    @endphp
+                    <a href="{{route('home',[$page])}}" ><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     
                 </li>
                 @yield('side-bar')

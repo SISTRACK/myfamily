@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('page-title')
+    {{ Breadcrumbs::render('family.dashboard') }}
+@endsection
 @section('side-bar')
 
 	@if(Auth()->User()->profile)

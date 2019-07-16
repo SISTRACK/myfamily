@@ -1,7 +1,7 @@
 @extends('family::layouts.master')
 
 @section('page-title')
-{{'Family Application Page'}}
+    {{ Breadcrumbs::render('user.family.create') }}
 @endsection
 
 @section('page-content')

@@ -1,6 +1,7 @@
 @extends('divorce::layouts.master')
+
 @section('page-title')
-{{'Return Wife registration page'}}
+{{ Breadcrumbs::render('family.wife.divorce.return',[profile()->family->name]) }}
 @endsection
 
 @section('page-content')
