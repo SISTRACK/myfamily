@@ -23,39 +23,37 @@ class ProfileController extends BaseController
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($family,$profile_id)
     {
-        if(session('gues')){
-            $user = User::find(session('gues'));
-        }else{
-            $user = Auth()->User();
-        }
-        return view('profile::index',['user'=>$user]);
+        
+        $profile = Profile::find($profile_id);
+        
+        return view('profile::index',['user'=>$profile->user]);
     }
 
-    public function accessProfile($id)
+    public function accessProfile($family,$profile_id)
     {
-        session(['gues'=>$id]);
-
-        return redirect('profile');
+        session(['gues'=>$profile_id]);
+        $user = User::find($profile_id);
+        return redirect()->route('family.member.profile',[$user->profile->family->name, $user->profile->id]);
     }
 
     public function resumeProfile($id)
     {
         session()->forget('gues');
 
-        return back();
+        return redirect()->route('family.member.profile',[profile()->family->name, profile()->id]);
     }
 
-    public function blockProfileAccess($id)
+    public function blockProfileAccess($family,$id)
     {
         $access = null;
-        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>Auth()->User()->profile->id])->get() as $user_access) {
+        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>profile()->id])->get() as $user_access) {
             $access = $user_access;
         }
         $access->is_active = 0;
         $access->save();
-        session()->flash('message','User wass successfully blocked from viewing your profile');
+        session()->flash('message','User was successfully blocked from viewing your profile');
         return back();
     }
     /**

@@ -62,5 +62,10 @@ class ForumController extends BaseController
         return back();
     }
 
+    public function index()
+    {
+        return view('forum::index');
+    }
+
     
 }

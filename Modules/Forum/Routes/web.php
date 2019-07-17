@@ -11,12 +11,13 @@
 |
 */
 
-Route::prefix('forum')->group(function() {
-    Route::get('/', 'ForumController@index');
+Route::prefix('{family}/forum')->group(function() {
+	Route::get('/{forum}', 'ForumController@nuclear')->name('nuclear.forum.index');
+    Route::get('/', 'ForumController@index')->name('family.forum.index');
 });
 
 Route::get('/extended_forum', 'ForumController@extended')->name('extended.forum.index');
-Route::get('/nuclear_forum', 'ForumController@nuclear')->name('nuclear.forum.index');
+
 
 Route::post('/nuclear/message/send', 'ForumController@sendNuclearMessage')->name('extended.message.send');
 Route::post('/extended/message/send', 'ForumController@sendExtendedMessage')->name('nuclear.message.send');

@@ -52,7 +52,7 @@
                                  <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedSons())}}
                                  </span></p>
                                  @if(session('gues'))
-                                 <p><a class="btn btn-primary btn-block" href="profile/{{Auth()->User()->id}}/resume">Resume To My Profile</a></p>
+                                 <p><a class="btn btn-primary btn-block" href="{{route('family.member.profile.resume',[profile()->family->name,profile()->id])}}">Resume To My Profile</a></p>
                                  @endif
                             </div>
 
@@ -603,7 +603,7 @@
                                                             </tr>
 
                                                         </table>
-                                                        <P><a class="btn btn-danger btn-block"  href="profile/{{$accessible->id}}/block_access">Block Access</a></P>
+                                                        <P><a class="btn btn-danger btn-block"  href="{{route('family.member.profile.block.access',[$accessible->family->name,$accessible->id])}}">Block Access</a></P>
                                                     </div>
                                                 </div>
                                             </div>
@@ -633,7 +633,7 @@
                             @foreach($user->profile->profileAccessibleTo() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
-                                    <a href="profile/{{$accessible->user->id}}/view" class="image-popup" title="Screenshot-1">
+                                    <a href="{{route('family.member.profile.view',[$accessible->family->name, $accessible->user->id])}}" class="image-popup" title="Screenshot-1">
                                         <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">

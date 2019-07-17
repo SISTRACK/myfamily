@@ -1,13 +1,10 @@
 @extends('forum::layouts.master')
 
-@section('page-name')
-    {{'Family nuclear Forum'}}
-@stop
-
+@section('page-title')
+    {{ Breadcrumbs::render('family.member.nuclear.forum',[profile()->family]) }}
+@endsection
 @section('page-content')
-
     <div class="col-table">
-        <h1 class="bg-white content-heading border-bottom">Nuclear Forum</h1>
         <div class="col-separator-h"></div>
             <div class="row row-app">
                 <div class="col-md-8 col-md-offset-2">
