@@ -1,4 +1,4 @@
-<form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="col-md-8">
         <label for="inputPhone">Contact Address</label>

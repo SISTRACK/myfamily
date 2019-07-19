@@ -2,7 +2,7 @@
 
 Breadcrumbs::for('family.member.nuclear.forum', function ($breadcrumbs, $family) {
     $breadcrumbs->parent('family.forum.index', $family);
-    $breadcrumbs->push('Nuclear', route('nuclear.forum.index', [$family[0]->name,'nuclear->forum']));
+    $breadcrumbs->push('Nuclear', route('nuclear.forum.index', [$family[0]->name,'nuclear-forum']));
 });
 Breadcrumbs::for('family.member.extended.forum', function ($breadcrumbs, $family) {
     $breadcrumbs->parent('family.forum.index', $family);

@@ -17,7 +17,7 @@ class ForumController extends BaseController
     public function nuclear()
     {
 
-        return view('forum::nuclear',['family'=>$this->profile()->family]);
+        return view('forum::nuclear',['family'=>$this->profile()->thisProfileFamily()]);
     }
 
     /**
@@ -27,7 +27,7 @@ class ForumController extends BaseController
     public function extended()
     {
 
-        return view('forum::extended',['family'=>$this->profile()->family->root()]);
+        return view('forum::extended',['family'=>$this->profile()->thisProfileFamily()->root()]);
     }
     /**
      * Show the form for creating a new resource.
@@ -57,7 +57,7 @@ class ForumController extends BaseController
         ]);
         $message = Message::firstOrCreate(['message'=>$request->message]);
         $message_sender = $message->userMessages()->create(['profile_id'=>$this->profile()->id]);
-        $message_sender->extendFamilyMessage()->create(['family_id'=>$this->profile()->family->root()->id]);
+        $message_sender->extendFamilyMessage()->create(['family_id'=>$this->profile()->thisProfileFamily()->root()->id]);
         session()->flash('message was sent successfully');
         return back();
     }

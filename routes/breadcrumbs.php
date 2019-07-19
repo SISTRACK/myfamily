@@ -12,7 +12,7 @@ Breadcrumbs::for('family.home', function ($trail) {
 	$member = auth()->guard('family')->user();
     $page = $member->first_name.' '.$member->last_name;
     if($member->profile){
-        $page = $member->profile->family->name;
+        $page = $member->profile->thisProfileFamily()->name;
     }
     $trail->push('Dashboard', route('home',$page));
 });
@@ -21,11 +21,11 @@ Breadcrumbs::for('family.dashboard', function ($breadcrumbs) {
 	$user = auth()->guard('family')->user();
 	$page = $user->first_name.' '.$user->last_name;
 	if($user->profile){
-        $page = $user->profile->family->name;
+        $page = $user->profile->thisProfileFamily()->name;
 	}
     $family_page = $user->first_name.' '.$user->last_name;
     if($user->profile){
-        $family_page = $user->profile->family->name;
+        $family_page = $user->profile->thisProfileFamily()->name;
     }
     $breadcrumbs->parent('family.home');
     $breadcrumbs->push($page, route('home',$family_page));

@@ -1,6 +1,6 @@
 @extends('death::layouts.master')
 @section('page-title')
-{{ Breadcrumbs::render('family.death.create',[profile()->family->name]) }}
+{{ Breadcrumbs::render('family.death.create',[profile()->thisProfileFamily()->name]) }}
 @endsection
 
 @section('page-content')

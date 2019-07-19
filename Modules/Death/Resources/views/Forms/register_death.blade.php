@@ -1,4 +1,4 @@
-<form id="wizard-vertical" action="{{route('family.death.register',[profile()->family->name])}}" method="POST">
+<form id="wizard-vertical" action="{{route('family.death.register',[profile()->thisProfileFamily()->name])}}" method="POST">
 	@csrf
 	<h3>Personal Info</h3>
 	<section>

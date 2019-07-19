@@ -49,3 +49,27 @@ if(!function_exists('slug')){
         return strtolower(str_replace(['/',' ','`'],'-',$value));
     }
 }
+
+if(!function_exists('divorced')){
+    function divorced(){
+        $flag = false;
+        foreach (profile()->husband->marriages as $marriage) {
+            if($marriage->is_active == 0){
+                $flag = true;
+            }
+        }
+        return $flag;
+    }
+}
+
+if(!function_exists('canDivorce')){
+    function canDivorce(){
+        $flag = false;
+        foreach (profile()->husband->marriages as $marriage) {
+            if($marriage->is_active == 1){
+                $flag = true;
+            }
+        }
+        return $flag;
+    }
+}

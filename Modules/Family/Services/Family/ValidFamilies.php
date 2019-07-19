@@ -107,15 +107,9 @@ class ValidFamilies
 
 	private function myFamily()
 	{
-        
-
-        if($this->user->profile->wife != null){
-            if($this->user->profile->family_id == null){
-                foreach ($this->user->profile->wife->marriages as $marriage) {
-                    if($marriage->is_active == 1 || $marriage->husband->profile->life_status_id == 0){
-                        $family = $marriage->husband->profile->family;
-                    }
-                }
+        if($this->user->profile->wife){
+            if(is_null($this->user->profile->family_id)){
+                $family = $this->user->profile->thisProfileFamily();
             }else{
                 $family = $this->user->profile->family;
             }

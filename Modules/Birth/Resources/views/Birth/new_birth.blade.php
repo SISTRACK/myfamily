@@ -1,7 +1,7 @@
 @extends('birth::layouts.master')
 
 @section('page-title')
-    {{ Breadcrumbs::render('family.birth.create',[profile()->family->name]) }}
+    {{ Breadcrumbs::render('family.birth.create',[profile()->thisProfileFamily()->name]) }}
 @endsection
 
 @section('page-content')

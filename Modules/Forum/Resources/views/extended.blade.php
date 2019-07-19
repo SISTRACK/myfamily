@@ -1,6 +1,6 @@
 @extends('forum::layouts.master')
 @section('page-title')
-    {{ Breadcrumbs::render('family.member.extended.forum',[profile()->family]) }}
+    {{ Breadcrumbs::render('family.member.extended.forum',[profile()->thisProfileFamily()]) }}
 @endsection
 @section('page-content')
 <div class="col-table">

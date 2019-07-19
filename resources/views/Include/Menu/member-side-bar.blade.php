@@ -1,10 +1,12 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Registration </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('family.birth.create',[profile()->family->name])}}"><i class="mdi mdi-baby"></i> <span>Birth</span></a></li>
-            <li><a href="{{route('family.marriage.create',[profile()->family->name])}}">Marriage</a></li>
-            <li><a href="{{route('family.divorce.create',[profile()->family->name])}}">Divorce</a></li>
-            <li><a href="{{route('family.death.create',[profile()->family->name])}}">Death</a></li>
+            <li><a href="{{route('family.birth.create',[profile()->thisProfileFamily()->name])}}"><i class="mdi mdi-baby"></i> <span>Birth</span></a></li>
+            <li><a href="{{route('family.marriage.create',[profile()->thisProfileFamily()->name])}}">Marriage</a></li>
+            @if(profile()->husband && canDivorce)
+            <li><a href="{{route('family.divorce.create',[profile()->thisProfileFamily()->name])}}">Divorce</a></li>
+            @endif
+            <li><a href="{{route('family.death.create',[profile()->thisProfileFamily()->name])}}">Death</a></li>
         </ul>
     </li>
     <li class="has_sub">
@@ -18,7 +20,7 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-face-profile "></i> <span> Profiles </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('family.member.profile',[profile()->family->name,profile()->id])}}">My Profile</a></li>
+            <li><a href="{{route('family.member.profile',[profile()->thisProfileFamily()->name,profile()->id])}}">My Profile</a></li>
             <li><a href="#">My Child Profile</a></li>
             <li><a href="#">My Wife Profile</a></li>
         </ul>
@@ -26,8 +28,8 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-forum "></i> <span> Forum </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('nuclear.forum.index',[profile()->family->name,'nuclear-forum'])}}">Nuclear Forum</a></li>
-            <li><a href="{{route('extended.forum.index',[profile()->family->name,'extended-family'])}}">Extended Forum</a></li>
+            <li><a href="{{route('nuclear.forum.index',[profile()->thisProfileFamily()->name,'nuclear-forum'])}}">Nuclear Forum</a></li>
+            <li><a href="{{route('extended.forum.index',[profile()->thisProfileFamily()->name,'extended-family'])}}">Extended Forum</a></li>
         </ul>
     </li>
     <li class="has_sub">

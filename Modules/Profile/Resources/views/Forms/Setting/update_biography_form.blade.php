@@ -1,4 +1,4 @@
-<form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post">
+<form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post">
     @csrf
     <div class="col-md-10">
 

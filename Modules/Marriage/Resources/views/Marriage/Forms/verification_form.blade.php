@@ -1,4 +1,4 @@
-<form id="wizard-vertical" action="{{route('family.marriage.verify',profile()->family->name)}}" method="POST">
+<form id="wizard-vertical" action="{{route('family.marriage.verify',profile()->thisProfileFamily()->name)}}" method="POST">
 	@csrf
 	<h3>Chose Family</h3>
 	<section>

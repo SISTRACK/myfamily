@@ -1,4 +1,4 @@
-<form action="{{ route('family.member.profile.update',[$user->profile->family->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data"> 
+<form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data"> 
     @csrf      
     <label for="inputPasswordOld">Business Title</label>
     <div class="input-group">

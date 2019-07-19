@@ -11,7 +11,12 @@ trait RegisterFamily
 {
     public function index()
     {
-        return redirect()->route('home');
+        $user = auth()->guard('family')->user();
+        $page = $user->first_name.' '.$user->last_name;
+        if($user->profile){
+            $page = $user->profile->thisProfileFamily()->name;
+        }
+        return redirect()->route('home',$page);
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('forum::layouts.master')
 
 @section('page-title')
-    {{ Breadcrumbs::render('family.member.nuclear.forum',[profile()->family]) }}
+    {{ Breadcrumbs::render('family.member.nuclear.forum',[profile()->thisProfileFamily()]) }}
 @endsection
 @section('page-content')
     <div class="col-table">

@@ -39,7 +39,7 @@ class HomeController extends Controller
         $member = auth()->guard('family')->user();
         $page = $member->first_name.' '.$member->last_name;
         if($member->profile){
-            $page = $member->profile->family->name;
+            $page = $member->profile->thisProfileFamily()->name;
         }
         return redirect()->route('home',[$page]);
     }
