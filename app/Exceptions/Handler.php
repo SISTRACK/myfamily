@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
             case 'teacher':
                 $login = 'education.auth.login';
             break;
-            case 'police':
+            case 'security':
                 $login = 'security.auth.login';
             break;
             case 'government':

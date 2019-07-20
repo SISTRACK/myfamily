@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Police extends Authenticatable
+class Security extends Authenticatable
 {
     use Notifiable;
     /**
@@ -15,7 +15,7 @@ class Police extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'email', 'password','last_name','phone'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -25,5 +25,20 @@ class Police extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function state()
+    {
+        return $this->belongsTo('Modules\Address\Entities\State');
+    }
+
+    public function lga()
+    {
+        return $this->belongsTo('Modules\Address\Entities\Lga');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo('Modules\Address\Entities\District');
+    }
 }
 
