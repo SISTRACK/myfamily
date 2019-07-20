@@ -11,14 +11,14 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-sm-3">
-                    <form action="gallary/album/{{$profile_album->album->albumContentType->name}}/delete" method="post">
+                    <form action="{{route('album.delete',[profile()->thisProfileFamily()->name,$profile_album->album->albumContentType->name])}}" method="post">
                         @csrf
                         <input type="hidden" name="album_id" value="{{$profile_album->album->id}}">
                         <button class="btn btn-primary btn-block">Delete Album</button>
                     </form>
                 </div>
                 <div class="col-sm-3">
-                    <button  data-toggle="modal" data-target="#album_{{$album->id}}" class="btn btn-primary btn-block">New {{$profile_album->album->albumContentType->name}}
+                    <button  data-toggle="modal" data-target="#album_{{$profile_album->album->id}}" class="btn btn-primary btn-block">New {{$profile_album->album->albumContentType->name}}
                     </button>
                     @include('gallary::Modals.upload')
                 </div>
@@ -31,7 +31,7 @@
                     </form>
                 </div>
                 <div class="col-sm-3">
-                    <button data-toggle="modal" data-target="#access_{{$album->id}}" class="btn btn-primary btn-block">Grant Access
+                    <button data-toggle="modal" data-target="#access_{{$profile_album->album->id}}" class="btn btn-primary btn-block">Grant Access
                     </button>
                     @include('gallary::Modals.access')
                 </div>

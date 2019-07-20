@@ -8,7 +8,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <form method="post" action="gallary/album/{{strtolower($album->albumContentType->name)}}/info-update" enctype="multipart/form-data">
+            <form method="post" action="{{route('album.update',[profile()->thisProfileFamily()->name,$album->albumContentType->name])}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{$data['object']->id}}">
                 <input type="hidden" name="type" value="{{$data['type']}}">

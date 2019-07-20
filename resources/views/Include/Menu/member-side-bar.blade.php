@@ -32,14 +32,24 @@
             <li><a href="{{route('extended.forum.index',[profile()->thisProfileFamily()->name,'extended-family'])}}">Extended Forum</a></li>
         </ul>
     </li>
+
+
+
+
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-file-image "></i> <span> Gallary </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('private.gallary.index')}}">My Gallary</a></li>
-            <li><a href="{{route('nuclear.gallary.index')}}">Nuclear Family Gally</a></li>
-            <li><a href="{{route('extended.gallary.index')}}">Extended Family Gallary</a></li>
+            <li><a href="{{route('family.gallary.private.index',[profile()->thisProfileFamily()->name])}}">My Gallary</a></li>
+            <li><a href="{{route('family.gallary.nuclear.index',[profile()->thisProfileFamily()->name])}}">Nuclear Family Gally</a></li>
+            <li><a href="{{route('family.gallary.extended.index',[profile()->thisProfileFamily()->name])}}">Extended Family Gallary</a></li>
         </ul>
     </li>
+
+
+
+
+
+
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-certificate "></i> <span> Certificate </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">

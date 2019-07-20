@@ -47,7 +47,7 @@ class GallaryController extends BaseController
      * Display a listing of the resource.
      * @return Response
      */
-    public function createAlbum(Request $request, Album $album)
+    public function createAlbum(Request $request, $family, Album $album)
 
     { 
         $data = $request->all();
@@ -73,7 +73,7 @@ class GallaryController extends BaseController
      * store audio vedio or photo to their respective album.
      * @return Response
      */
-    public function upload(Request $request)
+    public function upload(Request $request, $family)
     {
         $album = Album::find($request->album_id);
         $flag = null;
@@ -120,7 +120,7 @@ class GallaryController extends BaseController
         return back();
     } 
 
-    public function delete(Request $request)
+    public function delete(Request $request, $family)
     {
         $album = Album::find($request->album_id);
         if($album->profileAlbum == null){
@@ -155,7 +155,7 @@ class GallaryController extends BaseController
        return back();
     }
 
-    public function grantAccess(Request $request)
+    public function grantAccess(Request $request, $family)
     {
         $error = [];
         $album = Album::find($request->album_id);
@@ -192,7 +192,7 @@ class GallaryController extends BaseController
         
         return back();
     }
-    public function published(Request $request)
+    public function published(Request $request, $family)
     {
 
         $album = Album::find($request->album_id);
@@ -207,7 +207,7 @@ class GallaryController extends BaseController
         return back();
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $family)
     {
         $request->validate([
             'title' => 'required|string',
@@ -240,5 +240,14 @@ class GallaryController extends BaseController
         }
         session()->flash('message',$request->type.' information was successfully uupdated');
         return back();
+    }
+    public function showAlbum($family,$category,$album_type,$album_name,$album_id)
+    {
+        return view('gallary::albums.show',['album'=>Album::find($album_id)]);
+    }
+
+    public function index($family)
+    {
+        return view('gallary::index');
     }
 }

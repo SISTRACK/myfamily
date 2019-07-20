@@ -11,17 +11,24 @@
 |
 */
 
-Route::prefix('gallary')->group(function() {
-    Route::get('/', 'GallaryController@index');
+Route::prefix('{family}/gallary/')->group(function() {
+    Route::get('{category}/album/{album_type}/{album_name}/{album_id}/show', 'GallaryController@showAlbum')->name('album.show');
+    Route::get('/', 'GallaryController@index')->name('gallary.index');
+    Route::get('private','GallaryController@privateIndex')->name('family.gallary.private.index');
+    Route::get('nuclear','GallaryController@nuclearIndex')->name('family.gallary.nuclear.index');
+    Route::get('extended','GallaryController@extendedIndex')->name('family.gallary.extended.index');
+
+
+    Route::post('album/create','GallaryController@createAlbum')->name('album.create');
+	Route::post('album/{type}/upload','GallaryController@upload')->name('album.upload');
+	Route::post('album/{type}/delete','GallaryController@delete')->name('album.delete');
+	Route::post('album/{type}/grant-access','GallaryController@grantAccess')->name('album.access');
+	Route::post('album/{type}/published','GallaryController@published')->name('album.published');
+	Route::post('album/{type}/info-update','GallaryController@update')->name('album.update');
 });
 
-Route::get('private_gallary','GallaryController@privateIndex')->name('private.gallary.index');
-Route::get('nuclear_gallary','GallaryController@nuclearIndex')->name('nuclear.gallary.index');
-Route::get('extended_gallary','GallaryController@extendedIndex')->name('extended.gallary.index');
-Route::post('gallary/album/create','GallaryController@createAlbum')->name('album.create');
-Route::post('gallary/album/{type}/upload','GallaryController@upload')->name('upload');
-Route::post('gallary/album/{type}/delete','GallaryController@delete')->name('album.delete');
-Route::post('gallary/album/{type}/grant-access','GallaryController@grantAccess')->name('album.access');
-Route::post('gallary/album/{type}/published','GallaryController@published')->name('album.published');
-Route::post('gallary/album/{type}/info-update','GallaryController@update')->name('album.update');
+
+
+
+
 

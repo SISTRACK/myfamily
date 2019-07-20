@@ -7,6 +7,7 @@ require __DIR__ . '/../Modules/Divorce/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Death/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Profile/Routes/breadcrumbs.php';
 require __DIR__ . '/../Modules/Forum/Routes/breadcrumbs.php';
+require __DIR__ . '/../Modules/Gallary/Routes/breadcrumbs.php';
 
 Breadcrumbs::for('family.home', function ($trail) {
 	$member = auth()->guard('family')->user();

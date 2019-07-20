@@ -9,7 +9,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <form method="post" action="{{route('album.create')}}">
+            <form method="post" action="{{route('album.create',[profile()->thisProfileFamily()->name])}}">
                 @csrf
                 <input type="text" name="name" class="form-control" placeholder="album title">
                 <br>
