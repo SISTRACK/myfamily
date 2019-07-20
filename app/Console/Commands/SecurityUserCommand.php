@@ -4,6 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Modules\Address\Entities\State;
+
+use Illuminate\Support\Facades\Hash;
+
 class SecurityUserCommand extends Command
 {
     /**
@@ -77,6 +81,5 @@ class SecurityUserCommand extends Command
 
         $bar->finish();
         info('all users are generated successfully');
-    }
     }
 }
