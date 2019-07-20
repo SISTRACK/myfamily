@@ -14,7 +14,7 @@ use Modules\Admin\Entities\AdminStatus;
 use Modules\Admin\Entities\Admin;
 use Modules\Health\Entities\Doctor;
 use Modules\Education\Entities\Teacher;
-use Modules\Security\Entities\Police;
+use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
 
 
@@ -147,7 +147,7 @@ class DatabaseSeeder extends Seeder
         'last_name'=>'labbo',
         'role_id'=>1,
       ]);
-      $user = Police::firstOrCreate([
+      $user = Security::firstOrCreate([
         'email'=>'security@family.com',
         'password'=>Hash::make('security'),
         'phone'=>'08162463010',
