@@ -11,12 +11,11 @@
 |
 */
 
-Route::prefix('family')->middleware('auth')->group(function() {
-    Route::get('/', 'FamilyController@index');
-    Route::middleware(['hasFamily','used'])->group(function() {
-
-	    Route::post('/account/register', 'FamilyController@store')->name('family.store');
-	    Route::get('/create/account', 'FamilyController@create')->name('family.create');
+Route::middleware('auth')->group(function() {
+    Route::get('/family', 'FamilyController@index');
+    Route::prefix('/{user}/family/')->middleware(['hasFamily','used'])->group(function() {
+	    Route::post('account/register', 'FamilyController@store')->name('family.store');
+	    Route::get('create/account', 'FamilyController@create')->name('family.create');
     });
     
 });

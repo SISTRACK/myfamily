@@ -8,7 +8,7 @@
  <div class="row" id="family">
     <div class="col-sm-12">
         <div class="card-box">
-            <form id="wizard-validation-form" action="{{route('family.store')}}" method="POST">
+            <form id="wizard-validation-form" action="{{route('family.store',[strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)])}}" method="POST">
                 @csrf
                 <div>
                     <h3>Family Location</h3>

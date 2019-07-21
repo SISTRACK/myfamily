@@ -102,11 +102,12 @@
                             <h5>Hi, {{Auth()->User()->first_name.' '.Auth()->User()->last_name}}</h5>
                         </li>
                         @endif
+                        @if(profile())
                         <li><a href="{{route('family.member.profile',[profile()->thisProfileFamily()->name,profile()->id])}}"><i class="ti-user m-r-5"></i>Profile</a></li>
                         
                         <li><a href="{{route('family.member.profile.setting',[profile()->thisProfileFamily()->name,profile()->id])}}"><i class="ti-settings m-r-5"></i> Profile Configuration</a>
                         </li>
-
+                        @endif
                         <li><a href="{{route('page.index')}}"><i class="ti-settings m-r-5"></i> Pages</a>
                         </li>
 

@@ -34,6 +34,6 @@ Breadcrumbs::for('family.dashboard', function ($breadcrumbs) {
 // dashboar / family
 Breadcrumbs::for('user.family.create', function ($breadcrumbs) {
     $breadcrumbs->parent('family.dashboard');
-    $breadcrumbs->push('Create Family Account', route('home'));
+    $breadcrumbs->push('Create Family Account', route('home',[strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)]));
 });
 

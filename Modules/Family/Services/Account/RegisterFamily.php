@@ -12,11 +12,11 @@ trait RegisterFamily
     public function index()
     {
         $user = auth()->guard('family')->user();
-        $page = $user->first_name.' '.$user->last_name;
+        $page = $user->first_name.'-'.$user->last_name;
         if($user->profile){
             $page = $user->profile->thisProfileFamily()->name;
         }
-        return redirect()->route('home',$page);
+        return redirect()->route('home',strtolower($page));
     }
 
     /**
@@ -40,7 +40,7 @@ trait RegisterFamily
                     //broadcast(new NewFamilyEvent($family->family))->toOthers();
                     session()->flash('message','Family account crated successfully');
                 }
-                return redirect()->route('family.create');
+                return redirect()->route('family.create',[strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)]);
             }
         // } catch (\Exception $exception) {
         //     return back()->withInput()

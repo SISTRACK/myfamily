@@ -13,7 +13,9 @@
 
                 <div class="row">
                     @include('Include.Pages.message')
-                    @include('gallary::Modals.create_album')
+                    @if(profile())
+                        @include('gallary::Modals.create_album')
+                    @endif
                     @yield('page-content')
                 </div>
                 <!-- end row -->

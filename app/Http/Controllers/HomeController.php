@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function verifyUser()
     {
         $member = auth()->guard('family')->user();
-        $page = $member->first_name.' '.$member->last_name;
+        $page = strtolower($member->first_name.'-'.$member->last_name);
         if($member->profile){
             $page = $member->profile->thisProfileFamily()->name;
         }

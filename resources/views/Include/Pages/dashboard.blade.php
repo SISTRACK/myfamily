@@ -8,7 +8,7 @@
             <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
             <div class="wigdet-one-content">
                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Sign Up</p>
-                <h2>{{count($district->users())}} <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+                <h2>{{count($district->users())}} <small><i class="fas fa-users"></i></small></h2>
                 <p class="text-muted m-0"><b>Last:</b> 30.4k</p>
             </div>
         </div>

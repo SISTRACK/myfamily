@@ -4,10 +4,10 @@
 
 <div class="col-lg-4 col-md-6 col-sm-8">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-users widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number Of availavle registerd event">Available Events</p>
-            <h2>loading... <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2>loading...</h2>
         </div>
     </div>
 </div><!-- end col -->
@@ -15,10 +15,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#users">
         <div class="card-box widget-box-one">
-            <i class="mdi mdi-account-convert widget-one-icon"></i>
+            <i class="fa fa-users widget-one-icon"></i>
             <div class="wigdet-one-content">
                 <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Total number of People within your own family">Total Family Members</p>
-                <h2>{{count($profile->totalFamilyMembers())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+                <h2>{{count($profile->totalFamilyMembers())}}</h2>
             </div>
         </div>
     </a>
@@ -98,10 +98,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#wives">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-female widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Your Total number of wives">Wives</p>
-            <h2> {{count($profile->numberOfWives())}} <small><i class="mdi mdi-arrow-down text-danger"></i></small></h2>
+            <h2> {{count($profile->numberOfWives())}}</h2>
         </div>
     </div>
     </a>
@@ -176,10 +176,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#births">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-child widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of birthin your family ">Births</p>
-            <h2> {{count($profile->numberOfBirths())}} <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2> {{count($profile->numberOfBirths())}}</h2>
         </div>
     </div>
     </a>
@@ -269,10 +269,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#live_births">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-child widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Numbers of bit=rth alive">Live Birth</p>
-            <h2> {{count($profile->numberOfLiveBirths())}}  <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2> {{count($profile->numberOfLiveBirths())}} </h2>
         </div>
     </div>
     </a>
@@ -358,9 +358,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#death_births">
     <div class="card-box widget-box-one">
+        <i class="fa fa-child widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of birth that dieds">Death Birth</p>
-            <h2> {{count($profile->numberOfDeathBirths())}}  <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2> {{count($profile->numberOfDeathBirths())}} </h2>
         </div>
     </div>
     </a>
@@ -436,10 +437,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#marriages">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fas fa-female widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of marriages you have">Marriages</p>
-            <h2>{{count($profile->numberOfMarriages())}} <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2>{{count($profile->numberOfMarriages())}}</h2>
         </div>
     </div>
     </a>
@@ -518,10 +519,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#divorces">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-female widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of Divordivoce you do">Divorces</p>
-            <h2>{{count($profile->numberOfDivorces())}}  <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2>{{count($profile->numberOfDivorces())}} </h2>
         </div>
     </div>
     </a>
@@ -606,10 +607,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#married_sons">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-male widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of your sons that married">Married Sons</p>
-            <h2>{{count($profile->numberOfMarriedSons())}} <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2>{{count($profile->numberOfMarriedSons())}}</h2>
         </div>
     </div>
     </a>
@@ -680,10 +681,10 @@
 <div class="col-lg-4 col-md-6 col-sm-8">
     <a href="#"  data-toggle="modal" data-target="#married_daughters">
     <div class="card-box widget-box-one">
-        <i class="mdi mdi-account-convert widget-one-icon"></i>
+        <i class="fa fa-female widget-one-icon"></i>
         <div class="wigdet-one-content">
             <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Number of your daughters that married">Married Daughters</p>
-            <h2> {{count($profile->numberOfMarriedDaughters())}}  <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+            <h2> {{count($profile->numberOfMarriedDaughters())}} </h2>
         </div>
     </div>
     </a>
