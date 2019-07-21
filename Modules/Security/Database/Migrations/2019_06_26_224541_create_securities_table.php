@@ -21,8 +21,8 @@ class CreateSecuritiesTable extends Migration
             $table->integer('district_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('phone')->unique();
-            $table->string('email')->unique();
+            $table->string('phone');
+            $table->string('email');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
