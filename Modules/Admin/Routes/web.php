@@ -75,5 +75,8 @@ Route::prefix('admin')->group(function () {
   Route::get('/search/identity', 'Search\IdentityController@index')->name('admin.search.identity.index')->middleware('landOnDistrict');
 
   Route::get('/search/relative', 'Search\RelativeController@index')->name('admin.search.relative.index')->middleware('landOnDistrict');
- 
+
+  Route::post('/search/relative/available-profiles', 'Search\RelativeController@searchProfiles')->name('admin.search.relative.profiles')->middleware('landOnDistrict');
+
+  Route::post('/search/relative', 'Search\RelativeController@search')->name('admin.search.relative')->middleware('landOnDistrict');
 });

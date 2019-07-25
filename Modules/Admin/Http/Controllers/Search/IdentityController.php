@@ -16,5 +16,9 @@ class IdentityController extends Controller
     {
         return view('admin::Search.Identity.index');
     }
-
+    
+    public function search(Request $request)
+    {
+        dd($request->all());
+    }
 }
