@@ -71,4 +71,9 @@ Route::prefix('admin')->group(function () {
 
    Route::post('/{state}/{lga}/{district}/{family}/death/{death_id}/update', 'Registration\DeathController@updateDeath')->name('district.family.death.update')->middleware('landOnDistrict');
 
+   //admin search routes
+  Route::get('/search/identity', 'Search\IdentityController@index')->name('admin.search.identity.index')->middleware('landOnDistrict');
+
+  Route::get('/search/relative', 'Search\RelativeController@index')->name('admin.search.relative.index')->middleware('landOnDistrict');
+ 
 });
