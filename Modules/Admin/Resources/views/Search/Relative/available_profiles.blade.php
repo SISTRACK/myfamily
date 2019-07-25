@@ -60,16 +60,27 @@
                                         <td width="200">
                                             <select name="type" id="" class="form-control">
                                             <option value="">Search For</option>
+                                            @if($profile->child)
                                             <option value="Aunty">Aunties</option>
                                             <option value="Brother">Brothers</option>
+                                            @endif
+                                            @if($profile->husband && $profile->husband->father)
                                             <option value="Children">Children</option>
+                                            @endif
+                                            @if($profile->wife)
                                             <option value="Husband">Husband</option>
+                                            @endif
+                                            @if($profile->child)
                                             <option value="Father">Fathers</option>
                                             <option value="Grandfather">GrandFathers</option>
                                             <option value="Grandmother">GrandMothers</option>
                                             <option value="Mother">Mothers</option>
                                             <option value="Uncle">Uncles</option>
+                                            @endif
+                                            @if($profile->husband)
                                             <option value="Wife">Wives</option>
+                                            @endif
+
                                             </select>
                                         </td>
                                         <td>

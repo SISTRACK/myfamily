@@ -26,7 +26,7 @@ class SearchController extends BaseController
     {
         $results = null;
         if(session('profile')){
-            $search = new NewSearch();
+            $search = new NewSearch(session('profile'),session('search')['type']);
             $results = $search->results;
             session()->forget('profile');
         }

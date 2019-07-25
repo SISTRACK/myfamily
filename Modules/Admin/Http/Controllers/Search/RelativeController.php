@@ -5,7 +5,9 @@ namespace Modules\Admin\Http\Controllers\Search;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Search\Services\Traits\NewSearch;
 use Modules\Admin\Services\Traits\Searchable;
+use Modules\Profile\Entities\Profile;
 
 class RelativeController extends Controller
 {
@@ -34,7 +36,9 @@ class RelativeController extends Controller
         $request->validate([
             'type'=>'required|string'
         ]);
-        dd($request->all());
+        $search = new NewSearch(Profile::find($request->profile_id),$request->type);
+        $results = $search->results;
+        return view('admin::Search.Relative.result',['results'=>$results]); 
     }
 
 }

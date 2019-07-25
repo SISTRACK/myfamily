@@ -9,16 +9,19 @@ class NewSearch
 	public $results;
 
 	public $profile;
+    
+    public $type;
 
-	public function __construct()
+	public function __construct($profile,$type)
 	{
-		$this->profile = session('profile');
+		$this->profile = $profile;
+		$this->type = $type;
 		$this->makeSearch();
 	}
 
 	public function makeSearch()
 	{
-		switch (session('search')['type']) {
+		switch ($this->type) {
 			case 'Father':
 				$this->results = $this->profile->thisProfileFathers();
 				break;
