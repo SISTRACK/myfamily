@@ -8,11 +8,15 @@
             	<li class="menu-title">Navigation</li>
 
                 <li >
-                    @php 
-                    $member = auth()->guard('family')->user();
-                    $page = $member->first_name.' '.$member->last_name;
-                    if($member->profile){
-                        $page = $member->profile->thisProfileFamily()->name;
+                    @php
+                    if(profile()) {
+                        $member = auth()->guard('family')->user();
+                        $page = $member->first_name.' '.$member->last_name;
+                        if($member->profile){
+                            $page = $member->profile->thisProfileFamily()->name;
+                        }
+                    }else{
+                        $page = 'administrator';
                     }
                     @endphp
                     <a href="{{route('home',[$page])}}" ><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>

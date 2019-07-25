@@ -10,7 +10,11 @@ if (!function_exists('storage_url')) {
 if (!function_exists('profile')) {
     function profile()
     {
-        return auth()->guard('family')->user()->profile;
+        $profile = null;
+        if(auth()->guard('family')->check()){
+            $profile = auth()->guard('family')->user()->profile;
+        }
+        return $profile;
     }
 }
 
