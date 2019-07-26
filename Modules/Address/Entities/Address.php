@@ -11,7 +11,10 @@ class Address extends BaseModel
     {
         return $this->hasOne(LivesIn::class);
     }
-
+    public function leavesIn()
+    {
+        return $this->hasMany(LivesIn::class);
+    }
     public function work()
     {
         return $this->hasOne(WorkIn::class);

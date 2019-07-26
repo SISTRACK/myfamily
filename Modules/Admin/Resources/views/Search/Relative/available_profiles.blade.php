@@ -30,6 +30,14 @@
                                 <td>{{$profile->maritalStatus->name}}</td>
                             </tr>
                             <tr>
+                                <td width="120">Gender : </td>
+                                <td>{{$profile->gender->name}}</td>
+                            </tr>
+                            <tr>
+                                <td width="120">Date Of Birth : </td>
+                                <td>{{date('d/m/Y',$profile->date_of_birth)}}</td>
+                            </tr>
+                            <tr>
                                 <td width="120">Number Of Wives : </td>
                                 <td>{{ count($profile->numberOfWives())}}</td>
                             </tr>
@@ -40,7 +48,7 @@
                             
                             <tr>
                                 <td>Family : </td>
-                                <td>{{$profile->family->name}}</td>
+                                <td>{{$profile->thisProfileFamily()->name}}</td>
                             </tr>
                             <tr>
                                 <td>Local Government</td>

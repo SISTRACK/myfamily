@@ -39,16 +39,19 @@ trait Searchable
 
     	$profiles = [];
     	foreach ($district->towns as $town) {
- 			foreach($town->locations as $location){
- 				foreach ($location->families as $family) {
- 					foreach ($family->profiles as $profile) {
- 						if($profile->user->first_name == $data['first_name'] && $profile->user->last_name == $data['last_name']){
- 							$profiles[]= $profile;
- 						}
- 					}
+ 			foreach($town->areas as $area){
+ 				foreach ($area->houses as $house) {
+ 					foreach ($house->address->leavesIn as $leave) {
+ 						similar_text($leave->profile->user->first_name,$data['first_name'], $like_name); 
+ 						similar_text($leave->profile->user->last_name,$data['last_name'], $like_sname);
+ 						if($like_name > 70 && $like_sname > 70){
+							$profiles[] = $leave->profile;
+						}
+ 					}	
  				}
  			}
  		}
+        
 		return $profiles;
     }
 }
