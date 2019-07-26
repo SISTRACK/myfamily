@@ -78,11 +78,28 @@ Route::prefix('admin')->group(function () {
 
     Route::get('relative', 'Search\RelativeController@index')->name('admin.search.relative.index');
 
-    Route::get('relative/{search_of}/{search_for}/results', 'Search\RelativeController@result')->name('admin.search.relative.result');
+    Route::get('relative/{search_of}/{search_for?}/results', 'Search\RelativeController@result')->name('admin.search.relative.result');
+
+    Route::get('relative/{search_of}/available/profiles', 'Search\RelativeController@avialableSearchProfile')->name('admin.search.relative.available.profiles');
 
     Route::post('relative/available-profiles', 'Search\RelativeController@searchProfiles')->name('admin.search.relative.profiles');
 
     Route::post('relative', 'Search\RelativeController@search')->name('admin.search.relative');
+
+
+
+
+    Route::get('identity/{search_of}/{search_for?}/results', 'Search\IdentityController@result')->name('admin.search.identity.result');
+
+    Route::get('identity/{search_of}/available/profiles', 'Search\IdentityController@availableSearchProfile')->name('admin.search.identity.available.profiles');
+
+    Route::post('identity/{search_of}/generation', 'Search\IdentityController@generationIndex')->name('admin.search.identity.generation.index');
+
+    Route::post('identity/{search_of}/generation/search', 'Search\IdentityController@generationSearch')->name('admin.search.identity.generation.search');
+
+    Route::post('identity/available-profiles', 'Search\IdentityController@searchProfiles')->name('admin.search.identity.profiles');
+
+    Route::post('identity', 'Search\IdentityController@search')->name('admin.search.identity');
 
   });
   

@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-title')
-{{Breadcrumbs::render('admin.search.relative.profiles',session('profiles'))}}
+{{Breadcrumbs::render('admin.search.identity.profiles',session('profiles'))}}
 @endsection
 
 @section('page-content')
@@ -62,40 +62,16 @@
                                 <td>Town/Village : </td>
                                 <td>{{$profile->address()['town']}}</td>
                             </tr>
-                                <form method="post" action="{{route('admin.search.relative')}}" >
+                                <form method="post" action="{{route('admin.search.identity.generation.index',strtolower($profile->user->first_name.'-'.$profile->user->last_name))}}" >
                                     {{csrf_field()}}
                                     <tr>
                                         <td width="200">
-                                            <select name="type" id="" class="form-control">
-                                            <option value="">Search For</option>
-                                            @if($profile->child)
-                                            <option value="Aunty">Aunties</option>
-                                            <option value="Brother">Brothers</option>
-                                            @endif
-                                            @if($profile->husband && $profile->husband->father || $profile->wife && $profile->wife->mother)
-                                            <option value="Children">Children</option>
-                                            @endif
-                                            @if($profile->wife)
-                                            <option value="Husband">Husband</option>
-                                            @endif
-                                            @if($profile->child)
-                                            <option value="Father">Fathers</option>
-                                            <option value="Grandfather">GrandFathers</option>
-                                            <option value="Grandmother">GrandMothers</option>
-                                            <option value="Mother">Mothers</option>
-                                            <option value="Uncle">Uncles</option>
-                                            @endif
-                                            @if($profile->husband)
-                                            <option value="Wife">Wives</option>
-                                            @endif
-
-                                            </select>
+                                            <input type="hidden" name="profile_id" value="{{$profile->id}}">
                                         </td>
                                         <td>
-                                            <input type="submit" value="Get Relatives" class="form-control btn btn-primary btn-block"/>
+                                            <input type="submit" value="Get Generation" class="form-control btn btn-primary btn-block"/>
                                         </td>
                                     </tr>
-                                    <input type="hidden" name="profile_id" value="{{$profile->id}}">
                                 </form>
                         </table>
                     </div>

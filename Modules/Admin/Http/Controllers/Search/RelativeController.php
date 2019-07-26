@@ -28,7 +28,10 @@ class RelativeController extends Controller
             'first_name'=>'required|string',
             'last_name'=>'required|string'
         ]);
-        return view('admin::Search.Relative.available_profiles',['profiles'=>$this->getAvailableProfiles($request->all())]); 
+
+        session(['available_profiles'=>$this->getAvailableProfiles($request->all())]);
+
+        return redirect()->route('admin.search.relative.available.profiles',strtolower($request->first_name.'-'.$request->last_name)); 
     }
 
     public function search(Request $request)
@@ -38,13 +41,23 @@ class RelativeController extends Controller
         ]);
         $profile = Profile::find($request->profile_id);
         $search = new NewSearch(Profile::find($request->profile_id),$request->type);
-        session(['results'=>$search->results]);
+        session(['profile'=>$profile,'results'=>$search->results]);
+
         return redirect()->route('admin.search.relative.result',[strtolower($profile->user->first_name.'-'.$profile->user->last_name),strtolower($request->type)]); 
     }
 
     public function result()
     {
         return view('admin::Search.Relative.result',['results'=>session('results')]);
+    }
+
+    public function availableSearchProfile()
+    {
+        $profiles= null;
+        if(session('available_profiles')){
+            $profiles = session('available_profiles');
+        }
+        return view('admin::Search.Relative.available_profiles',['profiles'=>$profiles]);
     }
 
 }

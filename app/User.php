@@ -53,12 +53,13 @@ class User extends Authenticatable
 
     public function validUserGeneration($gen)
     {
-        $flag = true;
-        if($this->profile->child != null){
+        $flag = false;
+        if($this->profile->child && $gen > 0){
+            $flag = true;
             $current_user = $this;
             for($i = 1; $i<$gen; $i++){
                 $next_user = $current_user->profile->child->birth->father->husband->profile->user;
-                if($user == null){
+                if($next_user == null){
                     $flag = false;
                 }else{
                     $current_user = $next_user;
@@ -99,7 +100,7 @@ class User extends Authenticatable
             } 
             return $generations;
         }else{
-            session()->flash('errors',$error);
+            session()->flash('error',$error);
         }
     }
     public function getUserGeneration($user)

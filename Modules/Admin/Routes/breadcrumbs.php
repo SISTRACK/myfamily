@@ -140,4 +140,30 @@ Breadcrumbs::for('admin.district.family.birth.edit', function ($trail,$birth) {
     	$birth->father->husband->profile->family->name,
     	$birth->id
     ]));
-});    
+});
+
+Breadcrumbs::for('admin.search.relative.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Search Relative', route('admin.search.relative.index'));
+});
+
+Breadcrumbs::for('admin.search.identity.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Search Identity', route('admin.search.identity.index'));
+});
+
+Breadcrumbs::for('admin.search.relative.profiles', function ($trail,$profiles) {
+    $trail->parent('admin.search.relative.index');
+    $trail->push('Profiles', route('admin.search.relative.available.profiles','hello'));
+});
+
+Breadcrumbs::for('admin.search.identity.profiles', function ($trail,$profiles) {
+    $trail->parent('admin.search.identity.index');
+    $trail->push('Profiles', route('admin.search.identity.available.profiles','hello'));
+});
+
+Breadcrumbs::for('admin.search.relative.results', function ($trail,$profile,$profiles,$search) {
+    $trail->parent('admin.search.relative.profiles', $profiles);
+    $trail->push($profile->user->first_name.' '.$profile->user->last_name, route('admin.search.relative.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+    $trail->push('Results', route('admin.search.relative.result',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+});
