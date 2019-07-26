@@ -82,26 +82,6 @@ trait FamilyMembers
        return $wives; 
 	}
 
-	public function thisProfileHusband()
-	{
-		$husband = null;
-		if($this->wife != null){
-            foreach($this->wife->marriages as $marriage){
-            	if($marriage->is_active == 1){
-                    $currentHusband = $marriage->husband->profile->user;
-            		$husband = [
-                        'name'=> $currentHusband->first_name.' '.$currentHusband->last_name,
-					    'email'=>$currentHusband->email,
-					    'user'=>$currentHusband,
-					    'image'=> $marriage->husband->profile->profileImageLocation('display').$marriage->husband->profile->image->name,
-					    'married_date' => date('D/M/Y',$marriage->date)
-            		];
-            	}
-            }
-		}
-		return $husband;
-	}
-
 	public function getWifeDateOfBirth(Marriage $marriage)
 	{
 		$date = null;

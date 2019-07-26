@@ -33,7 +33,7 @@ class LandOnDistrictDashboardMiddleware
                 $accessibleDistricts[] = $district->id;
             }
         }
-
+        
         if($admin->role_id == 1 || $admin->district_id == $request->route('district_id') || in_array($request->route('district_id'), $accessibleDistricts)){
             return $next($request);
         }

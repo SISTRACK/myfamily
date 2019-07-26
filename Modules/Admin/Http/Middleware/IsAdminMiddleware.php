@@ -16,7 +16,7 @@ class IsAdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->guest("auth:admin")) {
+        if (auth()->guard('admin')) {
             
             return $next($request);
         }

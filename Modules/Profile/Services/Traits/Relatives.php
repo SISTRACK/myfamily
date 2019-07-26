@@ -12,7 +12,17 @@ trait Relatives
 		}
 		return $father;
 	}
-
+    public function thisProfileHusband()
+	{
+		$husband = null;
+		if($this->wife != null){
+            foreach($this->wife->marriages as $marriage){
+            	if($marriage->is_active == 1){
+                    return $marriage->husband->profile;
+            	}
+            }
+		}
+	}
 	public function thisProfileMother()
 	{
 		$mother = null;

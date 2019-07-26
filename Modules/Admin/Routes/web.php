@@ -72,11 +72,18 @@ Route::prefix('admin')->group(function () {
    Route::post('/{state}/{lga}/{district}/{family}/death/{death_id}/update', 'Registration\DeathController@updateDeath')->name('district.family.death.update')->middleware('landOnDistrict');
 
    //admin search routes
-  Route::get('/search/identity', 'Search\IdentityController@index')->name('admin.search.identity.index')->middleware('landOnDistrict');
+  Route::prefix('/search/')->middleware('admin')->group(function () {
 
-  Route::get('/search/relative', 'Search\RelativeController@index')->name('admin.search.relative.index')->middleware('landOnDistrict');
+    Route::get('identity', 'Search\IdentityController@index')->name('admin.search.identity.index');
 
-  Route::post('/search/relative/available-profiles', 'Search\RelativeController@searchProfiles')->name('admin.search.relative.profiles')->middleware('landOnDistrict');
+    Route::get('relative', 'Search\RelativeController@index')->name('admin.search.relative.index');
 
-  Route::post('/search/relative', 'Search\RelativeController@search')->name('admin.search.relative')->middleware('landOnDistrict');
+    Route::get('relative/{search_of}/{search_for}/results', 'Search\RelativeController@result')->name('admin.search.relative.result');
+
+    Route::post('relative/available-profiles', 'Search\RelativeController@searchProfiles')->name('admin.search.relative.profiles');
+
+    Route::post('relative', 'Search\RelativeController@search')->name('admin.search.relative');
+
+  });
+  
 });

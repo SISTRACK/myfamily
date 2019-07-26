@@ -36,9 +36,15 @@ class RelativeController extends Controller
         $request->validate([
             'type'=>'required|string'
         ]);
+        $profile = Profile::find($request->profile_id);
         $search = new NewSearch(Profile::find($request->profile_id),$request->type);
-        $results = $search->results;
-        return view('admin::Search.Relative.result',['results'=>$results]); 
+        session(['results'=>$search->results]);
+        return redirect()->route('admin.search.relative.result',[strtolower($profile->user->first_name.'-'.$profile->user->last_name),strtolower($request->type)]); 
+    }
+
+    public function result()
+    {
+        return view('admin::Search.Relative.result',['results'=>session('results')]);
     }
 
 }

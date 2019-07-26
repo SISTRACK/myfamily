@@ -40,7 +40,7 @@ class NewSearch
 				break;
 				
 			case 'Husband':
-				$this->results = $this->profile->thisProfileHusband();
+				$this->results = [$this->profile->thisProfileHusband()];
 				break;
 
 			case 'Children':

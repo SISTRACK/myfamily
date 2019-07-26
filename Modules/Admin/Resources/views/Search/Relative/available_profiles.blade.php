@@ -72,7 +72,7 @@
                                             <option value="Aunty">Aunties</option>
                                             <option value="Brother">Brothers</option>
                                             @endif
-                                            @if($profile->husband && $profile->husband->father)
+                                            @if($profile->husband && $profile->husband->father || $profile->wife && $profile->wife->mother)
                                             <option value="Children">Children</option>
                                             @endif
                                             @if($profile->wife)
