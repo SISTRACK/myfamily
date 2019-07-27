@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-title')
-{{Breadcrumbs::render('admin.search.relative.index')}}
+{{Breadcrumbs::render('admin.search.identity.generation',$profile,session('available_profiles'))}}
 @endsection
 
 @section('page-content')

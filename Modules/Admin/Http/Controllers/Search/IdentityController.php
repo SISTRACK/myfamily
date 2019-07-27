@@ -44,6 +44,7 @@ class IdentityController extends Controller
 
     public function generationIndex(Request $request)
     {
+        session(['profile'=>Profile::find($request->profile_id)]);
         return view('admin::Search.Identity.generation',['profile'=>Profile::find($request->profile_id)]);
     }
 
@@ -51,7 +52,8 @@ class IdentityController extends Controller
     {
        
         $results = Profile::find($request->profile_id)->user->getSearchGenerationResult($request->generation);
-            return view('admin::Search.Identity.results',['results',$results]);  
+
+            return view('admin::Search.Identity.results',['results'=>$results]);  
         
     }
 }

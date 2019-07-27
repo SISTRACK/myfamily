@@ -161,8 +161,15 @@ Breadcrumbs::for('admin.search.identity.profiles', function ($trail,$profiles) {
     $trail->parent('admin.search.identity.index');
     $trail->push('Profiles', route('admin.search.identity.available.profiles','hello'));
 });
-
-Breadcrumbs::for('admin.search.relative.results', function ($trail,$profile,$profiles,$search) {
+Breadcrumbs::for('admin.search.identity.generation', function ($trail,$profile, $profiles) {
+    $trail->parent('admin.search.identity.profiles',$profiles);
+    $trail->push('Generation', route('admin.search.identity.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+});
+Breadcrumbs::for('admin.search.identity.generation.result', function ($trail,$profile,$profiles) {
+    $trail->parent('admin.search.identity.generation',$profile, $profiles);
+    $trail->push('Result', route('admin.search.identity.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+});
+Breadcrumbs::for('admin.search.relative.results', function ($trail, $profile, $profiles, $search) {
     $trail->parent('admin.search.relative.profiles', $profiles);
     $trail->push($profile->user->first_name.' '.$profile->user->last_name, route('admin.search.relative.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
     $trail->push('Results', route('admin.search.relative.result',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));

@@ -86,16 +86,13 @@ Route::prefix('admin')->group(function () {
 
     Route::post('relative', 'Search\RelativeController@search')->name('admin.search.relative');
 
-
-
-
     Route::get('identity/{search_of}/{search_for?}/results', 'Search\IdentityController@result')->name('admin.search.identity.result');
 
     Route::get('identity/{search_of}/available/profiles', 'Search\IdentityController@availableSearchProfile')->name('admin.search.identity.available.profiles');
 
     Route::post('identity/{search_of}/generation', 'Search\IdentityController@generationIndex')->name('admin.search.identity.generation.index');
 
-    Route::post('identity/{search_of}/generation/search', 'Search\IdentityController@generationSearch')->name('admin.search.identity.generation.search');
+    Route::post('identity/{search_of}/generation/results', 'Search\IdentityController@generationSearch')->name('admin.search.identity.generation.search');
 
     Route::post('identity/available-profiles', 'Search\IdentityController@searchProfiles')->name('admin.search.identity.profiles');
 

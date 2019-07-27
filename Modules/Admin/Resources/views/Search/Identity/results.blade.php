@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-title')
-    {{'search family member identity '}}
+    {{Breadcrumbs::render('admin.search.identity.generation.result',session('profile'),session('available_profiles'))}}
 @stop
 
 @section('page-content')
@@ -9,6 +9,7 @@
     @if(!empty($results))
     <div class="panel pane-deafault">
         <div class="panel-body h4">
+
             @foreach($results as $result)
                 <div class="row">
                     <div class="col-sm-12">
