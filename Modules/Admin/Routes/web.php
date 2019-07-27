@@ -97,7 +97,16 @@ Route::prefix('admin')->group(function () {
     Route::post('identity/available-profiles', 'Search\IdentityController@searchProfiles')->name('admin.search.identity.profiles');
 
     Route::post('identity', 'Search\IdentityController@search')->name('admin.search.identity');
-
+    
+    
+    
+  });
+  // configuration routes
+  Route::prefix('/configuration/')->middleware('admin')->group(function () {
+    // profiles configuration routes
+    Route::prefix('profile')->group(function () {
+      Route::get('/', 'Configuration\ProfileController@index')->name('admin.config.profile.index');
+    });
   });
   
 });
