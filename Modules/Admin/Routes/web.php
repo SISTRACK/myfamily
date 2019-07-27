@@ -80,7 +80,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('relative/{search_of}/{search_for?}/results', 'Search\RelativeController@result')->name('admin.search.relative.result');
 
-    Route::get('relative/{search_of}/available/profiles', 'Search\RelativeController@avialableSearchProfile')->name('admin.search.relative.available.profiles');
+    Route::get('relative/{search_of}/available/profiles', 'Search\RelativeController@availableSearchProfile')->name('admin.search.relative.available.profiles');
 
     Route::post('relative/available-profiles', 'Search\RelativeController@searchProfiles')->name('admin.search.relative.profiles');
 
