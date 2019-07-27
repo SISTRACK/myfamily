@@ -8,4 +8,12 @@
             <li><a href="{{route('admin.search.relative.index')}}">Relatives</a></li>
         </ul>
     </li>
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Configuration </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Family</a></li>
+            <li><a href="#">Merge Family</a></li>
+        </ul>
+    </li>
 @endsection
