@@ -35,7 +35,7 @@ class ProfileController extends Controller
         $request->validate(['profile_id'=>'required']);
         $profile = Profile::find($request->profile_id);
         if($profile){
-            return view('admin::Configuration.Profile.profile',['profile'=>$profile]);
+            return redirect()->route('admin.config.user.profile',['profile'=>$profile->id]);
         }
         session()->flash('error',"Invalid Profile ID $request->profile_id");
         return back();
@@ -75,6 +75,7 @@ class ProfileController extends Controller
      */
     public function setting($profile_id)
     {
+       
         return view('admin::Configuration.Profile.Forms.profile_setting',['user'=>Profile::find($profile_id)->user]);
     }
 
@@ -99,7 +100,7 @@ class ProfileController extends Controller
                 'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
             ]);
             $error = [];
-            $profile = Profile::find($profile_id);
+            $profile = Profile::find($profile_id); 
             if(empty($error)){
                 $path = $profile->profileImageLocation('upload');
                 $image = $this->storeFile($request->file('file'),$path);
@@ -118,6 +119,6 @@ class ProfileController extends Controller
             new UpdateProfile($request->all());
         }
         
-        return redirect()->route('admin.config.user.profile',$request->profile_id);
+        return back();
     }
 }

@@ -1,6 +1,6 @@
-@extends('profile::layouts.master')
+@extends('admin::layouts.master')
 @section('page-title')
-    {{ Breadcrumbs::render('family.member.profile.setting',$user->profile) }}
+    
 @endsection
 @section('page-content')
 
@@ -43,11 +43,11 @@
                             <div class="tab-content">
                             
                                 <div class="tab-pane" id="account-details">
-                                    @include('profile::Forms.Detail.account_detail')
+                                    @include('admin::Configuration.Profile.Forms.Detail.account_detail')
                                 </div>
                                     
                                 <div class="tab-pane active" id="account-settings">
-                                    @include('profile::Forms.Setting.account_setting')
+                                    @include('admin::Configuration.Profile.Forms.Setting.account_setting')
                                 </div>
                             </div>
                         </div>

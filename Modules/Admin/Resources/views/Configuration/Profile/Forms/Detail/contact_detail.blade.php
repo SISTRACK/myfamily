@@ -8,16 +8,16 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label class="col-md-3 control-label">E-mail</label>
         <div class="col-md-9">
             <div class="">
                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                <input readonly name="email" type="text" id="inputEmail" class="form-control" placeholder="contact@mosaicpro.biz" value="{{Auth()->User()->email}}"  />
+                <input readonly name="email" type="text" id="inputEmail" class="form-control" placeholder="contact@family.com" value=""  />
                 
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="form-group">
         <label class="col-md-3 control-label">Facebook</label>
         <div class="col-md-9">

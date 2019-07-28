@@ -7,7 +7,7 @@
             <p class="muted">You can select specific people that can see your profile this can be done by you and the permission can be rebock by you any time you wish to</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.profile_access_form')
+            @include('admin::Configuration.Profile.Forms.Setting.profile_access_form')
         </div>
     </div>
     <hr>
@@ -19,7 +19,7 @@
             <p class="muted">You can update your helth information so that your relative know you current situation</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_health_form')
+            @include('admin::Configuration.Profile.Forms.Setting.new_health_form')
         </div>
     </div>
     <hr />
@@ -31,7 +31,7 @@
             <p class="muted">You can add new business acquire to the list of the business you already have</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_business_form')
+            @include('admin::Configuration.Profile.Forms.Setting.new_business_form')
         </div>
     </div>
     <hr />
@@ -44,7 +44,7 @@
                 <p class="muted">So many people may bear with <strong><{{$user->first_name.' '.$user->last_name}}</strong> You can make your profile identical by uploading the picture of your face</p>
             </div>
             <div class="col-md-9">
-                @include('profile::Forms.Setting.upload_profile_image_form')
+                @include('admin::Configuration.Profile.Forms.Setting.upload_profile_image_form')
             </div>
         @else
             <div class="col-md-3">
@@ -64,7 +64,7 @@
                                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
-                                    @include('profile::Forms.Setting.upload_profile_image_form')
+                                    @include('admin::Configuration.Profile.Forms.Setting.upload_profile_image_form')
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -87,7 +87,7 @@
             <p class="muted">You can add new certificate acquired to the list of the certificate you already have</p>
         </div>
         <div class="col-md-9">
-            @include('profile::Forms.Setting.new_certificate_form')
+            @include('admin::Configuration.Profile.Forms.Setting.new_certificate_form')
         </div>
     </div>
     <hr />
@@ -103,7 +103,7 @@
         
         <div class="col-md-9">
             <div class="row">
-                @include('profile::Forms.Setting.new_contact_form')
+                @include('admin::Configuration.Profile.Forms.Setting.new_contact_form')
             </div>
         </div>
     </div>

@@ -7,6 +7,8 @@ use Modules\Profile\Entities\Genotype;
 use Modules\Profile\Entities\BloodGroup; 
 
 use Modules\Profile\Entities\Desease; 
+
+use Modules\Profile\Entities\Profile; 
  
 trait Health
 
@@ -33,8 +35,11 @@ trait Health
 
 	public function newHealth()
 	{
-		$profile = Auth()->User()->profile;
-
+		if(admin()){
+			$profile = Profile::find(request()->route('profile_id'));
+		}else{
+			$profile = Auth()->User()->profile;
+		}
 		$desease_id = $this->getDeseaseId($this->data['desease']);
         $blood_group_id = $this->data['blood'];
         $genotype_id = $this->data['genotype'];

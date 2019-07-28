@@ -42,5 +42,5 @@
 </div> 
 <hr>
 <div class="row">
-    @include('profile::Forms.Detail.contact_detail')
+    @include('admin::Configuration.Profile.Forms.Detail.contact_detail')
 </div>

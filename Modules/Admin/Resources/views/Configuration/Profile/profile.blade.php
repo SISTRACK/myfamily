@@ -29,9 +29,9 @@
 
                                 <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['blood']}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Father Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->father->husband->profile->user->first_name.''.$user->profile->child->birth->father->husband->profile->user->last_name : 'Not Available'}}</span></p>
+                                <p class="text-muted font-13"><strong>Father Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->father->husband->profile->user->first_name.' '.$user->profile->child->birth->father->husband->profile->user->last_name : 'Not Available'}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Mother Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->mother->wife->profile->user->first_name.''.$user->profile->child->birth->mother->wife->profile->user->last_name : 'Not Available'}}</span></p>
+                                <p class="text-muted font-13"><strong>Mother Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->mother->wife->profile->user->first_name.' '.$user->profile->child->birth->mother->wife->profile->user->last_name : 'Not Available'}}</span></p>
 
                                 <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15">{{$user->phone}}</span></p>
 
@@ -53,9 +53,9 @@
 
                                  <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedSons())}}
                                  </span></p>
-                                 @if(session('gues'))
-                                 <p><a class="btn btn-primary btn-block" href="{{route('admin.config.profile.resume',[request()->route('profile_id')])}}">Resume To My Profile</a></p>
-                                 @endif
+                                 
+                                 <p><a class="btn btn-primary btn-block" href="{{route('admin.config.profile.setting',[$profile->id])}}">Configuration</a></p>
+                                 
                             </div>
 
                         </div>
@@ -382,7 +382,7 @@
                                             </tr>
                                         </table>
                                         @if($parent['user']->profile->image_id == 1 || $parent['user']->profile->image_id == 2)
-                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$parent['user']->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -442,7 +442,7 @@
                                             </tr>
                                         </table>
                                         @if($wife['user']->profile->image_id == 1 || $wife['user']->profile->image_id == 2)
-                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$wife['user']->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -480,19 +480,28 @@
                                         <table>
                                             <tr>
                                                 <td class="strong">Name </td>
-                                                <td>{{$husband['name']}}</td>
+                                                <td>{{$husband->user->first_name}} {{$husband->user->last_name}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="strong">Email </td>
-                                                <td>{{$husband['email']}}</td>
+                                                <td>{{$husband->user->email}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="strong">Married At </td>
-                                                <td>{{$husband['married_date']}}</td>
+                                                <td>
+                                                	@php
+                                                        foreach($profile->wife->marriages as $marriage){
+                                                            if($marriage->is_active == 1){
+                                                                $marriage_date = $marriage->date;
+                                                            }
+                                                        }
+                                                	@endphp
+                                                	{{date('d/m/Y',$marriage_date)}}
+                                                </td>
                                             </tr>
                                         </table>
-                                        @if($husband['user']->profile->image_id == 1 || $husband['user']->profile->image_id == 2)
-                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        @if($husband->image_id == 1 || $husband->image_id == 2)
+                                        <form action="{{ route('admin.config.profile.update',[$husband->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -544,7 +553,7 @@
                                             </tr>
                                         </table>
                                         @if($child['user']->profile->image_id == 1 || $child['user']->profile->image_id == 2)
-                                        <form action="{{ route('admin.config.profile.update',[$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$child['user']->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
