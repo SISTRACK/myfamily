@@ -2,6 +2,7 @@
 
 namespace Modules\Profile\Services\Traits;
  
+use Modules\Profile\Entities\Profile; 
 
  
 trait 	CreateWorkHistory
@@ -10,9 +11,13 @@ trait 	CreateWorkHistory
 
 	public function newWorkHistory()
 	{
-		$user = Auth()->User();
-		$user->profile->workHistories()->create([
-        'address_id' => $user->profile->leave->address_id,
+		if(admin()){
+			$profile = Profile::find(request()->route('profile_id'));
+		}else{
+			$profile = Auth()->User()->profile;
+		}
+		$profile->workHistories()->create([
+        'address_id' => $profile->leave->address_id,
         'date' => strtotime($this->data['work_history_date']),
         'history' => $this->data['history']
 		]);

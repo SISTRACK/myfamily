@@ -16,6 +16,7 @@ use Modules\Profile\Transformers\ProfileResource;
 use Modules\Profile\Http\Requests\UpdateProfileFormRequest;
 class ProfileController extends Controller
 {
+    use UploadFile;
     /**
      * Display a listing of the resource.
      * @return Response
@@ -107,7 +108,7 @@ class ProfileController extends Controller
                     $image = $profile->image()->update(['name'=>$image]);
                 }else{
                     $image = Image::create(['name'=>$image]);
-                    $user->profile()->update(['image_id'=>$image->id]); 
+                    $profile->update(['image_id'=>$image->id]); 
                 }
                 session()->flash('message','Profile image uploaded Successfully');
             }else{

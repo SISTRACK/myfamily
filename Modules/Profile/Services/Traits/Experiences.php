@@ -25,9 +25,14 @@ trait Experiences
 
 	public function newExperience()
 	{
+		if(admin()){
+			$profile_id = request()->route('profile_id');
+		}else{
+			$profile_id = Auth()->User()->profile->id;
+		}
         $experience = Experience::firstOrCreate(['name'=>$this->data['experience']]);
         $experience->profileExperiences()->create([
-        	'profile_id'=>Auth()->User()->profile->id,
+        	'profile_id'=>$profile_id,
         	'about'=>$this->data['about_experience'],
         	'from' => strtotime($this->data['from']),
         	'to' => strtotime($this->data['to']),

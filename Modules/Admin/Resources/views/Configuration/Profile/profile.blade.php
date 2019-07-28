@@ -54,7 +54,7 @@
                                  <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedSons())}}
                                  </span></p>
                                  @if(session('gues'))
-                                 <p><a class="btn btn-primary btn-block" href="{{route('family.member.profile.resume',[profile()->thisProfileFamily()->name,profile()->id])}}">Resume To My Profile</a></p>
+                                 <p><a class="btn btn-primary btn-block" href="{{route('admin.config.profile.resume',[request()->route('profile_id')])}}">Resume To My Profile</a></p>
                                  @endif
                             </div>
 
@@ -382,7 +382,7 @@
                                             </tr>
                                         </table>
                                         @if($parent['user']->profile->image_id == 1 || $parent['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -442,7 +442,7 @@
                                             </tr>
                                         </table>
                                         @if($wife['user']->profile->image_id == 1 || $wife['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -492,7 +492,7 @@
                                             </tr>
                                         </table>
                                         @if($husband['user']->profile->image_id == 1 || $husband['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -544,7 +544,7 @@
                                             </tr>
                                         </table>
                                         @if($child['user']->profile->image_id == 1 || $child['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.config.profile.update',[$user->profile->id]) }}" method="post" enctype="multipart/form-data">
                                             @csrf            
                                             <label for="inputPasswordOld">choose Picture</label>
                                             
@@ -605,7 +605,7 @@
                                                             </tr>
 
                                                         </table>
-                                                        <P><a class="btn btn-danger btn-block"  href="{{route('family.member.profile.block.access',[$accessible->thisProfileFamily()->name,$accessible->id])}}">Block Access</a></P>
+                                                        <P><a class="btn btn-danger btn-block"  href="{{route('admin.config.profile.block.access',[$accessible->thisProfileFamily()->name,$accessible->id])}}">Block Access</a></P>
                                                     </div>
                                                 </div>
                                             </div>
@@ -635,7 +635,7 @@
                             @foreach($user->profile->profileAccessibleTo() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
-                                    <a href="{{route('family.member.profile.view',[$accessible->thisProfileFamily()->name, $accessible->user->id])}}" class="image-popup" title="Screenshot-1">
+                                    <a href="{{route('admin.config.profile.view',[$accessible->thisProfileFamily()->name, $accessible->user->id])}}" class="image-popup" title="Screenshot-1">
                                         <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
