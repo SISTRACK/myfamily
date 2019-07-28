@@ -7,6 +7,13 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Profile\Entities\Profile;
 
+use Modules\Profile\Services\Update\UpdateProfile;
+use Modules\Profile\Entities\Image;
+use Modules\Core\Services\Traits\UploadFile;
+use Illuminate\Support\Facades\Storage;
+use Modules\Profile\Entities\ProfileAccess;
+use Modules\Profile\Transformers\ProfileResource;
+use Modules\Profile\Http\Requests\UpdateProfileFormRequest;
 class ProfileController extends Controller
 {
     /**
@@ -18,66 +25,98 @@ class ProfileController extends Controller
         return view('admin::Configuration.Profile.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    public function showThisProfile($profile)
     {
-        return view('admin::create');
+        return view('admin::Configuration.Profile.profile',['profile'=>Profile::find($profile)]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Response
-     */
     public function showProfile(Request $request)
     {
+        $request->validate(['profile_id'=>'required']);
         $profile = Profile::find($request->profile_id);
         if($profile){
             return view('admin::Configuration.Profile.profile',['profile'=>$profile]);
         }
+        session()->flash('error',"Invalid Profile ID $request->profile_id");
+        return back();
     }
+
+    public function accessProfile($profile_id)
+    {
+        $profile = Profile::find($profile_id);
+        return redirect()->route('admin.config.user.profile',[$profile->id]);
+    }
+
+    public function resumeProfile($profile_id)
+    {
+        return redirect()->route('family.member.profile',[profile()->family->name, profile()->id]);
+    }
+
+    public function blockProfileAccess($profile_id)
+    {
+        $access = null;
+        foreach (ProfileAccess::where(['profile_id'=>$id, 'access_to_id'=>Profile::find($profile_id)->id])->get() as $user_access) {
+            $access = $user_access;
+        }
+        $access->is_active = 0;
+        $access->save();
+        session()->flash('message','User was successfully blocked from viewing your profile');
+        return back();
+    }
+    /**
+     * Show the form for creating a new resource.
+     * @return Response
+     */
+   
 
     /**
      * Show the specified resource.
-     * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function setting($profile_id)
     {
-        return view('admin::show');
+        return view('admin::Configuration.Profile.Forms.profile_setting',['user'=>Profile::find($profile_id)->user]);
     }
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function userDetail()
     {
-        return view('admin::edit');
+        return view('admin::Configuration.Profile.Forms.user_detail');
     }
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
+     * @param  Request $request
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileFormRequest $request,$profile_id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
+        if($request->submit == 'upload_image'){
+            $request->validate([
+                'file' => 'required|image|mimes:jpeg,bmp,png,jpg',
+            ]);
+            $error = [];
+            $profile = Profile::find($profile_id);
+            if(empty($error)){
+                $path = $profile->profileImageLocation('upload');
+                $image = $this->storeFile($request->file('file'),$path);
+                if($profile->image_id > 2){
+                    Storage::disk($this->fileSystem())->delete(storage_url($path.$profile->image->name));
+                    $image = $profile->image()->update(['name'=>$image]);
+                }else{
+                    $image = Image::create(['name'=>$image]);
+                    $user->profile()->update(['image_id'=>$image->id]); 
+                }
+                session()->flash('message','Profile image uploaded Successfully');
+            }else{
+                session()->flash('error',$error);
+            }           
+        }else{
+            new UpdateProfile($request->all());
+        }
+        
+        return redirect()->route('admin.config.user.profile',$request->profile_id);
     }
 }

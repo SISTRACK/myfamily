@@ -16,7 +16,6 @@
 <div id="contents">
     <div class="innerAll spacing-x2">
 		    <?php 
-		    
             $path = 'Nfamily/Gallary/'.$album->albumContentType->name.'/'.$album->name.'/'; 	
 		    ?>
 		    @if($album->photos)

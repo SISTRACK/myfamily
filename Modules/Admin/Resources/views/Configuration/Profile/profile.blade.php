@@ -77,7 +77,7 @@
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                @include('profile::Forms.Setting.update_biography_form')
+                                                @include('admin::Configuration.Profile.Forms.Setting.update_biography_form')
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -118,7 +118,7 @@
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                @include('profile::Forms.Setting.profile_access_form')
+                                                @include('admin::Configuration.Profile.Forms.Setting.profile_access_form')
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -142,7 +142,7 @@
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                @include('profile::Forms.Setting.update_home_address_form')
+                                                @include('admin::Configuration.Profile.Forms.Setting.update_home_address_form')
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -204,7 +204,7 @@
                                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                @include('profile::Forms.Setting.update_business_address_form')
+                                                @include('admin::Configuration.Profile.Forms.Setting.update_business_address_form')
                                             </div>
                                             <div class="modal-footer">
                                               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -260,7 +260,7 @@
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        @include('profile::Forms.Setting.new_expertice_form')
+                                        @include('admin::Configuration.Profile.Forms.Setting.new_expertice_form')
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -294,7 +294,7 @@
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
-                                            @include('profile::Forms.Setting.new_work_history_form')
+                                            @include('admin::Configuration.Profile.Forms.Setting.new_work_history_form')
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -329,7 +329,7 @@
                                           <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
                                         <div class="modal-body">
-                                            @include('profile::Forms.Setting.new_experience_form')
+                                            @include('admin::Configuration.Profile.Forms.Setting.new_experience_form')
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

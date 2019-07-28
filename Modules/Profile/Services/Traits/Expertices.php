@@ -18,7 +18,12 @@ trait Expertices
 
 	public function newExpertice()
 	{
+		if(admin()){
+			$profile_id = request()->route('profile_id');
+		}else{
+			$profile_id = Auth()->User()->profile->id;
+		}
         $expertice = Expertice::firstOrCreate(['name'=>$this->data['expertice']]);
-        $expertice->profileExpertice()->create(['profile_id'=>Auth()->User()->profile->id,'percentage'=> $this->data['percentage']]);
+        $expertice->profileExpertice()->create(['profile_id'=>$profile_id,'percentage'=> $this->data['percentage']]);
 	}
 }

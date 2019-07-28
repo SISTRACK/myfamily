@@ -16,6 +16,8 @@ use Modules\Profile\Services\Traits\CreateWorkHistory;
 
 use Modules\Profile\Services\Traits\Access;
 
+use Modules\Profile\Entities\Profile;
+
 
 /**
 * this class will recieved the user information and update his profile
@@ -37,7 +39,10 @@ class UpdateProfile
 
     protected function ValidUser()
     {
-    	return Auth()->User();
+        if(auth()->guard('family')->check()){
+            return Auth()->User();
+        }
+    	return Profile::find(request()->route('profile_id'))->user;
     }
 
 	protected function update()

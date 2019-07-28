@@ -23,30 +23,23 @@ class HomeController extends BaseController
     {
         $user = Auth()->User();
         $profile = null;
-        if(auth()->guard('family')->check()){
-            if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
-                $profile = $user->profile->child->birth->father->husband->profile;
-            }else{
-                $profile = $user->profile;
-            }
-            session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
-            return view('home',['profile'=>$profile,]);
+        if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
+            $profile = $user->profile->child->birth->father->husband->profile;
+        }else{
+            $profile = $user->profile;
         }
-        return redirct()->route('admin.dashboard');
-        
+        session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
+        return view('home',['profile'=>$profile,]);
     }
     public function verifyUser()
     {
         
-        if(auth()->guard('family')->check()){
-            $member = auth()->guard('family')->user();
-            $page = strtolower($member->first_name.'-'.$member->last_name);
-            if($member->profile){
-                $page = $member->profile->thisProfileFamily()->name;
-            }
-        }elseif(auth()->guard('admin')->check()){
-            $page = 'administrator';;
+        $member = auth()->guard('family')->user();
+        $page = strtolower($member->first_name.'-'.$member->last_name);
+        if($member->profile){
+            $page = $member->profile->thisProfileFamily()->name;
         }
+       
         return redirect()->route('home',[$page]);
     }
 }

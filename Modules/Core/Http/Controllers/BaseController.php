@@ -11,13 +11,7 @@ class BaseController extends Controller
     
     public function __construct()
     {
-    	$middleware = ['auth:admin'];
-    	if(auth()->guard('admin')->user()){
-    		$middleware = ['auth:admin'];
-    	}elseif(auth()->guard('family')->user()){
-    		$middleware = ['auth:family','dead'];
-    	}
-        $this->middleware($middleware);
+        $this->middleware(['auth:family','dead']);
     }
 
     public function profile()

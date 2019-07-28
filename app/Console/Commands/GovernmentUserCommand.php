@@ -22,7 +22,7 @@ class GovernmentUserCommand extends Command
      *
      * @var string
      */
-    protected $description = 'genrate all the government users in all state lga district';
+    protected $description = 'generate all the government users in all state lga district';
 
     /**
      * Create a new command instance.

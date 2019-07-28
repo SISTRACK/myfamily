@@ -107,6 +107,15 @@ Route::prefix('admin')->group(function () {
     Route::prefix('profile')->group(function () {
       Route::get('/', 'Configuration\ProfileController@index')->name('admin.config.profile.index');
       Route::post('/show', 'Configuration\ProfileController@showProfile')->name('admin.config.profile.show');
+      Route::get('/{profile_id}/show', 'Configuration\ProfileController@showThisProfile')->name('admin.config.user.profile');
+      Route::get('/{profile_id}/setting', 'Configuration\ProfileController@setting')->name('admin.config.profile.setting');
+      Route::post('/{profile_id}/update', 'Configuration\ProfileController@update')->name('admin.config.profile.update');
+      Route::get('/{profile_id}/view', 'Configuration\ProfileController@accessProfile')->name('admin.config.profile.view');
+      Route::get('/{profile_id}/resume', 'Configuration\ProfileController@resumeProfile')->name('admin.config.profile.resume');
+      Route::get('/{profile_id}/block/access', 'Configuration\ProfileController@blockProfileAccess')->name('admin.config.profile.block.access');
+
+
+
     });
   });
   

@@ -2,7 +2,7 @@
 
 namespace Modules\Profile\Http\Controllers;
 
-use Modules\Profile\Http\Requests\UpdateProfileFormRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Modules\Profile\Entities\ProfileAccess;
 use Modules\Profile\Entities\Profile;
 use Modules\Profile\Transformers\ProfileResource;
+use Modules\Profile\Http\Requests\UpdateProfileFormRequest;
 
 class ProfileController extends BaseController
 {

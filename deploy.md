@@ -87,3 +87,46 @@ php artisan government:users-generate
 
 ///////////generate all the system address informations////////
 php artisan system:address-generate
+
+
+
+
+/////////////material design /////////////////
+
+<!-- Inverse -->
+<i class="mdi mdi-attachment mdi-inverse"></i>
+
+<!-- Animated --> 
+<i class="mdi mdi-attachment mdi-spin"></i>
+<i class="mdi mdi-attachment mdi-pulse"></i>
+
+<!-- Fixed width -->
+<i class="mdi mdi-attachment mdi-fw"></i>
+
+<!-- Bordered -->
+<i class="mdi mdi-attachment mdi-border"></i>
+
+<!-- Pulled -->
+<i class="mdi mdi-attachment pull-left"></i>
+<i class="mdi mdi-attachment pull-right"></i>
+
+<!-- Sizes -->
+<i class="mdi mdi-attachment mdi-lg"></i>
+<i class="mdi mdi-attachment mdi-2x"></i>
+<i class="mdi mdi-attachment mdi-3x"></i>
+<i class="mdi mdi-attachment mdi-4x"></i>
+<i class="mdi mdi-attachment mdi-5x"></i>
+
+<!-- Rotations -->
+<i class="mdi mdi-attachment mdi-rotate-90"></i>
+<i class="mdi mdi-attachment mdi-rotate-180"></i>
+<i class="mdi mdi-attachment mdi-rotate-270"></i>
+
+<!-- Flips -->
+<i class="mdi mdi-attachment mdi-flip-horizontal"></i>
+<i class="mdi mdi-attachment mdi-flip-vertical"></i>
+
+<!-- In lists -->
+<ul class="mdi-ul">
+    <li><i class="mdi-li mdi mdi-keyboard-arrow-right"></i>Lorem ipsum dolor ...</li>
+</ul>
