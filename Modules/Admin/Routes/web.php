@@ -106,6 +106,7 @@ Route::prefix('admin')->group(function () {
     // profiles configuration routes
     Route::prefix('profile')->group(function () {
       Route::get('/', 'Configuration\ProfileController@index')->name('admin.config.profile.index');
+      Route::post('/show', 'Configuration\ProfileController@showProfile')->name('admin.config.profile.show');
     });
   });
   

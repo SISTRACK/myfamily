@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 use Modules\Gallary\Entities\AlbumType;
 use Modules\Gallary\Entities\AlbumContentType;
+use Modules\Core\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends BaseController
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -26,20 +23,29 @@ class HomeController extends Controller
     {
         $user = Auth()->User();
         $profile = null;
-        if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
-            $profile = $user->profile->child->birth->father->husband->profile;
-        }else{
-            $profile = $user->profile;
+        if(auth()->guard('family')->check()){
+            if($user->profile != null && $user->profile->child != null && $user->profile->husband == null && $user->profile->wife == null){
+                $profile = $user->profile->child->birth->father->husband->profile;
+            }else{
+                $profile = $user->profile;
+            }
+            session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
+            return view('home',['profile'=>$profile,]);
         }
-        session()->put(['album_contents'=>AlbumContentType::all(),'album_types'=>AlbumType::all()]);
-        return view('home',['profile'=>$profile,]);
+        return redirct()->route('admin.dashboard');
+        
     }
     public function verifyUser()
     {
-        $member = auth()->guard('family')->user();
-        $page = strtolower($member->first_name.'-'.$member->last_name);
-        if($member->profile){
-            $page = $member->profile->thisProfileFamily()->name;
+        
+        if(auth()->guard('family')->check()){
+            $member = auth()->guard('family')->user();
+            $page = strtolower($member->first_name.'-'.$member->last_name);
+            if($member->profile){
+                $page = $member->profile->thisProfileFamily()->name;
+            }
+        }elseif(auth()->guard('admin')->check()){
+            $page = 'administrator';;
         }
         return redirect()->route('home',[$page]);
     }

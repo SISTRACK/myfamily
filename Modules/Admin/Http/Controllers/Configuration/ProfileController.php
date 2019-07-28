@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers\Configuration;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Profile\Entities\Profile;
 
 class ProfileController extends Controller
 {
@@ -31,9 +32,12 @@ class ProfileController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function showProfile(Request $request)
     {
-        //
+        $profile = Profile::find($request->profile_id);
+        if($profile){
+            return view('admin::Configuration.Profile.profile',['profile'=>$profile]);
+        }
     }
 
     /**
