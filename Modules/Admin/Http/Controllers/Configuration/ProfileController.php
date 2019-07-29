@@ -23,13 +23,22 @@ class ProfileController extends Controller
      */
     public function index()
     {
+
         return view('admin::Configuration.Profile.index');
     }
 
     public function showThisProfile($profile)
     {
+        session()->forget('gues');
+        session(['gues_profile_id'=>$profile]);
         return view('admin::Configuration.Profile.profile',['profile'=>Profile::find($profile)]);
     }
+    public function showThisProfileAsGues($profile)
+    {
+        session(['gues'=>$profile]);
+        return view('admin::Configuration.Profile.profile',['profile'=>Profile::find($profile)]);
+    }
+    
     public function showProfile(Request $request)
     {
         $request->validate(['profile_id'=>'required']);

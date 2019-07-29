@@ -187,6 +187,12 @@ Breadcrumbs::for('admin.config.user.profile', function ($trail,$profile_id) {
     $trail->push($profile->user->first_name.' '.$profile->user->last_name."'s Profile", route('admin.config.user.profile',$profile_id));
 });
 
+Breadcrumbs::for('admin.config.gues.profile', function ($trail,$profile_id) {
+    $trail->parent('admin.config.user.profile',session('gues_profile_id'));
+    $profile = Profile::find($profile_id);
+    $trail->push($profile->user->first_name.' '.$profile->user->last_name."'s Profile", route('admin.config.user.profile',$profile_id));
+});
+
 Breadcrumbs::for('admin.config.profile.setting', function ($trail,$profile_id) {
     $trail->parent('admin.config.user.profile',$profile_id);
     $trail->push('Setting', route('admin.config.profile.setting',$profile_id));

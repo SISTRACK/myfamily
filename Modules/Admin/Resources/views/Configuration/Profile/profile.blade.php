@@ -646,7 +646,7 @@
                             @foreach($user->profile->profileAccessibleTo() as $accessible)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
-                                    <a href="{{route('admin.config.profile.view',[$accessible->thisProfileFamily()->name, $accessible->user->id])}}" class="image-popup" title="Screenshot-1">
+                                    <a href="{{route('admin.config.gues.profile',[$accessible->id])}}" class="image-popup" title="Screenshot-1">
                                         <img src="{{$accessible->profileImageLocation('display').$accessible->image->name}}" class="thumb-img" alt="work-thumbnail">
                                     </a>
                                     <div class="gal-detail">
