@@ -1,7 +1,9 @@
 @extends('admin::layouts.master')
+
 @section('page-title')
-    
+{{Breadcrumbs::render()}}
 @endsection
+
 @section('page-content')
 @php
     $user = $profile->user;

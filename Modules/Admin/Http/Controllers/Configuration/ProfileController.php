@@ -34,10 +34,12 @@ class ProfileController extends Controller
     {
         $request->validate(['profile_id'=>'required']);
         $profile = Profile::find($request->profile_id);
+
         if($profile){
             return redirect()->route('admin.config.user.profile',['profile'=>$profile->id]);
         }
-        session()->flash('error',"Invalid Profile ID $request->profile_id");
+
+        session()->flash('error',["Invalid Profile ID $request->profile_id"]);
         return back();
     }
 

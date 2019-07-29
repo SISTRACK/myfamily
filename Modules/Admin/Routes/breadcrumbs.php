@@ -1,4 +1,5 @@
 <?php
+use Modules\Profile\Entities\Profile;
 
 Breadcrumbs::for('admin.dashboard', function ($trail) {
     $trail->push('Dashboard', route('admin.dashboard'));
@@ -173,4 +174,20 @@ Breadcrumbs::for('admin.search.relative.results', function ($trail, $profile, $p
     $trail->parent('admin.search.relative.profiles', $profiles);
     $trail->push($profile->user->first_name.' '.$profile->user->last_name, route('admin.search.relative.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
     $trail->push('Results', route('admin.search.relative.result',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+});
+
+Breadcrumbs::for('admin.config.profile.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Search Profile', route('admin.config.profile.index'));
+});
+
+Breadcrumbs::for('admin.config.user.profile', function ($trail,$profile_id) {
+    $profile = Profile::find($profile_id);
+    $trail->parent('admin.config.profile.index');
+    $trail->push($profile->user->first_name.' '.$profile->user->last_name."'s Profile", route('admin.config.user.profile',$profile_id));
+});
+
+Breadcrumbs::for('admin.config.profile.setting', function ($trail,$profile_id) {
+    $trail->parent('admin.config.user.profile',$profile_id);
+    $trail->push('Setting', route('admin.config.profile.setting',$profile_id));
 });
