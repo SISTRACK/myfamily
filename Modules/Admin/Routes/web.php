@@ -123,9 +123,14 @@ Route::prefix('admin')->group(function () {
       Route::get('/{profile_id}/resume', 'Configuration\ProfileController@resumeProfile')->name('admin.config.profile.resume');
 
       Route::get('/{profile_id}/block/access', 'Configuration\ProfileController@blockProfileAccess')->name('admin.config.profile.block.access');
+    });
+    Route::prefix('family')->group(function () {
 
+      Route::get('/father/child/family/marge', 'Configuration\FamilyController@margeIndex')->name('admin.config.father.child.family.marge');
 
+      Route::get('/{father}/{child}/family/marge/verify/father', 'Configuration\FamilyController@verifyFatherBaseOnFamily')->name('admin.config.father.child.family.marge.verify.father');
 
+      Route::post('/father/child/family/marge/verify', 'Configuration\FamilyController@verifyMargeFamilies')->name('admin.config.father.child.family.verify');
     });
   });
   

@@ -95,9 +95,8 @@
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
-                        @if(auth()->guard('government')->check() || auth()->guard('admin')->check() || auth()->guard('doctor')->check() || auth()->guard('teachar')->check())
-
-                        @else
+                    
+                        @if(auth()->guard('family')->check())
                         <li>
                             <h5>Hi, {{Auth()->User()->first_name.' '.Auth()->User()->last_name}}</h5>
                         </li>

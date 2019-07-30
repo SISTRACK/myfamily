@@ -14,7 +14,7 @@
         <ul class="list-unstyled">
             <li><a href="{{route('admin.config.profile.index')}}">Profile</a></li>
             <li><a href="#">Family</a></li>
-            <li><a href="#">Merge Family</a></li>
+            <li><a href="{{route('admin.config.father.child.family.marge')}}">Merge Family</a></li>
         </ul>
     </li>
 @endsection
