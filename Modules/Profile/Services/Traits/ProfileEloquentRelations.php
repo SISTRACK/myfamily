@@ -25,6 +25,7 @@ trait ProfileEloquentRelations
     {
     	return $this->hasOne('Modules\Birth\Entities\Children');
     }
+    
     public function admin()
     {
         return $this->hasOne('Modules\Admin\Entities\FamilyAdmin');

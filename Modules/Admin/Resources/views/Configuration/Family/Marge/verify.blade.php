@@ -7,14 +7,34 @@
 @section('page-content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-    <h1 class="text-primary">Verify YOur Mother</h1><hr>     
-        <form method="post" action="{{route('admin.config.father.child.family.verify')}}" >
+    <h3 class="text-primary">Mother Verification</h3><hr>     
+        <form method="post" action="{{route('admin.config.father.child.family.verify.mother')}}" >
         {{csrf_field()}}
-            <label for="">Mother First Name :</label>
-            <input type="text" name="first_name" id="" class="form-control required" value="{{old('first_name')}}" placeholder="Enter your mother first name"><br>
-            <label for="">Mother Last Name :</label>
-            <input type="text" name="last_name" id="" class="form-control required" value="{{old('last_name')}}" placeholder="Enter your mother last name"><br>
-            <input type="submit" value="Marge Families" class="form-control btn btn-primary btn-block"/>
+            
+            <select name="first_name" class="form-control required">
+                <option value="">Mother Name</option>
+                @foreach($profile->husband->marriages as $marriage)
+                    <option value="{{$marriage->wife->profile->user->id}}">{{$marriage->wife->profile->user->first_name}}</option>
+                @endforeach
+            </select><br>
+
+            <select name="last_name" class="form-control required">
+                <option value="">Mother SurName</option>
+                @foreach($profile->husband->marriages as $marriage)
+                    <option value="{{$marriage->wife->profile->user->id}}">{{$marriage->wife->profile->user->last_name}}</option>
+                @endforeach
+            </select><br>
+
+            <select name="status" class="form-control required">
+                <option value="">Mother Status</option>
+                @foreach($profile->husband->marriages as $marriage)
+                    <option value="{{$marriage->wife->status->id}}">
+                        {{$marriage->wife->status->name}}
+                    </option>
+                @endforeach
+            </select><br>
+           
+            <input type="submit" value="Verify Mother" class="form-control btn btn-primary btn-block"/>
         </form>
     </div>
 </div>

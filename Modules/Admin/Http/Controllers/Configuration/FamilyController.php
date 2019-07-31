@@ -5,36 +5,26 @@ namespace Modules\Admin\Http\Controllers\Configuration;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Admin\Services\Traits\NewBirth;
+use Modules\Admin\Services\Traits\Margeable;
 use App\User;
 
 class FamilyController extends Controller
 {
     public $errors = [];
+
+    public $data;
+
+    use Margeable, NewBirth;
+
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function margeIndex()
     {
+        session()->forget(['father_profile','child_profile']);
         return view('admin::Configuration.Family.Marge.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function verifyMargeFamilies(Request $request)
-    {
-        $request->validate([
-            'father_email' => 'required|email',
-            'child_email' => 'required|email',
-        ]);
-        $this->verifyThisEmailsAndTheirProfiles($request->father_email,$request->child_email);
-        if(empty($this->errors)){
-            return redirect()->route('admin.config.father.child.family.marge.verify.father',[$request->father_family,$request->child_family]);
-        }
-        session()->flash('error',$this->errors);
-        return back();
     }
 
     /**
@@ -42,63 +32,19 @@ class FamilyController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function verifyFatherBaseOnFamily($child_family,$father_family)
+    public function verifyMotherBaseOnFamily()
     {
-        return view('admin::Configuration.Family.Marge.verify');
+        return view('admin::Configuration.Family.Marge.verify',['profile' => session('father_profile') ]);
     }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function searchThisEmail($email)
-    {  
-        foreach (User::where('email',$email)->get() as $email) {
-            return $email;
-        }
-    }
-
-    public function verifyThisEmailsAndTheirProfiles($father_email,$child_email)
-    {
-        $child = $this->searchThisEmail($child_email);
-        $father = $this->searchThisEmail($father_email);
-
-        if(!$father){
-            $this->errors[] = 'Sorry the father email does not exist';
-        }
-
-        if(!$father){
-            $this->errors[] = 'Sorry the child email does not exist';
-        }
-
-        if(empty($this->errors)){
-            $this->verifyThisProfilesFamilies($father->profile,$child->profile);
-        }
-
-    }
-
-    public function verifyThisProfilesFamilies(Profile $father_profile, Profile $child_profile)
-    {
-        if(!$father_profile->familyAdmin){
-            $this->errors[] = 'Sorry the specify father email does does not belongs to any father';
-        }
-        if(!$child_profile->familyAdmin){
-            $this->errors[] = 'Sorry the specify child email does does not belongs to any father';
-        }
-        if(empty($this->errors)){
-            session(['father_profile'=>$father_profile,'child_profile'=>$child_profile]);
-        }
-    }
-
+    
     /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Response
      */
-    public function edit($id)
+    public function newBirth()
     {
-        return view('admin::edit');
+        return view('admin::Configuration.Family.Marge.birth');
     }
 
     /**
@@ -107,9 +53,12 @@ class FamilyController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function marge(Request $request)
     {
-        //
+        $this->data = $request->all();
+        $this->registerBirth();
+        $this->margeThisFamilies();
+        return redirect()->route('admin.config.father.child.family.marge');
     }
 
     /**

@@ -128,9 +128,15 @@ Route::prefix('admin')->group(function () {
 
       Route::get('/father/child/family/marge', 'Configuration\FamilyController@margeIndex')->name('admin.config.father.child.family.marge');
 
-      Route::get('/{father}/{child}/family/marge/verify/father', 'Configuration\FamilyController@verifyFatherBaseOnFamily')->name('admin.config.father.child.family.marge.verify.father');
+      Route::get('/father/child/family/marge/verify/father', 'Configuration\FamilyController@verifyMotherBaseOnFamily')->name('admin.config.father.child.family.marge.verify.father');
+
+      Route::get('/father/child/family/marge/birth', 'Configuration\FamilyController@newBirth')->name('admin.config.father.child.family.marge.birth');
 
       Route::post('/father/child/family/marge/verify', 'Configuration\FamilyController@verifyMargeFamilies')->name('admin.config.father.child.family.verify');
+
+      Route::post('/father/child/family/marge/verify/mother', 'Configuration\FamilyController@verifyMother')->name('admin.config.father.child.family.verify.mother');
+
+      Route::post('/father/child/family/marge/register', 'Configuration\FamilyController@marge')->name('admin.config.father.child.family.marge.register');
     });
   });
   
