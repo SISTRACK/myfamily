@@ -77,12 +77,21 @@ trait Margeable
                     if($birth->child->profile->user->first_name == $child_profile->user->first_name &&
                         $birth->child->profile->user->last_name == $child_profile->user->last_name){
                         $flag = true;
+                        $child = $birth->child;
+                        $child_family_profile = $birth->child->profile;
+                        $child_family_profile_user = $birth->child->profile->user;
                     }
                 }
             }
 
             if(!$flag){
                 session()->flash('message','We find out that you have not register as the child of the specify mother you need to specify your birth information to complete this process');
+            }else{
+                $child->update(['profile_id'=>session('child_profile')->id]);
+                $child_family_profile->leave->delete();
+                $child_family_profile->profileHealth->delete();
+                $child_family_profile->delete();
+                $child_family_profile_user->delete();
             }
 
             return $flag;
@@ -111,7 +120,8 @@ trait Margeable
         ]);
         $valid = $this->validateAndVerifyThisMother($request->all());
         if($valid){
-            return back();
+            $this->margeThisFamilies();
+            return redirect()->route('admin.config.father.child.family.marge');
         }else{
             return redirect()->route('admin.config.father.child.family.marge.birth');
         }
