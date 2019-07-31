@@ -9,11 +9,34 @@
         </ul>
     </li>
 
+    
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Health </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="#">Hospitals</a></li>
+            <li><a href="#">Doctors</a></li>
+        </ul>
+    </li>
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Education </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="#">Nursery Schools</a></li>
+            <li><a href="#">Primary Schools</a></li>
+            <li><a href="#">Secondary Schools</a></li>
+        </ul>
+    </li>
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Security </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="#">Police Stations</a></li>
+            <li><a href="#">Courts</a></li>
+        </ul>
+    </li>
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Configurations </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.config.profile.index')}}">Profile</a></li>
-            <li><a href="#">Family</a></li>
+            <li><a href="#">Dis Marge Family</a></li>
             <li><a href="{{route('admin.config.father.child.family.marge')}}">Merge Family</a></li>
         </ul>
     </li>

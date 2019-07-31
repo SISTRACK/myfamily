@@ -108,6 +108,30 @@
                         </div>
                     </div>
                     <hr>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6">
+                            <h4 class="text-custom m-b-5">Educational Report</h4>
+                            <div class="p-t-10">
+                                <div class="row">
+                                    
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6">
+                            <h4 class="text-custom m-b-5">Security Report</h4>
+                            <div class="p-t-10">
+                                <div class="row">
+                                    
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
                             <h4 href="#"  data-toggle="modal" data-target="#access"  class="text-custom m-b-5">Give People Access To Your Profile</h4>

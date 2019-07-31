@@ -65,7 +65,7 @@
                                     <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
                                     @endforeach
                                 </div>
-                                <form action="/append_patient_file" method="post" enctype="multipart/form-data">
+                                <form action="{{route('append.patient.file')}}" method="post" enctype="multipart/form-data">
                                     @csrf            
                                     <label for="inputPasswordOld">Append File</label>
                                         <input name="file" type="file" class="form-control" />

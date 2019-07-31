@@ -1,0 +1,1 @@
+marriages.blade.php
