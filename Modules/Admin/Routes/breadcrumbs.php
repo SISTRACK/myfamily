@@ -173,7 +173,7 @@ Breadcrumbs::for('admin.search.identity.generation.result', function ($trail,$pr
 Breadcrumbs::for('admin.search.relative.results', function ($trail, $profile, $profiles, $search) {
     $trail->parent('admin.search.relative.profiles', $profiles);
     $trail->push($profile->user->first_name.' '.$profile->user->last_name, route('admin.search.relative.available.profiles',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
-    $trail->push('Results', route('admin.search.relative.result',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
+    $trail->push(request()->route('search_for').' Results', route('admin.search.relative.result',strtolower($profile->user->first_name.'-'.$profile->user->last_name)));
 });
 
 Breadcrumbs::for('admin.config.profile.index', function ($trail) {
