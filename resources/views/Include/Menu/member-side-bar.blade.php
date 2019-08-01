@@ -1,28 +1,28 @@
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Registration </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="fa fa-pencil-square-o"></i> <span> Registration </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('family.birth.create',[profile()->thisProfileFamily()->name])}}"><i class="mdi mdi-baby"></i> <span>Birth</span></a></li>
+            <li><a href="{{route('family.birth.create',[profile()->thisProfileFamily()->name])}}"><i class="fa fa-baby"></i> <span>Birth</span></a></li>
             <li><a href="{{route('family.marriage.create',[profile()->thisProfileFamily()->name])}}">Marriage</a></li>
             @if(profile()->husband && canDivorce())
             <li><a href="{{route('family.divorce.create',[profile()->thisProfileFamily()->name])}}">Divorce</a></li>
             @endif
-            <li><a href="{{route('family.death.create',[profile()->thisProfileFamily()->name])}}">Death</a></li>
+            <li><a href="{{route('family.death.create',[profile()->thisProfileFamily()->name])}}"><i class="fa fa-book-dead"></i><span>Death</span> </a></li>
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-nature-people "></i> <span> Family Event </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="fa fa-event "></i> <span> Family Event </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('event.create')}}">New Event</a></li>
-            <li><a href="{{route('event.index')}}">Available Event</a></li>
-            <li><a href="#">Announce</a></li>
+            <li><i class="fa fa-event_note "></i><a href="{{route('event.create')}}"><span>New Event</span></a></li>
+            <li><i class="fa fa-event_available "></i><a href="{{route('event.index')}}"><span>Available Event</span></a></li>
+            <li><i class="fa fa-announcement "></i><a href="#"><span>Announce</span></a></li>
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-face-profile "></i> <span> Profiles </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="fa fa-address-book"></i> <span> Profiles </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('family.member.profile',[profile()->thisProfileFamily()->name,profile()->id])}}">My Profile</a></li>
-            <li><a href="#">My Child Profile</a></li>
-            <li><a href="#">My Wife Profile</a></li>
+            <li><i class="fa fa-address-book"></i><a href="{{route('family.member.profile',[profile()->thisProfileFamily()->name,profile()->id])}}"><span>My Profile</span></a></li>
+            <li><i class="fa fa-address-book"></i><a href="#"><span>My Child Profile</span></a></li>
+            <li><i class="fa fa-address-book"></i><a href="#">My Wife Profile</a></li>
         </ul>
     </li>
     <li class="has_sub">

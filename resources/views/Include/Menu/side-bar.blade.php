@@ -19,7 +19,7 @@
                         $page = 'administrator';
                     }
                     @endphp
-                    <a href="{{route('home',[$page])}}" ><i class="mdi mdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                    <a href="{{route('home',[$page])}}" ><i class="fa fa-dashboard"></i> <span> Dashboard </span> </a>
                     
                 </li>
                 @yield('side-bar')

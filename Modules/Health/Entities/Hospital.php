@@ -15,4 +15,9 @@ class Hospital extends BaseModel
     {
     	return $this->belongsTo(Hospital::class);
     }
+
+    public function district()
+    {
+    	return $this->belongsTo('Modules\Address\Entities\District');
+    }
 }

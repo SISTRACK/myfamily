@@ -29,7 +29,10 @@ class District extends BaseModel
     {
         return $this->hasOne('Modules\Security\Entities\Security');
     }
-
+    public function hospitals()
+    {
+        return $this->hasMany('Modules\Health\Entities\Hospital');
+    }
     public function admin()
     {
         return $this->hasOne('Modules\Admin\Entities\Admin');
