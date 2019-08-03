@@ -25,7 +25,10 @@ trait ProfileEloquentRelations
     {
     	return $this->hasOne('Modules\Birth\Entities\Children');
     }
-    
+    public function doctor()
+    {
+        return $this->hasOne('Modules\Health\Entities\Doctor');
+    }
     public function admin()
     {
         return $this->hasOne('Modules\Admin\Entities\FamilyAdmin');
