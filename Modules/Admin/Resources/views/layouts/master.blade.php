@@ -13,8 +13,8 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Health </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="#">Hospitals</a></li>
-            <li><a href="#">Doctors</a></li>
+            <li><a href="{{route('admin.health.hospital.index')}}">Hospitals</a></li>
+            <li><a href="{{route('admin.health.doctor.index')}}">Doctors</a></li>
         </ul>
     </li>
     <li class="has_sub">

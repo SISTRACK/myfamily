@@ -23,6 +23,14 @@ class CreateHospitalsTable extends Migration
             ->on('hospital_types')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('hospital_category_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('hospital_categories')
+            ->delete('restrict')
+            ->update('cascade');
             $table->integer('district_id')
             ->nullable()
             ->unsigned()

@@ -23,4 +23,38 @@ Route::prefix('health')->group(function() {
     Route::post('logout', 'Auth\HealthLoginController@logout')->name('health.auth.logout');
 });
 
+//health administration routes
 
+Route::prefix('admin/health/')->middleware('auth:admin')->group(function() {
+
+    
+    Route::prefix('hospitals/')->group(function() {
+
+	    Route::get('/', 'HospitalController@index')->name('admin.health.hospital.index');
+
+	    Route::get('create', 'HospitalController@create')->name('admin.health.hospital.create');
+
+	    Route::post('register', 'HospitalController@register')->name('admin.health.hospital.register');
+
+	    Route::post('{hospita_id}/update', 'HospitalController@update')->name('admin.health.hospital.update');
+
+	    Route::get('{hospita_id}/delete', 'HospitalController@deleteHospital')->name('admin.health.hospital.delete');
+    });
+
+    Route::prefix('doctors/')->group(function() {
+
+
+	    Route::get('/', 'DoctorController@index')->name('admin.health.doctor.index');
+
+	    Route::get('create', 'DoctorController@create')->name('admin.health.doctor.create');
+
+	    Route::post('register', 'DoctorController@register')->name('admin.health.doctor.register');
+
+	    Route::post('{doctor_id}/update', 'DoctorController@update')->name('admin.health.doctor.update');
+
+	    Route::get('{doctor_id}/delete', 'DoctorController@deleteDoctor')->name('admin.health.doctor.delete');
+	    
+
+    });
+
+});

@@ -31,6 +31,30 @@ class CreateDoctorsTable extends Migration
             ->on('hospitals')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('profile_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('profiles')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('gender_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('genders')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('discpline_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('discplines');
+            ->delete('restrict')
+            ->update('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone')->nullable();

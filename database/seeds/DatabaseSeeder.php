@@ -16,6 +16,8 @@ use Modules\Health\Entities\Doctor;
 use Modules\Education\Entities\Teacher;
 use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
+use Modules\Health\Entities\HospitalType;
+use Modules\Health\Entities\HospitalCategory;
 
 
 class DatabaseSeeder extends Seeder
@@ -69,9 +71,16 @@ class DatabaseSeeder extends Seeder
       $genders = [
         'Male','Female','Other'
       ];
-      
-      $images = ['male.png','female.png'];
+      $hospital_types = ['Government','Private'];
+      $hospital_categories = ['Teaching Hospital','Federal Medical Center','General Hospital','Clinic','Dispensary'];
 
+      $images = ['male.png','female.png'];
+      foreach ($hospital_types as $hospital_type) {
+        HospitalType::firstOrCreate(['name'=>$hospital_type]);
+      }
+      foreach ($hospital_categories as $hospital_gategory) {
+        HospitalCategory::firstOrCreate(['name'=>$hospital_gategory]);
+      }
       foreach ($bloods as $blood) {
         BloodGroup::firstOrCreate(['name'=>$blood]);
       }

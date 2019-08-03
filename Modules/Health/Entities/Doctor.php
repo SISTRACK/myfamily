@@ -25,4 +25,19 @@ class Doctor extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function discpline()
+    {
+        return $this->belongsTo(Discpline::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Gender');
+    }
+
+    public function profile()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Profile');
+    }
 }

@@ -13,11 +13,19 @@ class Hospital extends BaseModel
 
     public function hospitalType()
     {
-    	return $this->belongsTo(Hospital::class);
+    	return $this->belongsTo(HospitalType::class);
     }
 
     public function district()
     {
     	return $this->belongsTo('Modules\Address\Entities\District');
+    }
+    public function hospitalCategory()
+    {
+    	return $this->belongsTo(HospitalCategory::class);
+    }
+    public function hospitalLocation()
+    {
+    	return $this->hasOne(HospitalLocation::class);
     }
 }
