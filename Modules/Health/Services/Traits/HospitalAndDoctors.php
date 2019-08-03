@@ -1,5 +1,10 @@
 <?php
 namespace Modules\Health\Services\Traits;
+use Modules\Address\Entities\Town;
+use Modules\Health\Entities\Doctor;
+use Modules\Profile\Entities\Profile;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 trait HospitalAndDoctors
 
@@ -82,21 +87,77 @@ trait HospitalAndDoctors
         }
         return $hospitals;
     }
+    public function getThisAdminState()
+    {
+        
+        if(admin()->district){
+            return admin()->district->lga->state;
+        }elseif (admin()->lga) {
+            return admin()->lga->state;
+        }elseif (admin()->state) {
+            return admin()->state;
+        }
+    }
     protected function validateDoctor(array $data)
     {
         return Validator::make($data, [
             'gender_id' => 'required',
+            'state_id' => 'required',
             'discpline_id' => 'required',
+            'hospital_id' => 'required',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
+            'phone' => 'required|string|max:255|unique:doctors',
             'email' => 'required|string|email|max:255|unique:doctors',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
     public function createDoctorAccount($data)
     {
-    	Doctor::create($data);
-    	session()->flash('message','The doctor account created successfully');
+    	$errors = [];
+    	if($data['profile_id']){
+            $profile = Profile::find($data['profile_id']);
+            if(!$profile){
+           	   $errors[] = 'Invalid Profile ID';
+            }else{
+            	if($data['first_name'] !=$profile->user->first_name){
+	               $errors[] = 'Sorry the specify first name does not match the one on the specified profile';
+	            }
+	            if($data['last_name'] !=$profile->user->last_name){
+	               $errors[] = 'Sorry the specify last name does not match the one on the specified profile';
+	            }
+	            if($data['gender_id'] !=$profile->user->gender_id){
+	               $errors[] = 'Sorry the specify Gender does not match the one on the specified profile';
+	            }
+	            if(empty($errors)){
+	            	$data['first_name'] = $profile->user->first_name;
+		            $data['last_name'] = $profile->user->first_name;
+		            $data['gender_id'] = $profile->gender_id;
+	            }else{
+	            	session()->flash('error',$errors);
+	            }
+            }
+           
+    	}else{
+    		
+    		if($this->getThisAdminState()->id == $data['state_id']){
+    			$errors[] = 'The profile ID is required for this registration';
+    		}
+    		$data['profile_id'] = null;
+    	}
+    	if(!session('error')){
+    		Doctor::create([
+	    		'first_name'=>$data['first_name'],
+	    		'last_name'=>$data['last_name'],
+	    		'email'=>$data['email'],
+	    		'password'=>Hash::make($data['password']),
+	    		'phone'=>$data['phone'],
+	    		'gender_id'=>$data['gender_id'],
+	    		'discpline_id'=>$data['discpline_id'],
+	    		'profile_id'=>$data['profile_id'],
+	    		'hospital_id'=>$data['hospital_id'],
+	    	]);
+	    	session()->flash('message','The doctor account created successfully');
+    	}
     }
 }

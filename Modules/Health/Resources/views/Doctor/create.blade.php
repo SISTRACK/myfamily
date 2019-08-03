@@ -4,25 +4,42 @@
 	<div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-    	<h2 class="text-primary">New Hospital</h2>
-        <form action="{{route('admin.health.hospital.register')}}" method="post">
+    	<h2 class="text-primary">New Health Personel</h2>
+        <form action="{{route('admin.health.doctor.register')}}" method="post">
         	@csrf
-                <input type="text" name="name" class="form-control" placeholder ="Hospital Title"><br>
-                <select name="hospital_id" class="form-control">
-	             	<option value="">Hospital</option>
-	             	@foreach($hospitals as $hospital)
-	                    <option value="{{$hospital->id}}">
-	                    	{{$hospital->name}}
-	                    </option>
-	             	@endforeach
-	            </select><br>
-             <select name="gender_id" class="form-control">
+        	<input type="text" name="profile_id" placeholder="Profile ID" class="form-control"><br>
+            <select name="state_id" class="form-control">
+             	<option value="">State of Origin</option>
+             	@foreach($states as $state)
+                    <option value="{{$state->id}}">
+                    	{{$state->name}}
+                    </option>
+             	@endforeach
+            </select><br>
+            <select name="hospital_id" class="form-control">
+             	<option value="">Hospital</option>
+             	@foreach($hospitals as $hospital)
+                    <option value="{{$hospital->id}}">
+                    	{{$hospital->name}}
+                    </option>
+             	@endforeach
+            </select><br>
+            <select name="gender_id" class="form-control">
              	<option value="">Gender</option>
-             </select><br>
-             <select name="discpline_id" class="form-control">
+             	@foreach($genders as $gender)
+                    <option value="{{$gender->id}}">
+                    	{{$gender->name}}
+                    </option>
+             	@endforeach
+            </select><br>
+            <select name="discpline_id" class="form-control">
              	<option value="">Discpline</option>
-             </select><br>
-                
+             	@foreach($discplines as $discpline)
+                    <option value="{{$discpline->id}}">
+                    	{{$discpline->name}}
+                    </option>
+             	@endforeach
+            </select><br>
             <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required placeholder="First Name">
             @if ($errors->has('first_name'))
                 <span class="invalid-feedback" role="alert">

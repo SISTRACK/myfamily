@@ -52,7 +52,7 @@ class CreateDoctorsTable extends Migration
             ->unsigned()
             ->foreign()
             ->references('id')
-            ->on('discplines');
+            ->on('discplines')
             ->delete('restrict')
             ->update('cascade');
             $table->string('first_name');

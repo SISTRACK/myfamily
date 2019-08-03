@@ -18,6 +18,7 @@ use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
 use Modules\Health\Entities\HospitalType;
 use Modules\Health\Entities\HospitalCategory;
+use Modules\Health\Entities\Discpline;
 
 
 class DatabaseSeeder extends Seeder
@@ -75,6 +76,11 @@ class DatabaseSeeder extends Seeder
       $hospital_categories = ['Teaching Hospital','Federal Medical Center','General Hospital','Clinic','Dispensary'];
 
       $images = ['male.png','female.png'];
+
+      $discplines = ['Doctor','Nurse','Mid Wifery','Pharmacy','Lab Science'];
+      foreach ($discplines as $discpline) {
+        Discpline::firstOrCreate(['name'=>$discpline]);
+      }
       foreach ($hospital_types as $hospital_type) {
         HospitalType::firstOrCreate(['name'=>$hospital_type]);
       }

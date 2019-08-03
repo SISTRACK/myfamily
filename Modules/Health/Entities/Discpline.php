@@ -2,9 +2,9 @@
 
 namespace Modules\Health\Entities;
 
-use Modules\Core\Entities\BaseMode;
+use Modules\Core\Entities\BaseModel;
 
-class Discpline extends BaseMode
+class Discpline extends BaseModel
 {
     public function doctor()
     {

@@ -5,7 +5,9 @@ namespace Modules\Health\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Modules\Health\Entities\Doctor;
+use Modules\Address\Entities\State;
+use Modules\Profile\Entities\Gender;
+use Modules\Health\Entities\Discpline;
 use Modules\Health\Services\Traits\HospitalAndDoctors as Doctorized;
 
 class DoctorController extends Controller
@@ -26,7 +28,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('health::Doctor.create',['hospitals'=>$this->availableHospitals()]);
+        return view('health::Doctor.create',['hospitals'=>$this->availableHospitals(),'genders'=>Gender::all(),'discplines'=>Discpline::all(),'states'=>State::all()]);
     }
 
     /**
@@ -39,7 +41,7 @@ class DoctorController extends Controller
         $data = $request->all();
         $this->validateDoctor($data)->validate();
         $this->createDoctorAccount($data);
-        return redirect()->route('admin.health.doctors.index');
+        return redirect()->route('admin.health.doctor.index');
 
     }
 

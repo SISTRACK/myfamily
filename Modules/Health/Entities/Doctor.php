@@ -15,7 +15,15 @@ class Doctor extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'email',
+        'phone', 
+        'password',
+        'hospital_id',
+        'gender_id',
+        'profile_id',
+        'discpline_id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -29,6 +37,11 @@ class Doctor extends Authenticatable
     public function discpline()
     {
         return $this->belongsTo(Discpline::class);
+    }
+
+    public function hospital()
+    {
+        return $this->belongsTo(Hospital::class);
     }
 
     public function gender()
