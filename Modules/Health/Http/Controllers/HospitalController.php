@@ -2,7 +2,6 @@
 
 namespace Modules\Health\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Address\Entities\State;
@@ -11,6 +10,7 @@ use Modules\Health\Entities\Hospital;
 use Modules\Health\Entities\Discpline;
 use Modules\Health\Entities\HospitalType;
 use Modules\Health\Entities\HospitalCategory;
+use Modules\Health\Http\Requests\HospitalFormRequest;
 use Modules\Health\Services\Traits\HospitalAndDoctors as Hospitalized;
 
 class HospitalController extends Controller
@@ -48,7 +48,7 @@ class HospitalController extends Controller
      * @return Response
      */
 
-    public function register(Request $request)
+    public function register(HospitalFormRequest $request)
     {
         $this->registerThisHospital($request->all());
         return redirect()->route('admin.health.hospital.index');
@@ -70,9 +70,8 @@ class HospitalController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $hospital_id)
+    public function update(HospitalFormRequest $request, $hospital_id)
     {
-
         $this->updateThisHospital(Hospital::find($hospital_id), $request->all());
         return redirect()->route('admin.health.hospital.index');
     }

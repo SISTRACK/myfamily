@@ -2,13 +2,14 @@
 
 namespace Modules\Health\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Modules\Health\Http\Requests\DoctorFormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Health\Entities\Doctor;
 use Modules\Address\Entities\State;
 use Modules\Profile\Entities\Gender;
 use Modules\Health\Entities\Discpline;
+
 use Modules\Health\Services\Traits\HospitalAndDoctors as Doctorized;
 
 class DoctorController extends Controller
@@ -43,7 +44,7 @@ class DoctorController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(DoctorFormRequest $request)
     {
         $data = $request->all();
         $this->validateDoctor($data)->validate();
