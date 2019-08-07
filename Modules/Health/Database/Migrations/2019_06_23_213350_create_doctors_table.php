@@ -67,6 +67,7 @@ class CreateDoctorsTable extends Migration
             $table->string('last_name');
             $table->string('phone')->nullable();
             $table->string('email')->nullable()->unique();
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
