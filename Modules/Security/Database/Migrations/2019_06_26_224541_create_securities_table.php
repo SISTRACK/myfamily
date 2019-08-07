@@ -23,7 +23,7 @@ class CreateSecuritiesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('email');
             $table->string('password');
             $table->rememberToken();
