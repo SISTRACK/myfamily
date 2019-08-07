@@ -4,9 +4,11 @@ namespace Modules\Health\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\Address\Entities\Town;
 use Illuminate\Routing\Controller;
+use Modules\Address\Entities\State;
+use Modules\Profile\Entities\Gender;
 use Modules\Health\Entities\Hospital;
+use Modules\Health\Entities\Discpline;
 use Modules\Health\Entities\HospitalType;
 use Modules\Health\Entities\HospitalCategory;
 use Modules\Health\Services\Traits\HospitalAndDoctors as Hospitalized;
@@ -22,9 +24,12 @@ class HospitalController extends Controller
     {
         return view('health::Hospital.index',[
             'hospitals'=>$this->availableHospitals(),
-            'towns'=>$this->newHospitalRegistrationTowns(),
+            'towns'=>$this->newHospitalRegistrationDistricts(),
             'hospital_types'=>HospitalType::all(),
-            'hospital_categories'=>HospitalCategory::all()
+            'hospital_categories'=>HospitalCategory::all(),
+            'genders'=>Gender::all(),
+            'discplines'=>Discpline::all(),
+            'states'=>State::all()
         ]);
     }
 
@@ -34,7 +39,7 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        return view('health::Hospital.create',['towns'=>$this->newHospitalRegistrationTowns(),'hospital_types'=>HospitalType::all(),'hospital_categories'=>HospitalCategory::all()]);
+        return view('health::Hospital.create',['districts'=>$this->newHospitalRegistrationDistricts(),'hospital_types'=>HospitalType::all(),'hospital_categories'=>HospitalCategory::all()]);
     }
 
     /**

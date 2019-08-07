@@ -50,7 +50,7 @@ Route::prefix('admin/health/')->middleware('auth:admin')->group(function() {
 
 	    Route::post('register', 'DoctorController@register')->name('admin.health.doctor.register');
 
-	    Route::post('{doctor_id}/update', 'DoctorController@update')->name('admin.health.doctor.update');
+	    Route::post('{doctor_id}/update', 'DoctorController@updateThisDoctor')->name('admin.health.doctor.update');
 
 	    Route::get('{doctor_id}/delete', 'DoctorController@deleteDoctor')->name('admin.health.doctor.delete');
 	    

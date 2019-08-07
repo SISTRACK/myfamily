@@ -23,6 +23,7 @@ class Doctor extends Authenticatable
         'hospital_id',
         'gender_id',
         'profile_id',
+        'state_id',
         'discpline_id'
     ];
     /**
@@ -52,5 +53,14 @@ class Doctor extends Authenticatable
     public function profile()
     {
         return $this->belongsTo('Modules\Profile\Entities\Profile');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('Modules\Address\Entities\State');
+    }
+    public function medicalReport()
+    {
+        return $this->hasMany(MedicalReport::class);
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-content')
-	<div>
+	<div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
     	<h2 class="text-primary">New Hospital</h2>
@@ -22,8 +22,12 @@
              </select><br>
              <select name="town_id" class="form-control">
              	<option value="">Select Town</option>
-             	@foreach($towns as $town)
-                    <option value="{{$town->id}}">{{$town->name}}</option>
+             	@foreach($districts as $district)
+             	    <optgroup label="{{$district->name.' District'}}">
+             	    	@foreach($district->towns as $town)
+	                        <option value="{{$town->id}}">{{$town->name}}</option>
+	         	        @endforeach
+             	    </optgroup>
              	@endforeach
              </select><br>
              <textarea name="address" placeholder="Address of the hospital" class="form-control"></textarea><br>

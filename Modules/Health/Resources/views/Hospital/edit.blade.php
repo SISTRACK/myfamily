@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 			    <div class="col-md-12">
-			    	<h2 class="text-primary">New Hospital</h2>
+			    	<h2 class="text-primary">Edit Hospital Info</h2>
 			        <form action="{{route('admin.health.hospital.update',[$hospital->id])}}" method="post">
 			        	@csrf
 			             <input type="text" name="name" class="form-control" value ="{{$hospital->name}}"><br>

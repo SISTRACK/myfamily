@@ -11,7 +11,9 @@
         			<th>S/N</th>
         			<th>Name</th>
         			<th>email</th>
-        			<th>phone</th>
+                    <th>phone</th>
+                    <th>State Of Origin</th>
+        			<th>Report</th>
         			<th>Hospital</th>
         			<th>Discpline</th>
         			<th>District</th>
@@ -29,7 +31,9 @@
 		        			<td>{{$loop->index+1}}</td>
 		        			<td>{{$doctor->first_name}} {{$doctor->last_name}}</td>
 		        			<td>{{$doctor->email}}</td>
-		        			<td>{{$doctor->phone}}</td>
+                            <td>{{$doctor->phone}}</td>
+                            <td>{{$doctor->state->name}}</td>
+		        			<td>{{count($doctor->medicalReport)}}</td>
 		        			<td>{{$doctor->hospital->name}}</td>
 		        			<td>{{$doctor->discpline->name}}</td>
 		        			<td>{{$doctor->hospital->district->name}}</td>
@@ -39,8 +43,8 @@
 		        				<button class="btn btn-warning"><a href="{{route('admin.health.doctor.delete',[$doctor->id])}}">Delete</a></button>
 		        			</td>
 		        		</tr>
+                        @include('health::Doctor.edit')
 	        		@endforeach
-	        		@include('health::Doctor.edit')
             	@endforeach
             </tbody>
         </table>

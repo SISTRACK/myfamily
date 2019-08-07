@@ -31,11 +31,15 @@
 	        			<td>{{$hospital->hospitalLocation->town->name}}</td>
 	        			<td>{{$hospital->hospitalLocation->address}}</td>
 	        			<td>
-	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#hospital_'.$hospital->id}}"><i class="fa fa-eye" ></i></button>
+	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#hospital_'.$hospital->id}}"><i class="fa fa-eye" ></i>
+	        				</button>
+	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#doctor_'.$hospital->id}}"><i class="fa fa-md" >Doctor</i>
+	        				</button>
 	        				<button class="btn btn-warning"><a href="{{route('admin.health.hospital.delete',[$hospital->id])}}">Delete</a></button>
 	        			</td>
 	        		</tr>
 	        		@include('health::Hospital.edit')
+	        		@include('health::Hospital.new_doctor')
             	@endforeach
             </tbody>
         </table>

@@ -5,6 +5,7 @@ namespace Modules\Health\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Health\Entities\Doctor;
 use Modules\Address\Entities\State;
 use Modules\Profile\Entities\Gender;
 use Modules\Health\Entities\Discpline;
@@ -19,7 +20,13 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return view('health::Doctor.index',['hospitals'=>$this->availableHospitals()]);
+        return view('health::Doctor.index',
+            [
+                'hospitals'=>$this->availableHospitals(),
+                'genders'=>Gender::all(),
+                'discplines'=>Discpline::all(),
+                'states'=>State::all()
+            ]);
     }
 
     /**
@@ -52,10 +59,7 @@ class DoctorController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -64,7 +68,9 @@ class DoctorController extends Controller
      */
     public function deleteDoctor($id)
     {
-        //
+        Doctor::find($id)->delete();
+        session()->flash('mesaage','The doctor account was deleted successfully');
+        return back();
     }
 
 

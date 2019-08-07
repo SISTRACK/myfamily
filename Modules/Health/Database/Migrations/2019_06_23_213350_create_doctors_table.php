@@ -55,6 +55,14 @@ class CreateDoctorsTable extends Migration
             ->on('discplines')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('state_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('states')
+            ->delete('restrict')
+            ->update('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone')->nullable();

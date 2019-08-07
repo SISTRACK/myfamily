@@ -1,10 +1,13 @@
 <?php
 namespace Modules\Health\Services\Traits;
+
+use Illuminate\Http\Request;
 use Modules\Address\Entities\Town;
 use Modules\Health\Entities\Doctor;
 use Modules\Profile\Entities\Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 
 trait HospitalAndDoctors
 
@@ -39,29 +42,23 @@ trait HospitalAndDoctors
         session()->flash('message','Hospital information updated successfully');
     }
 
-    public function newHospitalRegistrationTowns()
+    public function newHospitalRegistrationDistricts()
     {
-        $towns = [];
+        $districts = [];
         if(admin()->district){
-            foreach (admin()->district->towns as $town) {
-                $towns[] = $town;
-            }
+            $districts[] = $district;
         }elseif (admin()->lga) {
             foreach (admin()->lga->districts as $district) {
-                foreach ($district->towns as $town) {
-                    $towns[] = $town;
-                }
+                $districts[] = $district;
             }
         }elseif (admin()->state) {
-            foreach (admin()->state->lga as $lga) {
+            foreach (admin()->state->lgas as $lga) {
                 foreach ($lga->districts as $district) {
-                    foreach ($district->towns as $town) {
-                        $towns[] = $town;
-                    }
+                    $districts[] = $district;
                 }
             }
         }
-        return $towns;
+        return $districts;
     }
     public function availableHospitals()
     {
@@ -77,7 +74,7 @@ trait HospitalAndDoctors
                 }
             }
         }elseif (admin()->state) {
-            foreach (admin()->state->lga as $lga) {
+            foreach (admin()->state->lgas as $lga) {
                 foreach ($lga->districts as $district) {
                     foreach ($district->hospitals as $hospital) {
                         $hospitals[] = $hospital;
@@ -97,6 +94,28 @@ trait HospitalAndDoctors
         }elseif (admin()->state) {
             return admin()->state;
         }
+    }
+    public function updateThisDoctor(Request $request, $id)
+    {
+        $doctor = Doctor::find($id);
+        $data = $request->all();
+        $doctor->update([
+            'first_name'=>$data['first_name'],
+            'last_name'=>$data['last_name'],
+            'email'=>$data['email'],
+            'phone'=>$data['phone'],
+            'gender_id'=>$data['gender_id'],
+            'discpline_id'=>$data['discpline_id'],
+            'profile_id'=>$data['profile_id'],
+            'hospital_id'=>$data['hospital_id']
+        ]);
+        if($data['password']){
+            $doctor->update([
+                'password'=>Hash::make($data['password'])
+            ]);
+        }
+        session()->flash('message','Doctor information updated successfully');
+        return back();
     }
     protected function validateDoctor(array $data)
     {
@@ -155,7 +174,8 @@ trait HospitalAndDoctors
 	    		'gender_id'=>$data['gender_id'],
 	    		'discpline_id'=>$data['discpline_id'],
 	    		'profile_id'=>$data['profile_id'],
-	    		'hospital_id'=>$data['hospital_id'],
+                'hospital_id'=>$data['hospital_id'],
+	    		'state_id'=>$data['state_id'],
 	    	]);
 	    	session()->flash('message','The doctor account created successfully');
     	}

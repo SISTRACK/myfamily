@@ -31,4 +31,9 @@ class State extends BaseModel
     {
         return $this->hasOne('Modules\Admin\Entities\Admin');
     }
+
+    public function doctors()
+    {
+        return $this->hasMany('Modules\Health\Entities\Doctor');
+    }
 }
