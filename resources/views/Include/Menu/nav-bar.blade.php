@@ -33,7 +33,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                        <i class="mdi mdi-bell"></i>
+                        <i class="fa fa-bell"></i>
                         <span class="badge up bg-success">4</span>
                     </a>
 
@@ -57,7 +57,7 @@
 
                 <li>
                     <a href="#" class="right-menu-item dropdown-toggle" data-toggle="dropdown">
-                        <i class="mdi mdi-email"></i>
+                        <i class="fa fa-email"></i>
                         <span class="badge up bg-danger">1</span>
                     </a>
 

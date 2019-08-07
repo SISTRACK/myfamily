@@ -33,9 +33,9 @@
 	        			<td>
 	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#hospital_'.$hospital->id}}"><i class="fa fa-eye" ></i>
 	        				</button>
-	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#doctor_'.$hospital->id}}"><i class="fa fa-md" >Doctor</i>
+	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#doctor_'.$hospital->id}}"><i class="fa fa-user-md" ></i>
 	        				</button>
-	        				<button class="btn btn-warning"><a href="{{route('admin.health.hospital.delete',[$hospital->id])}}">Delete</a></button>
+	        				<button class="btn btn-warning"><a href="{{route('admin.health.hospital.delete',[$hospital->id])}}"><i class="fa fa-delete">Delete</i></a></button>
 	        			</td>
 	        		</tr>
 	        		@include('health::Hospital.edit')

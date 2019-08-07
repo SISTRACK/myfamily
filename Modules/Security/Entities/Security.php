@@ -30,15 +30,17 @@ class Security extends Authenticatable
     {
         return $this->belongsTo('Modules\Address\Entities\State');
     }
-
-    public function lga()
+    public function profile()
     {
-        return $this->belongsTo('Modules\Address\Entities\Lga');
+        return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
-
-    public function district()
+    public function court()
     {
-        return $this->belongsTo('Modules\Address\Entities\District');
+        return $this->belongsTo(Court::class);
+    }
+    public function pooliceStation()
+    {
+        return $this->belongsTo(PoliceStation::class);
     }
 }
 

@@ -9,14 +9,14 @@
         </ul>
     </li>
 
-    
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Health </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="fa fa-ambulance"></i> <span> Health </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('admin.health.hospital.index')}}">Hospitals</a></li>
-            <li><a href="{{route('admin.health.doctor.index')}}">Doctors</a></li>
+            <li><a href="{{route('admin.health.hospital.index')}}"><i class="fa fa-ambulance"></i> <span>Hospitals</span></a></li>
+            <li><a href="{{route('admin.health.doctor.index')}}"><i class="fa fa-user-md"></i><span>Doctors</span></a></li>
         </ul>
     </li>
+
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Education </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">

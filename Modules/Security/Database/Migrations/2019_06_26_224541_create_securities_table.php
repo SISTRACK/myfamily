@@ -17,11 +17,13 @@ class CreateSecuritiesTable extends Migration
             $table->increments('id');
             $table->integer('role_id')->nullable();
             $table->integer('state_id')->nullable();
-            $table->integer('lga_id')->nullable();
-            $table->integer('district_id')->nullable();
+            $table->integer('court_id')->nullable();
+            $table->integer('police_station_id')->nullable();
+            $table->integer('profile_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->string('image');
             $table->string('email');
             $table->string('password');
             $table->rememberToken();
