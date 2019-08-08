@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHospitalsTable extends Migration
+class CreateCourtLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,33 +13,25 @@ class CreateHospitalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hospitals', function (Blueprint $table) {
+        Schema::create('court_locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hospital_type_id')
+            $table->integer('court_id')
             ->nullable()
             ->unsigned()
             ->foreign()
             ->references('id')
-            ->on('hospital_types')
+            ->on('courts')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('hospital_category_id')
+            $table->integer('town_id')
             ->nullable()
             ->unsigned()
             ->foreign()
             ->references('id')
-            ->on('hospital_categories')
+            ->on('towns')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('hospital_location_id')
-            ->nullable()
-            ->unsigned()
-            ->foreign()
-            ->references('id')
-            ->on('hospital_locations')
-            ->delete('restrict')
-            ->update('cascade');
-            $table->string('name');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -51,6 +43,6 @@ class CreateHospitalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospitals');
+        Schema::dropIfExists('court_locations');
     }
 }

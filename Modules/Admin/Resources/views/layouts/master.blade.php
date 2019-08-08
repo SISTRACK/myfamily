@@ -26,10 +26,17 @@
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Security </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Police </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="#">Police Stations</a></li>
-            <li><a href="#">Courts</a></li>
+            <li><a href="#">Stations</a></li>
+            <li><a href="#">User Agents</a></li>
+        </ul>
+    </li>
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Jedicuary </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="{{route('admin.security.court.index')}}">Court</a></li>
+            <li><a href="#">User Agents</a></li>
         </ul>
     </li>
     <li class="has_sub">

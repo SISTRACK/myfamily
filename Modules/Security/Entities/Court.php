@@ -20,4 +20,9 @@ class Court extends BaseModel
     {
     	return $this->hasMany(Security::class);
     }
+
+    public function courtLocation()
+    {
+    	return $this->hasOne(CourtLocation::class);
+    }
 }

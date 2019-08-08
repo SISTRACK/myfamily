@@ -31,5 +31,13 @@ class Town extends BaseModel
     {
         return $this->belongsTo(District::class);
     }
+    public function courtLocations()
+    {
+        return $this->hasMany('Modules\Security\Entities\CourtLocation');
+    }
 
+    public function hospitalLocations()
+    {
+        return $this->hasMany('Modules\Health\Entities\HospitalLocation');
+    }
 }

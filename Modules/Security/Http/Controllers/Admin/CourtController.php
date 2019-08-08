@@ -4,9 +4,10 @@ namespace Modules\Security\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Modules\Address\Entities\State;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
-class CourtController extends Controller
+class CourtController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class CourtController extends Controller
      */
     public function index()
     {
-        return view('security::index');
+        return view('security::Admin.Court.index',['courts'=>$this->availableCourts(),'districts'=>$this->availableDistricts(),'court_categories'=>[],'court_types'=>[],'states'=>State::all()]);
     }
 
     /**
@@ -23,7 +24,7 @@ class CourtController extends Controller
      */
     public function create()
     {
-        return view('security::create');
+        return view('security::Admin.Court.create',['courts'=>$this->availableCourts(),'districts'=>$this->availableDistricts(),'court_categories'=>[],'court_types'=>[],'states'=>State::all()]);
     }
 
     /**
@@ -31,30 +32,22 @@ class CourtController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
-        //
+        $town = Town::find($data['town_id']);
+        $court = $town->courtLocations()->firstOrCreate([
+            'name' => $data['name'],
+            'court_type_id' => $data['court_type_id'],
+            'court_category_id' => $data['court_category_id'],
+        ]);
+        $court->courtLocation()->firstOrCreate([
+            'address' => $data['address'],
+            'town_id' => $data['town_id'],
+        ]);
+        session()->flash('message','Court created successfully');
+    
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('security::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('security::edit');
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,7 +65,7 @@ class CourtController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }

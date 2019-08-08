@@ -24,7 +24,7 @@ class HospitalController extends Controller
     {
         return view('health::Hospital.index',[
             'hospitals'=>$this->availableHospitals(),
-            'towns'=>$this->newHospitalRegistrationDistricts(),
+            'towns'=>$this->availableDistricts(),
             'hospital_types'=>HospitalType::all(),
             'hospital_categories'=>HospitalCategory::all(),
             'genders'=>Gender::all(),
@@ -39,7 +39,7 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        return view('health::Hospital.create',['districts'=>$this->newHospitalRegistrationDistricts(),'hospital_types'=>HospitalType::all(),'hospital_categories'=>HospitalCategory::all()]);
+        return view('health::Hospital.create',['districts'=>$this->availableDistricts(),'hospital_types'=>HospitalType::all(),'hospital_categories'=>HospitalCategory::all()]);
     }
 
     /**

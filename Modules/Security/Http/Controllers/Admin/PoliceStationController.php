@@ -4,9 +4,9 @@ namespace Modules\Security\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
-class PoliceStationController extends Controller
+class PoliceStationController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PoliceStationController extends Controller
      */
     public function index()
     {
-        return view('security::index');
+        return view('security::Admin.PoliceStation.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class PoliceStationController extends Controller
      */
     public function create()
     {
-        return view('security::create');
+        return view('security::Admin.PoliceStation.create');
     }
 
     /**
@@ -31,30 +31,11 @@ class PoliceStationController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         //
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('security::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('security::edit');
-    }
 
     /**
      * Update the specified resource in storage.
@@ -72,7 +53,7 @@ class PoliceStationController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         //
     }
