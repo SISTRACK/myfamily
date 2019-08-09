@@ -11,6 +11,7 @@ use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Profile;
 use Modules\Address\Entities\State;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Security\Http\Requests\Admin\CourtUserAgentFormRequest;
 
 class CourtSecurityController extends AdminBaseController
 {
@@ -45,7 +46,7 @@ class CourtSecurityController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(CourtUserAgentFormRequest $request)
     {
         $data = $request->all();
         $errors = [];

@@ -9,6 +9,7 @@ use Modules\Address\Entities\State;
 use Modules\Security\Entities\Court;
 use Modules\Security\Entities\CourtType;
 use Modules\Security\Entities\CourtCategory;
+use Modules\Security\Http\Requests\Admin\CourtFormRequest;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class CourtController extends AdminBaseController
@@ -44,7 +45,7 @@ class CourtController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(CourtFormRequest $request)
     {
         $data = $request->all();
         $court_type = CourtType::find($data['court_type_id']);
@@ -69,7 +70,7 @@ class CourtController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $court_id)
+    public function update(CourtFormRequest $request, $court_id)
     {
         $data = $request->all();
         $court = Court::find($court_id);
