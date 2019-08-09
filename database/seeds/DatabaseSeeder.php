@@ -17,6 +17,8 @@ use Modules\Education\Entities\Teacher;
 use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
 use Modules\Health\Entities\HospitalType;
+use Modules\Security\Entities\CourtType;
+use Modules\Security\Entities\CourtCategory;
 use Modules\Health\Entities\HospitalCategory;
 use Modules\Health\Entities\Discpline;
 
@@ -72,12 +74,21 @@ class DatabaseSeeder extends Seeder
       $genders = [
         'Male','Female','Other'
       ];
+      $court_types = ['Supreme Court', 'Sharia Court', 'Magistry Court','Higher Court', 'Court of Apeal'];
+      $court_categories = ['Jidutiary','Legistilative'];
+      
       $hospital_types = ['Government','Private'];
       $hospital_categories = ['Teaching Hospital','Federal Medical Center','General Hospital','Clinic','Dispensary'];
-
       $images = ['male.png','female.png'];
 
       $discplines = ['Doctor','Nurse','Mid Wifery','Pharmacy','Lab Science'];
+      foreach ($court_types as $court_type) {
+        CourtType::firstOrCreate(['name'=>$court_type]);
+      }
+      foreach ($court_categories as $court_categorie) {
+        CourtCategory::firstOrCreate(['name'=>$court_categorie]);
+      }
+      
       foreach ($discplines as $discpline) {
         Discpline::firstOrCreate(['name'=>$discpline]);
       }

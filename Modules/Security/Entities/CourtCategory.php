@@ -8,6 +8,6 @@ class CourtCategory extends BaseModel
 {
     public function courts()
     {
-    	return $this->hasMany(Court::class)
+    	return $this->hasMany(Court::class);
     }
 }

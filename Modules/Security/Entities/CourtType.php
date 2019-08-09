@@ -4,10 +4,10 @@ namespace Modules\Security\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class CourtType extends Model
+class CourtType extends BaseModel
 {
-    public function court()
+    public function courts()
     {
-    	return $this->hasMany(Court::class)
+    	return $this->hasMany(Court::class);
     }
 }

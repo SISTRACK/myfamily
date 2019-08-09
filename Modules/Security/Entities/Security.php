@@ -15,7 +15,16 @@ class Security extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'email', 'password','last_name','phone'
+        'first_name', 
+        'last_name',
+        'email', 
+        'password',
+        'phone',
+        'state_id',
+        'court_id',
+        'gender_id',
+        'profile_id',
+        'police_station_id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -38,9 +47,19 @@ class Security extends Authenticatable
     {
         return $this->belongsTo(Court::class);
     }
-    public function pooliceStation()
+    public function policeStation()
     {
         return $this->belongsTo(PoliceStation::class);
     }
+    public function securityReports()
+    {
+        return $this->hasMany(SecurityReport::class);
+    }
+
+    public function gender()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Gender');
+    }
+    
 }
 

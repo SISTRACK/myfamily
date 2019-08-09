@@ -34,7 +34,24 @@ Route::prefix('admin/security/')->group(function() {
 
 	    Route::get('{court_id}/delete', 'Admin\CourtController@delete')->name('admin.security.court.delete');
 
+
+	    Route::prefix('user-agent/')->group(function() {
+
+		    Route::get('/', 'Admin\CourtSecurityController@index')->name('admin.security.court.user.index');
+
+		    Route::get('create', 'Admin\CourtSecurityController@create')->name('admin.security.court.user.create');
+
+		    Route::post('register', 'Admin\CourtSecurityController@register')->name('admin.security.court.user.register');
+
+		    Route::post('{court_id}/update', 'Admin\CourtSecurityController@update')->name('admin.security.court.user.update');
+
+		    Route::get('{court_id}/delete', 'Admin\CourtSecurityController@delete')->name('admin.security.court.user.delete');
+
+	    });
+
     });
+
+
 
     Route::prefix('police-station/')->group(function() {
 

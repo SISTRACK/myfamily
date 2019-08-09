@@ -7,7 +7,7 @@
     	<h2 class="text-primary">New Court</h2>
         <form action="{{route('admin.security.court.register')}}" method="post">
         	@csrf
-             <input type="text" name="name" class="form-control" placeholder ="Court Title"><br>
+            <input type="text" name="name" class="form-control" placeholder ="Court Title"><br>
              <select name="court_type_id" class="form-control">
              	<option value="">Court Type</option>
              	@foreach($court_types as $court_type)
@@ -15,7 +15,7 @@
              	@endforeach
              </select><br>
              <select name="court_category_id" class="form-control">
-             	<option value="">court Category</option>
+             	<option value="">Court Category</option>
              	@foreach($court_categories as $court_category)
                     <option value="{{$court_category->id}}">{{$court_category->name}}</option>
              	@endforeach

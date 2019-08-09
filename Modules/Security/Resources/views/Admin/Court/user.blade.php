@@ -1,5 +1,5 @@
 <!-- modal -->
-<div class="modal fade" id="{{'doctor_'.$hospital->id}}" role="dialog">
+<div class="modal fade" id="{{'user_'.$court->id}}" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
         <div class="modal-content">
@@ -9,9 +9,9 @@
             <div class="modal-body">
 			    <div class="col-md-12">
 			         <h2 class="text-primary">New Health Personel</h2>
-        <form action="{{route('admin.health.doctor.register')}}" method="post">
+        <form action="{{route('admin.security.court.user.register')}}" method="post">
         	@csrf
-        	<input type="hidden" name="hospital_id" value="{{$hospital->id}}">
+        	<input type="hidden" name="court_id" value="{{$court->id}}">
         	<input type="text" name="profile_id" placeholder="Profile ID" class="form-control"><br>
             <select name="state_id" class="form-control">
              	<option value="">State of Origin</option>
@@ -27,14 +27,6 @@
              	@foreach($genders as $gender)
                     <option value="{{$gender->id}}">
                     	{{$gender->name}}
-                    </option>
-             	@endforeach
-            </select><br>
-            <select name="discpline_id" class="form-control">
-             	<option value="">Discpline</option>
-             	@foreach($discplines as $discpline)
-                    <option value="{{$discpline->id}}">
-                    	{{$discpline->name}}
                     </option>
              	@endforeach
             </select><br>

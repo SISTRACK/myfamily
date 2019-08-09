@@ -15,11 +15,53 @@ class CreateSecuritiesTable extends Migration
     {
         Schema::create('securities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id')->nullable();
-            $table->integer('state_id')->nullable();
-            $table->integer('court_id')->nullable();
-            $table->integer('police_station_id')->nullable();
-            $table->integer('profile_id')->nullable();
+            $table->integer('role_id')->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('roles')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('state_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('states')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('court_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('courts')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('police_station_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('police_stations')
+            ->delete('restrict')
+            ->update('cascade');;
+            $table->integer('profile_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('profiles')
+            ->delete('restrict')
+            ->update('cascade');
+            $table->integer('gender_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->references('id')
+            ->on('genders')
+            ->delete('restrict')
+            ->update('cascade');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');

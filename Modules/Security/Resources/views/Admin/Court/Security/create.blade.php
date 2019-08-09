@@ -1,17 +1,11 @@
-<!-- modal -->
-<div class="modal fade" id="{{'doctor_'.$hospital->id}}" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-			    <div class="col-md-12">
-			         <h2 class="text-primary">New Health Personel</h2>
-        <form action="{{route('admin.health.doctor.register')}}" method="post">
+@extends('admin::layouts.master')
+
+@section('page-content')
+   <div class="row">
+   	    <div class="col-md-4"></div>
+   	    <div class="col-md-4">
+   	    	<form action="{{route('admin.security.court.user.register')}}" method="post">
         	@csrf
-        	<input type="hidden" name="hospital_id" value="{{$hospital->id}}">
         	<input type="text" name="profile_id" placeholder="Profile ID" class="form-control"><br>
             <select name="state_id" class="form-control">
              	<option value="">State of Origin</option>
@@ -30,11 +24,11 @@
                     </option>
              	@endforeach
             </select><br>
-            <select name="discpline_id" class="form-control">
-             	<option value="">Discpline</option>
-             	@foreach($discplines as $discpline)
-                    <option value="{{$discpline->id}}">
-                    	{{$discpline->name}}
+            <select name="court_id" class="form-control">
+             	<option value="">Court</option>
+             	@foreach($courts as $court)
+                    <option value="{{$court->id}}">
+                    	{{$court->name}}
                     </option>
              	@endforeach
             </select><br>
@@ -77,13 +71,6 @@
             <br>        
             <button class="btn btn-primary">Register</button>
          </form>
-			    </div>
-			    <div class="col-md-4"></div>
-			</div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end modal -->
+   	    </div>
+   </div>
+@endsection

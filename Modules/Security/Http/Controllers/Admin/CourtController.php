@@ -4,7 +4,11 @@ namespace Modules\Security\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Profile\Entities\Gender;
 use Modules\Address\Entities\State;
+use Modules\Security\Entities\Court;
+use Modules\Security\Entities\CourtType;
+use Modules\Security\Entities\CourtCategory;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 
 class CourtController extends AdminBaseController
@@ -15,7 +19,15 @@ class CourtController extends AdminBaseController
      */
     public function index()
     {
-        return view('security::Admin.Court.index',['courts'=>$this->availableCourts(),'districts'=>$this->availableDistricts(),'court_categories'=>[],'court_types'=>[],'states'=>State::all()]);
+
+        return view('security::Admin.Court.index',[
+            'courts'=>$this->availableCourts(),
+            'districts'=>$this->availableDistricts(),
+            'court_categories'=>CourtCategory::all(),
+            'court_types'=>CourtType::all(),
+            'states'=>State::all(),
+            'genders'=>Gender::all()
+        ]);
     }
 
     /**
@@ -24,7 +36,7 @@ class CourtController extends AdminBaseController
      */
     public function create()
     {
-        return view('security::Admin.Court.create',['courts'=>$this->availableCourts(),'districts'=>$this->availableDistricts(),'court_categories'=>[],'court_types'=>[],'states'=>State::all()]);
+        return view('security::Admin.Court.create',['courts'=>$this->availableCourts(),'districts'=>$this->availableDistricts(),'court_categories'=>CourtCategory::all(),'court_types'=>CourtType::all(),'states'=>State::all()]);
     }
 
     /**
@@ -34,8 +46,9 @@ class CourtController extends AdminBaseController
      */
     public function register(Request $request)
     {
-        $town = Town::find($data['town_id']);
-        $court = $town->courtLocations()->firstOrCreate([
+        $data = $request->all();
+        $court_type = CourtType::find($data['court_type_id']);
+        $court = $court_type->courts()->firstOrCreate([
             'name' => $data['name'],
             'court_type_id' => $data['court_type_id'],
             'court_category_id' => $data['court_category_id'],
@@ -45,6 +58,7 @@ class CourtController extends AdminBaseController
             'town_id' => $data['town_id'],
         ]);
         session()->flash('message','Court created successfully');
+        return redirect()->route('admin.security.court.index');
     
     }
 
@@ -55,9 +69,21 @@ class CourtController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $court_id)
     {
-        //
+        $data = $request->all();
+        $court = Court::find($court_id);
+        $court->update([
+            'name' => $data['name'],
+            'court_type_id' => $data['court_type_id'],
+            'court_category_id' => $data['court_category_id'],
+        ]);
+        $court->courtLocation()->update([
+            'address' => $data['address'],
+            'town_id' => $data['town_id'],
+        ]);
+        session()->flash('message', 'Court information updated successfully');
+        return redirect()->route('admin.security.court.index');
     }
 
     /**
@@ -65,8 +91,12 @@ class CourtController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function delete($id)
+    public function delete($court_id)
     {
-        //
+        $court = Court::find($court_id);
+        $court->courtLocation->delete();
+        $court->delete();
+        session()->flash('message', 'Court is deleted successfully');
+        return redirect()->route('admin.security.court.index');
     }
 }

@@ -17,7 +17,6 @@ class CreateCourtsTable extends Migration
             $table->increments('id');
             $table->integer('court_type_id');
             $table->integer('court_category_id');
-            $table->integer('court_location_id');
             $table->string('name');
             $table->timestamps();
         });

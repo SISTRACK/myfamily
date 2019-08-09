@@ -16,7 +16,7 @@ class Court extends BaseModel
     	return $this->belongsTo(CourtType::class);
     }
 
-    public function security()
+    public function securities()
     {
     	return $this->hasMany(Security::class);
     }
