@@ -18,10 +18,11 @@ use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
 use Modules\Health\Entities\HospitalType;
 use Modules\Security\Entities\CourtType;
+use Modules\Security\Entities\PoliceStationType;
 use Modules\Security\Entities\CourtCategory;
+use Modules\Security\Entities\PoliceStationCategory;
 use Modules\Health\Entities\HospitalCategory;
 use Modules\Health\Entities\Discpline;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -82,13 +83,28 @@ class DatabaseSeeder extends Seeder
       $images = ['male.png','female.png'];
 
       $discplines = ['Doctor','Nurse','Mid Wifery','Pharmacy','Lab Science'];
+
+      $police_station_categories = ['Devision','State','federal'];
+
+      $police_station_types = ['Specific', 'General'];
+
+
+      foreach ($police_station_types as $station_type) {
+        PoliceStationType::firstOrCreate(['name'=>$station_type]);
+      }
+      foreach ($police_station_categories as $police_station_categorie) {
+         PoliceStationCategory::firstOrCreate(['name'=>$police_station_categorie]);
+      }
+      
+
       foreach ($court_types as $court_type) {
         CourtType::firstOrCreate(['name'=>$court_type]);
       }
       foreach ($court_categories as $court_categorie) {
         CourtCategory::firstOrCreate(['name'=>$court_categorie]);
       }
-      
+
+
       foreach ($discplines as $discpline) {
         Discpline::firstOrCreate(['name'=>$discpline]);
       }

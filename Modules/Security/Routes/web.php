@@ -24,28 +24,28 @@ Route::prefix('admin/security/')->group(function() {
 
     Route::prefix('court/')->group(function() {
 
-	    Route::get('/', 'Admin\CourtController@index')->name('admin.security.court.index');
+	    Route::get('/', 'Admin\Court\CourtController@index')->name('admin.security.court.index');
 
-	    Route::get('create', 'Admin\CourtController@create')->name('admin.security.court.create');
+	    Route::get('create', 'Admin\Court\CourtController@create')->name('admin.security.court.create');
 
-	    Route::post('register', 'Admin\CourtController@register')->name('admin.security.court.register');
+	    Route::post('register', 'Admin\Court\CourtController@register')->name('admin.security.court.register');
 
-	    Route::post('{court_id}/update', 'Admin\CourtController@update')->name('admin.security.court.update');
+	    Route::post('{court_id}/update', 'Admin\Court\CourtController@update')->name('admin.security.court.update');
 
-	    Route::get('{court_id}/delete', 'Admin\CourtController@delete')->name('admin.security.court.delete');
+	    Route::get('{court_id}/delete', 'Admin\Court\CourtController@delete')->name('admin.security.court.delete');
 
 
 	    Route::prefix('user-agent/')->group(function() {
 
-		    Route::get('/', 'Admin\CourtSecurityController@index')->name('admin.security.court.user.index');
+		    Route::get('/', 'Admin\Court\CourtSecurityController@index')->name('admin.security.court.user.index');
 
-		    Route::get('create', 'Admin\CourtSecurityController@create')->name('admin.security.court.user.create');
+		    Route::get('create', 'Admin\Court\CourtSecurityController@create')->name('admin.security.court.user.create');
 
-		    Route::post('register', 'Admin\CourtSecurityController@register')->name('admin.security.court.user.register');
+		    Route::post('register', 'Admin\Court\CourtSecurityController@register')->name('admin.security.court.user.register');
 
-		    Route::post('{court_id}/update', 'Admin\CourtSecurityController@update')->name('admin.security.court.user.update');
+		    Route::post('{court_id}/update', 'Admin\Court\CourtSecurityController@update')->name('admin.security.court.user.update');
 
-		    Route::get('{court_id}/delete', 'Admin\CourtSecurityController@delete')->name('admin.security.court.user.delete');
+		    Route::get('{court_id}/delete', 'Admin\Court\CourtSecurityController@delete')->name('admin.security.court.user.delete');
 
 	    });
 
@@ -56,15 +56,15 @@ Route::prefix('admin/security/')->group(function() {
     Route::prefix('police-station/')->group(function() {
 
 
-	    Route::get('/', 'Admin\PoliceStationController@index')->name('admin.security.police.station.index');
+	    Route::get('/', 'Admin\Police\PoliceStationController@index')->name('admin.security.police.station.index');
 
-	    Route::get('create', 'Admin\PoliceStationController@create')->name('admin.health.police.station.create');
+	    Route::get('create', 'Admin\Police\PoliceStationController@create')->name('admin.security.police.station.create');
 
-	    Route::post('register', 'Admin\PoliceStationController@register')->name('admin.security.police.station.register');
+	    Route::post('register', 'Admin\Police\PoliceStationController@register')->name('admin.security.police.station.register');
 
-	    Route::post('{police_station_id}/update', 'Admin\PoliceStationController@update')->name('admin.security.police.station.update');
+	    Route::post('{police_station_id}/update', 'Admin\Police\PoliceStationController@update')->name('admin.security.police.station.update');
 
-	    Route::get('{police_station_id}/delete', 'Admin\PoliceStationController@delete')->name('admin.security.police.station.delete');
+	    Route::get('{police_station_id}/delete', 'Admin\Police\PoliceStationController@delete')->name('admin.security.police.station.delete');
 	    
     });
 

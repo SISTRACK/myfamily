@@ -40,4 +40,9 @@ class Town extends BaseModel
     {
         return $this->hasMany('Modules\Health\Entities\HospitalLocation');
     }
+
+    public function policeStationLocations()
+    {
+        return $this->hasMany('Modules\Security\Entities\PoliceStationLocation');
+    }
 }

@@ -81,6 +81,36 @@ trait Administration
         }
         return $courts;
     }
+    public function availablePoliceStations()
+    {
+        $policeStations = [];
+        if(admin()->district){
+            foreach (admin()->district->towns as $town) {
+                foreach ($town->policeStationLocations as $location) {
+                    $policeStations[] = $location->policeStation;
+                }
+            }
+        }elseif (admin()->lga) {
+            foreach (admin()->lga->districts as $district) {
+                foreach ($district->towns as $town) {
+                    foreach ($town->policeStationLocations as $location) {
+                        $policeStations[] = $location->policeStation;
+                    }
+                }
+            }
+        }elseif (admin()->state) {
+            foreach (admin()->state->lgas as $lga) {
+                foreach ($lga->districts as $district) {
+                    foreach ($district->towns as $town) {
+                        foreach ($town->policeStationLocations as $location) {
+                            $policeStations[] = $location->policeStation;
+                        }
+                    }
+                }
+            }
+        }
+        return $policeStations;
+    }
     public function getThisAdminState()
     {
         if(admin()->district){
