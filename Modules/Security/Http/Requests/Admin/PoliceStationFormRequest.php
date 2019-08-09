@@ -14,7 +14,11 @@ class PoliceStationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'police_station_type_id' => 'required',
+            'police_station_category_id' => 'required',
+            'address' => 'required',
+            'town_id' => 'required',
         ];
     }
 
@@ -25,6 +29,9 @@ class PoliceStationFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(admin()){
+            return true;
+        }
+        return false;
     }
 }

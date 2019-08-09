@@ -2,11 +2,12 @@
 
 namespace Modules\Security\Http\Controllers\Admin\Police;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Security\Entities\PoliceStation;
 use Modules\Security\Entities\PoliceStationType;
 use Modules\Security\Entities\PoliceStationCategory;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Security\Http\Requests\Admin\PoliceStationFormRequest;
 
 class PoliceStationController extends AdminBaseController
 {
@@ -37,7 +38,7 @@ class PoliceStationController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(PoliceStationFormRequest $request)
     {
         $data = $request->all();
         $station_type = PoliceStationType::find($data['police_station_type_id']);
@@ -46,7 +47,7 @@ class PoliceStationController extends AdminBaseController
             'police_station_type_id' => $data['police_station_type_id'],
             'police_station_category_id' => $data['police_station_category_id'],
         ]);
-     
+
         $police_station->policeStationLocation()->firstOrCreate([
             'address' => $data['address'],
             'town_id' => $data['town_id'],
@@ -62,7 +63,7 @@ class PoliceStationController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(PoliceStationFormRequest $request, $id)
     {
         //
     }
@@ -72,8 +73,12 @@ class PoliceStationController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function delete($id)
+    public function delete($police_station_id)
     {
-        //
+        $police_station = PoliceStation::find($police_station_id);
+        $police_station->policeStationLocation->delete();
+        $police_station->delete();
+        session()->flash('message', 'police station is deleted successfully');
+        return redirect()->route('admin.security.police.station.index');
     }
 }
