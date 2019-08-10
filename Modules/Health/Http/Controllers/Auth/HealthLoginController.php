@@ -19,7 +19,7 @@ class HealthLoginController extends Controller
     // protected $redirectTo = '/home';
        public function __construct()
        {
-           $this->middleware('guest:doctor')->except('logout');
+           $this->middleware('guest:health')->except('logout');
        }
     /**
      * Display a listing of the resource.
@@ -40,7 +40,7 @@ class HealthLoginController extends Controller
         'password' => 'required|min:6'
       ]);
       // Attempt to log the user in
-      if (Auth::guard('doctor')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('health')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
         return redirect()->intended(route('health.dashboard'));
       }
@@ -50,7 +50,7 @@ class HealthLoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('doctor')->logout();
+        Auth::guard('health')->logout();
         return redirect()->route('health.auth.login');
     }
 }

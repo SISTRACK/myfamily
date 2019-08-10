@@ -48,11 +48,11 @@ return [
            'driver' => 'token',
            'provider' => 'admins',
         ],
-        'doctor' => [
+        'health' => [
            'driver' => 'session',
            'provider' => 'doctors',
         ],
-        'doctor-api' => [
+        'health-api' => [
            'driver' => 'token',
            'provider' => 'doctors',
         ],
@@ -66,11 +66,11 @@ return [
         ],
         'security' => [
            'driver' => 'session',
-           'provider' => 'security',
+           'provider' => 'securities',
         ],
         'security-api' => [
            'driver' => 'token',
-           'provider' => 'security',
+           'provider' => 'securities',
         ],
         'government' => [
            'driver' => 'session',

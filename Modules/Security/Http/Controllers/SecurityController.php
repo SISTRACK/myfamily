@@ -14,16 +14,27 @@ class SecurityController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:police');
+        $this->middleware('auth:security');
     }
     public function index()
     {
-        return view('security::Security.dashboard');
+        if(security()->policeStation){
+            return view('security::Security.Dashboard.police_dashboard');
+        }
+        return view('security::Security.Dashboard.court_dashboard');
     }
 
-    public function verify($value='')
+    public function verify()
     {
-        return redirect()->route('security.dashboard');
+        $security = security();
+        if($security->policeStation){
+            $page = 'police-station';
+            $station = str_replace(' ', '-', strtolower($security->policeStation->name));
+        }else{
+            $page = 'court';
+            $station = str_replace(' ', '-', strtolower($security->court->name));
+        }
+        return redirect()->route('security.dashboard',[$page,$station]);
     }
 
     /**

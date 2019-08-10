@@ -28,7 +28,7 @@ class SecurityLoginController extends Controller
     // protected $redirectTo = '/home';
        public function __construct()
        {
-           $this->middleware('guest:police')->except('logout');
+           $this->middleware('guest:security')->except('logout');
        }
     /**
      * Display a listing of the resource.
@@ -48,7 +48,7 @@ class SecurityLoginController extends Controller
         'password' => 'required|min:6'
       ]);
       // Attempt to log the user in
-      if (Auth::guard('police')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('security')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
         return redirect()->intended(route('security.dashboard'));
       }
@@ -58,7 +58,7 @@ class SecurityLoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('police')->logout();
+        Auth::guard('security')->logout();
         return redirect()->route('security.auth.login');
     }
 }

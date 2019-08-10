@@ -38,7 +38,7 @@ class RedirectIfAuthenticated
                     }         
                 }
                 break;
-            case 'doctor':
+            case 'health':
                 if (Auth::guard($guard)->check()) {
                   return redirect()->route('health.dashboard');
                 }
@@ -48,25 +48,36 @@ class RedirectIfAuthenticated
                   return redirect()->route('education.dashboard');
                 }
                 break; 
-            case 'police':
+            case 'security':
                 if (Auth::guard($guard)->check()) {
-                  return redirect()->route('security.dashboard');
+                    $security = security();
+                    if($security->policeStation){
+                        $page = 'police-station';
+                        $station = str_replace(' ', '-', strtolower($security->policeStation->name));
+                    }else{
+                        $page = 'court';
+                        $station = str_replace(' ', '-', strtolower($security->court->name));
+                    }
+                  return redirect()->route('security.dashboard',[$page,$station]);
                 }
                 break;
             case 'government':
                 if (Auth::guard($guard)->check()) {
                   return redirect()->route('government.dashboard');
                 }
-                break;                
-            default:
+                break;
+            case 'family':
                 if (Auth::guard($guard)->check()) {
-                    $member = auth()->guard('family')->user();
+                  $member = auth()->guard('family')->user();
                     $page = $member->first_name.' '.$member->last_name;
                     if($member->profile){
                         $page = $member->profile->family->name;
                     }
                     return redirect()->route('home',$page);
                 }
+                break;                
+            default:
+                
                 break;
         }
         return $next($request);
