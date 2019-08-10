@@ -22,7 +22,10 @@ class PoliceStationController extends AdminBaseController
         return view('security::Admin.PoliceStation.index',[
         	'states'=>State::all(),
             'genders'=>Gender::all(),
-            'stations'=>$this->availablePoliceStations()
+            'districts'=>$this->availableDistricts(),
+            'station_types'=>PoliceStationType::all(),
+            'stations'=>$this->availablePoliceStations(),
+        	'station_categories'=>PoliceStationCategory::all(),
         ]);
     }
 
@@ -69,9 +72,21 @@ class PoliceStationController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(PoliceStationFormRequest $request, $id)
+    public function update(PoliceStationFormRequest $request, $police_station_id)
     {
-        //
+    	$data = $request->all();
+        $police_station = PoliceStation::find($police_station_id);
+        $police_station->update([
+            'name' => $data['name'],
+            'police_station_type_id' => $data['police_station_type_id'],
+            'police_station_category_id' => $data['police_station_category_id'],
+        ]);
+        $police_station->policeStationLocation()->update([
+            'address' => $data['address'],
+            'town_id' => $data['town_id'],
+        ]);
+        session()->flash('message','Police Station information updated successfully');
+        return redirect()->route('admin.security.police.station.index');
     }
 
     /**

@@ -21,10 +21,10 @@ class PoliceSecurityController extends AdminBaseController
      */
     public function index()
     {
-        return view('security::Admin.Court.Security.index',[
+        return view('security::Admin.PoliceStation.Security.index',[
             'states'=>State::all(),
             'genders'=>Gender::all(),
-            'courts'=>$this->availableCourts()
+            'stations'=>$this->availablePoliceStations()
         ]);
     }
 
@@ -34,10 +34,10 @@ class PoliceSecurityController extends AdminBaseController
      */
     public function create()
     {
-        return view('security::Admin.Court.Security.create',[
+        return view('security::Admin.PoliceStation.Security.create',[
             'states'=>State::all(),
             'genders'=>Gender::all(),
-            'stations'=>$this->availablePoliceStaions()
+            'stations'=>$this->availablePoliceStations()
         ]);
     }
 
@@ -114,7 +114,7 @@ class PoliceSecurityController extends AdminBaseController
             'phone'=>$data['phone'],
             'gender_id'=>$data['gender_id'],
             'profile_id'=>$data['profile_id'],
-            'court_id'=>$data['court_id'],
+            'police_station_id'=>$data['police_station_id'],
             'state_id'=>$data['state_id'],
         ]);
         if($data['password']){
@@ -124,7 +124,7 @@ class PoliceSecurityController extends AdminBaseController
         }
 
         session()->flash('message','The Court User Agent Information updated successfully');
-        return redirect()->route('admin.security.court.user.index');
+        return redirect()->route('admin.security.police.station.user.index');
     }
 
     /**
@@ -136,7 +136,7 @@ class PoliceSecurityController extends AdminBaseController
     {
         $security = Security::find($security_id);
         $security->delete();
-        session()->flash('message','The Court User Agent Account deleted successfully');
-        return redirect()->route('admin.security.court.user.index');
+        session()->flash('message','The Police Station User Agent Account deleted successfully');
+        return redirect()->route('admin.security.police.station.user.index');
     }
 }
