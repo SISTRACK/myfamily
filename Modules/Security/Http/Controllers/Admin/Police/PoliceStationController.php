@@ -3,6 +3,8 @@
 namespace Modules\Security\Http\Controllers\Admin\Police;
 
 use Illuminate\Http\Response;
+use Modules\Address\Entities\State;
+use Modules\Profile\Entities\Gender;
 use Modules\Security\Entities\PoliceStation;
 use Modules\Security\Entities\PoliceStationType;
 use Modules\Security\Entities\PoliceStationCategory;
@@ -17,7 +19,11 @@ class PoliceStationController extends AdminBaseController
      */
     public function index()
     {
-        return view('security::Admin.PoliceStation.index',['stations'=>$this->availablePoliceStations()]);
+        return view('security::Admin.PoliceStation.index',[
+        	'states'=>State::all(),
+            'genders'=>Gender::all(),
+            'stations'=>$this->availablePoliceStations()
+        ]);
     }
 
     /**

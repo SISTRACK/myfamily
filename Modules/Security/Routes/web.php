@@ -65,6 +65,20 @@ Route::prefix('admin/security/')->group(function() {
 	    Route::post('{police_station_id}/update', 'Admin\Police\PoliceStationController@update')->name('admin.security.police.station.update');
 
 	    Route::get('{police_station_id}/delete', 'Admin\Police\PoliceStationController@delete')->name('admin.security.police.station.delete');
+
+	    Route::prefix('user-agent/')->group(function() {
+
+		    Route::get('/', 'Admin\Police\PoliceSecurityController@index')->name('admin.security.police.station.user.index');
+
+		    Route::get('create', 'Admin\Police\PoliceSecurityController@create')->name('admin.security.police.station.user.create');
+
+		    Route::post('register', 'Admin\Police\PoliceSecurityController@register')->name('admin.security.police.station.user.register');
+
+		    Route::post('{police_station_id}/update', 'Admin\Police\PoliceSecurityController@update')->name('admin.security.police.station.user.update');
+
+		    Route::get('{police_station_id}/delete', 'Admin\Police\PoliceSecurityController@delete')->name('admin.security.police.station.user.delete');
+
+	    });
 	    
     });
 

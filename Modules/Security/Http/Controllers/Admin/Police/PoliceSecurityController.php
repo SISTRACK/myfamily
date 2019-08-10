@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Security\Http\Controllers\Admin;
+namespace Modules\Security\Http\Controllers\Admin\Police;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,9 +11,9 @@ use Modules\Profile\Entities\Gender;
 use Modules\Profile\Entities\Profile;
 use Modules\Address\Entities\State;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
-use Modules\Security\Http\Requests\Admin\CourtUserAgentFormRequest;
+use Modules\Security\Http\Requests\Admin\PoliceStationUserAgentFormRequest;
 
-class CourtSecurityController extends AdminBaseController
+class PoliceSecurityController extends AdminBaseController
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class CourtSecurityController extends AdminBaseController
      */
     public function index()
     {
-        return view('security::Admin..Court.Security.index',[
+        return view('security::Admin.Court.Security.index',[
             'states'=>State::all(),
             'genders'=>Gender::all(),
             'courts'=>$this->availableCourts()
@@ -37,7 +37,7 @@ class CourtSecurityController extends AdminBaseController
         return view('security::Admin.Court.Security.create',[
             'states'=>State::all(),
             'genders'=>Gender::all(),
-            'courts'=>$this->availableCourts()
+            'stations'=>$this->availablePoliceStaions()
         ]);
     }
 
@@ -46,7 +46,7 @@ class CourtSecurityController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(CourtUserAgentFormRequest $request)
+    public function register(PoliceStationUserAgentFormRequest $request)
     {
         $data = $request->all();
         $errors = [];
@@ -89,11 +89,11 @@ class CourtSecurityController extends AdminBaseController
                 'phone'=>$data['phone'],
                 'gender_id'=>$data['gender_id'],
                 'profile_id'=>$data['profile_id'],
-                'court_id'=>$data['court_id'],
+                'police_station_id'=>$data['police_station_id'],
                 'state_id'=>$data['state_id'],
             ]);
-            session()->flash('message','The court user agent created successfully');
-            return redirect()->route('admin.security.court.user.index');
+            session()->flash('message','The police station user agent created successfully');
+            return redirect()->route('admin.security.police.station.user.index');
         }
     }
 
@@ -103,7 +103,7 @@ class CourtSecurityController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $security_id)
+    public function update(PoliceStationUserAgentFormRequest $request, $security_id)
     {
         $data = $request->all();
         $security = Security::find($security_id);

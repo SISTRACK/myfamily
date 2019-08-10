@@ -35,12 +35,13 @@
 	        			<td>
 	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#station_'.$station->id}}"><i class="fa fa-eye" ></i>
 	        				</button>
-	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#user_'.$station->id}}"><i class="fa fa-user" ></i>
+	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#station_user_'.$station->id}}"><i class="fa fa-user" ></i>
 	        				</button>
 	        				<button class="btn btn-warning"><a href="{{route('admin.security.police.station.delete',[$station->id])}}"><i class="fa fa-delete">Delete</i></a></button>
 	        			</td>
 	        		</tr>
-	        		@include('security::Admin.PoliceStation.edit')
+                    @include('security::Admin.PoliceStation.edit')
+	        		@include('security::Admin.PoliceStation.user')
             	@endforeach
             </tbody>
         </table>
