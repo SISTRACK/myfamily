@@ -70,7 +70,8 @@
                 @endif
             <br>
             	<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
-            <br>        
+            <br>  
+            <input type="hidden" name="edit" value="edit">      
             <button class="btn btn-primary">Save Changes</button>
          </form>
 			    </div>

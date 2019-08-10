@@ -51,6 +51,7 @@
 			             	@endforeach
 			             </select><br>
 			             <textarea name="address" placeholder="Address of the police station" class="form-control">{{$station->policeStationLocation->address}}</textarea><br>
+			             <input type="hidden" name="edit" value="edit">
 			             <button class="btn btn-primary">Save Changes</button>
 			         </form>
 			    </div>

@@ -106,24 +106,31 @@ class PoliceSecurityController extends AdminBaseController
     public function update(PoliceStationUserAgentFormRequest $request, $security_id)
     {
         $data = $request->all();
-        $security = Security::find($security_id);
-        $security->update([
-            'first_name'=>$data['first_name'],
-            'last_name'=>$data['last_name'],
-            'email'=>$data['email'],
-            'phone'=>$data['phone'],
-            'gender_id'=>$data['gender_id'],
-            'profile_id'=>$data['profile_id'],
-            'police_station_id'=>$data['police_station_id'],
-            'state_id'=>$data['state_id'],
-        ]);
-        if($data['password']){
-            $security->update([
-                 'password'=>Hash::make($data['password'])
-            ]);
+        if($this->getThisAdminState()->id == $data['state_id']){
+            $errors[] = 'The profile ID is required for this detail update';
         }
+        if(empty($errors)){
+            $security = Security::find($security_id);
+            $security->update([
+                'first_name'=>$data['first_name'],
+                'last_name'=>$data['last_name'],
+                'email'=>$data['email'],
+                'phone'=>$data['phone'],
+                'gender_id'=>$data['gender_id'],
+                'profile_id'=>$data['profile_id'],
+                'police_station_id'=>$data['police_station_id'],
+                'state_id'=>$data['state_id'],
+            ]);
+            if($data['password']){
+                $security->update([
+                     'password'=>Hash::make($data['password'])
+                ]);
+            }
 
-        session()->flash('message','The Court User Agent Information updated successfully');
+            session()->flash('message','The Police Station User Agent Information updated successfully');
+        }else{
+            session()->flash('error', $errors);
+        }
         return redirect()->route('admin.security.police.station.user.index');
     }
 
