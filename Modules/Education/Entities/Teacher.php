@@ -15,7 +15,15 @@ class Teacher extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 
+        'last_name', 
+        'email', 
+        'password',
+        'phone',
+        'state_id',
+        'profile_id',
+        'gender_id',
+        'school_id'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -25,5 +33,25 @@ class Teacher extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function school()
+    {
+        return $this->belongsTo(School::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('Modules\Address\Entities\State');
+    }
+
+    public function profile()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Profile');
+    }
+    
+    public function gender()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Gender');
+    }
 }
 
