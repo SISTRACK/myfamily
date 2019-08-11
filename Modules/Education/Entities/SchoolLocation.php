@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SchoolLocation extends Model
 {
-    protected $fillable = [];
+    public function school()
+    {
+    	return $this->belongsTo(School::class);
+    }
+
+    public function town()
+    {
+    	return $this->belongsTo('Modules\Address\Entities\Town');
+    }
 }

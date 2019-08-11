@@ -2,9 +2,12 @@
 
 namespace Modules\Education\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class SchoolType extends Model
+class SchoolType extends BaseModel
 {
-    protected $fillable = [];
+    public function schools()
+    {
+    	return $this->hasMany(School::class);
+    }
 }
