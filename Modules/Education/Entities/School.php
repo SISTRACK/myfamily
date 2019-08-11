@@ -20,4 +20,8 @@ class School extends BaseModel
     {
     	return $this->hasOne(SchoolLocation::class);
     }
+    public function teachers()
+    {
+    	return $this->hasMany(Teacher::class);
+    }
 }

@@ -51,6 +51,37 @@ trait Administration
         }
         return $hospitals;
     }
+
+    public function availableSchools()
+    {
+        $schools = [];
+        if(admin()->district){
+            foreach (admin()->district->towns as $town) {
+                foreach ($town->schoolLocations as $school_location) {
+                    $schools[] = $school_location->school;
+                }
+            }
+        }elseif (admin()->lga) {
+            foreach (admin()->lga->districts as $district) {
+                foreach ($district->towns as $town) {
+                    foreach ($town->schoolLocations as $school_location) {
+                        $schools[] = $school_location->school;
+                    }
+                }
+            }
+        }elseif (admin()->state) {
+            foreach (admin()->state->lgas as $lga) {
+                foreach ($lga->districts as $district) {
+                    foreach ($district->towns as $town) {
+                        foreach ($town->schoolLocations as $school_location) {
+                            $schools[] = $school_location->school;
+                        }
+                    }
+                }
+            }
+        }
+        return $schools;
+    }
     public function availableCourts()
     {
         $courts = [];

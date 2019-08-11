@@ -20,6 +20,7 @@
     <li class="has_sub">
         <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Education </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
+            <li><a href="{{route('admin.education.school.create')}}">New School</a></li>
             <li><a href="#">Nursery Schools</a></li>
             <li><a href="#">Primary Schools</a></li>
             <li><a href="#">Secondary Schools</a></li>

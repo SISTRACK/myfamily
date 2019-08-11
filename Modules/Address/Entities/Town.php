@@ -45,4 +45,9 @@ class Town extends BaseModel
     {
         return $this->hasMany('Modules\Security\Entities\PoliceStationLocation');
     }
+
+    public function schoolLocations()
+    {
+        return $this->hasMany('Modules\Education\Entities\SchoolLocation');
+    }
 }

@@ -2,9 +2,10 @@
 
 namespace Modules\Education\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class SchoolLocation extends Model
+
+class SchoolLocation extends BaseModel
 {
     public function school()
     {
