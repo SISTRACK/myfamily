@@ -1,7 +1,7 @@
 @extends('admin::layouts.master')
 
 @section('page-content')
-	<button class="btn btn-primary"><a href="{{route('admin.health.hospital.create')}}" style="color: white"><i class="fa fa-plus"></i></a></button>
+	<button class="btn btn-primary"><a href="{{route('admin.education.school.create')}}" style="color: white"><i class="fa fa-plus"></i></a></button>
 	@if(empty($schools))
 	<div class="alert alert-success h4">No School Record Found</div>
     @else

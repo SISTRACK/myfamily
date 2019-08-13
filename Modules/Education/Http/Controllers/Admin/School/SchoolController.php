@@ -10,24 +10,39 @@ use Modules\Education\Entities\School;
 use Modules\Education\Entities\SchoolType;
 use Modules\Education\Entities\SchoolCategory;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Education\Services\Traits\SchoolAndCategoriesRange as Schoolable;
 
 class SchoolController extends AdminBaseController
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
+    use Schoolable;
+
+    public function index($school_id)
     {
-        return view('education::Admin.School.index',[
-            'schools'=>$this->availableSchools(),
-            'school_types'=>SchoolType::all(),
-            'school_categories'=>SchoolCategory::all(),
-            'districts'=>$this->availableDistricts(),
-            'states'=>State::all(),
-            'genders'=>Gender::all()
-            
-        ]);
+        $school = School::find($school_id);
+        switch ($school ? $school->schoolType->name : null) {
+            case 'Nursery':
+                $route = redirect()->route('admin.education.school.nursery.index');
+                break;
+            case 'Primary':
+                $route = redirect()->route('admin.education.school.primary.index');
+                break;
+            case 'Secondary':
+                $route = redirect()->route('admin.education.school.secondary.index');
+                break;
+            default:
+                $route = view('education::Admin.School.index',[
+                    'schools'=>$this->availableSchools(),
+                    'school_types'=>SchoolType::all(),
+                    'school_categories'=>SchoolCategory::all(),
+                    'districts'=>$this->availableDistricts(),
+                    'states'=>State::all(),
+                    'genders'=>Gender::all()
+                    
+                ]);
+                break;
+        }
+        
+        return $route;
     }
 
     /**
@@ -64,7 +79,7 @@ class SchoolController extends AdminBaseController
             'town_id' => $data['town_id'],
         ]);
         session()->flash('message','School created successfully');
-        return redirect()->route('admin.education.school.index');
+        return redirect()->route('admin.education.school.index',[$school->id]);
     }
 
     /**
@@ -87,7 +102,7 @@ class SchoolController extends AdminBaseController
             'town_id' => $data['town_id'],
         ]);
         session()->flash('message', 'School information updated successfully');
-        return redirect()->route('admin.education.school.index');
+        return redirect()->route('admin.education.school.index',[$school->id]);
     }
 
     /**
@@ -97,6 +112,13 @@ class SchoolController extends AdminBaseController
      */
     public function delete($school_id)
     {
-        //
+        $school = School::find($school_id);
+        foreach ($school->teachers as $teacher) {
+            $teacher->delete();
+        }
+        $school->delete();
+        $school->schoolLocation->delete();
+        session()->flash('message', 'School deleted successfully');
+        return back();
     }
 }

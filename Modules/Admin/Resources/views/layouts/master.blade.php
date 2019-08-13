@@ -18,12 +18,25 @@
     </li>
 
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Education </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Schools </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
-            <li><a href="{{route('admin.education.school.create')}}">New School</a></li>
-            <li><a href="#">Nursery Schools</a></li>
-            <li><a href="#">Primary Schools</a></li>
-            <li><a href="#">Secondary Schools</a></li>
+            <li>
+            	<a href="{{route('admin.education.school.create')}}">New School</a>
+            </li>
+            <li><a href="{{route('admin.education.school.nursery.index')}}">Nursery Schools</a></li>
+            <li><a href="{{route('admin.education.school.primary.index')}}">Primary Schools</a></li>
+            <li><a href="{{route('admin.education.school.secondary.index')}}">Secondary Schools</a></li>
+        </ul>
+    </li>
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Teachers </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li>
+            	<a href="{{route('admin.education.school.teacher.create')}}">New Teacher</a>
+            </li>
+            <li><a href="{{route('admin.education.school.teacher.nursery.index')}}">Nursery Teachers</a></li>
+            <li><a href="{{route('admin.education.school.teacher.primary.index')}}">Primary Teachers</a></li>
+            <li><a href="{{route('admin.education.school.teacher.secondary.index')}}">Secondary Teachers</a></li>
         </ul>
     </li>
     <li class="has_sub">

@@ -4,19 +4,47 @@ namespace Modules\Education\Http\Controllers\Admin\Teacher;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Education\Entities\School;
 use Illuminate\Support\Facades\Hash;
 use Modules\Education\Entities\Teacher;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
+use Modules\Education\Services\Traits\TeacherAndCategoriesRange as TeacherAble;
 
 class TeacherController extends AdminBaseController
 {
+    use TeacherAble;
     /**
      * Display a listing of the resource.
      * @return Response
      */
     public function index()
     {
-        return view('education::Admin.Teacher.index',['schools'=>$this->availableSchools()]);
+        $school = School::find($school_id);
+        switch ($school ? $school->schoolType->name : null) {
+            case 'Nursery':
+                $route = redirect()->route('admin.education.teacher.nursery.index');
+                break;
+            case 'Primary':
+                $route = redirect()->route('admin.education.teacher.primary.index');
+                break;
+            case 'Secondary':
+                $route = redirect()->route('admin.education.teacher.secondary.index');
+                break;
+            default:
+                $route = view('education::Admin.Teacher.index',[
+                    'schools'=>$this->availableSchools(),
+                    'school_types'=>SchoolType::all(),
+                    'school_categories'=>SchoolCategory::all(),
+                    'districts'=>$this->availableDistricts(),
+                    'states'=>State::all(),
+                    'genders'=>Gender::all()
+                    
+                ]);
+                break;
+        }
+        
+        return $route;
+
     }
 
     /**
@@ -25,7 +53,8 @@ class TeacherController extends AdminBaseController
      */
     public function create()
     {
-        return view('education::create');
+
+        return view('education::Admin.Teacher.create');
     }
 
     /**
@@ -68,7 +97,7 @@ class TeacherController extends AdminBaseController
             $data['profile_id'] = null;
         }
         if(!session('error')){
-            Teacher::create([
+            $teacher = Teacher::create([
                 'first_name'=>$data['first_name'],
                 'last_name'=>$data['last_name'],
                 'email'=>$data['email'],
@@ -80,7 +109,7 @@ class TeacherController extends AdminBaseController
                 'state_id'=>$data['state_id'],
             ]);
             session()->flash('message','School user agent created successfully');
-            return redirect()->route('admin.education.school.teacher.index');
+            return redirect()->route('admin.education.school.teacher.index',[strtolower($teacher->school->schoolType->name)]);
         }
     }
 
