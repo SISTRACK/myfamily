@@ -9,23 +9,23 @@ use Modules\Education\Entities\SchoolCategory;
 
 trait TeacherAndCategoriesRange
 {
-    public function getSchools()
+    public function getSchools($school_type)
     {
         $schools = [];
 
         foreach ($this->availableSchools() as $school) {
-            if($school->schoolType->name == request()->route('school_category')){
+            if($school->schoolType->name == $school_type){
                 $schools[] = $school;
             }
         }
-        return $schools;;
+        return $schools;
     }
 
 	public function nurseryIndex()
     {
         
         return view('education::Admin.Teacher.index',[
-                    'schools'=>$this->getSchools(),
+                    'schools'=>$this->getSchools('Nursery'),
                     'school_types'=>SchoolType::all(),
                     'school_categories'=>SchoolCategory::all(),
                     'districts'=>$this->availableDistricts(),
@@ -38,7 +38,7 @@ trait TeacherAndCategoriesRange
     {
     
         return view('education::Admin.Teacher.index',[
-                    'schools'=>$this->getSchools(),
+                    'schools'=>$this->getSchools('Primary'),
                     'school_types'=>SchoolType::all(),
                     'school_categories'=>SchoolCategory::all(),
                     'districts'=>$this->availableDistricts(),
@@ -51,7 +51,7 @@ trait TeacherAndCategoriesRange
     {
         
         return view('education::Admin.Teacher.index',[
-                    'schools'=>$this->getSchools(),
+                    'schools'=>$this->getSchools('Secondary'),
                     'school_types'=>SchoolType::all(),
                     'school_categories'=>SchoolCategory::all(),
                     'districts'=>$this->availableDistricts(),

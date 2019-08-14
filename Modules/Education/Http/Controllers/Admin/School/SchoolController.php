@@ -2,13 +2,14 @@
 
 namespace Modules\Education\Http\Controllers\Admin\School;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Http\Response;
 use Modules\Address\Entities\State;
 use Modules\Profile\Entities\Gender;
 use Modules\Education\Entities\School;
 use Modules\Education\Entities\SchoolType;
 use Modules\Education\Entities\SchoolCategory;
+use Modules\Education\Http\Requests\Admin\SchoolFormRequest;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Education\Services\Traits\SchoolAndCategoriesRange as Schoolable;
 
@@ -65,7 +66,7 @@ class SchoolController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+    public function register(SchoolFormRequest $request)
     {
         $data = $request->all();
         $school_type = SchoolType::find($data['school_type_id']);
@@ -88,7 +89,7 @@ class SchoolController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $school_id)
+    public function update(SchoolFormRequest $request, $school_id)
     {
         $data = $request->all();
         $school = School::find($school_id);

@@ -46,18 +46,22 @@ Route::prefix('admin/education/')->namespace('Admin')->group(function(){
 
     //teachers crude routes
     Route::prefix('schools')->namespace('Teacher')->group(function(){
-
+        //index
     	Route::get('/nursery/teachers', 'TeacherController@nurseryIndex')->name('admin.education.school.teacher.nursery.index');
 
 	    Route::get('/primary/teachers', 'TeacherController@primaryIndex')->name('admin.education.school.teacher.primary.index');
 
 	    Route::get('/secondary/teachers', 'TeacherController@secondaryIndex')->name('admin.education.school.teacher.secondary.index');
 
+        //crude
+		Route::get('/{school_id}/teachers/index', 'TeacherController@index')->name('admin.education.school.teacher.index');
 
-		Route::get('/school/teachers/index', 'TeacherController@index')->name('admin.education.school.teacher.index');
-	    Route::get('/create', 'TeacherController@create')->name('admin.education.school.teacher.create');
+	    Route::get('/teacher/create', 'TeacherController@create')->name('admin.education.school.teacher.create');
+
 	    Route::post('/register', 'TeacherController@register')->name('admin.education.school.teacher.register');
+
 	    Route::post('/{teacher_id}/update', 'TeacherController@update')->name('admin.education.school.teacher.update');
-	    Route::post('/{teacher_id/delete}', 'TeacherController@delete')->name('admin.education.school.teacher.delete');
+
+	    Route::get('/{teacher_id}/delete', 'TeacherController@delete')->name('admin.education.school.teacher.delete');
 	});
 });

@@ -2,11 +2,17 @@
 
 namespace Modules\Education\Http\Controllers\Admin\Teacher;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Http\Response;
-use Modules\Education\Entities\School;
+use Modules\Address\Entities\State;
+use Modules\Profile\Entities\Gender;
+use Modules\Profile\Entities\Profile;
 use Illuminate\Support\Facades\Hash;
+use Modules\Education\Entities\School;
 use Modules\Education\Entities\Teacher;
+use Modules\Education\Entities\SchoolType;
+use Modules\Education\Entities\SchoolCategory;
+use Modules\Education\Http\Requests\Admin\TeacherFormRequest;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Education\Services\Traits\TeacherAndCategoriesRange as TeacherAble;
 
@@ -17,18 +23,18 @@ class TeacherController extends AdminBaseController
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function index($school_id)
     {
         $school = School::find($school_id);
         switch ($school ? $school->schoolType->name : null) {
             case 'Nursery':
-                $route = redirect()->route('admin.education.teacher.nursery.index');
+                $route = redirect()->route('admin.education.school.teacher.nursery.index');
                 break;
             case 'Primary':
-                $route = redirect()->route('admin.education.teacher.primary.index');
+                $route = redirect()->route('admin.education.school.teacher.primary.index');
                 break;
             case 'Secondary':
-                $route = redirect()->route('admin.education.teacher.secondary.index');
+                $route = redirect()->route('admin.education.school.teacher.secondary.index');
                 break;
             default:
                 $route = view('education::Admin.Teacher.index',[
@@ -54,7 +60,14 @@ class TeacherController extends AdminBaseController
     public function create()
     {
 
-        return view('education::Admin.Teacher.create');
+        return view('education::Admin.Teacher.create',[
+            'schools'=>$this->availableSchools(),
+            'school_types'=>SchoolType::all(),
+            'school_categories'=>SchoolCategory::all(),
+            'districts'=>$this->availableDistricts(),
+            'states'=>State::all(),
+            'genders'=>Gender::all()
+        ]);
     }
 
     /**
@@ -62,7 +75,8 @@ class TeacherController extends AdminBaseController
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request)
+
+    public function register(TeacherFormRequest $request)
     {
         $data = $request->all();
         $errors = [];
@@ -109,39 +123,38 @@ class TeacherController extends AdminBaseController
                 'state_id'=>$data['state_id'],
             ]);
             session()->flash('message','School user agent created successfully');
-            return redirect()->route('admin.education.school.teacher.index',[strtolower($teacher->school->schoolType->name)]);
+            return redirect()->route('admin.education.school.teacher.index',[strtolower($teacher->school->id)]);
         }
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('education::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('education::edit');
-    }
-
+    
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(TeacherFormRequest $request, $teacher_id)
     {
-        //
+        $data = $request->all();
+        $teacher = Teacher::find($teacher_id);
+        $teacher->update([
+            'first_name'=>$data['first_name'],
+            'last_name'=>$data['last_name'],
+            'email'=>$data['email'],
+            'phone'=>$data['phone'],
+            'gender_id'=>$data['gender_id'],
+            'profile_id'=>$data['profile_id'],
+            'school_id'=>$data['school_id'],
+            'state_id'=>$data['state_id'],
+        ]);
+        if($data['password']){
+            $teacher->update([
+                'password'=>Hash::make($data['password'])
+            ]);
+        }
+        session()->flash('message','School user agent updated successfully');
+            return redirect()->route('admin.education.school.teacher.index',[strtolower($teacher->school->id)]);
     }
 
     /**
@@ -149,8 +162,11 @@ class TeacherController extends AdminBaseController
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function delete($teacher_id)
     {
-        //
+        $teacher = Teacher::find($teacher_id);
+        $teacher->delete();
+        session()->flash('message','School user agent deleted successfully');
+            return back();
     }
 }
