@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolAdmittedReportsTable extends Migration
+class CreateSchoolReportTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSchoolAdmittedReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_admitted_reports', function (Blueprint $table) {
+        Schema::create('school_report_types', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateSchoolAdmittedReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_admitted_reports');
+        Schema::dropIfExists('school_report_types');
     }
 }

@@ -24,6 +24,7 @@ use Modules\Security\Entities\CourtCategory;
 use Modules\Security\Entities\PoliceStationCategory;
 use Modules\Health\Entities\HospitalCategory;
 use Modules\Education\Entities\SchoolCategory;
+use Modules\Education\Entities\SchoolReportType;
 use Modules\Health\Entities\Discpline;
 
 class DatabaseSeeder extends Seeder
@@ -102,6 +103,17 @@ class DatabaseSeeder extends Seeder
         'University',
       ];
 
+      $school_report_types = [
+        'Mental',
+        'Intelligence', 
+        'Dis Ability',
+        'Parental Care',
+        'Obedience',
+        'Dis Obedience',
+      ];
+      foreach ($school_report_types as $school_report_type) {
+        SchoolReportType::firstOrCreate(['name'=>$school_report_type]);
+      }
       foreach ($school_types as $school_type) {
         SchoolType::firstOrCreate(['name'=>$school_type]);
       }
