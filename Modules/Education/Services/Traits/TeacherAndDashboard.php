@@ -22,7 +22,7 @@ trait TeacherAndDashboard
 		$admitteds = [];
 
 		foreach ($this->admittedSinceEstablished() as $admitted) {
-			if($admitted->year == data('Y')){
+			if($admitted->year == date('Y')){
 				$admitteds[] = $admitted; 
 			}
 		}
@@ -48,7 +48,7 @@ trait TeacherAndDashboard
 		$graduates = [];
 
 		foreach ($this->graduatedSinceEstablished() as $graduate) {
-			if($graduate->year == data('Y')){
+			if($graduate->year == date('Y')){
 				$graduates[] = $graduate; 
 			}
 		}
@@ -75,7 +75,7 @@ trait TeacherAndDashboard
 		$reports = [];
 
 		foreach ($this->reportedSinceEstablished() as $report) {
-			if($report->year == data('Y')){
+			if($report->year == date('Y')){
 				$reports[] = $report; 
 			}
 		}

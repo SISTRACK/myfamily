@@ -42,8 +42,8 @@ class AdmissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'profile_id'=>'required',
-            'admission_no'=>'required'
+            'profile_id'=>'required|unique:admitteds',
+            'admission_no'=>'required|unique:admitteds'
         ]);
         //is this profile exist
         $profile = Profile::find($request->profile_id);
@@ -70,8 +70,8 @@ class AdmissionController extends Controller
     public function update(Request $request, $year, $admission_id)
     {
         $request->validate([
-            'profile_id'=>'required',
-            'admission_no'=>'required'
+            'profile_id'=>'required|unique:admitteds',
+            'admission_no'=>'required|unique:admitteds'
         ]);
         //is this profile exist
         $profile = Profile::find($request->profile_id);

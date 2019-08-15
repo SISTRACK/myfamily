@@ -29,14 +29,28 @@ class BaseChart extends Chart
     }
     public function getLabel()
     {
-    	$label = ['2017','2018','2019'];
-    	
-    	return $label;
+    	$years = [];
+        foreach(teacher()->school->admitteds as $admission){
+            if(!in_array($admission->year, $years)){
+                $years[] = $admission->year;
+            }
+        }
+        return $years;
     }
 
     public function admissionDataset()
     {
-        return ['243','334','339'];
+        $data_sets = [];
+        foreach($this->getLabel() as $label){
+            $count = 0;
+            foreach (teacher()->school->admitteds as $admission) {
+                if($admission->year == $label){
+                    $count ++;
+                }
+            }
+            $data_sets[] = $count;
+        }
+        return $data_sets;
     }
 
     public function graduationDataset()
