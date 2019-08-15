@@ -31,8 +31,16 @@ class CreateAdmittedsTable extends Migration
             ->on('profiles')
             ->delete('restrict')
             ->update('cascade');
+            $table->integer('teacher_id')
+            ->nullable()
+            ->unsigned()
+            ->foreign()
+            ->refernces('id')
+            ->on('teachers')
+            ->delete('restrict')
+            ->update('cascade');
             $table->string('year');
-            $table->string('adm_no')->nullable();
+            $table->string('admission_no')->nullable();
             $table->timestamps();
         });
     }

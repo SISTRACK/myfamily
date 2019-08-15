@@ -7,7 +7,7 @@ trait Administration
     {
         $districts = [];
         if(admin()->district){
-            $districts[] = $district;
+            $districts[] = admin()->district;
         }elseif (admin()->lga) {
             foreach (admin()->lga->districts as $district) {
                 $districts[] = $district;

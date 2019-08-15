@@ -28,9 +28,19 @@ Route::prefix('education')->group(function() {
 		    Route::get('/report', 'ChartController@report')->name('report');
 	    });
 
-	    //school activities routes
-	    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
-	    Route::get('/admission', 'ChartController@admission')->name('admission');
+	    //school admission routes
+	    Route::prefix('admission/{year}/')
+	    ->namespace('School')
+	    ->name('admission.')
+	    ->group(function() {
+		    Route::get('show', 'AdmissionController@index')->name('index');
+		    Route::get('create', 'AdmissionController@create')->name('create');
+		    Route::post('{admission_id}/update', 'AdmissionController@update')->name('update');
+		    Route::post('register', 'AdmissionController@store')->name('register');
+		    Route::get('delete', 'AdmissionController@delete')->name('delete');
+		});
+
+	    Route::get('/admission', 'ChartController@admission')->name('graduation');
 	    Route::get('/report', 'ChartController@report')->name('report');
 	    
 	});

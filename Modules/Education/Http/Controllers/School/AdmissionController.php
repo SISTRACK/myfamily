@@ -5,6 +5,8 @@ namespace Modules\Education\Http\Controllers\School;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Profile\Entities\Profile;
+use Modules\Education\Entities\Admitted;
 
 class AdmissionController extends Controller
 {
@@ -14,7 +16,13 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        return view('education::index');
+        $admissions = [];
+        foreach(teacher()->school->admitteds as $admission){
+            if($admission->year == date('Y')){
+                $admissions[] = $admission;
+            }
+        }
+        return view('education::Education.School.Admission.index',['admissions'=>$admissions]);
     }
 
     /**
@@ -23,7 +31,7 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('education::create');
+        return view('education::Education.School.Admission.create');
     }
 
     /**
@@ -33,27 +41,24 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('education::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('education::edit');
+        $request->validate([
+            'profile_id'=>'required',
+            'admission_no'=>'required'
+        ]);
+        //is this profile exist
+        $profile = Profile::find($request->profile_id);
+        if($profile){
+            $profile->admitteds()->create([
+                'school_id'=>teacher()->school->id,
+                'admission_no' => $request->admission_no,
+                'year' => date('Y'),
+                'teacher_id' => teacher()->id
+            ]);
+            session()->flash('message','Congratulation the admission is created success fully');
+        }else{
+            session()->flash('error',['Invali Student Profile ID']);
+        }
+        return redirect()->route('education.school.admission.index',[date('Y')]);
     }
 
     /**
@@ -62,9 +67,26 @@ class AdmissionController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $year, $admission_id)
     {
-        //
+        $request->validate([
+            'profile_id'=>'required',
+            'admission_no'=>'required'
+        ]);
+        //is this profile exist
+        $profile = Profile::find($request->profile_id);
+        if($profile){
+            Admitted::find($admission_id)->update([
+                'school_id'=>teacher()->school->id,
+                'admission_no' => $request->admission_no,
+                'year' => date('Y'),
+                'teacher_id' => teacher()->id
+            ]);
+            session()->flash('message','Congratulation the admission is updated success fully');
+        }else{
+            session()->flash('error',['Invali Student Profile ID']);
+        }
+        return redirect()->route('education.school.admission.index',[date('Y')]);
     }
 
     /**
@@ -72,8 +94,10 @@ class AdmissionController extends Controller
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function delete($year, $admission_id)
     {
-        //
+        Admitted::find($admission_id)->delete();
+        session()->flash('message','Congratulation the admission is deleted success fully');
+        return redirect()->route('education.school.admission.index',[date('Y')]);
     }
 }

@@ -5,7 +5,7 @@
     <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> School </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
-        	<a href="{{route('education.school.admission')}}">Admission</a>
+        	<a href="{{route('education.school.admission.index',[date('Y')])}}">Admission</a>
         </li>
         <li>
         	<a href="{{route('education.school.graduation')}}">Graduation</a>
