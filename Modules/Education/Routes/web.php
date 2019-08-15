@@ -18,11 +18,21 @@ Route::prefix('education')->group(function() {
     Route::post('/login', 'Auth\EducationLoginController@loginEducation')->name('education.login');
     Route::post('logout', 'Auth\EducationLoginController@logout')->name('education.auth.logout');
 
-    //school charts
-    Route::prefix('school/chart')->name('education.school.chart.')->group(function() {
+    
+    Route::prefix('school')->name('education.school.')->group(function() {
+
+    	//school chart routes
+        Route::prefix('chart')->name('chart.')->group(function() {
+		    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
+		    Route::get('/admission', 'ChartController@admission')->name('admission');
+		    Route::get('/report', 'ChartController@report')->name('report');
+	    });
+
+	    //school activities routes
 	    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
 	    Route::get('/admission', 'ChartController@admission')->name('admission');
 	    Route::get('/report', 'ChartController@report')->name('report');
+	    
 	});
 
 });
