@@ -49,6 +49,12 @@ if(!function_exists('admin')){
     }
 }
 
+if(!function_exists('teacher')){
+    function teacher(){
+        return auth()->guard('teacher')->user();
+    }
+}
+
 if(!function_exists('security')){
     function security(){
         return auth()->guard('security')->user();

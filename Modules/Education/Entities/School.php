@@ -24,4 +24,8 @@ class School extends BaseModel
     {
     	return $this->hasMany(Teacher::class);
     }
+    public function admitteds()
+    {
+        return $this->hasMany(Admitted::class);
+    }
 }

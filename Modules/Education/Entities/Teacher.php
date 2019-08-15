@@ -5,10 +5,11 @@ namespace Modules\Education\Entities;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Education\Services\Traits\TeacherAndDashboard;
 
 class Teacher extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, TeacherAndDashboard;
     /**
      * The attributes that are mass assignable.
      *

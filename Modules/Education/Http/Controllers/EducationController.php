@@ -13,4 +13,14 @@ class EducationController extends Controller
     {
        $this->middleware('auth:teacher');
     }
+
+    public function verify()
+    {
+        return redirect()->route('education.dashboard');
+    }
+
+    public function index()
+    {
+        return view('education::Education.dashboard',['teacher'=>teacher()]);
+    }
 }

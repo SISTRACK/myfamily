@@ -8,6 +8,6 @@ class SchoolReportType extends BaseModel
 {
     public function schoolReports()
     {
-    	return $this->hasMany(SchoolReport::class)
+    	return $this->hasMany(SchoolReport::class);
     }
 }
