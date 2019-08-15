@@ -13,10 +13,18 @@
 
 Route::prefix('education')->group(function() {
     Route::get('/', 'EducationController@verify')->name('education');
-    Route::get('/dashboard', 'EducationController@index')->name('education.dashboard');
+    Route::get('/school/dashboard', 'EducationController@index')->name('education.dashboard');
     Route::get('/login', 'Auth\EducationLoginController@login')->name('education.auth.login');
     Route::post('/login', 'Auth\EducationLoginController@loginEducation')->name('education.login');
     Route::post('logout', 'Auth\EducationLoginController@logout')->name('education.auth.logout');
+
+    //school charts
+    Route::prefix('school/chart')->name('education.school.chart.')->group(function() {
+	    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
+	    Route::get('/admission', 'ChartController@admission')->name('admission');
+	    Route::get('/report', 'ChartController@report')->name('report');
+	});
+
 });
 
 Route::prefix('admin/education/')->namespace('Admin')->group(function(){

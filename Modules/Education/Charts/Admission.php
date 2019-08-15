@@ -2,7 +2,7 @@
 
 namespace Modules\Education\Charts;
 
-class Report extends BaseChart
+class Admission extends BaseChart
 {
     /**
      * Initializes the chart.
@@ -12,9 +12,9 @@ class Report extends BaseChart
    
     public function createChart()
     {
-
         $this->labels($this->label);
-        $this->dataset(teacher()->school->name.' Report', 'Bar',$this->reportDataset())->color($this->color);
+        $this->dataset(teacher()->school->name.' Admission Report ', 'Bar',
+            $this->admissionDataset())->color($this->color);
         return $this;
     }
 }
