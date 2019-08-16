@@ -13,7 +13,7 @@ class Admission extends BaseChart
     public function createChart()
     {
         $this->labels($this->label);
-        $this->dataset(teacher()->school->name.' Admission Report ', 'Bar',
+        $this->dataset(schoolAdmin()->school->name.' Admission Report ', 'Bar',
             $this->admissionDataset())->color($this->color);
         return $this;
     }

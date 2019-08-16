@@ -8,7 +8,7 @@
         	<a href="{{route('education.school.admission.index',[date('Y')])}}">Admission</a>
         </li>
         <li>
-        	<a href="{{route('education.school.graduation')}}">Graduation</a>
+        	<a href="{{route('education.school.graduation.index',[date('Y')])}}">Graduation</a>
         </li>
         <li>
         	<a href="{{route('education.school.report')}}">Report</a>

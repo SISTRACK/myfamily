@@ -6,7 +6,7 @@
 
 @section('page-content')
 
-<h3>{{teacher()->school->name}}  Admission Report Since Established</h3>
+<h3>{{schoolAdmin()->school->name}}  Admission Report Since Established</h3>
 <div class="col md-12">
     {!! $admission->container() !!}
     {!! $admission->script() !!}

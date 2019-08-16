@@ -6,7 +6,7 @@
 
 @section('page-content')
 
-<h3>{{teacher()->school->name}}  Graduation Report Since Established</h3>
+<h3>{{schoolAdmin()->school->name}}  Graduation Report Since Established</h3>
 <div class="col md-12">
     {!! $graduation->container() !!}
     {!! $graduation->script() !!}

@@ -4,11 +4,11 @@ namespace Modules\Education\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 use Modules\Profile\Entities\Profile;
 use Modules\Education\Entities\Admitted;
+use Modules\Core\Http\Controllers\Education\EducationBaseController;
 
-class AdmissionController extends Controller
+class AdmissionController extends EducationBaseController
 {
     /**
      * Display a listing of the resource.
@@ -17,21 +17,28 @@ class AdmissionController extends Controller
     public function index()
     {
         $admissions = [];
-        foreach(teacher()->school->admitteds as $admission){
+        foreach(schoolAdmin()->school->admitteds as $admission){
             if($admission->year == date('Y')){
                 $admissions[] = $admission;
             }
         }
-        return view('education::Education.School.Admission.index',['admissions'=>$admissions]);
+        return view('education::Education.School.Admission.index',['admissions'=>$admissions,'years'=>$this->getValidYears()]);
     }
-
+    public function getValidYears($value='')
+    {
+        $years = [];
+        for ($i = date('Y') ; $i >= date('Y') - 10 ; $i-- ) { 
+            $years[] = $i;
+        }
+        return $years;
+    }
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
     public function create()
     {
-        return view('education::Education.School.Admission.create');
+        return view('education::Education.School.Admission.create',['years'=>$this->getValidYears()]);
     }
 
     /**
@@ -42,17 +49,17 @@ class AdmissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'profile_id'=>'required|unique:admitteds',
+            'profile_id'=>'required',
             'admission_no'=>'required|unique:admitteds'
         ]);
         //is this profile exist
         $profile = Profile::find($request->profile_id);
         if($profile){
             $profile->admitteds()->create([
-                'school_id'=>teacher()->school->id,
+                'school_id'=>schoolAdmin()->school->id,
                 'admission_no' => $request->admission_no,
-                'year' => date('Y'),
-                'teacher_id' => teacher()->id
+                'year' => $request->year,
+                'teacher_id' => schoolAdmin()->id
             ]);
             session()->flash('message','Congratulation the admission is created success fully');
         }else{
@@ -70,17 +77,17 @@ class AdmissionController extends Controller
     public function update(Request $request, $year, $admission_id)
     {
         $request->validate([
-            'profile_id'=>'required|unique:admitteds',
-            'admission_no'=>'required|unique:admitteds'
+            'profile_id'=>'required',
+            'admission_no'=>'required'
         ]);
         //is this profile exist
         $profile = Profile::find($request->profile_id);
         if($profile){
             Admitted::find($admission_id)->update([
-                'school_id'=>teacher()->school->id,
+                'school_id'=>schoolAdmin()->school->id,
                 'admission_no' => $request->admission_no,
                 'year' => date('Y'),
-                'teacher_id' => teacher()->id
+                'teacher_id' => schoolAdmin()->id
             ]);
             session()->flash('message','Congratulation the admission is updated success fully');
         }else{

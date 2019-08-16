@@ -49,8 +49,8 @@ if(!function_exists('admin')){
     }
 }
 
-if(!function_exists('teacher')){
-    function teacher(){
+if(!function_exists('schoolAdmin')){
+    function schoolAdmin(){
         return auth()->guard('teacher')->user();
     }
 }

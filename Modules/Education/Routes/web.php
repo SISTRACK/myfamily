@@ -40,7 +40,19 @@ Route::prefix('education')->group(function() {
 		    Route::get('delete', 'AdmissionController@delete')->name('delete');
 		});
 
-	    Route::get('/admission', 'ChartController@admission')->name('graduation');
+		//school gradutaion routes
+	    Route::prefix('graduation/{year}/')
+	    ->namespace('School')
+	    ->name('graduation.')
+	    ->group(function() {
+		    Route::get('show', 'GraduationController@index')->name('index');
+		    Route::get('create', 'GraduationController@create')->name('create');
+		    Route::post('{graduation_id}/update', 'GraduationController@update')->name('update');
+		    Route::post('register', 'GraduationController@store')->name('register');
+		    Route::get('delete', 'GraduationController@delete')->name('delete');
+		});
+
+	    Route::get('/graduation', 'ChartController@admission')->name('graduation');
 	    Route::get('/report', 'ChartController@report')->name('report');
 	    
 	});

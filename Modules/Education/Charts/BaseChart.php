@@ -30,7 +30,7 @@ class BaseChart extends Chart
     public function getLabel()
     {
     	$years = [];
-        foreach(teacher()->school->admitteds as $admission){
+        foreach(schoolAdmin()->school->admitteds as $admission){
             if(!in_array($admission->year, $years)){
                 $years[] = $admission->year;
             }
@@ -43,7 +43,7 @@ class BaseChart extends Chart
         $data_sets = [];
         foreach($this->getLabel() as $label){
             $count = 0;
-            foreach (teacher()->school->admitteds as $admission) {
+            foreach (schoolAdmin()->school->admitteds as $admission) {
                 if($admission->year == $label){
                     $count ++;
                 }
@@ -55,7 +55,17 @@ class BaseChart extends Chart
 
     public function graduationDataset()
     {
-        return ['200','224','299'];
+        $data_sets = [];
+        foreach($this->getLabel() as $label){
+            $count = 0;
+            foreach (schoolAdmin()->school->admitteds as $admission) {
+                if($admission->graduated && $admission->graduated->year == $label){
+                    $count ++;
+                }
+            }
+            $data_sets[] = $count;
+        }
+        return $data_sets;
     }
 
     public function reportDataset()

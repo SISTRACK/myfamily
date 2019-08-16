@@ -15,7 +15,14 @@
 			        	<input type="text" name="profile_id" value="{{$admission->profile_id}}" class="form-control"><br>
                         <label>Admission NO</label>
 			        	<input type="text" name="admission_no" value="{{$admission->admission_no}}" class="form-control"><br>
-			                 
+			          <select class="form-control" name="year">
+                <option value="{{$admission->year}}">{{$admission->year}}</option>
+                  @foreach($years as $year)
+                    @if($admission->year != $year)
+                      <option value="{{$year}}">{{$year}}</option>
+                    @endif  
+                  @endforeach
+                </select><br>   
 			            <button class="btn btn-primary">Save Changes</button>
 			         </form>
 			    </div>

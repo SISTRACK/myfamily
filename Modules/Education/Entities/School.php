@@ -3,9 +3,12 @@
 namespace Modules\Education\Entities;
 
 use Modules\Core\Entities\BaseModel;
+use Modules\Education\Services\Traits\SchoolGraduation as CanGraduate;
 
 class School extends BaseModel
 {
+    use CanGraduate;
+
     public function schoolType()
     {
     	return $this->belongsTo(SchoolType::class);

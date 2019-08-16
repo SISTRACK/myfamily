@@ -13,7 +13,7 @@ class Graduation extends BaseChart
     public function createChart()
     {
         $this->labels($this->label);
-        $this->dataset(teacher()->school->name.' Graduates ', 'Bar',$this->graduationDataset())->color($this->color);
+        $this->dataset(schoolAdmin()->school->name.' Graduates ', 'Bar',$this->graduationDataset())->color($this->color);
         return $this;
     }
 }

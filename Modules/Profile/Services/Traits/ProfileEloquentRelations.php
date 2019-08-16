@@ -246,4 +246,16 @@ trait ProfileEloquentRelations
     		return $path;
     	}
     }
+
+    public function certificateImageLocation()
+    {
+        
+        $path = "Nfamily/Profile/Cerificates/".$this->id."/";
+        
+        if(app()->environment('production')){
+            return storage_url($path);
+        }else{
+            return $path;
+        }
+    }
 }

@@ -10,7 +10,12 @@
         	<input type="text" name="profile_id" placeholder="Student Profile ID" class="form-control"><br>
 
         	<input type="text" name="admission_no" placeholder="Admission No" class="form-control"><br>
-                 
+            <select class="form-control" name="year">
+                <option value="">Select Year</option>
+                @foreach($years as $year)
+                    <option value="{{$year}}">{{$year}}</option>
+                @endforeach
+            </select><br>
             <button class="btn btn-primary">Give Admission</button>
          </form>
     </div>

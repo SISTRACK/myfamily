@@ -21,6 +21,6 @@ class EducationController extends Controller
 
     public function index()
     {
-        return view('education::Education.dashboard',['teacher'=>teacher()]);
+        return view('education::Education.dashboard',['teacher'=>schoolAdmin()]);
     }
 }
