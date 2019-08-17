@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('side-bar')
 <li class="has_sub">
-    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
+    <a href="#" class="waves-effect"><i class="fa fa-pencil"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>
@@ -11,7 +11,7 @@
     </ul>
 </li>
 <li class="has_sub">
-    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Graduation </span> <span class="menu-arrow"></span></a>
+    <a href="#" class="waves-effect"><i class="fa fa-graduation-cap"></i> <span> Graduation </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>
@@ -21,7 +21,7 @@
     </ul>
 </li>
 <li class="has_sub">
-    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Student Report </span> <span class="menu-arrow"></span></a>
+    <a href="#" class="waves-effect"><i class="fa fa-book"></i> <span> Student Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>

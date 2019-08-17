@@ -2,12 +2,12 @@
 
 namespace Modules\Education\Http\Controllers\School;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Education\Entities\Admitted;
 use Modules\Education\Entities\Graduated;
 use Modules\Core\Services\Traits\UploadFile;
 use Modules\Core\Http\Controllers\Education\EducationBaseController;
+use Modules\Education\Http\Requests\Education\School\GraduationFormRequest;
 
 class GraduationController extends EducationBaseController
 {
@@ -27,7 +27,7 @@ class GraduationController extends EducationBaseController
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(GraduationFormRequest $request)
     {
         $admission = Admitted::find($request->admission_id);
         if($request->has('certificate')){
@@ -57,7 +57,7 @@ class GraduationController extends EducationBaseController
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(GraduationFormRequest $request, $id)
     {
         $graduation = Graduated::find($request->graduation_id);
         if($request->graduation_status != 'on'){
