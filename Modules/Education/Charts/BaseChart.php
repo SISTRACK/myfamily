@@ -55,12 +55,34 @@ class BaseChart extends Chart
 
     public function graduationDataset()
     {
-        return schoolAdmin()->school->yearsOfAdmission(); 
+        $data_sets = [];
+        foreach($this->getLabel() as $label){
+            $count = 0;
+            foreach (schoolAdmin()->school->admitteds as $admission) {
+                if($admission->year == $label && $admission->graduated){
+                    $count ++;
+                }
+            }
+            $data_sets[] = $count;
+        }
+        return $data_sets; 
     }
 
     public function reportDataset()
     {
-        return ['24','12','8'];
+        $data_sets = [];
+        foreach($this->getLabel() as $label){
+            $count = 0;
+            foreach (schoolAdmin()->school->admitteds as $admission) {
+                if($admission->year == $label){
+                    foreach ($admission->schoolReports as $report) {
+                        $count ++;
+                    }
+                }
+            }
+            $data_sets[] = $count;
+        }
+        return $data_sets;
     }
     
 }
