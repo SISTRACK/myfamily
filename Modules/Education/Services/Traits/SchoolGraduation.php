@@ -57,4 +57,15 @@ trait SchoolGraduation
     {
         return SchoolReportType::all();
     }
+
+    public function validateThisProfileAdmission($profile_id)
+    {
+        $flag = true;
+        foreach ($this->admitteds as $admission) {
+            if($admission->profile_id == $profile_id){
+                $flag = false;
+            }
+        }
+        return $flag;
+    }
 }

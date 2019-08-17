@@ -24,7 +24,7 @@ class AdmissionController extends EducationBaseController
         }
         return view('education::Education.School.Admission.index',['admissions'=>$admissions,'years'=>$this->getValidYears()]);
     }
-    public function getValidYears($value='')
+    public function getValidYears()
     {
         $years = [];
         for ($i = request()->route('year') ; $i >= request()->route('year') - 10 ; $i-- ) { 
@@ -52,9 +52,16 @@ class AdmissionController extends EducationBaseController
             'profile_id'=>'required',
             'admission_no'=>'required|unique:admitteds'
         ]);
+        $errors = [];
         //is this profile exist
         $profile = Profile::find($request->profile_id);
-        if($profile){
+        if(!$profile){
+            $errors[] = 'Invali Student Profile ID';
+        }
+        if($profile && !schoolAdmin()->school->validateThisProfileAdmission($profile->id)){
+            $errors[] = 'Sorry we already admitted this student in this school';
+        }
+        if(empty($errors)){
             $profile->admitteds()->create([
                 'school_id'=>schoolAdmin()->school->id,
                 'admission_no' => $request->admission_no,
@@ -63,7 +70,7 @@ class AdmissionController extends EducationBaseController
             ]);
             session()->flash('message','Congratulation the admission is created success fully');
         }else{
-            session()->flash('error',['Invali Student Profile ID']);
+            session()->flash('error',$errors);
         }
         return redirect()->route('education.school.admission.index',[date('Y')]);
     }

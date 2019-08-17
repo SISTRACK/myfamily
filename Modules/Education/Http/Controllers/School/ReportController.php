@@ -5,6 +5,7 @@ namespace Modules\Education\Http\Controllers\School;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Education\Entities\Admitted;
+use Modules\Education\Entities\SchoolReport;
 use Modules\Core\Http\Controllers\Education\EducationBaseController;
 
 
@@ -42,35 +43,31 @@ class ReportController extends EducationBaseController
         return redirect()->route('education.school.report.index',[$request->route('year')]);
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        return view('education::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('education::edit');
-    }
-
+   
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $report_id)
     {
-        //
+        $report = SchoolReport::find($request->report_id);
+        if($request->has('evidence')){
+            if($report->evidence){
+                //delete the evidence from the server
+            }
+            //upload the file to the server
+        }else{
+            $evidence = null;
+        }
+        $report->update([
+            'about_report' =>$request->about_report,
+            'school_report_type_id' =>$request->report_type_id,
+            'evidence' =>$evidence
+        ]);
+        session()->flash('message','Congratulation the report is register successfully');
+        return redirect()->route('education.school.report.index',[$request->route('year')]);
     }
 
     /**
@@ -78,8 +75,11 @@ class ReportController extends EducationBaseController
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function delete($year, $report_id)
     {
-        //
+        $report = SchoolReport::find($report_id);
+        $report->delete();
+        session()->flash('message','Congratulation the report is deleted successfully');
+        return redirect()->route('education.school.report.index',[request()->route('year')]);
     }
 }

@@ -22,14 +22,14 @@ Route::prefix('education')->group(function() {
     Route::prefix('school')->name('education.school.')->group(function() {
 
     	//school chart routes
-        Route::prefix('chart')->name('chart.')->group(function() {
+        Route::prefix('statistics-chart-of')->name('chart.')->group(function() {
 		    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
 		    Route::get('/admission', 'ChartController@admission')->name('admission');
 		    Route::get('/report', 'ChartController@report')->name('report');
 	    });
 
 	    //school admission routes
-	    Route::prefix('admission/{year}/')
+	    Route::prefix('{year}/admission/')
 	    ->namespace('School')
 	    ->name('admission.')
 	    ->group(function() {
@@ -41,7 +41,7 @@ Route::prefix('education')->group(function() {
 		});
 
 		//school gradutaion routes
-	    Route::prefix('graduation/{year}/')
+	    Route::prefix('{year}/graduation/')
 	    ->namespace('School')
 	    ->name('graduation.')
 	    ->group(function() {
@@ -49,11 +49,11 @@ Route::prefix('education')->group(function() {
 		    Route::get('create', 'GraduationController@create')->name('create');
 		    Route::post('{graduation_id}/update', 'GraduationController@update')->name('update');
 		    Route::post('register', 'GraduationController@store')->name('register');
-		    Route::get('delete', 'GraduationController@delete')->name('delete');
+		    Route::get('{graduation_id}/delete', 'GraduationController@delete')->name('delete');
 		});
 
         //school school report routes
-	    Route::prefix('school-report/{year}/')
+	    Route::prefix('{year}/student-school-report/')
 	    ->namespace('School')
 	    ->name('report.')
 	    ->group(function() {
@@ -61,7 +61,7 @@ Route::prefix('education')->group(function() {
 		    Route::get('create', 'ReportController@create')->name('create');
 		    Route::post('{report_id}/update', 'ReportController@update')->name('update');
 		    Route::post('register', 'ReportController@store')->name('register');
-		    Route::get('delete', 'ReportController@delete')->name('delete');
+		    Route::get('{report_id}/delete', 'ReportController@delete')->name('delete');
 		});
 	    
 	});

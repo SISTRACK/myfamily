@@ -29,13 +29,7 @@ class BaseChart extends Chart
     }
     public function getLabel()
     {
-    	$years = [];
-        foreach(schoolAdmin()->school->admitteds as $admission){
-            if(!in_array($admission->year, $years)){
-                $years[] = $admission->year;
-            }
-        }
-        return $years;
+    	return schoolAdmin()->school->yearsOfAdmission();
     }
 
     public function admissionDataset()
