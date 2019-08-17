@@ -27,7 +27,7 @@
                         </select>
                         <br>
                         <label>Certificate if any</label>
-                        <input type="file" value="{{old('file')}}" class="form-control" name="certificate"><br>
+                        <input type="file" value="{{old('certificate')}}" class="form-control" name="certificate"><br>
                         @if($graduate->school->schoolType == 'Secondary')
                         <label>Discpline</label>
                         <input type="text" value="{{old('discpline')}}" class="form-control" name="discpline" placeholder="Eg Sciences or Art"><br>

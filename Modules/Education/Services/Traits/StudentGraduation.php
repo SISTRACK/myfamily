@@ -4,23 +4,45 @@ namespace Modules\Education\Services\Traits;
 trait StudentGraduation
 
 {
-	
+	private $graduation_limit_year;
+
 	public function expectedYearsToGraduate()
 	{
 
-		$school_graduate_attempt_after = $this->school->getValidYearOfGraduation();
-        
-		$graduation_limit_years = ($school_graduate_attempt_after * 2);
-        
-        $this_student_can_graduate_before = $this->year + $graduation_limit_years;
-        
+		$this->graduation_limit_year = $this->year + ($this->school->getValidYearOfGraduation() * 2);
+                
         $years = [];
 
-		for ($year = $this->year ; $year <= $this_student_can_graduate_before ; $year++) { 
+		for ($year = $this->studentCanGraduateAtThisYear() ; $year < $this->studentGraduationLimitYear() ; $year++) {
+
 			$years[] = $year;
 		}
         
 		return $years;
+	}
+
+	public function studentCanGraduateAtThisYear()
+	{
+		return $this->year + $this->school->getValidYearOfGraduation();
+	}
+
+	public function studentGraduationLimitYear()
+	{
+		return $this->graduation_limit_year + $this->school->getValidYearOfGraduation();
+	}
+
+	public function canGraduateNow()
+	{
+		if(date('Y') - $this->year >= $this->school->getValidYearOfGraduation()){
+            return true;
+		}else{
+            return false;
+		}	    
+	}
+
+	public function remaininYearsToGraduate()
+	{	
+		return $this->school->getValidYearOfGraduation() - (date('Y') - $this->year);
 	}
 }
 

@@ -1,23 +1,39 @@
 @extends('layouts.master')
 @section('side-bar')
-
 <li class="has_sub">
-    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> School </span> <span class="menu-arrow"></span></a>
+    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
+        @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>
-        	<a href="{{route('education.school.admission.index',[date('Y')])}}">Admission</a>
+            <a href="{{route('education.school.admission.index',[$year])}}">{{$year}} Admission</a>
         </li>
+        @endforeach
+    </ul>
+</li>
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Graduation </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>
-        	<a href="{{route('education.school.graduation.index',[date('Y')])}}">Graduation</a>
+            <a href="{{route('education.school.graduation.index',[$year])}}">{{$year}} Admission</a>
         </li>
+        @endforeach
+    </ul>
+</li>
+<li class="has_sub">
+    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Student Report </span> <span class="menu-arrow"></span></a>
+    <ul class="list-unstyled">
+        @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
         <li>
-        	<a href="{{route('education.school.report')}}">Report</a>
+            <a href="{{route('education.school.report',[$year])}}">{{$year}} Admission</a>
         </li>
+        @endforeach
     </ul>
 </li>
 
+
 <li class="has_sub">
-    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span> Charts </span> <span class="menu-arrow"></span></a>
+    <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span>Statistics Chart </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
         	<a href="{{route('education.school.chart.admission')}}">Admission</a>

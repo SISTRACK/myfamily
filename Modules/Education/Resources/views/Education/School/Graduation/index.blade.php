@@ -1,7 +1,7 @@
 @extends('education::layouts.master')
 
 @section('page-content')
-	<button class="btn btn-primary"><a href="{{route('education.school.graduation.create',[date('Y')])}}" style="color: white"><i class="fa fa-plus"></i></a></button>
+	
 	@if(empty(schoolAdmin()->school->studentToGraduateThisYearAndElear()))
 	<div class="alert alert-success h4">No Graduation Record Found</div>
     @else
@@ -31,16 +31,20 @@
 	        				@if($graduate->graduated)
 	        				    <button class="btn btn-info" data-toggle="modal" data-target="{{'#graduated_'.$graduate->id}}"><i class="fa fa-eye" ></i>
 	        				    </button>
-	        				@else
+	        				@elseif($graduate->canGraduateNow())
 	        				    <button class="btn btn-primary" data-toggle="modal" data-target="{{'#graduate_'.$graduate->id}}"><i class="fa fa-graduation-cap" ></i>
+	        				    </button>
+	        				@else
+	        				    <button class="btn btn-primary" data-toggle="modal" data-target="{{'#study_'.$graduate->id}}"><i class="fa fa-book" ></i>
 	        				    </button>
 	        				@endif
 	        			</td>
 	        		</tr>
 	        		@if($graduate->graduated)
 	        		    @include('education::Education.School.Graduation.edit')
+                    @else
+                        @include('education::Education.School.Graduation.study')
 	        		@endif
-
 	        		    @include('education::Education.School.Graduation.create')
 
             	@endforeach

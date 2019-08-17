@@ -9,7 +9,7 @@
             <div class="modal-body">
 			    <div class="col-md-12">
 			    <h2 class="text-primary">Edit Graduation</h2>
-                     <form action="{{route('education.school.graduation.update',[date('Y'),$graduate->id])}}" method="post">
+                     <form action="{{route('education.school.graduation.update',[date('Y'),$graduate->id])}}" method="post" enctype="multipart/form-data">
 			        	@csrf
 			        	<label>Father</label>
 			        	<input type="text" disabled name="profile_id" value="{{$graduate->profile->child ? $graduate->profile->child->birth->father->husband->profile->user->first_name.' '.$graduate->profile->child->birth->father->husband->profile->user->last_name : 'not available'}}" class="form-control"><br>
@@ -35,7 +35,12 @@
                     @endif  
                   @endforeach
                 </select><br>
-
+                @if($graduate->graduated->certificate)
+                <label>This Upload will delete existing one and upload another one</label>
+                @else
+                  <label>You can upload this certificate if you want</label>
+                @endif
+                <input type="file" value="{{old('certificate')}}" class="form-control" name="certificate"><br>
                 <label>Graduation Status</label>
                 <input type="checkBox" name="graduation_status" checked class="form-control"><br>
                 <input type="hidden" name="graduation_id" value="{{$graduate->graduated->id}}" class="form-control"><br>

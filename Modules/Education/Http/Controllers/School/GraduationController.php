@@ -4,12 +4,12 @@ namespace Modules\Education\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 use Modules\Education\Entities\Admitted;
 use Modules\Education\Entities\Graduated;
 use Modules\Core\Services\Traits\UploadFile;
+use Modules\Core\Http\Controllers\Education\EducationBaseController;
 
-class GraduationController extends Controller
+class GraduationController extends EducationBaseController
 {
     use UploadFile;
     /**
@@ -47,7 +47,7 @@ class GraduationController extends Controller
             ]);
         }
         session()->flash('message','Congratulation the graduation was register successfully');
-        return redirect()->route('education.school.graduation.index',[date('Y')]);
+        return redirect()->route('education.school.graduation.index',[$request->route('year')]);
     }
 
     
@@ -63,6 +63,7 @@ class GraduationController extends Controller
         if($request->graduation_status != 'on'){
             if($graduation->certificate){
                 //delete certificate from the server
+                $this->deleteFile($graduation->admitted->profile->certificateImageLocation().$graduation->certificate);
             }
 
             //delete the graduation
@@ -70,7 +71,13 @@ class GraduationController extends Controller
             $message = 'Congratulation the graduation deleted successfully';
         }else{
             if($request->has('certificate')){
-                $path = $graduation->admitted->profile->certificateImageLocation($graduation->id);
+                $path = $graduation->admitted->profile->certificateImageLocation();
+                //if the certificate already uploaded
+                if($graduation->certificate){
+                    //delete certificate from the server
+                    $this->deleteFile($graduation->admitted->profile->certificateImageLocation().$graduation->certificate);
+                }
+                //upload new certificate
                 $file = $this->storeFile($request->certificate,$path);
             }else{
                 $file = $request->certificate;
@@ -88,7 +95,7 @@ class GraduationController extends Controller
             $message = 'Congratulation the graduation was updated successfully';
         }
         session()->flash('message',$message);
-        return redirect()->route('education.school.graduation.index',[date('Y')]);
+        return redirect()->route('education.school.graduation.index',[$request->route('year')]);
     }
 
     /**

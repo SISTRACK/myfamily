@@ -18,7 +18,7 @@ class AdmissionController extends EducationBaseController
     {
         $admissions = [];
         foreach(schoolAdmin()->school->admitteds as $admission){
-            if($admission->year == date('Y')){
+            if($admission->year == request()->route('year')){
                 $admissions[] = $admission;
             }
         }
@@ -27,7 +27,7 @@ class AdmissionController extends EducationBaseController
     public function getValidYears($value='')
     {
         $years = [];
-        for ($i = date('Y') ; $i >= date('Y') - 10 ; $i-- ) { 
+        for ($i = request()->route('year') ; $i >= request()->route('year') - 10 ; $i-- ) { 
             $years[] = $i;
         }
         return $years;

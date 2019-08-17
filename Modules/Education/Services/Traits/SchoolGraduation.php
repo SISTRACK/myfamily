@@ -28,7 +28,7 @@ trait SchoolGraduation
     {
     	$graduates = [];
     	foreach ($this->admitteds as $admitted) {
-    		if($this->currentYear() - $admitted->year >= $this->getValidYearOfGraduation()){
+    		if($this->currentYear() == $admitted->year){
     			$graduates[] = $admitted;
     		}
     	}
@@ -37,6 +37,17 @@ trait SchoolGraduation
     
     public function currentYear()
     {
-    	return date('Y');
+    	return request()->route('year');
+    }
+
+    public function yearsOfAdmission()
+    {
+    	$years = [];
+        foreach(schoolAdmin()->school->admitteds as $admission){
+            if(!in_array($admission->year, $years)){
+                $years[] = $admission->year;
+            }
+        }
+        return $years;
     }
 }
