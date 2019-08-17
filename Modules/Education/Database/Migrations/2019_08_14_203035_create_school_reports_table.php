@@ -23,7 +23,7 @@ class CreateSchoolReportsTable extends Migration
             ->on('admitteds')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('report_type_id')
+            $table->integer('school_report_type_id')
             ->nullable()
             ->unsigned()
             ->foreign()

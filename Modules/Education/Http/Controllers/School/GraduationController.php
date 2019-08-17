@@ -49,8 +49,6 @@ class GraduationController extends EducationBaseController
         session()->flash('message','Congratulation the graduation was register successfully');
         return redirect()->route('education.school.graduation.index',[$request->route('year')]);
     }
-
-    
     /**
      * Update the specified resource in storage.
      * @param Request $request

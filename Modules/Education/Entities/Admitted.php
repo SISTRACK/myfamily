@@ -23,4 +23,9 @@ class Admitted extends BaseModel
     {
     	return $this->hasOne(Graduated::class);
     }
+
+    public function schoolReports()
+    {
+        return $this->hasMany(SchoolReport::class);
+    }
 }

@@ -35,6 +35,10 @@
                     @endif  
                   @endforeach
                 </select><br>
+                @if($graduate->school->schoolType == 'Secondary')
+                    <label>Discpline</label>
+                    <input type="text" value="{{old('discpline')}}" class="form-control" name="discpline" placeholder="Eg Sciences or Art"><br>
+                @endif
                 @if($graduate->graduated->certificate)
                 <label>This Upload will delete existing one and upload another one</label>
                 @else

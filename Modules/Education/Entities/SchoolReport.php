@@ -10,8 +10,10 @@ class SchoolReport extends BaseModel
     {
     	return $this->belongsTo(Admitted::class);
     }
+
     public function schoolReportType()
     {
-    	return $this->belongsTo(SchoolReportType::class)
+    	return $this->belongsTo(SchoolReportType::class);
     }
+
 }

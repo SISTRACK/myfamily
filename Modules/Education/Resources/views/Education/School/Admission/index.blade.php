@@ -28,8 +28,9 @@
 	        			<td>
 	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#admission_'.$admission->id}}"><i class="fa fa-eye" ></i>
 	        				</button>
-	        				
+	        				@if(!$admission->graduated)
 	        				<button class="btn btn-warning"><a href="{{route('education.school.admission.delete',[date('Y'), $admission->id])}}"><i class="fa fa-delete">Delete</i></a></button>
+                            @endif
 	        			</td>
 	        		</tr>
 	        		@include('education::Education.School.Admission.edit')

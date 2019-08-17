@@ -52,8 +52,17 @@ Route::prefix('education')->group(function() {
 		    Route::get('delete', 'GraduationController@delete')->name('delete');
 		});
 
-	    Route::get('/graduation', 'ChartController@admission')->name('graduation');
-	    Route::get('/report', 'ChartController@report')->name('report');
+        //school school report routes
+	    Route::prefix('school-report/{year}/')
+	    ->namespace('School')
+	    ->name('report.')
+	    ->group(function() {
+		    Route::get('show', 'ReportController@index')->name('index');
+		    Route::get('create', 'ReportController@create')->name('create');
+		    Route::post('{report_id}/update', 'ReportController@update')->name('update');
+		    Route::post('register', 'ReportController@store')->name('register');
+		    Route::get('delete', 'ReportController@delete')->name('delete');
+		});
 	    
 	});
 

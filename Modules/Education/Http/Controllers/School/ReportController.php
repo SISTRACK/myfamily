@@ -4,9 +4,11 @@ namespace Modules\Education\Http\Controllers\School;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
+use Modules\Education\Entities\Admitted;
+use Modules\Core\Http\Controllers\Education\EducationBaseController;
 
-class ReportController extends Controller
+
+class ReportController extends EducationBaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('education::index');
+        return view('education::Education.School.Report.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('education::create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,7 +27,19 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $admission = Admitted::find($request->admission_id);
+        if($request->has('evidence')){
+            //upload the file to the server
+        }else{
+            $evidence = null;
+        }
+        $admission->schoolReports()->create([
+            'about_report' =>$request->about_report,
+            'school_report_type_id' =>$request->report_type_id,
+            'evidence' =>$evidence
+        ]);
+        session()->flash('message','Congratulation the report is register successfully');
+        return redirect()->route('education.school.report.index',[$request->route('year')]);
     }
 
     /**

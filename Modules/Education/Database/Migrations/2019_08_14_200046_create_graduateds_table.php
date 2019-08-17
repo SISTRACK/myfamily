@@ -25,7 +25,7 @@ class CreateGraduatedsTable extends Migration
             ->update('cascade');
             $table->string('year');
             $table->text('certificate')->nullable();
-            $table->text('dipline')->nullable();
+            $table->text('discpline')->nullable();
             $table->text('class_honor')->nullable();
             $table->timestamps();
         });

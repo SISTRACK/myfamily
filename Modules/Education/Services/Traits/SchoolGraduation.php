@@ -1,6 +1,8 @@
 <?php
 namespace Modules\Education\Services\Traits;
 
+use Modules\Education\Entities\SchoolReportType;
+
 trait SchoolGraduation
 
 {
@@ -49,5 +51,10 @@ trait SchoolGraduation
             }
         }
         return $years;
+    }
+
+    public function schoolReportTypes()
+    {
+        return SchoolReportType::all();
     }
 }

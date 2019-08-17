@@ -44,5 +44,7 @@ trait StudentGraduation
 	{	
 		return $this->school->getValidYearOfGraduation() - (date('Y') - $this->year);
 	}
+
+	
 }
 
