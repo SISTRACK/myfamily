@@ -9,7 +9,7 @@
             <div class="modal-body">
 			    <div class="col-md-12">
 			    <h2 class="text-primary">Edit Admission</h2>
-              <form action="{{route('education.school.admission.update',[date('Y'),$admission->id])}}" method="post">
+              <form action="{{route('education.school.admission.update',[request()->route('year'),$admission->id])}}" method="post">
 			        	@csrf
 			        	<label>Profile ID</label>
 			        	<input type="text" name="profile_id" value="{{$admission->profile_id}}" class="form-control"><br>

@@ -31,6 +31,7 @@ Route::prefix('education')->group(function() {
 	    //school admission routes
 	    Route::prefix('{year}/admission/')
 	    ->name('admission.')
+	    ->namespace('School')
 	    ->group(function() {
 		    Route::get('show', 'AdmissionController@index')->name('index');
 		    Route::get('create', 'AdmissionController@create')->name('create');
@@ -39,7 +40,6 @@ Route::prefix('education')->group(function() {
 		    Route::get('delete', 'AdmissionController@delete')->name('delete');
             
             Route::prefix('verification/')
-	           ->namespace('School')
 	           ->name('verification.')
 	           ->group(function() {
 			    Route::get('create', 'AdmissionVerificationController@create')->name('create');

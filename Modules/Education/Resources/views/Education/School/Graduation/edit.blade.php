@@ -9,7 +9,7 @@
             <div class="modal-body">
 			    <div class="col-md-12">
 			    <h2 class="text-primary">Edit Graduation</h2>
-                     <form action="{{route('education.school.graduation.update',[date('Y'),$graduate->id])}}" method="post" enctype="multipart/form-data">
+                     <form action="{{route('education.school.graduation.update',[request()->route('year'),$graduate->id])}}" method="post" enctype="multipart/form-data">
 			        	@csrf
 			        	<label>Father</label>
 			        	<input type="text" disabled name="profile_id" value="{{$graduate->profile->child ? $graduate->profile->child->birth->father->husband->profile->user->first_name.' '.$graduate->profile->child->birth->father->husband->profile->user->last_name : 'not available'}}" class="form-control"><br>

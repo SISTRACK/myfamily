@@ -14,11 +14,13 @@
                         <input type="hidden" name="report_id" value="{{$report->id}}">
                             <select class="form-control" name="school_report_type_id">
                                 <option value="{{$report->schoolReportType->id}}">{{$report->schoolReportType->name}}</option>
-                                @foreach(schoolAdmin()->school->schoolReportTypes() as $report_type)
-                                    @if($report_type->id != $report->schoolReportType->id)
-                                        <option value="{{$report_type->id}}">{{$report_type->name}}</option>
-                                    @endif
-                                @endforeach
+                                @if(!$graduate->graduated)
+                                    @foreach(schoolAdmin()->school->schoolReportTypes() as $report_type)
+                                        @if($report_type->id != $report->schoolReportType->id)
+                                            <option value="{{$report_type->id}}">{{$report_type->name}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </select><br>
                             <textarea class="form-control" name="about_report">{{$report->about_report}}</textarea><br>
                             @if(!$graduate->graduated)

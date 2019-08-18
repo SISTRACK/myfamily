@@ -9,7 +9,7 @@
             <div class="modal-body">
 			    <div class="col-md-12">
 			    <h2 class="text-primary">Edit Graduation</h2>
-                     <form enctype="multipart/form-data" action="{{route('education.school.graduation.register',[date('Y')])}}" method="post">
+                     <form enctype="multipart/form-data" action="{{route('education.school.graduation.register',[request()->route('year')])}}" method="post">
 			        	@csrf
                         <input type="hidden" name="admission_id" value="{{$graduate->id}}">
 			        	<label>Father</label>

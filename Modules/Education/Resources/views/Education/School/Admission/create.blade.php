@@ -5,7 +5,7 @@
     <div class="col-md-4"></div>
     <div class="col-md-4">
     	<h2 class="text-primary">New Amission</h2>
-        <form action="{{route('education.school.admission.register',[date('Y')])}}" method="post">
+        <form action="{{route('education.school.admission.register',[request()->route('year')])}}" method="post">
         	@csrf
         	<input type="text" name="profile_id" placeholder="Student Profile ID" class="form-control"><br>
 

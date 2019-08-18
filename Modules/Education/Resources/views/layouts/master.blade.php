@@ -37,12 +37,12 @@
     <a href="#" class="waves-effect"><i class="fa fa-book"></i> <span> Student Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
-            <a href="{{route('education.school.report.index',[date('Y')])}}"><span class="fa fa-book"> {{date('Y')}} Admission</span></a>
+            <a href="{{route('education.school.report.index',[date('Y')])}}"><span class="fa fa-book"> {{date('Y')}} Reports</span></a>
         </li>
         @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
             @if($year != date('Y'))
                 <li>
-                    <a href="{{route('education.school.report.index',[$year])}}"><span class="fa fa-book"> {{$year}} Admission</span></a>
+                    <a href="{{route('education.school.report.index',[$year])}}"><span class="fa fa-book"> {{$year}} Reports</span></a>
                 </li>
             @endif
         @endforeach

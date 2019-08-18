@@ -2,8 +2,6 @@
 
 @section('page-content')
 
-<!-- end row -->
-
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
@@ -48,17 +46,10 @@
 
                                  <p class="text-muted font-13"><strong>Married Sons :</strong> <span class="m-l-15">{{count($user->profile->numberOfMarriedSons())}}
                                  </span></p>
-                                 @if(session('gues'))
-                                 <p><a class="btn btn-primary btn-block" href="{{route('family.member.profile.resume',[profile()->thisProfileFamily()->name,profile()->id])}}">Resume To My Profile</a></p>
-                                 @endif
                             </div>
-
                         </div>
-
                     </div> <!-- end card-box -->
-
                 </div> <!-- end col -->
-                
                 <div class="col-md-8 col-lg-9">
                 	<div class="row">
                 		<div class="col-md-8 col-sm-6">
@@ -129,14 +120,26 @@
                                     	   @else
                                     	       <i>Not Uploaded !!!!</i>
                                            @endif
-                                    	   {{$admission->graduated->year}}</div><br><hr>
+                                    	   </div><br><hr>
                                     	@endif
+                                    </div>
+                                    @endforeach
+                                </div> <hr>
+                                <h4 class="text-custom m-b-5 h3">School Reports</h4>
+                                <div class="row">
+                                    @foreach($user->profile->admitteds as $admission)
+                                    <div class="col-md-12">
+                                    	@foreach($admission->schoolReports as $report)
+                                           <i class="fa fa-book" style="font-size: 60px;"></i>
+                                           <i class="text-custom m-b-5">{{$admission->school->name}} Report base on :</i>{{$report->schoolReportType->name}}<br>
+                                           <i class="text-custom m-b-5">About Report :</i>{{$report->about_report}}<br>
+                                        @endforeach
                                     </div>
                                     @endforeach
                                 </div> 
                             </div>
                         </div>
-                    </div>
+    
                     <hr/>
                     <div class="row">
                 		<div class="col-md-8 col-sm-6">
@@ -371,6 +374,5 @@
         </div>
     </div>
 </div>
-<!-- End row -->
 
 @endsection
