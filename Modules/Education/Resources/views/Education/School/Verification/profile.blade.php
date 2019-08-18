@@ -98,7 +98,7 @@
                         <div class="col-md-8 col-sm-6">
                             <h4 class="btn btn-primary btn-block ">Educational Report</h4>
                             <div class="p-t-10">
-                            	<h4 class="text-custom m-b-5">Admissions</h4>
+                            	<h4 class="text-custom m-b-5 h3">Admissions</h4>
                                 <div class="row">
                                     @foreach($user->profile->admitteds as $admission)
                                     <div class="col-md-12">
@@ -109,15 +109,19 @@
                                     </div> 
                                     @endforeach
                                 </div>
-                                <h4 class="text-custom m-b-5">Graduation</h4>
+                                <h4 class="text-custom m-b-5 h3">Graduation</h4>
                                 <div class="row">
                                     @foreach($user->profile->admitteds as $admission)
                                     <div class="col-md-12">
                                     	@if($admission->graduated)
                                     	   <i class="fa fa-graduation-cap" style="font-size: 60px;"></i>
-                                           <i class="text-custom m-b-5">Graduated From</i> {{$admission->school->name}} {{$admission->school->schoolType->name}}<br>
+                                           <i class="text-custom m-b-5">Graduated From</i> {{$admission->school->name}}<br>
+                                           <i class="text-custom m-b-5">Education Level</i> 
+                                    	   {{$admission->school->schoolType->name}}<br>
                                     	   <i class="text-custom m-b-5">At Year of</i> 
-                                    	   {{$admission->graduated->year}}
+                                    	   {{$admission->graduated->year}}<br>
+                                    	   <i class="text-custom m-b-5">Class Honored</i> 
+                                    	   {{$admission->graduated->class_honor}}
                                            <h5 class="text-custom m-b-5">Certificate</h5>
                                     	   @if($admission->graduated->certificate)
                                     	   <a href="{{storage_url('Nfamily/Profile/Certificates/'.$admission->graduated->certificate)}}"><i class="fa fa-certificate" style="font-size: 60px;"></i>
