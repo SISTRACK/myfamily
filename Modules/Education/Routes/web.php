@@ -30,7 +30,6 @@ Route::prefix('education')->group(function() {
 
 	    //school admission routes
 	    Route::prefix('{year}/admission/')
-	    ->namespace('School')
 	    ->name('admission.')
 	    ->group(function() {
 		    Route::get('show', 'AdmissionController@index')->name('index');
@@ -38,6 +37,17 @@ Route::prefix('education')->group(function() {
 		    Route::post('{admission_id}/update', 'AdmissionController@update')->name('update');
 		    Route::post('register', 'AdmissionController@store')->name('register');
 		    Route::get('delete', 'AdmissionController@delete')->name('delete');
+            
+            Route::prefix('verification/')
+	           ->namespace('School')
+	           ->name('verification.')
+	           ->group(function() {
+			    Route::get('create', 'AdmissionVerificationController@create')->name('create');
+			    Route::post('verify', 'AdmissionVerificationController@verify')->name('verify');
+			    Route::get('{profile_id}/profile', 'AdmissionVerificationController@viewProfile')->name('profile');
+			   
+			});
+
 		});
 
 		//school gradutaion routes

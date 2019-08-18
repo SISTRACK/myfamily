@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('side-bar')
+<li>
+    <a href="{{route('education.school.admission.verification.create',[date('Y')])}}"><span class="fa fa-pencil"> Verify Student</span></a>
+</li>
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="fa fa-pencil"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
