@@ -1,5 +1,7 @@
 @extends('education::layouts.master')
-
+@section('page-title')
+    {{Breadcrumbs::render('education.school.admission.verification.profile',$user)}}
+@endsection
 @section('page-content')
 
 <div class="row">

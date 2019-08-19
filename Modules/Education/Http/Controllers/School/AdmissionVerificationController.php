@@ -43,8 +43,7 @@ class AdmissionVerificationController extends EducationBaseController
      */
     public function viewProfile($year,$profile_id)
     {
-        session(['gues'=>$profile_id]);
-        session()->forget('gues');
+        
         $profile = Profile::find($profile_id);
         return view('education::Education.School.Verification.profile',['user'=>$profile->user]);
     }

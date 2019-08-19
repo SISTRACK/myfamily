@@ -71,6 +71,7 @@ class AdmissionController extends EducationBaseController
             session()->flash('message','Congratulation the admission is created success fully');
         }else{
             session()->flash('error',$errors);
+            return back();
         }
         return redirect()->route('education.school.admission.index',[$request->route('year')]);
     }

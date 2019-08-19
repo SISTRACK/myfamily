@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('page-title')
+    {{Breadcrumbs::render()}}
+@endsection
 @section('side-bar')
 <li>
     <a href="{{route('education.school.admission.verification.create',[date('Y')])}}"><span class="fa fa-pencil"> Verify Student</span></a>
