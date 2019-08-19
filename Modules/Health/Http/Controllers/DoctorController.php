@@ -47,10 +47,8 @@ class DoctorController extends Controller
     public function register(DoctorFormRequest $request)
     {
         $data = $request->all();
-        $this->validateDoctor($data)->validate();
         $this->createDoctorAccount($data);
         return redirect()->route('admin.health.doctor.index');
-
     }
 
    

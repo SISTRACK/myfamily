@@ -11,6 +11,10 @@ use Modules\Education\Charts\Graduation;
 
 class ChartController extends Controller
 {
+    public function __construct()
+    {
+       $this->middleware('auth:teacher');
+    }
     /**
      * Display a listing of the resource.
      * @return Response

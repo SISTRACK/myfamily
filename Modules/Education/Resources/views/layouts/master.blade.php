@@ -57,13 +57,13 @@
     <a href="#" class="waves-effect"><i class="fa fa-chart"></i> <span>Statistics Chart </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
-        	<a href="{{route('education.school.chart.admission')}}">Admission</a>
+        	<a href="{{route('education.school.chart.admission',[date('Y')])}}">Admission</a>
         </li>
         <li>
-        	<a href="{{route('education.school.chart.graduation')}}">Graduation</a>
+        	<a href="{{route('education.school.chart.graduation',[date('Y')])}}">Graduation</a>
         </li>
         <li>
-        	<a href="{{route('education.school.chart.report')}}">Student Report</a>
+        	<a href="{{route('education.school.chart.report',[date('Y')])}}">Student Report</a>
         </li>
     </ul>
 </li>

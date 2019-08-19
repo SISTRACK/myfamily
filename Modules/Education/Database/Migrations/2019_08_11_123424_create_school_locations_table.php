@@ -25,7 +25,7 @@ class CreateSchoolLocationsTable extends Migration
             ->update('cascade');
             $table->integer('town_id')
             ->nullable()
-            ->unsigned()
+         it    ->unsigned()
             ->foreign()
             ->refernces('id')
             ->on('towns')

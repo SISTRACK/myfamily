@@ -1,5 +1,4 @@
 <?php
-namespace Modules\Education\Services\Traits;
 
 use Modules\Address\Entities\State;
 use Modules\Profile\Entities\Gender;

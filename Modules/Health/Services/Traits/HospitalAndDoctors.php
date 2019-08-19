@@ -13,7 +13,7 @@ trait HospitalAndDoctors
 
 {
     use Administration;
-    
+
     public function registerThisHospital(array $data)
     {
         $town = Town::find($data['town_id']);
@@ -43,7 +43,6 @@ trait HospitalAndDoctors
         ]);
         session()->flash('message','Hospital information updated successfully');
     }
-    
     
     public function updateThisDoctor(Request $request, $id)
     {

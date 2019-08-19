@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SecurityReport extends Model
 {
-    protected $fillable = [];
+    public function profile()
+    {
+        return $this->belongsTo('Modules\Profile\Entities\Profile');
+    }
+
+    public function profile()
+    {
+        return $this->belongsTo(Security::class);
+    }
 }

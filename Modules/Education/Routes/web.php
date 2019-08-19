@@ -22,7 +22,7 @@ Route::prefix('education')->group(function() {
     Route::prefix('school')->name('education.school.')->group(function() {
 
     	//school chart routes
-        Route::prefix('statistics-chart-of')->name('chart.')->group(function() {
+        Route::prefix('{year}/statistics-chart-of')->name('chart.')->group(function() {
 		    Route::get('/graduation', 'ChartController@graduation')->name('graduation');
 		    Route::get('/admission', 'ChartController@admission')->name('admission');
 		    Route::get('/report', 'ChartController@report')->name('report');

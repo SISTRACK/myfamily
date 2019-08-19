@@ -8,8 +8,6 @@
             <option value="{{$genotype->id}}">{{$genotype->name}}</option>
     	@endforeach
     </select>
-    
-
     <label for="">Blood Group</label>
     <select class="form-control" name="blood">
     	<option class="form-control">blood group</option>

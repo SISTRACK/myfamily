@@ -49,7 +49,6 @@ class UpdateProfile
             case 'change_profile_image':
                 # code...
                 break;
-            
             case 'new_certificate':
                 $graduation = Graduated::find($this->data['graduation_id']);
                 $path = profile()->certificateImageLocation();
