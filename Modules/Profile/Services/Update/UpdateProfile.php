@@ -2,21 +2,16 @@
 
 namespace Modules\Profile\Services\Update;
 
-use Modules\Address\Services\LivingAddress;
-
-use Modules\Address\Services\WorkAddress;
-
-use Modules\Profile\Services\Traits\Expertices;
-
-use Modules\Profile\Services\Traits\Health;
-
-use Modules\Profile\Services\Traits\Experiences;
-
-use Modules\Profile\Services\Traits\CreateWorkHistory;
-
-use Modules\Profile\Services\Traits\Access;
-
 use Modules\Profile\Entities\Profile;
+use Modules\Address\Services\WorkAddress;
+use Modules\Education\Entities\Graduated;
+use Modules\Profile\Services\Traits\Access;
+use Modules\Address\Services\LivingAddress;
+use Modules\Profile\Services\Traits\Health;
+use Modules\Core\Services\Traits\UploadFile;
+use Modules\Profile\Services\Traits\Expertices;
+use Modules\Profile\Services\Traits\Experiences;
+use Modules\Profile\Services\Traits\CreateWorkHistory;
 
 
 /**
@@ -35,7 +30,7 @@ class UpdateProfile
 		$this->update();
 	}
 
-    use WorkAddress, LivingAddress, Expertices, CreateWorkHistory, Experiences, Health, Access;
+    use WorkAddress, LivingAddress, Expertices, CreateWorkHistory, Experiences, Health, Access,UploadFile;
 
     protected function ValidUser()
     {
@@ -56,7 +51,11 @@ class UpdateProfile
                 break;
             
             case 'new_certificate':
-                # code...
+                $graduation = Graduated::find($this->data['graduation_id']);
+                $path = profile()->certificateImageLocation();
+                $file = $this->storeFile($this->data['certificate'],$path);
+                $graduation->update(['certificate'=>$file]);
+                session()->flash('message','Congratulation your'.$graduation->admitted->school->schoolType->name.' certificate uploaded successfully');
                 break;
 
             case 'new_health':

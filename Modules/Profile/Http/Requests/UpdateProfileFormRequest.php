@@ -25,9 +25,8 @@ class UpdateProfileFormRequest extends FormRequest
                 $rules['contact'] = 'required';
                 $rules['type'] = 'required';
                 break;
+
             case 'new_certificate':
-                $rules['name'] = 'required|integer';
-                $rules['date'] = 'required|integer';
                 $rules['certificate'] = 'required|image|mimes:jpg,jpeg,png,gif,pdf';
                 break;
 

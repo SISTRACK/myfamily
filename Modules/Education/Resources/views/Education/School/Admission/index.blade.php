@@ -22,9 +22,25 @@
 	        			<td>{{$loop->index+1}}</td>
 	        			<td>{{$admission->admission_no}}</td>
 	        			<td>{{$admission->created_at}}</td>
-	        			<td><a href="#">{{$admission->profile->child ? $admission->profile->child->birth->father->husband->profile->user->first_name.' '.$admission->profile->child->birth->father->husband->profile->user->last_name : 'not available'}}
-	        			</a></td>
-	        			<td><a href="#">{{$admission->profile->user->first_name}} {{$admission->profile->user->last_name}}</a></td>
+	        			<td>
+                            @if($admission->profile->child)
+                                <a href="#" data-toggle="modal" data-target="#user_{{$admission->profile->child->birth->father->husband->profile->id}}">{{$admission->profile->child->birth->father->husband->profile->user->first_name.' '.$admission->profile->child->birth->father->husband->profile->user->last_name}}
+                                    @php
+                                        $profile = $admission->profile->child->birth->father->husband->profile;
+                                    @endphp
+                                    @include('education::Education.School.Admission.display')
+                                
+    	        			    </a>
+                            @else
+                             Not Available   
+                            @endif
+                        </td>
+	        			<td><a href="#" data-toggle="modal" data-target="#user_{{$admission->profile->id}}">{{$admission->profile->user->first_name}} {{$admission->profile->user->last_name}}</a>
+                            @php
+                                $profile = $admission->profile;
+                            @endphp
+                            @include('education::Education.School.Admission.display')
+                        </td>
 	        			<td>
 	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#admission_'.$admission->id}}"><i class="fa fa-eye" ></i>
 	        				</button>

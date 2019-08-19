@@ -29,10 +29,25 @@
 	        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#edit_report_'.$graduate->id}}">{{count($graduate->schoolReports)}}
 	        				</button>
 	        			</td>
-	        			<td><a href="#">{{$graduate->profile->child ? $graduate->profile->child->birth->father->husband->profile->user->first_name.' '.$graduate->profile->child->birth->father->husband->profile->user->last_name : 'not available'}}
-	        			</a></td>
-	        			<td><a href="#">{{$graduate->profile->user->first_name}} {{$graduate->profile->user->last_name}}</a></td>
 	        			<td>
+                            @if($graduate->profile->child)
+                                <a href="#" data-toggle="modal" data-target="#user_{{$graduate->profile->child->birth->father->husband->profile->id}}">{{$graduate->profile->child->birth->father->husband->profile->user->first_name.' '.$graduate->profile->child->birth->father->husband->profile->user->last_name}}
+                                    @php
+                                        $profile = $graduate->profile->child->birth->father->husband->profile;
+                                    @endphp
+                                    @include('education::Education.School.Admission.display')
+                                
+                                </a>
+                            @else
+                             Not Available   
+                            @endif
+                        </td>
+                        <td><a href="#" data-toggle="modal" data-target="#user_{{$graduate->profile->id}}">{{$graduate->profile->user->first_name}} {{$graduate->profile->user->last_name}}</a>
+                            @php
+                                $profile = $graduate->profile;
+                            @endphp
+                            @include('education::Education.School.Admission.display')
+                        </td>
 	        				@if(!$graduate->graduated)
         				    <button class="btn btn-primary" data-toggle="modal" data-target="{{'#report_'.$graduate->id}}"><i class="fa fa-pencil" ></i>
         				    </button>
