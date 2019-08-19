@@ -72,7 +72,7 @@ class AdmissionController extends EducationBaseController
         }else{
             session()->flash('error',$errors);
         }
-        return redirect()->route('education.school.admission.index',[date('Y')]);
+        return redirect()->route('education.school.admission.index',[$request->route('year')]);
     }
 
     /**
