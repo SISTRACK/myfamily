@@ -1,8 +1,23 @@
 @extends('layouts.master')
 
 @section('side-bar')
+    @if(admin()->state)
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Search </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="fa fa-account-search"></i> <span> Local Governments </span> <span class="menu-arrow"></span></a>
+        <ul class="list-unstyled">
+            <li><a href="#" data-toggle="modal" data-target="#new_lga">New LGA</a></li>
+            <!-- new lga modal is include at Include/Pages/content -->
+            @foreach(admin()->state->lgas as $lga)
+            <li><a href="{{route('lga.dashboard',[
+                    strtolower(str_replace(' ','-',$lga->state->name)),
+                    strtolower(str_replace(' ','-',$lga->name)),
+                    $lga->id])}}">{{$lga->name}}</a></li>
+            @endforeach
+        </ul>
+    </li>
+    @endif
+    <li class="has_sub">
+        <a href="#" class="waves-effect"><i class="fa fa-account-search"></i> <span> Search </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.search.identity.index')}}">Identity</a></li>
             <li><a href="{{route('admin.search.relative.index')}}">Relatives</a></li>

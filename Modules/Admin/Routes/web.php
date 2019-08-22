@@ -24,6 +24,16 @@ Route::prefix('admin')->group(function () {
   Route::get('/{state}/{state_id}/dashboard', 'AdminController@stateDashboard')->name('state.dashboard')->middleware('landOnState');
 
   Route::get('/{state}/{lga}/{district}/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
+//local government routes
+  Route::prefix('{state}/')
+  ->middleware('landOnLga')
+  ->name('admin.lga.')
+  ->namespace('Admin')
+  ->group(function () {
+      Route::post('local-government/create', 'LgaController@register')->name('create');
+      Route::post('{lga}/district/create', 'DistrictController@register')->name('district.create');
+      Route::post('{lga}/{district}/village/create', 'TownController@register')->name('district.town.create');
+  });
 
  //administrative family crude
 
@@ -41,7 +51,7 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/{lga}/{district}/{district_id}/marriages/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
 
-  Route::post('/{state}/{lga}/{district}/{id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
+  Route::post('/{state}/{lga}/{district}/{district_id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/family/{family_id}marriage/register-family', 'Registration\MarriageController@registerMarriage')->name('district.family.marriage.register')->middleware('landOnDistrict');
 

@@ -3,6 +3,17 @@
     {{ Breadcrumbs::render('admin.lga.dashboard',$lga) }}
 @endsection
 @section('page-content')
+    <div class="col-lg-4 col-md-6 col-sm-8">
+    	<a href="#" data-toggle="modal" data-target="#new_district" class="btn btn-info">
+		    <div class="card-box widget-box-one">
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="click me to register new district in this lga"></p>
+		            <h2 >NEW DISTRICT</h2>
+		        </div>
+		    </div>
+	    </a>
+	    @include('admin::Admin.Modals.new_district')
+	</div>
     @foreach($lga->districts as $district)
 		<div class="col-lg-4 col-md-6 col-sm-8">
 		    <div class="card-box widget-box-one">

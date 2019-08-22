@@ -16,6 +16,10 @@
                     @if(profile())
                         @include('gallary::Modals.create_album')
                     @endif
+                    
+                    @if(admin()->state)
+                        @include('admin::Admin.Modals.new_lga')
+                    @endif
                     @yield('page-content')
                 </div>
                 <!-- end row -->

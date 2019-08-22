@@ -11,6 +11,7 @@
     			    @foreach($graduate->schoolReports as $report)
     			        <h2 class="text-primary">{{$report->schoolReportType->name}}</h2>
                         <form enctype="multipart/form-data" action="{{route('education.school.report.update',[request()->route('year'),$report->id])}}" method="post">
+                            @csrf
                         <input type="hidden" name="report_id" value="{{$report->id}}">
                             <select class="form-control" name="school_report_type_id">
                                 <option value="{{$report->schoolReportType->id}}">{{$report->schoolReportType->name}}</option>
