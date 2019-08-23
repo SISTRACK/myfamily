@@ -34,27 +34,18 @@ class DistrictController extends Controller
      */
     public function register(Request $request)
     {
-        
-        $request->validate(['district'=>'required|string']);
-        $errors = [];
         $lga = Lga::find($request->lga_id);
-        foreach($lga->districts as $district){
-            if($district->name == $request->district){
-                $errors[] = 'This district already exist';
+        foreach ($request->districts as $new_district) {
+            foreach($lga->districts as $district){
+                if($district->name != $new_district){
+                    $district = $lga->districts()->create(['name'=>$new_district]);
+                }
             }
         }
-        if(empty($errors)){
-            $district = $lga->districts()->create(['name'=>$request->district]);
-            session()->flash('message','Congratulation you ware successfully created the district please click the new town button to add town or village to '.$request->district.' District');
-            return redirect()->route('district.dashboard',[
-                strtolower(str_replace(' ','-',$district->lga->state->name)),
-                strtolower(str_replace(' ','-',$district->lga->name)),
-                strtolower(str_replace(' ','-',$district->name)),
-                $district->id
-                ]);
-        }else{
-            session()->flash('error',$errors);
-        }
+         
+        session()->flash('message','Congratulation you ware successfully created the district please click the new town button to add town or village to '.$request->district.' District');
+            return back();
+       
     }
 
     /**

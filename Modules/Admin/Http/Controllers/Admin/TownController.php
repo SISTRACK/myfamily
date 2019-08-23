@@ -34,21 +34,22 @@ class TownController extends Controller
      */
     public function register(Request $request)
     {
-        $request->validate(['town'=>'required|string']);
-        $errors = [];
         $district = District::find($request->district_id);
-        foreach($district->towns as $town){
-            if($town->name == $request->town){
-                $errors[] = 'This town already exist';
+        foreach ($request->towns as $new_town) {
+            if($district->towns->isNotEmpty()){
+                foreach($district->towns as $town){
+                    if($town->name != $new_town){
+                        $district->towns()->create(['lga_id'=>$district->lga->id,'name'=>$new_town]);
+                    }
+                }
+            }else{
+                $district->towns()->create(['lga_id'=>$district->lga->id,'name'=>$new_town]);
             }
         }
-        if(empty($errors)){
-            $district = $district->towns()->create(['lga_id'=>$district->lga->id,'name'=>$request->town]);
-            session()->flash('message','Congratulation you ware successfully created the town please click the new town button to add town or village to reagister another one if any');
-            return back();
-        }else{
-            session()->flash('error',$errors);
-        }
+        
+        session()->flash('message','Congratulation you ware successfully created the town please click the new town button to add town or village to reagister another one if any');
+        return back();
+        
     }
 
     /**

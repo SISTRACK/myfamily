@@ -10,7 +10,20 @@
                 	<form action="{{route('admin.lga.district.create',[admin()->state->name,$lga->name])}}" method="post">
                 		@csrf
                         <input type="hidden" name="lga_id" value="{{$lga->id}}">
-                		<input type="text" name="district" value="{{old('district')}}" placeholder="District Name" class="form-control"><br>
+                		<div class="form-group" id="district">
+                            
+                        <input type="text" name="districts[0]" class="form-control add-input" placeholder="Districts Name" />
+                            <a class="btn btn-danger" href="#" onclick='remove(this)'>
+                                <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                            </a>
+                     
+                        </div>
+                
+                        <div class="form-group" class="button-add">
+                            <a class="btn btn-success" id="add_district">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
                 		<button class="btn btn-info">Register</button>
                 	</form>
                 </div>

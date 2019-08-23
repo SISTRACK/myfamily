@@ -111,3 +111,16 @@
 	    </div>
 	</div>                 
 @endsection
+
+@section('footer')
+    <script type="text/javascript">
+        function remove(current){
+            current.parentNode.remove()
+        }
+        document.getElementById("add_town").onclick = function() {
+            var e = document.createElement('div');
+            e.innerHTML = "<input type='text' name='towns[]' class='form-control add-input' placeholder='Town/Village Name' /> <a class='btn btn-danger' href='#' onclick='remove(this)'><i class='fa fa-minus-circle' aria-hidden='true'></i></a>";
+            document.getElementById("town").appendChild(e);
+        }
+    </script>
+@endsection
