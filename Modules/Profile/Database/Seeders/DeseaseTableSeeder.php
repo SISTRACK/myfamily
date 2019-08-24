@@ -3,7 +3,7 @@
 namespace Modules\Profile\Database\Seeders;
 
 
-use Module\Profile\Entitie\Desease
+use Modules\Profile\Entities\Desease;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +24,7 @@ class DeseaseTableSeeder extends Seeder
           'Long sightedness',
         ];
         foreach($deseases as $desease){
-          Desease::firstOrCreate('name'=>$desease);
+          Desease::firstOrCreate(['name'=>$desease]);
         }
     }
 }

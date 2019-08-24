@@ -15,7 +15,8 @@ class EducationDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        $this->call(SchoolTypeTableSeeder::class);
+        $this->call(SchoolCategoryTableSeeder::class);
+        $this->call(SchoolReportTypeTableSeeder::class);
     }
 }

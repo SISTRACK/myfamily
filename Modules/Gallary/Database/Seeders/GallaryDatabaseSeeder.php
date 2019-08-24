@@ -16,6 +16,7 @@ class GallaryDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(AlbumTypeTableSeeder::class);
+        $this->call(AlbumContentTypeTableSeeder::class);
     }
 }

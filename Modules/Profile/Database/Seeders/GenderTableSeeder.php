@@ -2,7 +2,7 @@
 
 namespace Modules\Profile\Database\Seeders;
 
-use Module\Profile\Entitie\Gender
+use Modules\Profile\Entities\Gender;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,8 +22,9 @@ class GenderTableSeeder extends Seeder
            'Female',
            'Other'
         ];
+
         foreach($genders as $gender){
-            Gender::firstOrCreate('name'=>$gender);
+            Gender::firstOrCreate(['name'=>$gender]);
         }
         
     }

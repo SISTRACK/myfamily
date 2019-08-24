@@ -4,6 +4,7 @@ namespace Modules\Profile\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Family\Entities\Tribe;
 
 class TribeTableSeeder extends Seeder
 {

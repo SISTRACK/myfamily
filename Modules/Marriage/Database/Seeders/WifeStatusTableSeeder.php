@@ -2,7 +2,7 @@
 
 namespace Modules\Marriage\Database\Seeders;
 
-use Module\Entities\WifeStatus;
+use Modules\Marriage\Entities\WifeStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,8 +19,8 @@ class WifeStatusTableSeeder extends Seeder
 
         $wifes = [
             'First Wife',
-            'Second Wife'
-            'Third Wife'
+            'Second Wife',
+            'Third Wife',
             'Forth Wife'
         ];
 

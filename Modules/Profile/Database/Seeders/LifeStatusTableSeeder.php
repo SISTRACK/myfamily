@@ -3,7 +3,7 @@
 namespace Modules\Profile\Database\Seeders;
 
 
-use Module\Profile\Entitie\LifeStatus;
+use Modules\Profile\Entities\LifeStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,10 +20,10 @@ class LifeStatusTableSeeder extends Seeder
 
         $lives = [
                'Life',
-               'Death',
+               'Death'
             ];
             foreach($lives as $life){
-                LifeStatus::firstOrCreate('name'=>$life);
+                LifeStatus::firstOrCreate(['name'=>$life]);
             }
     }
 }

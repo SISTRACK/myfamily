@@ -2,7 +2,7 @@
 
 namespace Modules\Profile\Database\Seeders;
 
-use Module\Profile\Entitie\MaritalStatus;
+use Modules\Profile\Entities\MaritalStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class MaritalStatusTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        
+
         $statuses = [
           'Single',
           'Married',
@@ -27,7 +27,7 @@ class MaritalStatusTableSeeder extends Seeder
         ];
 
         foreach($statuses as $status){
-          MaritalStatus::firstOrCreate('name'=>$status);
+          MaritalStatus::firstOrCreate(['name'=>$status]);
         }
     }
 }
