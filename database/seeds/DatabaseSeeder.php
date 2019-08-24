@@ -81,11 +81,10 @@ class DatabaseSeeder extends Seeder
       $court_types = ['Supreme Court', 'Sharia Court', 'Magistry Court','Higher Court', 'Court of Apeal'];
       $court_categories = ['Jidutiary','Legistilative'];
       
-      $hospital_types = ['Government','Private'];
-      $hospital_categories = ['Teaching Hospital','Federal Medical Center','General Hospital','Clinic','Dispensary'];
+      
       $images = ['male.png','female.png'];
 
-      $discplines = ['Doctor','Nurse','Mid Wifery','Pharmacy','Lab Science'];
+      
 
       $police_station_categories = ['Devision','Head Quater'];
 
@@ -137,15 +136,7 @@ class DatabaseSeeder extends Seeder
       }
 
 
-      foreach ($discplines as $discpline) {
-        Discpline::firstOrCreate(['name'=>$discpline]);
-      }
-      foreach ($hospital_types as $hospital_type) {
-        HospitalType::firstOrCreate(['name'=>$hospital_type]);
-      }
-      foreach ($hospital_categories as $hospital_gategory) {
-        HospitalCategory::firstOrCreate(['name'=>$hospital_gategory]);
-      }
+  
       foreach ($bloods as $blood) {
         BloodGroup::firstOrCreate(['name'=>$blood]);
       }
