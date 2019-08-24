@@ -11,10 +11,15 @@ class MedicalReport extends BaseModel
     {
     	return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
-
+    
     public function doctor()
     {
     	return $this->belongsTo(Doctor::class);
+    }
+
+    public function diagnose()
+    {
+    	return $this->belongsTo(Diagnosis::class);
     }
     
 }

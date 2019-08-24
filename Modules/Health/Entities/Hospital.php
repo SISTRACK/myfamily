@@ -28,4 +28,14 @@ class Hospital extends BaseModel
     {
     	return $this->hasOne(HospitalLocation::class);
     }
+
+    public function refferFrom()
+    {
+        return $this->hasMany(HospitalRefferTo::class,'reffer_from_id');
+    }
+
+    public function refferTo()
+    {
+        return $this->hasMany(HospitalRefferTo::class,'reffer_to_id');
+    }
 }
