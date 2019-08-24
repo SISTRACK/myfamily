@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHospitalRefferTosTable extends Migration
+class CreateHospitalReffersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -50,6 +50,6 @@ class CreateHospitalRefferTosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hospital_reffer_tos');
+        Schema::dropIfExists('hospital_reffers');
     }
 }

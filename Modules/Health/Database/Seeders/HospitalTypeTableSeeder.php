@@ -4,8 +4,9 @@ namespace Modules\Health\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Health\Entities\HospitalType;
 
-class DoctorDiscplineTableSeederTableSeeder extends Seeder
+class HospitalTypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,10 +16,9 @@ class DoctorDiscplineTableSeederTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $discplines = ['Doctor','Nurse','Mid Wifery','Pharmacy','Lab Science'];
-        
-        foreach ($discplines as $discpline) {
-           Discpline::firstOrCreate(['name'=>$discpline]);
+        $hospital_types = ['Government','Private'];
+        foreach ($hospital_types as $hospital_type) {
+            HospitalType::firstOrCreate(['name'=>$hospital_type]);
         }
     }
 }

@@ -17,15 +17,14 @@ class DeseaseTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
         $deseases = [
-               'Normal',
-               'Maleria',
-               'Short sightedness',
-               'Long sightedness',
-            ];
-            foreach($deseases as $desease){
-                Desease::firstOrCreate('name'=>$desease);
-            }
+          'Normal',
+          'Maleria',
+          'Short sightedness',
+          'Long sightedness',
+        ];
+        foreach($deseases as $desease){
+          Desease::firstOrCreate('name'=>$desease);
+        }
     }
 }

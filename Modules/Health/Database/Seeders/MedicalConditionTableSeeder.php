@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Health\Entities\MedicalCondition;
 
-class MedicalConditionTableSeederTableSeeder extends Seeder
+class MedicalConditionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

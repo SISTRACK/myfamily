@@ -5,7 +5,8 @@ namespace Modules\Health\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Health\Entities\Infection;
-class InfectionTableSeederTableSeeder extends Seeder
+
+class InfectionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -27,11 +28,11 @@ class InfectionTableSeederTableSeeder extends Seeder
             'Acute myeloid leukaemia ',
             'Acute myeloid leukaemia',
             'Acute pancreatitis ',
-            'Addison's disease ',
+            "Addison's disease ",
             'Alcohol-related liver disease ',
             'Allergic rhinitis ',
             'Allergies ',
-            'Alzheimer's disease ',
+            "Alzheimer's disease ",
             'Anal cancer ',
             'Anaphylaxis ',
             'Angioedema ',
@@ -93,7 +94,7 @@ class InfectionTableSeederTableSeeder extends Seeder
             'Conjunctivitis ',
             'Constipation ',
             'Cough ',
-            'Crohn's disease ',
+            "Crohn's disease ",
             'Croup ',
             'Cystic fibrosis ',
             'Cystitis ',
@@ -110,7 +111,7 @@ class InfectionTableSeederTableSeeder extends Seeder
             'Discoid eczema ',
             'Diverticular disease and diverticulitis',
             'Dizziness (Lightheadedness) ',
-            'Down's syndrome ',
+            "Down's syndrome ",
             'Dry mouth ',
             'Dysphagia (swallowing problems) ',
             'Dystonia ',
@@ -163,7 +164,7 @@ class InfectionTableSeederTableSeeder extends Seeder
             'Hodgkin lymphoma ',
             'Hodgkin lymphoma',
             'Hodgkin lymphoma',
-            'Huntington's disease ',
+            "Huntington's disease",
             'Hyperglycaemia (high blood sugar) ',
             'Hyperhidrosis ',
             'Hypoglycaemia (low blood sugar) ',
@@ -178,7 +179,7 @@ class InfectionTableSeederTableSeeder extends Seeder
             'Irritable hip ',
             'Itching ',
             'Itchy bottom ',
-            'Kaposi's sarcoma ',
+            "Kaposi's sarcoma ",
             'Kidney cancer ',
             'Kidney infection ',
             'Kidney stones ',

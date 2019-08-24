@@ -16,11 +16,13 @@ class HealthDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call("InfectionTableSeeder");
-        $this->call("MedicalConditionTableSeeder");
-        $this->call("TreatmentTableSeeder");
-        $this->call("HospitalCategoryTableSeeder");
-        $this->call("HospitalTypeTableSeeder");
-        $this->call("DoctorDiscplineTableSeeder");
+        $this->call(InfectionTableSeeder::class);
+        $this->call(MedicalConditionTableSeeder::class);
+        $this->call(TreatmentTableSeeder::class);
+        $this->call(HospitalCategoryTableSeeder::class);
+        $this->call(HospitalTypeTableSeeder::class);
+        $this->call(DoctorDiscplineTableSeeder::class);
+        $this->call(BloodGroupTableSeeder::class);
+        $this->call(GenotypeTableSeeder::class);
     }
 }

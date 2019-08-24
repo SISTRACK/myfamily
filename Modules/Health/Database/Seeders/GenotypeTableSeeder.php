@@ -5,7 +5,7 @@ namespace Modules\Health\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class HospitalCategoryTableSeederTableSeeder extends Seeder
+class GenotypeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

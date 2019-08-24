@@ -16,6 +16,9 @@ class SecurityDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(CourtTypeTableSeeder::class);
+        $this->call(CourtCategoryTableSeeder::class);
+        $this->call(PoliceStationTypeTableSeeder::class);
+        $this->call(PoliceStationCategoryTableSeeder::class);
     }
 }

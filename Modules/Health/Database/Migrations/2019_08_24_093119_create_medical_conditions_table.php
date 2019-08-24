@@ -15,7 +15,7 @@ class CreateMedicalConditionsTable extends Migration
     {
         Schema::create('medical_conditions', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('name');
             $table->timestamps();
         });
     }

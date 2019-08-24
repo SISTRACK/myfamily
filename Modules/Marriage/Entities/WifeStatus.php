@@ -4,7 +4,7 @@ namespace Modules\Marriage\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class Status extends BaseModel
+class WifeStatus extends BaseModel
 {
 
     public function wives()

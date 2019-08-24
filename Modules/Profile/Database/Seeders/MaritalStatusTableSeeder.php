@@ -16,15 +16,18 @@ class MaritalStatusTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+        
+        $statuses = [
+          'Single',
+          'Married',
+          'Divorce',
+          'Cancel',
+          'Engaged',
+          'Separate'
+        ];
 
-         $statuses = [
-               'Single',
-               'Engaged',
-               'Married',
-               'Divorce',
-            ];
-            foreach($statuses as $status){
-                MaritalStatus::firstOrCreate('name'=>$status);
-            }
+        foreach($statuses as $status){
+          MaritalStatus::firstOrCreate('name'=>$status);
+        }
     }
 }

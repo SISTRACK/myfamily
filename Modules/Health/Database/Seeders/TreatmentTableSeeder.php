@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Health\Entities\Treatment;
 
-class TreatementTableSeederTableSeeder extends Seeder
+class TreatmentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

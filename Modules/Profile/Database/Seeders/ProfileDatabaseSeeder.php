@@ -19,5 +19,7 @@ class ProfileDatabaseSeeder extends Seeder
         $this->call(MaritalStatusTableSeeder::class);
         $this->call(MaritalStatusTableSeeder::class);
         $this->call(DeseaseTableSeeder::class);
+        $this->call(TribeTableSeeder::class);
+        $this->call(LifeStatusTableSeeder::class);
     }
 }

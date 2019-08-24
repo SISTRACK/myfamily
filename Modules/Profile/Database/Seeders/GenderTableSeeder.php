@@ -17,14 +17,14 @@ class GenderTableSeeder extends Seeder
     {
         Model::unguard();
 
-            $genders = [
-               'Male',
-               'Female',
-               'Other'
-            ];
-            foreach($genders as $gender){
-                Gender::firstOrCreate('name'=>$gender);
-            }
+        $genders = [
+           'Male',
+           'Female',
+           'Other'
+        ];
+        foreach($genders as $gender){
+            Gender::firstOrCreate('name'=>$gender);
+        }
         
     }
 }

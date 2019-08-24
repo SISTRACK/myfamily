@@ -2,30 +2,24 @@
 
 use Illuminate\Database\Seeder;
 use Modules\Marriage\Entities\Status;
-use Modules\Family\Entities\Tribe;
-use Modules\Profile\Entities\MaritalStatus;
-use Modules\Profile\Entities\Genotype;
 use Modules\Gallary\Entities\AlbumType;
 use Modules\Gallary\Entities\AlbumContentType;
-use Modules\Profile\Entities\BloodGroup;
-use Modules\Profile\Entities\Gender;
-use Modules\Profile\Entities\Image;
 use Modules\Admin\Entities\AdminStatus;
 use Modules\Admin\Entities\Admin;
 use Modules\Health\Entities\Doctor;
 use Modules\Education\Entities\Teacher;
 use Modules\Security\Entities\Security;
 use Modules\Government\Entities\Government;
-use Modules\Health\Entities\HospitalType;
 use Modules\Security\Entities\CourtType;
 use Modules\Security\Entities\PoliceStationType;
 use Modules\Education\Entities\SchoolType;
 use Modules\Security\Entities\CourtCategory;
 use Modules\Security\Entities\PoliceStationCategory;
-use Modules\Health\Entities\HospitalCategory;
 use Modules\Education\Entities\SchoolCategory;
 use Modules\Education\Entities\SchoolReportType;
-use Modules\Health\Entities\Discpline;
+
+use Modules\Health\Database\Seeders\HealthDatabaseSeeder;
+use Modules\Profile\Database\Seeders\ProfileDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,11 +30,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-      $genotypes =[
-        'SS','AS','AA'
-      ];
-
+      $this->call(ProfileDatabaseSeeder::class);
+      $this->call(HealthDatabaseSeeder::class);
+      $this->call(SecurityDatabaseSeeder::class);
+      
       $admins = [
         'Super',
         'Intermediate',
@@ -59,9 +52,7 @@ class DatabaseSeeder extends Seeder
         'Photo',
         'Vedio'
       ];
-      $bloods = [
-        '0+','0-','A+','A-','B+','B-','AB+','AB-'
-      ];
+      
 
       $marrital_statuses = [
         'Single','Married','Divorce','Cancel','Engaged','Separate'
@@ -71,24 +62,10 @@ class DatabaseSeeder extends Seeder
         'First Wife','Second Wife','Third Wife','Forth Wife'
       ];
 
-      $tribes = [
-        'Hausa','Fulfulde','Yoruba','Chlela'
-      ];
-      
-      $genders = [
-        'Male','Female','Other'
-      ];
-      $court_types = ['Supreme Court', 'Sharia Court', 'Magistry Court','Higher Court', 'Court of Apeal'];
-      $court_categories = ['Jidutiary','Legistilative'];
       
       
-      $images = ['male.png','female.png'];
-
       
-
-      $police_station_categories = ['Devision','Head Quater'];
-
-      $police_station_types = ['Devision', 'Out Post'];
+      
       
       $school_categories = ['Government','Private'];
 
@@ -119,115 +96,23 @@ class DatabaseSeeder extends Seeder
       foreach ($school_categories as $school_category) {
          SchoolCategory::firstOrCreate(['name'=>$school_category]);
       }
-
-      foreach ($police_station_types as $station_type) {
-        PoliceStationType::firstOrCreate(['name'=>$station_type]);
-      }
-      foreach ($police_station_categories as $police_station_category) {
-         PoliceStationCategory::firstOrCreate(['name'=>$police_station_category]);
-      }
       
 
-      foreach ($court_types as $court_type) {
-        CourtType::firstOrCreate(['name'=>$court_type]);
-      }
-      foreach ($court_categories as $court_category) {
-        CourtCategory::firstOrCreate(['name'=>$court_category]);
-      }
-
-
-  
-      foreach ($bloods as $blood) {
-        BloodGroup::firstOrCreate(['name'=>$blood]);
-      }
       foreach ($albums as $album) {
         AlbumType::firstOrCreate(['name'=>$album]);
       }
       foreach ($album_contents as $album_content) {
         AlbumContentType::firstOrCreate(['name'=>$album_content]);
       }
-      foreach ($genotypes as $genotype) {
-        Genotype::firstOrCreate(['name'=>$genotype]);
-      }
       
-      foreach ($images as $image) {
-        Image::firstOrCreate([
-          'name'=>$image
-        ]);
-      }
-
       foreach ($admins as $admin) {
         AdminStatus::firstOrCreate([
           'name'=>$admin
         ]);
       }
-
-      foreach ($marrital_statuses as $marrital_status) {
-        MaritalStatus::firstOrCreate([
-          'name'=>$marrital_status
-        ]);
-      }
-      
       foreach ($wife_statuses as $wife_status) {
         Status::firstOrCreate([
           'name'=>$wife_status
         ]);
       }
-
-      foreach ($genders as $gender) {
-        Gender::firstOrCreate([
-          'name'=>$gender
-        ]);
-      }
-      
-      foreach ($tribes as $tribe) {
-        Tribe::firstOrCreate([
-          'name'=>$tribe
-        ]);
-      }
-
-      $user = Admin::firstOrCreate([
-        'email'=>'admin@family.com',
-        'password'=>Hash::make('admin'),
-        'phone'=>'08162463010',
-        'first_name'=>'super',
-        'last_name'=>'admin',
-        'role_id'=>1,
-      ]);
-
-      $user = Doctor::firstOrCreate([
-        'email'=>'health@family.com',
-        'password'=>Hash::make('health'),
-        'phone'=>'08162463010',
-        'first_name'=>'isah',
-        'last_name'=>'labbo',
-        'role_id'=>1,
-      ]);
-
-      $user = Teacher::firstOrCreate([
-        'email'=>'education@family.com',
-        'password'=>Hash::make('education'),
-        'phone'=>'08162463010',
-        'first_name'=>'isah',
-        'last_name'=>'labbo',
-        'role_id'=>1,
-      ]);
-      $user = Security::firstOrCreate([
-        'email'=>'security@family.com',
-        'password'=>Hash::make('security'),
-        'phone'=>'08162463010',
-        'first_name'=>'isah',
-        'last_name'=>'labbo',
-        'role_id'=>1,
-      ]);
-
-      $user = Government::firstOrCreate([
-        'email'=>'government@family.com',
-        'password'=>Hash::make('government'),
-        'phone'=>'08162463010',
-        'first_name'=>'isah',
-        'last_name'=>'labbo',
-        'role_id'=>1,
-      ]);
-    }
 }
