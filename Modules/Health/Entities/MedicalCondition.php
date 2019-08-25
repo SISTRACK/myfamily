@@ -6,8 +6,8 @@ use Modules\Core\Entities\BaseModel;
 
 class MedicalCondition extends BaseModel
 {
-    public function diagnose()
+    public function diagnoses()
     {
-    	$this->hasMany(Diagnose::class);
+    	return $this->hasMany(Diagnose::class);
     }
 }

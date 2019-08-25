@@ -1,6 +1,6 @@
 
 <!-- modal -->
-<div class="modal fade" id="discharge" role="dialog">
+<div class="modal fade" id="discharge_admission_{{$admission->id}}" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
         <div class="modal-content">
@@ -9,13 +9,16 @@
             </div>
             <div class="modal-body">
 			    <h2 class="text-primary">Discharge Patient</h2>
-		        <form action="{{route('health.doctor.patient.profile.verify')}}" method="post">
+		        <form action="{{route('health.doctor.patient.discharge')}}" method="post">
 		        	@csrf
 		            <input type="hidden" name="admission_id" class="form-control" value="{{$admission->id}}"><br>
-		            <select class="form-control" name="condition">
-		            	<option>Discharge Condition</option>
-		            	<option value="1">Ask to be discharge</option>
-		            	<option value="2">Decide to discharge</option>
+		            <select class="form-control" name="discharge_condition">
+		            	<option value="">Discharge Condition</option>
+		            	@foreach(doctor()->dischargeConditions() as $condition)
+			            	<option value="{{$condition->id}}">
+			            		{{$condition->name}}
+			            	</option>
+		            	@endforeach
 		            </select><br>
 		            <button class="btn btn-info">Discharge</button>
 		        </form>

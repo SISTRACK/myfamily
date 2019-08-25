@@ -20,4 +20,9 @@ class HospitalAdmission extends BaseModel
     {
     	return $this->belongsTo(Diagnose::class);
     }
+
+    public function dischargeAdmission()
+    {
+    	return $this->hasOne(DischargeAdmission::class);
+    }
 }

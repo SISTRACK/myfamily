@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Health\Entities\Diagnose;
 use Modules\Profile\Entities\Profile;
+use Modules\Health\Entities\HospitalAdmission;
 use Modules\Core\Http\Controllers\Health\HealthBaseController;
 
 class AdmissionController extends HealthBaseController
@@ -49,35 +50,35 @@ class AdmissionController extends HealthBaseController
            return  redirect()->route('health.doctor.patient.profile',[$profile->id]);
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
+    
+    public function dischargePatient(Request $request)
     {
-        return view('health::show');
+        $request->validate(['discharge_condition'=>'required']);
+        $admission = HospitalAdmission::find($request->admission_id);
+        $admission->dischargeAdmission()->create(['doctor_id'=>doctor()->id,'discharge_condition_id'=>$request->discharge_condition]);
+        session()->flash('message',$admission->profile->user->first_name.' '.$admission->profile->user->last_name.' is successfully discharged from '.doctor()->hospital->name.' Hospital');
+           return  redirect()->route('health.doctor.patient.profile',[$admission->profile->id]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        return view('health::edit');
-    }
 
     /**
      * Update the specified resource in storage.
      * @param Request $request
      * @param int $id
      * @return Response
-     */
-    public function update(Request $request, $id)
+     **/
+
+    public function updateAdmission(Request $request, $admission_id)
     {
-        //
+        $admission = HospitalAdmission::find($admission_id);
+
+        $admission->diagnose()->update([
+            'medical_condition_id'=>$request->medical_condition_id,
+            'infection_id'=>$request->infection_id,
+            'treatment_id'=>$request->treatment_id
+        ]);
+        session()->flash('message',$admission->profile->user->first_name.' '.$admission->profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
+           return  redirect()->route('health.doctor.patient.profile',[$admission->profile->id]);
     }
 
     /**
@@ -85,8 +86,12 @@ class AdmissionController extends HealthBaseController
      * @param int $id
      * @return Response
      */
-    public function destroy($id)
+    public function deleteAdmission($admission_id)
     {
-        //
+        $admission = HospitalAdmission::find($admission_id);
+        $message = $admission->profile->user->first_name.' '.$admission->profile->user->last_name.' admission is successfully deleted from '.doctor()->hospital->name.' Hospital by '.doctor()->first_name.' '.doctor()->last_name;
+        $admission->delete();
+         session()->flash('message',$message);
+           return  redirect()->route('health.doctor.patient.index');
     }
 }

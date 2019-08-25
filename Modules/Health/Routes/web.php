@@ -20,6 +20,9 @@ Route::prefix('health')->name('health.')->group(function() {
            Route::get('/{profile_id}/profile','PatientController@profile')->name('profile');
            Route::post('/profile/verify','PatientController@verify')->name('profile.verify');
            Route::post('/admission/register','AdmissionController@admitPatient')->name('admit');
+           Route::post('/admission/discharge','AdmissionController@dischargePatient')->name('discharge');
+           Route::get('/admission/{admission_id}/delete','AdmissionController@deleteAdmission')->name('admission.delete');
+           Route::post('/admission/{admission_id}/update','AdmissionController@updateAdmission')->name('admission.update');
         });
     });
     Route::get('/dashboard', 'HealthController@index')->name('dasboard');

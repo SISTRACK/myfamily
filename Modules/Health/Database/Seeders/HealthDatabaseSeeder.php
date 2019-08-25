@@ -24,5 +24,7 @@ class HealthDatabaseSeeder extends Seeder
         $this->call(DoctorDiscplineTableSeeder::class);
         $this->call(BloodGroupTableSeeder::class);
         $this->call(GenotypeTableSeeder::class);
+        $this->call(DischargeConditionTableSeeder::class);
+        $this->call(HospitalDepartmentTableSeeder::class);
     }
 }

@@ -74,14 +74,22 @@
                                             <i class="text-custom m-b-5">Treatment</i> {{$admission->diagnose->treatment->name}}<br>
 
                                             @if(doctor() && doctor()->hospital->id == $admission->doctor->hospital->id)
-                                                @if($admission->admissionDischarge)
+                                                @if($admission->dischargeAdmission && $admission->dischargeAdmission->is_active == 1)
+                                                <hr>
+                                                <b class="text-custom m-b-5">Discharge</b><br>
+                                                <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
+                                                <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
                                                     <button class="btn btn-info">Revisit</button>
                                                     <button class="btn btn-primary">Diagnose And Revisit</button>
                                                 @else
-                                                    <button data-toggle="modal" data-target="#discharge" class="btn btn-info">Discharge</button>
+                                                    <button data-toggle="modal" data-target="#discharge_admission_{{$admission->id}}" class="btn btn-info">Discharge</button>
                                                     @include('health::Patient.Modals.discharge')
-                                                    <button class="btn btn-danger">Delete</button>
-                                                    <button class="btn btn-success">Update</button>
+                                                    @if($admission->doctor_id == doctor()->id)
+                                                    <button class="btn btn-danger"><a href="{{route('health.doctor.patient.admission.delete',[$admission->id])}}">Delete</a></button>
+                                                    
+                                                    <button data-toggle="modal" data-target="#update_admission_{{$admission->id}}" class="btn btn-success">Update</button>
+                                                    @include('health::Patient.Modals.update')
+                                                    @endif
                                                 @endif
                                             @endif
                                             @if($admission->medicalReport)

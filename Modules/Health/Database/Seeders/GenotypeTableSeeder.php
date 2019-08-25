@@ -4,6 +4,7 @@ namespace Modules\Health\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Profile\Entities\Genotype;
 
 class GenotypeTableSeeder extends Seeder
 {
@@ -15,7 +16,11 @@ class GenotypeTableSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        $genotypes =[
+            'SS','AS','AA'
+        ];
+        foreach ($genotypes as $genotype) {
+            Genotype::firstOrCreate(['name'=>$genotype]);
+        }
     }
 }
