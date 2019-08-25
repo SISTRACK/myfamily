@@ -32,7 +32,7 @@
                             <option value="{{$treatment->id}}">{{$treatment->name}}</option>
                     	@endforeach
                     </select><br>             
-                    <input type="hidden" value="{{$profile->id}}" name="profile_id">
+                    <input type="hidden" value="{{$profile->id}}" name="id">
                     <br>
                     <div class="form-actions" style="margin: 0;">
                         <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Give Admission </button>

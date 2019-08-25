@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMedicalReportsTable extends Migration
+class CreateHospitalDischargesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateMedicalReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('medical_reports', function (Blueprint $table) {
+        Schema::create('hospital_discharges', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hospital_admission_id')
             ->nullable()
@@ -23,8 +23,7 @@ class CreateMedicalReportsTable extends Migration
             ->on('hospital_admissions')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('file');
-            $table->string('comment');
+            $table->string('is_active')->default(1);
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreateMedicalReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_reports');
+        Schema::dropIfExists('hospital_discharges');
     }
 }

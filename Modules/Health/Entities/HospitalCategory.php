@@ -2,7 +2,6 @@
 
 namespace Modules\Health\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Modules\Core\Entities\BaseModel;
 
 class HospitalCategory extends BaseModel

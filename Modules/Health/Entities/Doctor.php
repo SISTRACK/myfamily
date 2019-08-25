@@ -60,8 +60,14 @@ class Doctor extends Authenticatable
     {
         return $this->belongsTo('Modules\Address\Entities\State');
     }
-    public function medicalReport()
+
+    public function hospitalDepartment()
     {
-        return $this->hasMany(MedicalReport::class);
+        return $this->belongsTo(HospitalDepartment::class);
+    }
+    
+    public function hospitalAdmissions()
+    {
+        return $this->hasMany(HospitalAdmission::class);
     }
 }

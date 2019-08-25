@@ -65,9 +65,9 @@ trait ProfileEloquentRelations
     {
         return $this->belongsTo('Modules\Profile\Entities\Religion');
     }
-    public function medicalReports()
+    public function hospitalAdmissions()
     {
-        return $this->hasMany('Modules\Health\Entities\MedicalReport');
+        return $this->hasMany('Modules\Health\Entities\HospitalAdmission');
     }
     public function events()
     {

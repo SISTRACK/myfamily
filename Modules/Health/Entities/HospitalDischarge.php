@@ -4,10 +4,10 @@ namespace Modules\Health\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class MedicalReport extends BaseModel
+class HospitalDischarge extends BaseModel
 {
     public function hospitalAdmission()
     {
-    	return $this->belongsTo(HospitalAdmission::class)
+    	return $this->belongsTo(HospitalAdmission::class);
     }
 }

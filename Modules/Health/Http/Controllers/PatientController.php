@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Profile\Entities\Profile;
+use Modules\Core\Http\Controllers\Health\HealthBaseController;
 
-class PatientController extends Controller
+class PatientController extends HealthBaseController
 {
     /**
      * Display a listing of the resource.
@@ -33,7 +34,7 @@ class PatientController extends Controller
             session()->flash('error',['Invalid Profile ID']);
             return back()->withInput();
         }
-        return view('health::Patient.profile',['profile'=>$profile]);
+        return  redirect()->route('health.doctor.patient.profile',[$profile->id]);
     }
 
     /**
@@ -41,16 +42,10 @@ class PatientController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function admitPatient(Request $request)
+    public function profile($profile_id)
     {
-        $request->validate([
-            'file'=>'required|image|mimes:jpeg,png,jpg'
-        ]);
-        $profile = Profile::find($request->id);
-        $file = $this->storeFile($request->file,'Nfamily/Profile/Report/Medical/'.$profile->id);
-        $profile->medicalReports()->create(['file'=>$file]);
-           session()->flash('message','File was successfully added to the patient profile');
-           return  redirect('/health');
+        $profile = Profile::find($profile_id);
+        return view('health::Patient.profile',['profile'=>$profile]);
     }
 
 }

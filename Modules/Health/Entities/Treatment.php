@@ -2,9 +2,12 @@
 
 namespace Modules\Health\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class Treatment extends Model
+class Treatment extends BaseModel
 {
-    protected $fillable = [];
+    public function diagnose()
+    {
+    	$this->hasMany(Diagnose::class);
+    }
 }

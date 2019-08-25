@@ -61,9 +61,38 @@
                             <h4 class="text-custom m-b-5">Health Report</h4>
                             <div class="p-t-10">
                                 <div class="row">
-                                    @foreach($profile->medicalReports as $report)
-                                    <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
+                                    @foreach($profile->hospitalAdmissions as $admission)
+                                        <div class="col-xs-12">
+                                            <i class="fa fa-pencil" style="font-size: 60px;"></i>
+                                            <i class="text-custom m-b-5">Admitted to</i> {{$admission->doctor->hospital->name}} Hospital<br>
+                                            <i class="text-custom m-b-5">Admitted At</i> {{$admission->created_at}}<br>
+                                            <i class="text-custom m-b-5">Admitted By</i> {{$admission->doctor->first_name}} {{$admission->doctor->last_name}}<br><hr>
+
+                                            <b class="text-custom m-b-5">Diagnose</b><br>
+                                            <i class="text-custom m-b-5">Condition</i> {{$admission->diagnose->medicalCondition->name}}<br>
+                                            <i class="text-custom m-b-5">Deases/Infection</i> {{$admission->diagnose->infection->name}}<br>
+                                            <i class="text-custom m-b-5">Treatment</i> {{$admission->diagnose->treatment->name}}<br>
+
+                                            @if(doctor() && doctor()->hospital->id == $admission->doctor->hospital->id)
+                                                @if($admission->admissionDischarge)
+                                                    <button class="btn btn-info">Revisit</button>
+                                                    <button class="btn btn-primary">Diagnose And Revisit</button>
+                                                @else
+                                                    <button data-toggle="modal" data-target="#discharge" class="btn btn-info">Discharge</button>
+                                                    @include('health::Patient.Modals.discharge')
+                                                    <button class="btn btn-danger">Delete</button>
+                                                    <button class="btn btn-success">Update</button>
+                                                @endif
+                                            @endif
+                                            @if($admission->medicalReport)
+                                                <a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>
+                                            {{$report->created_at}}</a>
+                                            @endif
+                                            <hr>
+                                        </div>
+                                        <br>    
                                     @endforeach
+                    
                                 </div>
                                 <button class="btn btn-info" data-toggle="modal" data-target="#admit_patient">Admit Patient</button>
                                 @include('health::Patient.admit')

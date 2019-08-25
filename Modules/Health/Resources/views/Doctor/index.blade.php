@@ -13,7 +13,7 @@
         			<th>email</th>
                     <th>phone</th>
                     <th>State Of Origin</th>
-        			<th>Report</th>
+        			<th>Admit</th>
         			<th>Hospital</th>
         			<th>Discpline</th>
         			<th>District</th>
@@ -33,7 +33,7 @@
 		        			<td>{{$doctor->email}}</td>
                             <td>{{$doctor->phone}}</td>
                             <td>{{$doctor->state->name}}</td>
-		        			<td>{{count($doctor->medicalReport)}}</td>
+		        			<td>{{count($doctor->hospitalAdmissions)}}</td>
 		        			<td>{{$doctor->hospital->name}}</td>
 		        			<td>{{$doctor->discpline->name}}</td>
 		        			<td>{{$doctor->hospital->hospitalLocation->town->district->name}}</td>
