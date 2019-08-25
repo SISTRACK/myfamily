@@ -36,7 +36,7 @@
 		        			<td>{{count($doctor->medicalReport)}}</td>
 		        			<td>{{$doctor->hospital->name}}</td>
 		        			<td>{{$doctor->discpline->name}}</td>
-		        			<td>{{$doctor->hospital->district->name}}</td>
+		        			<td>{{$doctor->hospital->hospitalLocation->town->district->name}}</td>
 		        			<td>{{$doctor->hospital->hospitalLocation->town->lga->name}}</td>
 		        			<td>
 		        				<button class="btn btn-info" data-toggle="modal" data-target="{{'#doctor_'.$doctor->id}}"><i class="fa fa-eye" ></i></button>

@@ -6,8 +6,8 @@ use Modules\Core\Entities\BaseModel;
 
 class HospitalType extends BaseModel
 {
-    public function hospital()
+    public function hospitals()
     {
-    	return $this->hasModel(Hospital::class);
+    	return $this->hasMany(Hospital::class);
     }
 }

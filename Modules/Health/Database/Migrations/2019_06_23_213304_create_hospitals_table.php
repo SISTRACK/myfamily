@@ -31,14 +31,6 @@ class CreateHospitalsTable extends Migration
             ->on('hospital_categories')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('hospital_location_id')
-            ->nullable()
-            ->unsigned()
-            ->foreign()
-            ->references('id')
-            ->on('hospital_locations')
-            ->delete('restrict')
-            ->update('cascade');
             $table->string('name');
             $table->timestamps();
         });

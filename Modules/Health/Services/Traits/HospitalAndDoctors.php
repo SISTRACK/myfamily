@@ -3,6 +3,7 @@ namespace Modules\Health\Services\Traits;
 
 use Illuminate\Http\Request;
 use Modules\Address\Entities\Town;
+use Modules\Health\Entities\HospitalType;
 use Modules\Health\Entities\Doctor;
 use Modules\Profile\Entities\Profile;
 use Illuminate\Support\Facades\Hash;
@@ -16,10 +17,9 @@ trait HospitalAndDoctors
 
     public function registerThisHospital(array $data)
     {
-        $town = Town::find($data['town_id']);
-        $hospital = $town->district->hospitals()->firstOrCreate([
+        $hospital_type = HospitalType::find($data['hospital_type_id']);
+        $hospital = $hospital_type->hospitals()->firstOrCreate([
             'name' => $data['name'],
-            'hospital_type_id' => $data['hospital_type_id'],
             'hospital_category_id' => $data['hospital_category_id'],
         ]);
         $hospital->hospitalLocation()->firstOrCreate([

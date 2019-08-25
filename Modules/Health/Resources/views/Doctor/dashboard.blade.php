@@ -1,11 +1,7 @@
-@extends('admin::layouts.master')
-
-@section('side-bar')
-	@include('Include.Menu.admin-side-bar')
-@endsection
+@extends('health::layouts.master')
 
 @section('page-content')
-	@include('Include.Pages.dashboard')
+	<h3>Doctors Dashboard</h3>
 @endsection
 
 

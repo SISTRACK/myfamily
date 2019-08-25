@@ -65,17 +65,8 @@
                                     <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
                                     @endforeach
                                 </div>
-                                <form action="{{route('append.patient.file')}}" method="post" enctype="multipart/form-data">
-                                    @csrf            
-                                    <label for="inputPasswordOld">Append File</label>
-                                        <input name="file" type="file" class="form-control" />
-                                        <input type="hidden" value="{{$profile->id}}" name="id">
-                                    <br>
-                                    <div class="form-actions" style="margin: 0;">
-                                        <button name="submit" type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Append File </button>
-                                    </div>
-                                </form>
-                                
+                                <button class="btn btn-info" data-toggle="modal" data-target="#admit_patient">Admit Patient</button>
+                                @include('health::Patient.admit')
                             </div>
                         </div>
                     </div>

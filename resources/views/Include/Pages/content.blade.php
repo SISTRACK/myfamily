@@ -17,7 +17,7 @@
                         @include('gallary::Modals.create_album')
                     @endif
                     
-                    @if(admin()->state)
+                    @if(admin() && admin()->state)
                         @include('admin::Admin.Modals.new_lga')
                     @endif
                     @yield('page-content')

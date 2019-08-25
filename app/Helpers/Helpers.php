@@ -90,3 +90,14 @@ if(!function_exists('canDivorce')){
         return $flag;
     }
 }
+
+if (!function_exists('doctor')) {
+    function doctor()
+    {
+        $doctor = null;
+        if(auth()->guard('health')->check()){
+            $doctor = auth()->guard('health')->user();
+        }
+        return $doctor;
+    }
+}

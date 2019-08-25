@@ -12,7 +12,6 @@
         			<th>Hospital</th>
         			<th>Category</th>
         			<th>Type</th>
-        			<th>Type</th>
         			<th>Lga</th>
         			<th>Town</th>
         			<th>Address</th>
@@ -26,8 +25,7 @@
 	        			<td>{{$hospital->name}}</td>
 	        			<td>{{$hospital->hospitalCategory->name}}</td>
 	        			<td>{{$hospital->hospitalType->name}}</td>
-	        			<td>{{$hospital->hospitalType->name}}</td>
-	        			<td>{{$hospital->district->lga->name}}</td>
+	        			<td>{{$hospital->hospitalLocation->town->district->lga->name}}</td>
 	        			<td>{{$hospital->hospitalLocation->town->name}}</td>
 	        			<td>{{$hospital->hospitalLocation->address}}</td>
 	        			<td>

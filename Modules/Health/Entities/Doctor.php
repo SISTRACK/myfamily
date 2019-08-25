@@ -4,11 +4,12 @@ namespace Modules\Health\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Modules\Health\Services\Traits\DiagnoseAble;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Doctor extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, DiagnoseAble;
     /**
      * The attributes that are mass assignable.
      *

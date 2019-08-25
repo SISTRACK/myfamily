@@ -11,16 +11,22 @@
 |
 */
 
-Route::prefix('health')->group(function() {
-    Route::get('/', 'HealthController@index')->name('health.dasboard');
-    Route::post('/view/patient/profile','HealthController@view')->name('view.patient.profile');
-    Route::post('/append/patient/file','HealthController@appendFile')->name('append.patient.file');
-
-    Route::get('/', 'HealthController@verify')->name('health');
-    Route::get('/dashboard', 'HealthController@index')->name('health.dashboard');
-    Route::get('/login', 'Auth\HealthLoginController@login')->name('health.auth.login');
-    Route::post('/login', 'Auth\HealthLoginController@loginHealth')->name('health.login');
-    Route::post('logout', 'Auth\HealthLoginController@logout')->name('health.auth.logout');
+Route::prefix('health')->name('health.')->group(function() {
+    //doctors routes
+    Route::prefix('doctor')->name('doctor.')->group(function() {
+        //patient routes
+        Route::prefix('patient')->name('patient.')->group(function() {
+           Route::get('/', 'PatientController@index')->name('index');
+           Route::post('/profile/verify','PatientController@verify')->name('profile.verify');
+           Route::post('/admission/register','PatientController@admitPatient')->name('admit');
+        });
+    });
+    Route::get('/dashboard', 'HealthController@index')->name('dasboard');
+    Route::get('/', 'HealthController@verify');
+    Route::get('/dashboard', 'HealthController@index')->name('dashboard');
+    Route::get('/login', 'Auth\HealthLoginController@login')->name('auth.login');
+    Route::post('/login', 'Auth\HealthLoginController@loginHealth')->name('login');
+    Route::post('logout', 'Auth\HealthLoginController@logout')->name('auth.logout');
 });
 
 //health administration routes
