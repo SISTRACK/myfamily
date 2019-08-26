@@ -144,12 +144,14 @@ trait Administration
     }
     public function getThisAdminState()
     {
-        if(admin()->district){
+        if(admin()){
+            if(admin()->district){
             return admin()->district->lga->state;
-        }elseif (admin()->lga) {
-            return admin()->lga->state;
-        }elseif (admin()->state) {
-            return admin()->state;
+            }elseif (admin()->lga) {
+                return admin()->lga->state;
+            }elseif (admin()->state) {
+                return admin()->state;
+            }
         }
     }
 }

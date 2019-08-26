@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Modules\Health\Entities\Diagnose;
 use Modules\Profile\Entities\Profile;
 use Modules\Health\Entities\HospitalAdmission;
+use Modules\Health\Entities\DischargeAdmission;
 use Modules\Core\Http\Controllers\Health\HealthBaseController;
 
 class AdmissionController extends HealthBaseController
@@ -93,5 +94,16 @@ class AdmissionController extends HealthBaseController
         $admission->delete();
          session()->flash('message',$message);
            return  redirect()->route('health.doctor.patient.index');
+    }
+
+    public function revisitDischarge($discharge_id)
+    {
+        $discharge = DischargeAdmission::find($discharge_id);
+        $discharge->dischargeRevisits()->create(['discharge_at'=>$discharge->created_at]);
+        $discharge->is_active = 0;
+        $discharge->save();
+
+        session()->flash('message',$discharge->hospitalAdmission->profile->user->first_name.' '.$discharge->hospitalAdmission->profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
+           return  redirect()->route('health.doctor.patient.profile',[$discharge->hospitalAdmission->profile->id]);
     }
 }

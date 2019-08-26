@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 			    <h2 class="text-primary">View Patient Profile</h2>
-		        <form action="{{route('health.doctor.patient.profile.verify')}}" method="post">
+		        <form action="{{route('health.hospital.doctor.patient.profile.verify')}}" method="post">
 		        	@csrf
 		            <input type="text" name="profile_id" class="form-control" placeholder ="Enter Patient Profile ID"><br>
 		            <button class="btn btn-primary">Verify</button>

@@ -9,6 +9,7 @@ use Modules\Profile\Entities\Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Modules\Admin\Services\Traits\Administration;
+use Modules\Health\Http\Requests\DoctorFormRequest;
 
 trait HospitalAndDoctors
 
@@ -44,26 +45,48 @@ trait HospitalAndDoctors
         session()->flash('message','Hospital information updated successfully');
     }
     
-    public function updateThisDoctor(Request $request, $id)
+    public function updateThisDoctor(DoctorFormRequest $request, $id)
     {
+
         $doctor = Doctor::find($id);
         $data = $request->all();
-        $doctor->update([
-            'first_name'=>$data['first_name'],
-            'last_name'=>$data['last_name'],
-            'email'=>$data['email'],
-            'phone'=>$data['phone'],
-            'gender_id'=>$data['gender_id'],
-            'discpline_id'=>$data['discpline_id'],
-            'profile_id'=>$data['profile_id'],
-            'hospital_id'=>$data['hospital_id']
-        ]);
-        if($data['password']){
-            $doctor->update([
-                'password'=>Hash::make($data['password'])
-            ]);
+        $errors = [];
+        if(admin()){
+            $data['role_id'] = 1;
+            if($this->getThisAdminState()->id == $data['state_id']){
+                $errors[] = 'The profile ID is required for this registration';
+            }
+        }else{
+            $data['hospital_id'] = doctor()->hospital->id;
+            $data['role_id'] = 2;
+            if(doctor()->hospital->hospitalLocation->town->lga->state->id == $data['state_id']){
+                $errors[] = 'The profile ID is required for this registration';
+            }
         }
-        session()->flash('message','Doctor information updated successfully');
+        if(empty($errors)){
+            $doctor->update([
+                'first_name'=>$data['first_name'],
+                'last_name'=>$data['last_name'],
+                'email'=>$data['email'],
+                'phone'=>$data['phone'],
+                'gender_id'=>$data['gender_id'],
+                'discpline_id'=>$data['discpline_id'],
+                'profile_id'=>$data['profile_id'],
+                'hospital_id'=>$data['hospital_id']
+            ]);
+            if($data['department_id']){
+                $doctor->hospital_department_id = $data['department_id'];
+                $doctor->save();
+            }
+            if($data['password']){
+                $doctor->update([
+                    'password'=>Hash::make($data['password'])
+                ]);
+            }
+            session()->flash('message','Doctor information updated successfully');
+        }else{
+            session()->flash('error',$errors);
+        }
         return back();
     }
     
@@ -94,14 +117,24 @@ trait HospitalAndDoctors
             }
            
     	}else{
+    		if(admin()){
+                $data['role_id'] = 1;
+                if($this->getThisAdminState()->id == $data['state_id']){
+                    $errors[] = 'The profile ID is required for this registration';
+                }
+            }else{
+                $data['role_id'] = 2;
+                $data['hospital_id'] = doctor()->hospital->id;
+                if(doctor()->hospital->hospitalLocation->town->lga->state->id == $data['state_id']){
+                    $errors[] = 'The profile ID is required for this registration';
+                }
+            }
     		
-    		if($this->getThisAdminState()->id == $data['state_id']){
-    			$errors[] = 'The profile ID is required for this registration';
-    		}
     		$data['profile_id'] = null;
     	}
     	if(!session('error')){
-    		Doctor::create([
+    		$doctor = Doctor::create([
+                'role_id'=>$data['role_id'],
 	    		'first_name'=>$data['first_name'],
 	    		'last_name'=>$data['last_name'],
 	    		'email'=>$data['email'],
@@ -113,6 +146,10 @@ trait HospitalAndDoctors
                 'hospital_id'=>$data['hospital_id'],
 	    		'state_id'=>$data['state_id'],
 	    	]);
+            if($data['department_id']){
+                $doctor->hospital_department_id = $data['department_id'];
+                $doctor->save();
+            }
 	    	session()->flash('message','The doctor account created successfully');
     	}
     }

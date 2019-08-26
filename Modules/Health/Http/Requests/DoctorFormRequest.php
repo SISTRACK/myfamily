@@ -35,7 +35,7 @@ class DoctorFormRequest extends FormRequest
      */
     public function authorize()
     {
-        if(admin()){
+        if(admin() || doctor()){
             return true;
         }
         return false;

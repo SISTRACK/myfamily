@@ -16,6 +16,7 @@ class Doctor extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'role_id',
         'first_name',
         'last_name',
         'email',
@@ -25,7 +26,8 @@ class Doctor extends Authenticatable
         'gender_id',
         'profile_id',
         'state_id',
-        'discpline_id'
+        'discpline_id',
+        'hospital_department_id'
     ];
     /**
      * The attributes that should be hidden for arrays.

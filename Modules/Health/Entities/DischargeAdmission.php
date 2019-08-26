@@ -12,9 +12,9 @@ class DischargeAdmission extends BaseModel
     	return $this->belongsTo(HospitalAdmission::class);
     }
 
-    public function dischargeRevisit()
+    public function dischargeRevisits()
     {
-    	return $this->belongsTo(DischargeRevisit::class);
+    	return $this->hasMany(DischargeRevisit::class);
     }
 
     public function dischargeCondition()

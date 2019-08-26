@@ -15,7 +15,7 @@ class CreateDischargeRevisitsTable extends Migration
     {
         Schema::create('discharge_revisits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('hospital_discharge_id');
+            $table->integer('discharge_admission_id');
             $table->string('discharge_at');
             $table->timestamps();
         });

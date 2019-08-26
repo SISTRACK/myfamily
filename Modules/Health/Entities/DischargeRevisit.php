@@ -4,10 +4,10 @@ namespace Modules\Health\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class HospitalRevisit extends BaseModel
+class DischargeRevisit extends BaseModel
 {
-    public function dischargeRevisit()
+    public function dischargeAdmission()
     {
-    	return $this->belongsTo(DischargeRevisit::class);
+    	return $this->belongsTo(DischargeAdmission::class);
     }
 }

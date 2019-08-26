@@ -17,7 +17,12 @@ class DischargeConditionTableSeeder extends Seeder
     {
         Model::unguard();
 
-        $conditions = ['Ask to be discharge','Decide to discharge'];
+        $conditions = [
+            'Ask to be discharge',
+            'Decide to discharge',
+            'Deliver Birth',
+            'Patient Die'
+        ];
 
         foreach($conditions as $condition){
             DischargeCondition::firstOrCreate(['name'=>$condition]);

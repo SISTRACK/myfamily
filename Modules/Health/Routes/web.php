@@ -12,17 +12,25 @@
 */
 
 Route::prefix('health')->name('health.')->group(function() {
-    //doctors routes
-    Route::prefix('doctor')->name('doctor.')->group(function() {
-        //patient routes
-        Route::prefix('patient')->name('patient.')->group(function() {
-           Route::get('/', 'PatientController@index')->name('index');
-           Route::get('/{profile_id}/profile','PatientController@profile')->name('profile');
-           Route::post('/profile/verify','PatientController@verify')->name('profile.verify');
-           Route::post('/admission/register','AdmissionController@admitPatient')->name('admit');
-           Route::post('/admission/discharge','AdmissionController@dischargePatient')->name('discharge');
-           Route::get('/admission/{admission_id}/delete','AdmissionController@deleteAdmission')->name('admission.delete');
-           Route::post('/admission/{admission_id}/update','AdmissionController@updateAdmission')->name('admission.update');
+    Route::prefix('hospital')->name('hospital.')->group(function() {
+        //doctors routes
+        Route::prefix('doctor')->name('doctor.')->group(function() {
+            Route::get('/', 'Hospital\DoctorController@index')->name('index');
+
+            Route::post('/register','Hospital\DoctorController@register')->name('register');
+            Route::post('/{doctor_id}/update','Hospital\DoctorController@updateThisDoctor')->name('update');
+            Route::get('/{doctor_id}/delete','Hospital\DoctorController@delete')->name('delete');
+            //patient routes
+            Route::prefix('patient')->name('patient.')->group(function() {
+               Route::get('/', 'PatientController@index')->name('index');
+               Route::get('/{profile_id}/profile','PatientController@profile')->name('profile');
+               Route::post('/profile/verify','PatientController@verify')->name('profile.verify');
+               Route::post('/admission/register','AdmissionController@admitPatient')->name('admit');
+               Route::post('/admission/discharge','AdmissionController@dischargePatient')->name('discharge');
+               Route::get('/admission/{admission_id}/delete','AdmissionController@deleteAdmission')->name('admission.delete');
+               Route::post('/admission/{admission_id}/update','AdmissionController@updateAdmission')->name('admission.update');
+               Route::get('/admission/discharge/{discharge_id}/revisit','AdmissionController@revisitDischarge')->name('admission.discharge.revisit');
+            });
         });
     });
     Route::get('/dashboard', 'HealthController@index')->name('dasboard');

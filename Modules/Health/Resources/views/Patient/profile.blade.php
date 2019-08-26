@@ -79,13 +79,13 @@
                                                 <b class="text-custom m-b-5">Discharge</b><br>
                                                 <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
                                                 <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
-                                                    <button class="btn btn-info">Revisit</button>
-                                                    <button class="btn btn-primary">Diagnose And Revisit</button>
+                                                    <a href="{{route('health.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
+                                                    <button class="btn btn-primary"data-toggle="modal" data-target="#admit_patient">Diagnose And Revisit</button>
                                                 @else
                                                     <button data-toggle="modal" data-target="#discharge_admission_{{$admission->id}}" class="btn btn-info">Discharge</button>
                                                     @include('health::Patient.Modals.discharge')
                                                     @if($admission->doctor_id == doctor()->id)
-                                                    <button class="btn btn-danger"><a href="{{route('health.doctor.patient.admission.delete',[$admission->id])}}">Delete</a></button>
+                                                    <button class="btn btn-danger"><a href="{{route('health.hospital.doctor.patient.admission.delete',[$admission->id])}}">Delete</a></button>
                                                     
                                                     <button data-toggle="modal" data-target="#update_admission_{{$admission->id}}" class="btn btn-success">Update</button>
                                                     @include('health::Patient.Modals.update')
