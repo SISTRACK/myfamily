@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 			    <h2 class="text-primary">Discharge Patient</h2>
-		        <form action="{{route('health.doctor.patient.discharge')}}" method="post">
+		        <form action="{{route('health.hospital.doctor.patient.discharge')}}" method="post">
 		        	@csrf
 		            <input type="hidden" name="admission_id" class="form-control" value="{{$admission->id}}"><br>
 		            <select class="form-control" name="discharge_condition">

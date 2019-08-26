@@ -34,7 +34,7 @@ class PatientController extends HealthBaseController
             session()->flash('error',['Invalid Profile ID']);
             return back()->withInput();
         }
-        return  redirect()->route('health.doctor.patient.profile',[$profile->id]);
+        return  redirect()->route('health.hospital.doctor.patient.profile',[$profile->id]);
     }
 
     /**

@@ -25,7 +25,7 @@
             @foreach(doctor()->hospital->doctors as $doctor)
 	            @if($doctor->role_id != 1)
 		        <tr>
-					<td>{{$loop->index+1}}</td>
+					<td>{{$loop->index}}</td>
 					<td>{{$doctor->first_name}} {{$doctor->last_name}}</td>
 					<td>{{$doctor->email}}</td>
 		            <td>{{$doctor->phone}}</td>

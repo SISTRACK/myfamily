@@ -74,7 +74,7 @@ trait HospitalAndDoctors
                 'profile_id'=>$data['profile_id'],
                 'hospital_id'=>$data['hospital_id']
             ]);
-            if($data['department_id']){
+            if(admin()){
                 $doctor->hospital_department_id = $data['department_id'];
                 $doctor->save();
             }
@@ -146,7 +146,7 @@ trait HospitalAndDoctors
                 'hospital_id'=>$data['hospital_id'],
 	    		'state_id'=>$data['state_id'],
 	    	]);
-            if($data['department_id']){
+            if(doctor()){
                 $doctor->hospital_department_id = $data['department_id'];
                 $doctor->save();
             }

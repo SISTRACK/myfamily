@@ -48,7 +48,7 @@ class AdmissionController extends HealthBaseController
         $profile->hospitalAdmissions()->create(['diagnose_id'=>$diagnose->id,'doctor_id'=>doctor()->id]);
 
            session()->flash('message',$profile->user->first_name.' '.$profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
-           return  redirect()->route('health.doctor.patient.profile',[$profile->id]);
+           return  redirect()->route('health.hospital.doctor.patient.profile',[$profile->id]);
     }
 
     
@@ -58,7 +58,7 @@ class AdmissionController extends HealthBaseController
         $admission = HospitalAdmission::find($request->admission_id);
         $admission->dischargeAdmission()->create(['doctor_id'=>doctor()->id,'discharge_condition_id'=>$request->discharge_condition]);
         session()->flash('message',$admission->profile->user->first_name.' '.$admission->profile->user->last_name.' is successfully discharged from '.doctor()->hospital->name.' Hospital');
-           return  redirect()->route('health.doctor.patient.profile',[$admission->profile->id]);
+           return  redirect()->route('health.hospital.doctor.patient.profile',[$admission->profile->id]);
     }
 
 
@@ -79,7 +79,7 @@ class AdmissionController extends HealthBaseController
             'treatment_id'=>$request->treatment_id
         ]);
         session()->flash('message',$admission->profile->user->first_name.' '.$admission->profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
-           return  redirect()->route('health.doctor.patient.profile',[$admission->profile->id]);
+           return  redirect()->route('health.hospital.doctor.patient.profile',[$admission->profile->id]);
     }
 
     /**
@@ -93,7 +93,7 @@ class AdmissionController extends HealthBaseController
         $message = $admission->profile->user->first_name.' '.$admission->profile->user->last_name.' admission is successfully deleted from '.doctor()->hospital->name.' Hospital by '.doctor()->first_name.' '.doctor()->last_name;
         $admission->delete();
          session()->flash('message',$message);
-           return  redirect()->route('health.doctor.patient.index');
+           return  redirect()->route('health.hospital.doctor.patient.index');
     }
 
     public function revisitDischarge($discharge_id)
@@ -104,6 +104,6 @@ class AdmissionController extends HealthBaseController
         $discharge->save();
 
         session()->flash('message',$discharge->hospitalAdmission->profile->user->first_name.' '.$discharge->hospitalAdmission->profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
-           return  redirect()->route('health.doctor.patient.profile',[$discharge->hospitalAdmission->profile->id]);
+           return  redirect()->route('health.hospital.doctor.patient.profile',[$discharge->hospitalAdmission->profile->id]);
     }
 }

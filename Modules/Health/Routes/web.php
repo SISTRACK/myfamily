@@ -13,10 +13,19 @@
 
 Route::prefix('health')->name('health.')->group(function() {
     Route::prefix('hospital')->name('hospital.')->group(function() {
-        //doctors routes
-        Route::prefix('doctor')->name('doctor.')->middleware('healthAdmin')->group(function() {
-            Route::get('/', 'Hospital\DoctorController@index')->name('index');
+        //doctors crud routes
+        Route::prefix('reports/patient')
+        ->name('report.')
+        ->middleware('hospitalAdmin')
+        ->namespace('Hospital')
+        ->group(function() {
+            Route::get('/admissions', 'HospitalReportController@admission')->name('admission');
+            Route::get('/discharge', 'HospitalReportController@discharge')->name('discharge');
+            
+        });
 
+        Route::prefix('doctor')->name('doctor.')->group(function() {
+            Route::get('/', 'Hospital\DoctorController@index')->name('index');
             Route::post('/register','Hospital\DoctorController@register')->name('register');
             Route::post('/{doctor_id}/update','Hospital\DoctorController@updateThisDoctor')->name('update');
             Route::get('/{doctor_id}/delete','Hospital\DoctorController@delete')->name('delete');

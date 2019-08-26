@@ -79,7 +79,7 @@
                                                 <b class="text-custom m-b-5">Discharge</b><br>
                                                 <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
                                                 <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
-                                                    <a href="{{route('health.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
+                                                    <a href="{{route('health.hospital.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
                                                     <button class="btn btn-primary"data-toggle="modal" data-target="#admit_patient">Diagnose And Revisit</button>
                                                 @else
                                                     <button data-toggle="modal" data-target="#discharge_admission_{{$admission->id}}" class="btn btn-info">Discharge</button>

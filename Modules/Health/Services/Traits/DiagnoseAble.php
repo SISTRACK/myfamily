@@ -55,7 +55,7 @@ trait DiagnoseAble
 	public function discharges()
 	{
 		$discharge = [];
-		
+
 		foreach ($this->hospitalAdmissions as $admission) {
 			if($admission->dischargeAdmission){
 				$discharge[] = $admission->dischargeAdmission;
