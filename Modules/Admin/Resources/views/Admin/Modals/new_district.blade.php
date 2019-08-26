@@ -12,7 +12,7 @@
                         <input type="hidden" name="lga_id" value="{{$lga->id}}">
                 		<div class="form-group" id="district">
                             
-                        <input type="text" name="districts[0]" class="form-control add-input" placeholder="Districts Name" />
+                            <input type="text" name="districts[0]" class="form-control add-input" placeholder="Districts Name" />
                             <a class="btn btn-danger" href="#" onclick='remove(this)'>
                                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
                             </a>

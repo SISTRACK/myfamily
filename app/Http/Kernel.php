@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'landOnDistrict'=> \Modules\Admin\Http\Middleware\LandOnDistrictDashboardMiddleware::class,
         'landOnState'=> \Modules\Admin\Http\Middleware\LandOnStateDashboardMiddleware::class,
         'landOnGeneral'=> \Modules\Admin\Http\Middleware\LandOnGeneralDashboardMiddleware::class,
+        'healthAdmin'=> \Modules\Health\Http\Middleware\HealthAdminMiddleware::class,
     ];
 }

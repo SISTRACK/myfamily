@@ -14,7 +14,7 @@
 Route::prefix('health')->name('health.')->group(function() {
     Route::prefix('hospital')->name('hospital.')->group(function() {
         //doctors routes
-        Route::prefix('doctor')->name('doctor.')->group(function() {
+        Route::prefix('doctor')->name('doctor.')->middleware('healthAdmin')->group(function() {
             Route::get('/', 'Hospital\DoctorController@index')->name('index');
 
             Route::post('/register','Hospital\DoctorController@register')->name('register');

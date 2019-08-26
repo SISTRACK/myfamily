@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
 			    <h2 class="text-primary">Admit Patient</h2>   
-		        <form action="{{route('health.doctor.patient.admit')}}" method="post" enctype="multipart/form-data">
+		        <form action="{{route('health.hospital.doctor.patient.admit')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <label>Health Condition</label>
                     <select class="form-control" name="medical_condition_id">
