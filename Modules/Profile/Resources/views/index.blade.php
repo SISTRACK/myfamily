@@ -95,9 +95,10 @@
                             <h4 class="btn btn-info btn-block ">Health Report</h4>
                             <div class="p-t-10">
                                 <div class="row">
-                                    @foreach($user->profile->medicalReports as $report)
-                                    <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$user->profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
-                                    @endforeach
+                                    @php
+                                        $profile = $user->profile;
+                                    @endphp
+                                    @include('profile::Profile.Report.health')
                                 </div> 
                             </div>
                         </div>
@@ -108,7 +109,7 @@
                             <h4 class="btn btn-info btn-block ">Secrity Report</h4>
                             <div class="p-t-10">
                                 <div class="row">
-                                    <h1>Loading....</h1>
+                                    
                                 </div> 
                             </div>
                         </div>
