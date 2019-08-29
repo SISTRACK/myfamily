@@ -36,4 +36,9 @@ class Lga extends BaseModel
     {
         return $this->hasOne('Modules\Admin\Entities\Admin');
     }
+
+    public function lgaPopulationCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\LgaPopulationCollation');
+    }
 }

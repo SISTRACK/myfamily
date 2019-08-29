@@ -13,12 +13,11 @@
         @endif
         @if(doctor() && doctor()->hospital->id == $admission->doctor->hospital->id)
             @if($admission->dischargeAdmission && $admission->dischargeAdmission->is_active == 1)
-            <hr>
             <b class="text-custom m-b-5">Discharge</b><br>
             <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
                 <a href="{{route('health.hospital.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
-                <button class="btn btn-primary"data-toggle="modal" data-target="#admit_patient">Diagnose And Revisit</button>
+                <button class="btn btn-primary"data-toggle="modal" data-target="#admit_patient">Diagnose And Revisit</button><hr>
             @else
                 <button data-toggle="modal" data-target="#discharge_admission_{{$admission->id}}" class="btn btn-info">Discharge</button>
                 @include('health::Patient.Modals.discharge')
@@ -31,13 +30,12 @@
             @endif
         @endif
         @if($admission->dischargeAdmission && $admission->dischargeAdmission->is_active == 1)
-            <hr>
             <b class="text-custom m-b-5">Discharge</b><br>
             <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
         @endif
-        @if($admission->dischargeAdmission->revisitDischarges)
-            @foreach($admission->dischargeAdmission->revisitDischarges as $revisit)
+        @if($admission->dischargeAdmission && $admission->dischargeAdmission->dischargeRevisits)
+            @foreach($admission->dischargeAdmission->dischargeRevisits as $revisit)
                 <b class="text-custom m-b-5">Revisted Discharge</b><br>
                 <i class="text-custom m-b-5">Revisited At</i> {{$revisit->created_at}}<br>
             @endforeach

@@ -10,4 +10,9 @@ class Infection extends BaseModel
     {
     	return $this->hasMany(Diagnose::class);
     }
+
+    public function townMedicalReports()
+    {
+    	return $this->hasMany(TownMedicalReport::class);
+    }
 }

@@ -7,12 +7,6 @@
         <ul class="list-unstyled">
             <li><a href="#" data-toggle="modal" data-target="#new_lga">New LGA</a></li>
             <!-- new lga modal is include at Include/Pages/content -->
-            @foreach(admin()->state->lgas as $lga)
-            <li><a href="{{route('lga.dashboard',[
-                    strtolower(str_replace(' ','-',$lga->state->name)),
-                    strtolower(str_replace(' ','-',$lga->name)),
-                    $lga->id])}}">{{$lga->name}}</a></li>
-            @endforeach
         </ul>
     </li>
     @endif
@@ -28,7 +22,7 @@
         <a href="#" class="waves-effect"><i class="fa fa-ambulance"></i> <span> Health </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.health.hospital.index')}}"><i class="fa fa-ambulance"></i> <span>Hospitals</span></a></li>
-            <li><a href="{{route('admin.health.doctor.index')}}"><i class="fa fa-user-md"></i><span>Doctors</span></a></li>
+            <li><a href="{{route('admin.health.doctor.index')}}"><i class="fa fa-user-md"></i><span>Administrators</span></a></li>
         </ul>
     </li>
 
@@ -44,14 +38,14 @@
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Teachers </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> School Admins </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li>
-            	<a href="{{route('admin.education.school.teacher.create')}}">New Teacher</a>
+            	<a href="{{route('admin.education.school.teacher.create')}}">New School Admin</a>
             </li>
-            <li><a href="{{route('admin.education.school.teacher.nursery.index')}}">Nursery Teachers</a></li>
-            <li><a href="{{route('admin.education.school.teacher.primary.index')}}">Primary Teachers</a></li>
-            <li><a href="{{route('admin.education.school.teacher.secondary.index')}}">Secondary Teachers</a></li>
+            <li><a href="{{route('admin.education.school.teacher.nursery.index')}}">Nursery Admins</a></li>
+            <li><a href="{{route('admin.education.school.teacher.primary.index')}}">Primary Admins</a></li>
+            <li><a href="{{route('admin.education.school.teacher.secondary.index')}}">Secondary Admins</a></li>
         </ul>
     </li>
     <li class="has_sub">

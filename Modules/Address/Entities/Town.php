@@ -50,4 +50,10 @@ class Town extends BaseModel
     {
         return $this->hasMany('Modules\Education\Entities\SchoolLocation');
     }
+
+    public function townPopulationCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\TownPopulationCollation');
+    }
+
 }

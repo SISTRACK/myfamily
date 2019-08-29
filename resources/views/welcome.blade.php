@@ -9,7 +9,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Nigerian family information system</title>
+        <title>Khaliphate citizen information management system</title>
 
         <!-- App css -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -110,7 +110,7 @@
                                                     <span class="timeline-icon"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span>
                                                     <h4 class="">1 hour ago</h4>
                                                     <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                                    <p>The labbo family was the most populated family in Nigeria? </p>
+                                                    <p>The test family was the most populated family in Sokoto? </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@
                                                     <span class="timeline-icon bg-success"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span>
                                                     <h4 class="text-success">1 hours ago</h4>
                                                     <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                                    <p>The Bagudo local government was the most populated local government in Nigeria </p>
+                                                    <p>The Kware local government is the most populated local government in Sokoto </p>
 
                                                 </div>
                                             </div>
@@ -137,7 +137,7 @@
                                                     <span class="timeline-icon bg-primary"><i class="mdi mdi-checkbox-blank-circle-outline"></i></span>
                                                     <h4 class="text-primary">1 hours ago</h4>
                                                     <p class="timeline-date text-muted"><small>08:25 am</small></p>
-                                                    <p>The kebbi state was the most populated state in Nigeria</p>
+                                                    <p>The Tambuwal District is the most populated district in Sokoto</p>
                                                     <div class="clearfix"></div>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2017 - {{date('Y',time())}} © Nigerian Family information system.
+                    2017 - {{date('Y',time())}} © Khaliphate citizen information management system.
                 </footer>
 
             </div>

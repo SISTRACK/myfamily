@@ -11,7 +11,7 @@ class SecurityReport extends Model
         return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
 
-    public function profile()
+    public function security()
     {
         return $this->belongsTo(Security::class);
     }

@@ -5,7 +5,7 @@ namespace Modules\Family\Services\Account;
 use Illuminate\Support\Facades\Hash;
 
 use Modules\Profile\Entities\Profile;
-
+use Modules\Government\Events\CountProfileInTheStatePopulation;
 use Modules\Family\Entities\Family;
 
 use App\User;
@@ -21,10 +21,12 @@ trait Admin
     public $user;
 
 	public function newAdmin(Profile $profile, Family $family){
-
     	$this->admin = $family->familyAdmin()->create(['profile_id'=>$this->profile->id]);
         $profile->update(['family_id'=>$family->id]);
-
+        //this will count this admin as the citizen of the specify state
+        if(!$profile->child){
+            event(new CountProfileInTheStatePopulation($profile));
+        }
     }
 
     public function newUser()
@@ -59,13 +61,15 @@ trait Admin
 	        if(!admin() && empty($this->data['date'])){
 	            $this->data['date'] = $this->data['mdate'];
 	        }
-	    	$this->profile = $user->profile()->create([
-                'image_id'=>1,
-	            'gender_id'         => 1,
-	            'marital_status_id' => 1,
-	            'date_of_birth' => strtotime($this->data['date']),
-	            'family_id' =>$this->family->id
-	        ]);
+            if(!$user->profile){
+    	    	$this->profile = $user->profile()->create([
+                    'image_id'=>1,
+    	            'gender_id'         => 1,
+    	            'marital_status_id' => 1,
+    	            'date_of_birth' => strtotime($this->data['date']),
+    	            'family_id' =>$this->family->id
+    	        ]);
+            }
         }elseif(session('register')['status'] == 'daughter' && $this->husbandUser->isNotEmpty()){
             $this->profile = $this->husbandUser->profile;
         }elseif(session('register')['status'] == 'son' && $this->husbandUser != null){
@@ -74,8 +78,7 @@ trait Admin
         	$this->husbandUser = $this->user;
             $this->profile = $this->user->profile()->create(['image_id'=>1,'gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
             $this->husbandProfile = $this->profile;
-		}
-        
+		} 
     }
 
     public function newAdminHandle()

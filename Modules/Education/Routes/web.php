@@ -37,7 +37,7 @@ Route::prefix('education')->group(function() {
 		    Route::get('create', 'AdmissionController@create')->name('create');
 		    Route::post('{admission_id}/update', 'AdmissionController@update')->name('update');
 		    Route::post('register', 'AdmissionController@store')->name('register');
-		    Route::get('delete', 'AdmissionController@delete')->name('delete');
+		    Route::get('{admission_id}/delete', 'AdmissionController@delete')->name('delete');
             
             Route::prefix('verification/')
 	           ->name('verification.')

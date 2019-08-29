@@ -35,4 +35,8 @@ class District extends BaseModel
         return $this->hasOne('Modules\Admin\Entities\Admin');
     }
     
+    public function districtPopulationCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\DistrictPopulationCollation');
+    }
 }

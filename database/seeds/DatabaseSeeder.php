@@ -8,6 +8,7 @@ use Modules\Security\Database\Seeders\SecurityDatabaseSeeder;
 use Modules\Marriage\Database\Seeders\MarriageDatabaseSeeder;
 use Modules\Gallary\Database\Seeders\GallaryDatabaseSeeder;
 use Modules\Education\Database\Seeders\EducationDatabaseSeeder;
+use Modules\Government\Database\Seeders\GovernmentDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
       $this->call(EducationDatabaseSeeder::class);
       $this->call(GallaryDatabaseSeeder::class);
       $this->call(AdminDatabaseSeeder::class);
+      $this->call(GovernmentDatabaseSeeder::class);
   }
 }

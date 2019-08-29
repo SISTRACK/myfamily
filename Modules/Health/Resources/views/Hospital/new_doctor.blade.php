@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
 			    <div class="col-md-12">
-			         <h2 class="text-primary">New Health Personel</h2>
+			         <h2 class="text-primary">New Hospital Admin</h2>
         <form action="{{route('admin.health.doctor.register')}}" method="post">
         	@csrf
         	<input type="hidden" name="hospital_id" value="{{$hospital->id}}">

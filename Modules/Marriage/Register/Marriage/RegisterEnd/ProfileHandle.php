@@ -2,7 +2,6 @@
 
 namespace Modules\Marriage\Register\Marriage\RegisterEnd;
 use Illuminate\Support\Facades\Hash;
-
 use App\User;
 
 trait ProfileHandle

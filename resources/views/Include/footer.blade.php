@@ -56,5 +56,5 @@
     @yield('footer')
     
     <footer class="footer text-right">
-        2017 - {{date('Y',time())}} © Nigerian family innformation system
+        2017 - {{date('Y',time())}} © Khaliphate citizen information management system
     </footer>

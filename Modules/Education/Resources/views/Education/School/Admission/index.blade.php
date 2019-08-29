@@ -21,7 +21,7 @@
                     <tr>
 	        			<td>{{$loop->index+1}}</td>
 	        			<td>{{$admission->admission_no}}</td>
-	        			<td>{{$admission->created_at}}</td>
+	        			<td>{{$admission->year}}</td>
 	        			<td>
                             @if($admission->profile->child)
                                 <a href="#" data-toggle="modal" data-target="#user_{{$admission->profile->child->birth->father->husband->profile->id}}">{{$admission->profile->child->birth->father->husband->profile->user->first_name.' '.$admission->profile->child->birth->father->husband->profile->user->last_name}}

@@ -4,6 +4,7 @@
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
 	    <form action="{{route('admin.health.hospital.register')}}" method="post">
+	    	@csrf
 	    	<h2 class="text-primary">New Hospital</h2>
 	    	<label>Hospital Name</label>
 	    	<input type="text" name="name" class="form-control"><br>
@@ -32,7 +33,7 @@
 		    		</optgroup>   
 	    		@endforeach
 	    	</select><br>
-	    	<label>Hospital Town</label>
+	    	<label>Hospital Address</label>
 	    	<textarea class="form-control" name="address"></textarea><br>
 	    	<button class="btn btn-info">Register</button>
 	    </form>

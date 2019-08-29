@@ -3,7 +3,7 @@
 namespace Modules\Family\Services\Traits;
 
 use Modules\Family\Entities\SubFamily;
-use Modules\Marriage\Entities\Status;
+use Modules\Marriage\Entities\WifeStatus;
 
 trait RelatedFamilies
 {
@@ -91,7 +91,7 @@ trait RelatedFamilies
             }
         }
         
-        foreach(Status::all() as $status){
+        foreach(WifeStatus::all() as $status){
             if(!in_array($status->id,$valid_statuses)){
                 $invalid_statuses[] = $status->id;
             }
@@ -99,7 +99,7 @@ trait RelatedFamilies
        
         foreach($invalid_statuses as $status_id){
            
-            $available_statuses[] = Status::find($status_id);
+            $available_statuses[] = WifeStatus::find($status_id);
        
         }
         return $available_statuses;

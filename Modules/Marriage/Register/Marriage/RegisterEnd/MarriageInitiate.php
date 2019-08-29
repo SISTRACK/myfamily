@@ -1,13 +1,11 @@
 <?php
 namespace Modules\Marriage\Register\Marriage\RegisterEnd;
 
-use Modules\Marriage\Register\Marriage\RegisterEnd\ProfileHandle;
-
 use Modules\Profile\Entities\Profile;
-
-use Modules\Address\Services\LivingAddress;
-
 use Modules\Marriage\Entities\Husband;
+use Modules\Address\Services\LivingAddress;
+use Modules\Government\Events\CountProfileInTheStatePopulation;
+use Modules\Marriage\Register\Marriage\RegisterEnd\ProfileHandle;
 
 trait MarriageInitiate
 {
@@ -18,7 +16,7 @@ trait MarriageInitiate
     public function createWife(Profile $profile)
     {
         if($this->wifeProfile->wife == null){
-        	$this->wife = $this->wifeProfile->wife()->firstOrCreate(['status_id'=>$this->data['wife_status']]);
+        	$this->wife = $this->wifeProfile->wife()->firstOrCreate(['wife_status_id'=>$this->data['wife_status']]);
         }else{
         	$this->wife = $this->wifeProfile->wife;
         }
@@ -40,6 +38,9 @@ trait MarriageInitiate
     public function createMarriage(Husband $husband)
     {
         $husband->marriages()->create(['wife_id'=>$this->wife->id,'date'=>strtotime($this->data['marriage_date'])]);
+        if(!$this->wife->child){
+            event(new CountProfileInTheStatePopulation($this->wife->profile));
+        }
     }
 
     public function marriageAddress()

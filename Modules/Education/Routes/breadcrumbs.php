@@ -8,7 +8,10 @@ Breadcrumbs::for('education.school.admission.index', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');
     $breadcrumbs->push(request()->route('year').' Admissions', route('education.school.admission.index', [request()->route('year')]));
 });
-
+Breadcrumbs::for('education.school.admission.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('education.dashboard');
+    $breadcrumbs->push(request()->route('year').' Create Admission', route('education.school.admission.index', [request()->route('year')]));
+});
 Breadcrumbs::for('education.school.graduation.index', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');
     $breadcrumbs->push(request()->route('year').' Graduations', route('education.school.admission.index', [request()->route('year')]));

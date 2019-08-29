@@ -73,7 +73,7 @@ class AdmissionController extends EducationBaseController
             session()->flash('error',$errors);
             return back();
         }
-        return redirect()->route('education.school.admission.index',[$request->route('year')]);
+        return redirect()->route('education.school.admission.index',[$request->year]);
     }
 
     /**
@@ -94,14 +94,14 @@ class AdmissionController extends EducationBaseController
             Admitted::find($admission_id)->update([
                 'school_id'=>schoolAdmin()->school->id,
                 'admission_no' => $request->admission_no,
-                'year' => date('Y'),
+                'year' => $request->year,
                 'teacher_id' => schoolAdmin()->id
             ]);
             session()->flash('message','Congratulation the admission is updated success fully');
         }else{
             session()->flash('error',['Invali Student Profile ID']);
         }
-        return redirect()->route('education.school.admission.index',[date('Y')]);
+        return redirect()->route('education.school.admission.index',[$request->year]);
     }
 
     /**
@@ -113,6 +113,6 @@ class AdmissionController extends EducationBaseController
     {
         Admitted::find($admission_id)->delete();
         session()->flash('message','Congratulation the admission is deleted success fully');
-        return redirect()->route('education.school.admission.index',[date('Y')]);
+        return back();
     }
 }

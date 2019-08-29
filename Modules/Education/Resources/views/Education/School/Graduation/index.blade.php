@@ -43,6 +43,7 @@
                             @endphp
                             @include('education::Education.School.Admission.display')
                         </td>
+                        <td>
 	        				@if($graduate->graduated)
 	        				    <button class="btn btn-info" data-toggle="modal" data-target="{{'#graduated_'.$graduate->id}}"><i class="fa fa-eye" ></i>
 	        				    </button>
