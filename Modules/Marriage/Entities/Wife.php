@@ -17,9 +17,9 @@ class Wife extends BaseModel
     	return $this->belongsTo('Modules\Profile\Entities\Profile');
     }
 
-    public function status()
+    public function wifeStatus()
     {
-    	return $this->belongsTo(Status::class);
+    	return $this->belongsTo(WifeStatus::class);
     }
 
     public function mother()

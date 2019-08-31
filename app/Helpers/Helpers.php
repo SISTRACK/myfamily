@@ -101,3 +101,14 @@ if (!function_exists('doctor')) {
         return $doctor;
     }
 }
+
+if (!function_exists('government')) {
+    function government()
+    {
+        $government = null;
+        if(auth()->guard('government')->check()){
+            $government = auth()->guard('government')->user();
+        }
+        return $government;
+    }
+}

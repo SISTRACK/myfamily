@@ -5,6 +5,7 @@ namespace Modules\Birth\Services\Register\Validation\ValidInit;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Modules\Profile\Entities\Desease;
+use Modules\Government\Events\CountProfileInTheStatePopulation;
 
 trait VerifyChild
 
@@ -37,6 +38,7 @@ trait VerifyChild
 			$family_id = session('family')['family'];
 		}
 		$this->profile = $this->user->profile()->firstOrCreate(['image_id'=>$image_id,'gender_id'=>$this->data['gender'],'family_id'=>$family_id,'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
+		event(new CountProfileInTheStatePopulation($this->profile));
 	}
 
 	public function createChild()

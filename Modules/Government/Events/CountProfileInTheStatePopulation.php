@@ -42,7 +42,7 @@ class CountProfileInTheStatePopulation
     public function updateTownPopulation()
     {
         //get the last month of the year
-        $town_population = $this->profile->thisProfileFamily()->location->town->townPopulationCollations()->get()->last();
+        $town_population = $this->profile->thisProfileFamily()->location->town->townPopulationCollations->last();
         
         //if this month population exit update it from the population of the last month
         if($town_population){
@@ -62,7 +62,7 @@ class CountProfileInTheStatePopulation
     
     public function updateDistrictPopulation()
     {
-        $district_population = $this->profile->thisProfileFamily()->location->town->district->districtPopulationCollations()->get()->last();
+        $district_population = $this->profile->thisProfileFamily()->location->town->district->districtPopulationCollations->last();
 
         if($district_population){
             $district_population->updateOrCreate(
@@ -82,7 +82,7 @@ class CountProfileInTheStatePopulation
 
     public function updateLgaPopulation()
     {
-        $lga_population = $this->profile->thisProfileFamily()->location->town->district->lga->lgaPopulationCollations()->get()->last();
+        $lga_population = $this->profile->thisProfileFamily()->location->town->district->lga->lgaPopulationCollations->last();
         if($lga_population){
             $lga_population->updateOrCreate(
                 ['year_id'=>$this->year->id,'month_id'=>$this->month->id],

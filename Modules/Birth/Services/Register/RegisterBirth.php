@@ -48,9 +48,6 @@ trait RegisterBirth
             return back();
         }
             return back()->withIput();
-       
-        
-
     }
 
     public function verify(Request $request)

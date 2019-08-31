@@ -206,13 +206,11 @@ trait ProfileEloquentRelations
     }
     public function thisProfileFamily()
     {
-        $family = null;
-        if(is_null($this->family_id) && !is_null($this->wife)){
+        $family = $this->family;
+        if(is_null($family) && $this->wife){
             foreach($this->wife->marriages as $marriage){
                 $family = $marriage->husband->profile->family;
             }
-        }else{
-            $family = $this->family;
         }
         return $family;
     }

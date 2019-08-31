@@ -52,7 +52,7 @@
 					<option value=""></option>
 					
                         @foreach($family->familyAdmin->profile->husband->marriages as $marriage)
-                            <option value="{{$marriage->wife->status->id}}">{{$marriage->wife->status->name}}</option>
+                            <option value="{{$marriage->wife->wifeStatus->id}}">{{$marriage->wife->wifeStatus->name}}</option>
                         @endforeach
 					
 				</select>

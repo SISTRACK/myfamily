@@ -11,8 +11,17 @@
 |
 */
 
-Route::prefix('government')->group(function() {
-	
+Route::prefix('government')->name('government.')->group(function() {
+	Route::prefix('analysis')
+    ->namespace('Analysis')
+    ->name('analysis.')
+    ->group(function() {
+        Route::prefix('population')->name('population.')->group(function() {
+            Route::get('/', 'PopulationController@index')->name('index');  
+            Route::post('/search', 'PopulationController@search')->name('search');  
+            Route::get('/result', 'PopulationController@result')->name('result');  
+        });
+    });
     Route::get('/', 'GovernmentController@verify')->name('government');
     Route::get('/dashboard', 'GovernmentController@index')->name('government.dashboard');
     Route::get('/login', 'Auth\GovernmentLoginController@login')->name('government.auth.login');
