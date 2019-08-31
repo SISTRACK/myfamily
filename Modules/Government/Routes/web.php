@@ -19,14 +19,14 @@ Route::prefix('government')->name('government.')->group(function() {
         Route::prefix('population')->name('population.')->group(function() {
             Route::get('/', 'PopulationController@index')->name('index');  
             Route::post('/search', 'PopulationController@search')->name('search');  
-            Route::get('/result', 'PopulationController@result')->name('result');  
+            Route::get('/result', 'PopulationController@showResult')->name('result');  
         });
     });
     Route::get('/', 'GovernmentController@verify')->name('government');
-    Route::get('/dashboard', 'GovernmentController@index')->name('government.dashboard');
-    Route::get('/login', 'Auth\GovernmentLoginController@login')->name('government.auth.login');
-    Route::post('/login', 'Auth\GovernmentLoginController@loginGovernment')->name('government.login');
-    Route::post('logout', 'Auth\GovernmentLoginController@logout')->name('government.auth.logout');
+    Route::get('/dashboard', 'GovernmentController@index')->name('dashboard');
+    Route::get('/login', 'Auth\GovernmentLoginController@login')->name('auth.login');
+    Route::post('/login', 'Auth\GovernmentLoginController@loginGovernment')->name('login');
+    Route::post('logout', 'Auth\GovernmentLoginController@logout')->name('auth.logout');
     Route::get('report/{state}/population', 'ChartController@population')->name('population');
     //health report routes
     Route::get('report/health/polio', 'ChartController@polio')->name('report.polio');
