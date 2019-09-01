@@ -3,7 +3,6 @@ namespace Modules\Admin\Services\Traits;
 
 use Modules\Birth\Entities\Deliver;
 use Modules\Profile\Entities\Desease;
-use Modules\Government\Events\CountThisBirthInTheStateBirths;
 
 trait NewBirth
 {
@@ -51,7 +50,8 @@ trait NewBirth
         ]);
         $address = $parent['mother']->wife->profile->leave->address_id;
         $this->child->profile->leave()->create(['address_id'=>$address]);
-        event(new CountThisBirthInTheStateBirths($birth));
+
+        
           
     }
 

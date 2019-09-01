@@ -2,10 +2,10 @@
 
 namespace Modules\Birth\Services\Register;
 
-use Modules\Birth\Services\Register\Validation\ValidateBirthRequest;
-
-use Modules\Birth\Entities\Deliver;
 use App\User;
+use Modules\Birth\Entities\Deliver;
+use Modules\Government\Events\CountThisBirthInTheStateBirths;
+use Modules\Birth\Services\Register\Validation\ValidateBirthRequest;
 
 class NewBirth
 
@@ -70,6 +70,7 @@ class NewBirth
             'deliver_at' =>$this->data['deliver_at'],
             'deliver_id' =>$this->deliveredBy()
         ]);
+        event(new CountThisBirthInTheStateBirths($birth));
         $address = $this->mother->wife->profile->leave->address_id;
         $this->child->profile->leave()->create(['address_id'=>$address]);
           

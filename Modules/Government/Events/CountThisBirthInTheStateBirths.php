@@ -4,6 +4,8 @@ namespace Modules\Government\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Modules\Birth\Entities\Birth;
+use Modules\Government\Entities\Month;
+use Modules\Government\Entities\Year;
 
 class CountThisBirthInTheStateBirths
 {
@@ -36,12 +38,14 @@ class CountThisBirthInTheStateBirths
     {
         return [];
     }
+
     public function getCurrentMonth()
     {
         foreach (Month::where('month',date('F'))->get() as $month) {
             return $month;
         }
     }
+
     public function updateAreaBirth()
     {
         //get the last month of the year
@@ -51,7 +55,7 @@ class CountThisBirthInTheStateBirths
         if($area_birth){
             if($area_birth->month_id == $this->month->id){
                 $area_birth->update([
-                    'birth'=>$area_birth->birth += 1
+                    'birth'=>$area_birth->birth += 1,
                     'birth'=>$area_birth->monthly_birth += 1
                 ]);
             }else{
@@ -82,7 +86,7 @@ class CountThisBirthInTheStateBirths
         if($town_birth){
             if($town_birth->month_id == $this->month->id){
                 $town_birth->update([
-                    'birth'=>$town_birth->birth += 1
+                    'birth'=>$town_birth->birth += 1,
                     'birth'=>$town_birth->monthly_birth += 1
                 ]);
             }else{
@@ -127,7 +131,7 @@ class CountThisBirthInTheStateBirths
             $this->location->area->town->district->districtBirthCollations()->create([
                 'year_id'=>$this->year->id,
                 'month_id'=>$this->month->id,
-                'birth'=>1
+                'birth'=>1,
                 'monthly_birth'=>1
             ]);
         }
@@ -142,7 +146,7 @@ class CountThisBirthInTheStateBirths
         if($lga_birth){
             if($lga_birth->month_id == $this->month->id){
                 $lga_birth->update([
-                    'birth'=>$lga_birth->birth += 1
+                    'birth'=>$lga_birth->birth += 1,
                     'birth'=>$lga_birth->monthly_birth += 1
                 ]);
             }else{
