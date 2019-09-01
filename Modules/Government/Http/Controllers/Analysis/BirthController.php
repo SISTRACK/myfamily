@@ -10,13 +10,13 @@ use Modules\Address\Entities\Town;
 use Modules\Address\Entities\District;
 use Modules\Government\Entities\Year;
 use Modules\Government\Entities\Month;
-use Modules\Government\Charts\Social\PopulationChart;
-use Modules\Government\Entities\LgaPopulationCollation;
-use Modules\Government\Entities\TownPopulationCollation;
-use Modules\Government\Entities\DistrictPopulationCollation;
-use Modules\Government\Entities\AreaPopulationCollation;
+use Modules\Government\Charts\Social\BirthChart;
+use Modules\Government\Entities\LgaBirthCollation;
+use Modules\Government\Entities\TownBirthCollation;
+use Modules\Government\Entities\DistrictBirthCollation;
+use Modules\Government\Entities\AreaBirthCollation;
 
-class PopulationController extends Controller
+class BirthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,16 +24,16 @@ class PopulationController extends Controller
      */
     public function index()
     {
-        return view('government::Analysis.Population.index',['years'=>Year::all(),'months'=>Month::all()]);
+        return view('government::Analysis.Birth.index',['years'=>Year::all(),'months'=>Month::all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function showResult(PopulationChart $population)
+    public function showResult(BirthChart $birth)
     {
-        return view('government::Analysis.Population.result',['population'=>$population->createChart()]);
+        return view('government::Analysis.Birth.result',['birth'=>$birth->createChart()]);
     }
 
     public function search(Request $request)
@@ -52,12 +52,12 @@ class PopulationController extends Controller
         if($request->town_id){
             //view district chart on specified month basic the label eg (District 2019 January)
            $town = Town::find($request->town_id);
-           $result_of = $town->name.' Town';
+           $result_of = $town->name.' Town Births';
             if($flag == 'month'){
                 foreach ($town->areas as $area) {
                     $count = 0;
-                    foreach (AreaPopulationCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $area_population) {
-                        $count = $count + $area_population->population;
+                    foreach (AreaBirthCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $area_birth) {
+                        $count = $count + $area_birth->birth;
                     }
                     $labels[] = $area->name.' '.Year::find($request->year_id)->year.' '.Month::find($request->month_id)->month;
                     $data_sets[] = $count;
@@ -68,36 +68,35 @@ class PopulationController extends Controller
                 if($flag == 'year'){
                     foreach ($town->areas as $area) {
                         $count = 0;
-                        foreach (AreaPopulationCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id])->get() as $area_population) {
+                        foreach (AreaBirthCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id])->get() as $area_birth) {
 
-                            $count = $area_population->population + $count;
+                            $count = $area_birth->birth + $count;
                         }
                         $labels[] = $area->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
                         
                     }
                 }else{
-                    //view general district population)
+                    //view general district births)
                     foreach ($town->areas as $area) {
                         $count = 0;
-                        foreach (AreaPopulationCollation::where(['area_id'=>$area->id])->get() as $area_population) {
-                            $count = $count + $area_population->population;
+                        foreach (AreaBirthCollation::where(['area_id'=>$area->id])->get() as $area_birth) {
+                            $count = $count + $area_birth->birth;
                         }
                         $labels[] = $area->name;
                         $data_sets[] = $count;
                     }
                 }
-                
             }
         }else if($request->district_id){
             //view district chart on specified month basic the label eg (District 2019 January)
            $district = District::find($request->district_id);
-           $result_of = $disrict->name.' District';
+            $result_of = $disrict->name.' District Births';
             if($flag == 'month'){
                 foreach ($district->towns as $town) {
                     $count = 0;
-                    foreach (TownPopulationCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $town_population) {
-                        $count = $count + $town_population->population;
+                    foreach (TownBirthCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $town_birth) {
+                        $count = $count + $town_birth->birth;
                     }
                     $labels[] = $town->name.' '.Year::find($request->year_id)->year.' '.Month::find($request->month_id)->month;
                     $data_sets[] = $count;
@@ -108,20 +107,20 @@ class PopulationController extends Controller
                 if($flag == 'year'){
                     foreach ($district->towns as $town) {
                         $count = 0;
-                        foreach (TownPopulationCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id])->get() as $town_population) {
+                        foreach (TownBirthCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id])->get() as $town_birth) {
 
-                            $count = $town_population->population + $count;
+                            $count = $town_birth->birth + $count;
                         }
                         $labels[] = $town->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
                         
                     }
                 }else{
-                    //view general district population)
+                    //view general district births)
                     foreach ($district->towns as $town) {
                         $count = 0;
-                        foreach (TownPopulationCollation::where(['town_id'=>$town->id])->get() as $town_population) {
-                            $count = $count + $town_population->population;
+                        foreach (TownBirthCollation::where(['town_id'=>$town->id])->get() as $town_birth) {
+                            $count = $count + $town_birth->birth;
                         }
                         $labels[] = $town->name;
                         $data_sets[] = $count;
@@ -133,14 +132,15 @@ class PopulationController extends Controller
             
             //view district chart on specified month basic the label eg (District 2019 January)
             $lga = Lga::find($request->lga_id);
-            $result_of = $lga->name.' Local Government';
+            $result_of = $lga->name.' Local Government Births';
+
             if($flag == 'month'){
                 foreach ($lga->districts as $district) {
                     $count = 0;
-                    foreach (DistrictPopulationCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $district_population) {
-                        $count = $count + $district_population->population;
+                    foreach (DistrictBirthCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $district_birth) {
+                        $count = $count + $district_birth->birth;
                     }
-                    $labels[] = $district->name.' '.Year::find($request->year_id)->year.' '.$district_population->month->month;
+                    $labels[] = $district->name.' '.Year::find($request->year_id)->year.' '.$district_birth->month->month;
                     $data_sets[] = $count;
                 }
                 
@@ -151,20 +151,20 @@ class PopulationController extends Controller
                     foreach ($lga->districts as $district) {
                         $count = 0;
 
-                        foreach (DistrictPopulationCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id])->get() as $district_population) {
+                        foreach (DistrictBirthCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id])->get() as $district_birth) {
 
-                            $count = $district_population->population + $count;
+                            $count = $district_birth->birth + $count;
                         }
                         $labels[] = $district->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
                         
                     }
                 }else{
-                    //view general district population)
+                    //view general district births)
                     foreach ($lga->districts as $district) {
                         $count = 0;
-                        foreach (DistrictPopulationCollation::where(['district_id'=>$district->id])->get() as $district_population) {
-                            $count = $count + $district_population->population;
+                        foreach (DistrictBirthCollation::where(['district_id'=>$district->id])->get() as $district_birth) {
+                            $count = $count + $district_birth->birth;
                         }
                         $labels[] = $district->name;
                         $data_sets[] = $count;
@@ -175,35 +175,35 @@ class PopulationController extends Controller
         }else{
             /*
              * you dont specify the direction of the search so we are going to use your 
-             * accessibility to get the general population for you
+             * accessibility to get the general births for you
             */
             if(government()->state){
-                $result_of = government()->state->name.' State';
+                $result_of = government()->state->name.' State Births';
+                
                 foreach (government()->state->lgas as $lga) {
                     $count = 0;
-                    foreach ($lga->lgaPopulationCollations as $population) {
-                        $count = $population->population + $count;
+                    foreach ($lga->lgaBirthCollations as $birth) {
+                        $count = $birth->birth + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $lga->name;
                 }
             }elseif(government()->lga){
-                $result_of = government()->lga->name.' Local Government';
+                $result_of = government()->lga->name.' Local Government Births';
                 foreach (government()->lga->districts as $district) {
                     $count = 0;
-                    foreach ($district->districtPopulationCollations as $population) {
-                        $count = $population->population + $count;
+                    foreach ($district->districtBirthCollations as $birth) {
+                        $count = $birth->birth + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $district->name;
                 }
             }elseif(government()->district){
-                $result_of = government()->district->name.' District';
-
+                $result_of = government()->district->name.' District Births';
                 foreach (government()->district->towns as $town) {
                     $count = 0;
-                    foreach ($town->townPopulationCollations as $population) {
-                        $count = $population->population + $count;
+                    foreach ($town->townBirthCollations as $birth) {
+                        $count = $birth->birth + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $town->name;
@@ -212,6 +212,6 @@ class PopulationController extends Controller
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
 
-        return redirect()->route('government.analysis.population.result');
+        return redirect()->route('government.analysis.birth.result');
     }
 }

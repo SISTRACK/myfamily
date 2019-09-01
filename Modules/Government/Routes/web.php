@@ -21,6 +21,11 @@ Route::prefix('government')->name('government.')->group(function() {
             Route::post('/search', 'PopulationController@search')->name('search');  
             Route::get('/result', 'PopulationController@showResult')->name('result');  
         });
+        Route::prefix('births')->name('birth.')->group(function() {
+            Route::get('/', 'BirthController@index')->name('index');  
+            Route::post('/search', 'BirthController@search')->name('search');  
+            Route::get('/result', 'BirthController@showResult')->name('result');  
+        });
     });
     Route::get('/', 'GovernmentController@verify')->name('government');
     Route::get('/dashboard', 'GovernmentController@index')->name('dashboard');

@@ -2,7 +2,7 @@
 
 @section('page-content')
 @section('page-title')
-    {{'Reported People Population Base on Registration in'}} {{governmentChartPage()}}
+    {{'Reported People Population Base on Registration in'}} {{session('result_of')}}
 @endsection
 <div class="col md-12">
     {!! $population->container() !!}

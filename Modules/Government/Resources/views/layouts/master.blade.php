@@ -15,7 +15,7 @@ if($user->lga){
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Social Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
-        <li><a href="{{route('government.report.birth')}}"><span> Births </span></a></li>
+        <li><a href="{{route('government.analysis.birth.index')}}"><span> Births </span></a></li>
         <li><a href="{{route('government.report.death')}}"><span> Deaths </span></a></li>
         <li><a href="{{route('government.report.marriage')}}"><span> Marriages </span></a></li>
         <li><a href="{{route('government.report.divorce')}}"><span> Divorces </span></a></li>
