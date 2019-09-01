@@ -19,6 +19,7 @@ class CreateDistrictMarriageCollationsTable extends Migration
             $table->integer('year_id');
             $table->integer('month_id');
             $table->integer('marriage');
+            $table->integer('monthly_marriage');
             $table->timestamps();
         });
     }

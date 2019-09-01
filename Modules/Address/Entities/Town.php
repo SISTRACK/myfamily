@@ -56,4 +56,9 @@ class Town extends BaseModel
         return $this->hasMany('Modules\Government\Entities\TownBirthCollation');
     }
 
+    public function townMarriageCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\TownMarriageCollation');
+    }
+
 }

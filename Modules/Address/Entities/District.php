@@ -45,4 +45,9 @@ class District extends BaseModel
         return $this->hasMany('Modules\Government\Entities\DistrictBirthCollation');
     }
 
+    public function districtMarriageCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\DistrictMarriageCollation');
+    }
+
 }

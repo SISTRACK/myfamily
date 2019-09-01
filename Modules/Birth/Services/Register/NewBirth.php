@@ -70,10 +70,9 @@ class NewBirth
             'deliver_at' =>$this->data['deliver_at'],
             'deliver_id' =>$this->deliveredBy()
         ]);
-        event(new CountThisBirthInTheStateBirths($birth));
         $address = $this->mother->wife->profile->leave->address_id;
         $this->child->profile->leave()->create(['address_id'=>$address]);
-          
+        event(new CountThisBirthInTheStateBirths($birth));  
     }
     public function deliveredBy()
     {

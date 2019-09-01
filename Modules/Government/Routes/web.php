@@ -16,15 +16,23 @@ Route::prefix('government')->name('government.')->group(function() {
     ->namespace('Analysis')
     ->name('analysis.')
     ->group(function() {
+        //population statistict routes
         Route::prefix('population')->name('population.')->group(function() {
             Route::get('/', 'PopulationController@index')->name('index');  
             Route::post('/search', 'PopulationController@search')->name('search');  
             Route::get('/result', 'PopulationController@showResult')->name('result');  
         });
+        //birth statistics routes
         Route::prefix('births')->name('birth.')->group(function() {
             Route::get('/', 'BirthController@index')->name('index');  
             Route::post('/search', 'BirthController@search')->name('search');  
             Route::get('/result', 'BirthController@showResult')->name('result');  
+        });
+        //marriages statistics routes
+        Route::prefix('marriages')->name('marriage.')->group(function() {
+            Route::get('/', 'MarriageController@index')->name('index');  
+            Route::post('/search', 'MarriageController@search')->name('search');  
+            Route::get('/result', 'MarriageController@showResult')->name('result');  
         });
     });
     Route::get('/', 'GovernmentController@verify')->name('government');

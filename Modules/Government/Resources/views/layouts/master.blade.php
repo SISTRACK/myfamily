@@ -17,9 +17,9 @@ if($user->lga){
     <ul class="list-unstyled">
         <li><a href="{{route('government.analysis.birth.index')}}"><span> Births </span></a></li>
         <li><a href="{{route('government.report.death')}}"><span> Deaths </span></a></li>
-        <li><a href="{{route('government.report.marriage')}}"><span> Marriages </span></a></li>
+        <li><a href="{{route('government.analysis.marriage.index')}}"><span> Marriages </span></a></li>
         <li><a href="{{route('government.report.divorce')}}"><span> Divorces </span></a></li>
-        <li><a href="{{route('government.report.accident')}}"><span> Accidens </span></a></li>
+        <li><a href="{{route('government.report.accident')}}"><span> Accidents </span></a></li>
     </ul>
 </li>
 <li class="has_sub">

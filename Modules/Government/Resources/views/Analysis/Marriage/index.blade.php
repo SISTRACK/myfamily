@@ -3,11 +3,11 @@
 @section('page-content')
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-	    <form action="{{route('government.analysis.birth.search')}}" method="post">
+	    <form action="{{route('government.analysis.marriage.search')}}" method="post">
 	    	@csrf
-	    	<h2 class="text-primary">Search Births Specification</h2>
+	    	<h2 class="text-primary">Search Marriages Specification</h2>
 	    	@include('government::Analysis.include')
-	    	<button class="btn btn-info">Search Births</button>
+	    	<button class="btn btn-info">Search Marriages</button>
 	    </form>
     </div>
 </div>

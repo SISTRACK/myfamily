@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTownMarriageCollationsTable extends Migration
+class CreateAreaMarriageCollationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTownMarriageCollationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('town_marriage_collations', function (Blueprint $table) {
+        Schema::create('area_marriage_collations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('town_id');
+            $table->integer('area_id');
             $table->integer('year_id');
             $table->integer('month_id');
             $table->integer('marriage');
@@ -31,6 +31,6 @@ class CreateTownMarriageCollationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('town_marriage_collations');
+        Schema::dropIfExists('area_marriage_collations');
     }
 }
