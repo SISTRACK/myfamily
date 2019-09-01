@@ -14,11 +14,9 @@
 Route::prefix('{family}/forum')->group(function() {
 	Route::get('/{forum}', 'ForumController@nuclear')->name('nuclear.forum.index');
     Route::get('/', 'ForumController@index')->name('family.forum.index');
-});
 
 Route::get('/extended_forum', 'ForumController@extended')->name('extended.forum.index');
+Route::post('/nuclear/message/send', 'ForumController@sendNuclearMessage')->name('nuclear.message.send');
+Route::post('/extended/message/send', 'ForumController@sendExtendedMessage')->name('extended.message.send');
 
-
-Route::post('/nuclear/message/send', 'ForumController@sendNuclearMessage')->name('extended.message.send');
-Route::post('/extended/message/send', 'ForumController@sendExtendedMessage')->name('nuclear.message.send');
-
+});

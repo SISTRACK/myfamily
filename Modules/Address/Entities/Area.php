@@ -22,9 +22,9 @@ class Area extends BaseModel
         return $this->belongsTo(Town::class);
     }
 
-    public function lgaPopulationCollations()
+    public function areaPopulationCollations()
     {
-        return $this->hasMany('Modules\Government\Entities\LgaPopulationCollation');
+        return $this->hasMany('Modules\Government\Entities\AreaPopulationCollation');
     }
 
     public function locations()

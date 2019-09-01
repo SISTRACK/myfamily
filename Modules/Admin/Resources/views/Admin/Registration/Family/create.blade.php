@@ -42,14 +42,21 @@
                                 </div>
 
                                 <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="location">Town / Village / Street</label>
+                                    <label class="col-lg-2 control-label " for="location">Town / Village</label>
                                     <div class="col-lg-10">
                                         <select name="town" class="form-control">
-                                        	<option value="">Select Location</option>
-                                        	@foreach($district->towns as $town)
+                                            <option value="">Select Location</option>
+                                            @foreach($district->towns as $town)
                                                 <option value="{{$town->name}}">{{$town->name}}</option>
-                                        	@endforeach
+                                            @endforeach
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group clearfix">
+                                    <label class="col-lg-2 control-label " for="location">Area/Street</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" name="area" placeholder="Area of the family" class="form-control" >
                                     </div>
                                 </div>
                             </div>

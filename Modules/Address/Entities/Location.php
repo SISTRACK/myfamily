@@ -12,8 +12,8 @@ class Location extends BaseModel
     	return $this->hasMany('Modules\Family\Entities\Family');
     }
 
-    public function town()
+    public function area()
     {
-    	return $this->belongsTo(Town::class);
+    	return $this->belongsTo(Area::class);
     }
 }

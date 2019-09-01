@@ -8,9 +8,11 @@ trait DistrictInforUpdate
 	{
 		$families = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->locations as $location) {
-				foreach ($location->families as $family) {
-					$families[] = $family;
+			foreach ($town->areas as $area) {
+				foreach ($area->locations as $location) {
+					foreach ($location->families as $family) {
+						$families[] = $family;
+					}
 				}
 			}
 		}
@@ -21,18 +23,20 @@ trait DistrictInforUpdate
 	{
 		$users = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->locations as $location) {
-                foreach ($location->families as $family) {
-                	foreach ($family->profiles as $profile) {
-                		$users[] = $profile->user;
-                		if($profile->husband){
-                			foreach ($profile->husband->marriages as $marriage) {
-                				if(is_null($marriage->wife->profile->family_id)){
-                					$users[] = $marriage->wife->profile->user;
-                				}
-                			}
-                		}
-                	}
+			foreach ($town->areas as $area) {
+				foreach ($area->locations as $location) {
+	                foreach ($location->families as $family) {
+	                	foreach ($family->profiles as $profile) {
+	                		$users[] = $profile->user;
+	                		if($profile->husband){
+	                			foreach ($profile->husband->marriages as $marriage) {
+	                				if(is_null($marriage->wife->profile->family_id)){
+	                					$users[] = $marriage->wife->profile->user;
+	                				}
+	                			}
+	                		}
+	                	}
+					}
 				}
 			}
 		}
@@ -43,13 +47,15 @@ trait DistrictInforUpdate
 	{
 		$marriages = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->locations as $location) {
-                foreach ($location->families as $family) {
-                	if($family->familyAdmin->profile->husband){
-                        foreach ($family->familyAdmin->profile->husband->marriages as $marriage) {
-                		    $marriages[] = $marriage;
-                	    }
-                	}
+			foreach ($town->areas as $area) {
+				foreach ($area->locations as $location) {
+	                foreach ($location->families as $family) {
+	                	if($family->familyAdmin->profile->husband){
+	                        foreach ($family->familyAdmin->profile->husband->marriages as $marriage) {
+	                		    $marriages[] = $marriage;
+	                	    }
+	                	}
+					}
 				}
 			}
 		}
@@ -60,13 +66,15 @@ trait DistrictInforUpdate
 	{
 		$births = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->locations as $location) {
-                foreach ($location->families as $family) {
-                	if($family->familyAdmin->profile->husband && $family->familyAdmin->profile->husband->father){
-	                    foreach ($family->familyAdmin->profile->husband->father->births as $birth) {
-							$births[] = $birth;
-						}
-                	}
+			foreach ($town->areas as $area) {
+				foreach ($area->locations as $location) {
+	                foreach ($location->families as $family) {
+	                	if($family->familyAdmin->profile->husband && $family->familyAdmin->profile->husband->father){
+		                    foreach ($family->familyAdmin->profile->husband->father->births as $birth) {
+								$births[] = $birth;
+							}
+	                	}
+					}
 				}
 			}
 		}
@@ -77,11 +85,13 @@ trait DistrictInforUpdate
 	{
 		$deaths = [];
 		foreach ($this->towns as $town) {
-			foreach ($town->locations as $location) {
-				foreach ($location->families as $family) {
-					foreach ($family->profiles as $profile) {
-						if($profile->death){
-							$deaths[] = $profile->death;
+			foreach ($town->areas as $area) {
+				foreach ($area->locations as $location) {
+					foreach ($location->families as $family) {
+						foreach ($family->profiles as $profile) {
+							if($profile->death){
+								$deaths[] = $profile->death;
+							}
 						}
 					}
 				}

@@ -38,7 +38,7 @@
 			                                        <td>{{$family->name}}</td>
 			                                        <td>{{$family->title}}</td>
 			                                        <td>{{$family->tribe->name}}</td>
-			                                        <td>{{$family->location->town->name}}</td>
+			                                        <td>{{$family->location->area->town->name}}</td>
 			                                        <td>{{$family->familyAdmin->profile->user->email}}</td>
 			                                        <td>{{$family->familyAdmin->profile->user->phone}}</td>
 			                                        <td>

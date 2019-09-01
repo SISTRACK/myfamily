@@ -34,10 +34,10 @@
 			                                        <td>{{$marriage->wife->profile->user->first_name}} {{$marriage->wife->profile->user->last_name}}</td>
 			                                        <td>{{date('d:M:Y',$marriage->date)}}</td>
 			                                        <td>{{$marriage->husband->profile->family->name}}</td>
-			                                        <td>{{$marriage->husband->profile->family->location->town->name}}</td>
+			                                        <td>{{$marriage->husband->profile->family->location->area->town->name}}</td>
 			                                        <td>{{!is_null($marriage->wife->mother) ? count($marriage->wife->mother->births) : '0'}}</td>
 			                                        <td>
-		                                                <a href="{{route('district.family.marriage.edit',[$district->lga->state->name,$district->lga->name,$district->name,$marriage->husband->profile->family->location->town->name,$marriage->husband->profile->family->name,$marriage->id])}}" class="btn btn-warning">Edit</a><br>
+		                                                <a href="{{route('district.family.marriage.edit',[$district->lga->state->name,$district->lga->name,$district->name,$marriage->husband->profile->family->location->area->town->name,$marriage->husband->profile->family->name,$marriage->id])}}" class="btn btn-warning">Edit</a><br>
 
 		                                                <a href="" class="btn btn-warning">New Birth</a>
 			                                        </td>

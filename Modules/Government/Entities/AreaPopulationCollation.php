@@ -2,9 +2,10 @@
 
 namespace Modules\Government\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Modules\Core\Entities\BaseModel;
 
-class AreaPopulationCollation extends Model
+
+class AreaPopulationCollation extends BaseModel
 {
     public function area()
     {

@@ -23,12 +23,12 @@ trait Address
 		}else{
 			$address = $this->family->location;
 			$user_address = [
-	            'country' => $address->town->district->lga->state->country->name,
-	            'state' => $address->town->district->lga->state->name,
-	            'lga' => $address->town->district->lga->name,
-	            'district' => $address->town->district->name,
-	            'town' => $address->town->name,
-	            'area' => '',
+	            'country' => $address->area->town->district->lga->state->country->name,
+	            'state' => $address->area->town->district->lga->state->name,
+	            'lga' => $address->area->town->district->lga->name,
+	            'district' => $address->area->town->district->name,
+	            'town' => $address->area->town->name,
+	            'area' => $address->area->name,
 	            'house_no' => '',
 	            'house_description' => '',
 	        ];

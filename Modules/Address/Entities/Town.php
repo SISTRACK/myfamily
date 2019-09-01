@@ -17,11 +17,6 @@ class Town extends BaseModel
         return $this->hasMany(Area::class);
     }
 
-    public function locations()
-    {
-    	return $this->hasMany(Location::class);
-    }
-
     public function companies()
     {
         return $this->hasMany(Company::class);

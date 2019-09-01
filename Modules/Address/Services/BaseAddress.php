@@ -3,10 +3,9 @@
 namespace Modules\Address\Services;
 
 use Modules\Address\Entities\Country;
-
 use Modules\Address\Entities\State;
-
 use Modules\Address\Entities\Lga;
+use Modules\Address\Entities\Town;
 
 
 trait BaseAddress
@@ -44,5 +43,12 @@ trait BaseAddress
     public function newTown(Lga $lga)
     {
         $this->town = $lga->towns()->firstOrCreate(['district_id'=>$this->district->id,'name'=>$this->data['town']]);
+    }
+
+    public $area;
+
+    public function newArea(Town $town)
+    {
+        $this->area = $town->areas()->firstOrCreate(['name'=>$this->data['area']]);
     }
 }
