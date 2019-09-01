@@ -26,6 +26,11 @@ class Area extends BaseModel
     {
         return $this->hasMany('Modules\Government\Entities\AreaPopulationCollation');
     }
+    
+    public function areaBirthCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\AreaBirthCollation');
+    }
 
     public function locations()
     {

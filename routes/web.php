@@ -19,9 +19,7 @@ use Modules\Address\Entities\District;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/testing',function(){
-	dd(date('F'));
-});
+
 Route::group(['middleware'=>'guest'], function(){
    Route::get('/', function () {
      return view('welcome');

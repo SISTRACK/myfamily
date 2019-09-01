@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLgaPopulationCollationsTable extends Migration
+class CreateAreaBirthCollationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateLgaPopulationCollationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lga_population_collations', function (Blueprint $table) {
+        Schema::create('area_birth_collations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lga_id');
+            $table->integer('area_id');
             $table->integer('year_id');
             $table->integer('month_id');
-            $table->integer('population');
-            $table->integer('monthly_population');
+            $table->integer('birth');
+            $table->integer('monthly_birth');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateLgaPopulationCollationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lga_population_collations');
+        Schema::dropIfExists('area_birth_collations');
     }
 }

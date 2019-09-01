@@ -39,4 +39,10 @@ class District extends BaseModel
     {
         return $this->hasMany('Modules\Government\Entities\DistrictPopulationCollation');
     }
+
+    public function districtBirthCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\DistrictBirthCollation');
+    }
+
 }

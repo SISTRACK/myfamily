@@ -52,19 +52,24 @@ class CountProfileInTheStatePopulation
         //if this month population exit update it from the population of the last month
         if($area_population){
             if($area_population->month_id == $this->month->id){
-                $area_population->update(['population'=>$area_population->population += 1]);
+                $area_population->update([
+                    'population'=>$area_population->population += 1,
+                    'monthly_population'=>$area_population->monthly_population += 1,
+                ]);
             }else{
                 $this->profile->thisProfileFamily()->location->area->areaPopulationCollations()->create([
                 'year_id'=>$this->year->id,
                 'month_id'=>$this->month->id,
-                'population'=> $area_population->population + 1
+                'population'=> $area_population->population + 1,
+                'monthly_population'=> 1
             ]);
             }
         }else{
             $this->profile->thisProfileFamily()->location->area->areaPopulationCollations()->create([
                 'year_id'=>$this->year->id,
                 'month_id'=>$this->month->id,
-                'population'=>1
+                'population'=>1,
+                'monthly_population'=>1
             ]);
         }
         
@@ -78,19 +83,24 @@ class CountProfileInTheStatePopulation
         //if this month population exit update it from the population of the last month
         if($town_population){
             if($town_population->month_id == $this->month->id){
-                $town_population->update(['population'=>$town_population->population += 1]);
+                $town_population->update([
+                    'population'=>$town_population->population += 1,
+                    'monthly_population'=>$town_population->monthly_population += 1,
+                ]);
             }else{
                 $this->profile->thisProfileFamily()->location->area->town->townPopulationCollations()->create([
                     'year_id'=>$this->year->id,
                     'month_id'=>$this->month->id,
-                    'population'=> $town_population->population + 1
+                    'population'=> $town_population->population + 1,
+                    'monthly_population'=> 1
                 ]);
             }
         }else{
             $this->profile->thisProfileFamily()->location->area->town->townPopulationCollations()->create([
                 'year_id'=>$this->year->id,
                 'month_id'=>$this->month->id,
-                'population'=>1
+                'population'=>1,
+                'monthly_population'=>1
             ]);
         }
         
@@ -102,12 +112,16 @@ class CountProfileInTheStatePopulation
 
         if($district_population){
             if($district_population->month_id == $this->month->id){
-                $district_population->update(['population'=>$district_population->population += 1]);
+                $district_population->update([
+                    'population'=>$district_population->population += 1,
+                    'monthly_population'=>$district_population->monthly_population += 1,
+                ]);
             }else{
                 $this->profile->thisProfileFamily()->location->area->town->district->districtPopulationCollations()->create([
                     'year_id'=>$this->year->id,
                     'month_id'=>$this->month->id,
-                    'population'=> $district_population->population + 1
+                    'population'=> $district_population->population + 1,
+                    'monthly_population'=> 1
                 ]);
             }
         }else{
@@ -115,7 +129,8 @@ class CountProfileInTheStatePopulation
                 [
                     'year_id'=>$this->year->id,
                     'month_id'=>$this->month->id,
-                    'population'=>1
+                    'population'=>1,
+                    'monthly_population'=>1
                 ]
             );
         }
@@ -126,19 +141,24 @@ class CountProfileInTheStatePopulation
         $lga_population = $this->profile->thisProfileFamily()->location->area->town->district->lga->lgaPopulationCollations->last();
         if($lga_population){
             if($lga_population->month_id == $this->month->id){
-                $lga_population->update(['population'=>$lga_population->population += 1]);
+                $lga_population->update([
+                    'population'=>$lga_population->population += 1,
+                    'monthly_population'=>$lga_population->monthly_population += 1,
+                ]);
             }else{
                 $this->profile->thisProfileFamily()->location->area->town->district->lga->lgaPopulationCollations()->create([
                     'year_id'=>$this->year->id,
                     'month_id'=>$this->month->id,
-                    'population'=> $lga_population->population + 1
+                    'population'=> $lga_population->population + 1,
+                    'monthly_population'=> 1
                 ]);
             }
         }else{
             $this->profile->thisProfileFamily()->location->area->town->district->lga->lgaPopulationCollations()->create([
                     'year_id'=>$this->year->id,
                     'month_id'=>$this->month->id,
-                    'population'=>1
+                    'population'=>1,
+                    'monthly_population'=>1
                 ]
             );
         }

@@ -19,6 +19,7 @@ class CreateAreaPopulationCollationsTable extends Migration
             $table->integer('year_id');
             $table->integer('month_id');
             $table->integer('population');
+            $table->integer('monthly_population');
             $table->timestamps();
         });
     }

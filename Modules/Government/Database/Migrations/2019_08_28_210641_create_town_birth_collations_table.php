@@ -19,6 +19,7 @@ class CreateTownBirthCollationsTable extends Migration
             $table->integer('year_id');
             $table->integer('month_id');
             $table->integer('birth');
+            $table->integer('monthly_birth');
             $table->timestamps();
         });
     }
