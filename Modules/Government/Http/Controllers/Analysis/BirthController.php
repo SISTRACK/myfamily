@@ -91,7 +91,7 @@ class BirthController extends Controller
         }else if($request->district_id){
             //view district chart on specified month basic the label eg (District 2019 January)
            $district = District::find($request->district_id);
-            $result_of = $disrict->name.' District Births';
+            $result_of = $district->name.' District Births';
             if($flag == 'month'){
                 foreach ($district->towns as $town) {
                     $count = 0;
