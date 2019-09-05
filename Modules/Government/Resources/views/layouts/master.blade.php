@@ -26,7 +26,7 @@ if($user->lga){
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Health Report </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li><a href="{{route('government.analysis.health.infection.index')}}"><span>Infections Report</span></a></li>
-        <li><a href="{{route('government.report.malaria')}}"><span> Hospital Admission</span></a></li>
+        <li><a href="{{route('government.analysis.health.admission.index')}}"><span> Hospital Admission</span></a></li>
         <li><a href="{{route('government.report.hiv')}}"><span> Hospital Discharge </span></a></li>
         <li><a href="{{route('government.report.tv')}}"><span> Hospital Birth </span></a></li>
         <li><a href="{{route('government.report.diabetes')}}"><span>Hospital Death </span></a></li>
