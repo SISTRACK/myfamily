@@ -4,11 +4,16 @@ namespace Modules\Government\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class TownPopulationCollation extends BaseModel
+class TownInfectionReportCollation extends BaseModel
 {
     public function town()
     {
     	return $this->belongsTo('Modules\Address\Entities\Town');
+    }
+
+    public function infection()
+    {
+    	return $this->belongsTo('Modules\Health\Entities\Infection');
     }
 
     public function year()

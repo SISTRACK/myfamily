@@ -9,6 +9,9 @@ use Modules\Profile\Entities\Profile;
 use Modules\Health\Entities\HospitalAdmission;
 use Modules\Health\Entities\DischargeAdmission;
 use Modules\Core\Http\Controllers\Health\HealthBaseController;
+use Modules\Government\Events\Health\NewStateCitizenInfectionEvent;
+use Modules\Government\Events\Health\NewStateCitizenHospitalDischargeEvent;
+use Modules\Government\Events\Health\NewStateCitizenHospitalAdmissionEvent;
 
 class AdmissionController extends HealthBaseController
 {
@@ -45,8 +48,10 @@ class AdmissionController extends HealthBaseController
             'treatment_id'=>$request->treatment_id,
         ]);
         // admit the profile base on the diagnose
-        $profile->hospitalAdmissions()->create(['diagnose_id'=>$diagnose->id,'doctor_id'=>doctor()->id]);
+        $admission = $profile->hospitalAdmissions()->create(['diagnose_id'=>$diagnose->id,'doctor_id'=>doctor()->id]);
 
+        event(new NewStateCitizenInfectionEvent($admission));
+        event(new NewStateCitizenHospitalAdmissionEvent($admission));
            session()->flash('message',$profile->user->first_name.' '.$profile->user->last_name.' is successfully admitted in to '.doctor()->hospital->name.' Hospital');
            return  redirect()->route('health.hospital.doctor.patient.profile',[$profile->id]);
     }
@@ -56,7 +61,26 @@ class AdmissionController extends HealthBaseController
     {
         $request->validate(['discharge_condition'=>'required']);
         $admission = HospitalAdmission::find($request->admission_id);
-        $admission->dischargeAdmission()->create(['doctor_id'=>doctor()->id,'discharge_condition_id'=>$request->discharge_condition]);
+        if($admission->dischargeAdmission()){
+            $discharge = $admission->dischargeAdmission;
+            $discharge->update(['is_active'=>1]);
+        }else{
+            $discharge = $admission->dischargeAdmission()->create(['doctor_id'=>doctor()->id,'discharge_condition_id'=>$request->discharge_condition]);
+        }
+        event(new NewStateCitizenHospitalDischargeEvent($discharge));
+
+        switch ($request->discharge_condition_id) {
+            case '3':
+                event(new NewStateCitizenHospitalBirthEvent($discharge));
+                break;
+            case '4':
+                event(new NewStateCitizenHospitalDeathEvent($discharge));
+                
+                break;
+            default:
+                # code...
+                break;
+        }
         session()->flash('message',$admission->profile->user->first_name.' '.$admission->profile->user->last_name.' is successfully discharged from '.doctor()->hospital->name.' Hospital');
            return  redirect()->route('health.hospital.doctor.patient.profile',[$admission->profile->id]);
     }

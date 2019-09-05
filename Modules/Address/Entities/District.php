@@ -50,4 +50,12 @@ class District extends BaseModel
         return $this->hasMany('Modules\Government\Entities\DistrictMarriageCollation');
     }
 
+    public function districtInfectionReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\DistrictInfectionReportCollation');
+    }
+    public function districtHospitalReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\DistrictHospitalReportCollation');
+    }
 }

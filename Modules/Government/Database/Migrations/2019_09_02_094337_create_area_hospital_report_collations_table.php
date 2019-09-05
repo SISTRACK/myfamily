@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTownHospitalReportCollationsTable extends Migration
+class CreateAreaHospitalReportCollationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateTownHospitalReportCollationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('town_hospital_report_collations', function (Blueprint $table) {
+        Schema::create('area_hospital_report_collations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('town_id');
+            $table->integer('area_id');
             $table->integer('year_id');
             $table->integer('month_id');
             $table->integer('admission')->default(0);
@@ -37,6 +37,6 @@ class CreateTownHospitalReportCollationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('town_hospital_report_collations');
+        Schema::dropIfExists('area_hospital_report_collations');
     }
 }

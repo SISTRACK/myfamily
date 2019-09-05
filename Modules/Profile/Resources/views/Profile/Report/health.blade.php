@@ -17,7 +17,6 @@
             <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
                 <a href="{{route('health.hospital.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
-                <button class="btn btn-primary"data-toggle="modal" data-target="#admit_patient">Diagnose And Revisit</button><hr>
             @else
                 <button data-toggle="modal" data-target="#discharge_admission_{{$admission->id}}" class="btn btn-info">Discharge</button>
                 @include('health::Patient.Modals.discharge')
@@ -35,9 +34,11 @@
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
         @endif
         @if($admission->dischargeAdmission && $admission->dischargeAdmission->dischargeRevisits)
+           <hr>
             @foreach($admission->dischargeAdmission->dischargeRevisits as $revisit)
                 <b class="text-custom m-b-5">Revisted Discharge</b><br>
                 <i class="text-custom m-b-5">Revisited At</i> {{$revisit->created_at}}<br>
+                <i class="text-custom m-b-5">Hospital</i> {{$revisit->dischargeAdmission->hospitalAdmission->doctor->hospital->name}}<br>
             @endforeach
         @endif
         @if($admission->medicalReport)

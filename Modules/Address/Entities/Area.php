@@ -37,6 +37,14 @@ class Area extends BaseModel
         return $this->hasMany('Modules\Government\Entities\AreaMarriageCollation');
     }
 
+    public function areaInfectionReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\AreaInfectionReportCollation');
+    }
+    public function areaHospitalReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\AreaHospitalReportCollation');
+    }
     public function locations()
     {
         return $this->hasMany(Location::class);

@@ -4,6 +4,7 @@ namespace Modules\Government\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Modules\Health\Entities\Infection;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Government extends Authenticatable
@@ -39,6 +40,11 @@ class Government extends Authenticatable
     public function district()
     {
     	return $this->belongsTo('Modules\Address\Entities\District');
+    }
+
+    public function infections()
+    {
+        return Infection::all();
     }
 }
 

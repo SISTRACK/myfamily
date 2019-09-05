@@ -61,4 +61,13 @@ class Town extends BaseModel
         return $this->hasMany('Modules\Government\Entities\TownMarriageCollation');
     }
 
+    public function townInfectionReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\TownInfectionReportCollation');
+    }
+    public function townHospitalReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\TownHospitalReportCollation');
+    }
+
 }

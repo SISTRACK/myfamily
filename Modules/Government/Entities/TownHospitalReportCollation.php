@@ -16,7 +16,7 @@ class TownHospitalReportCollation extends BaseModel
     	return $this->belongsTo(Year::class);
     }
 
-    public function Month()
+    public function month()
     {
     	return $this->belongsTo(Month::class);
     }

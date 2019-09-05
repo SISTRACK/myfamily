@@ -4,11 +4,16 @@ namespace Modules\Government\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class LgaPopulationCollation extends BaseModel
+class LgaInfectionReportCollation extends BaseModel
 {
     public function lga()
     {
     	return $this->belongsTo('Modules\Address\Entities\Lga');
+    }
+    
+    public function infection()
+    {
+    	return $this->belongsTo('Modules\Health\Entities\Infection');
     }
 
     public function year()
@@ -16,7 +21,7 @@ class LgaPopulationCollation extends BaseModel
     	return $this->belongsTo(Year::class);
     }
 
-    public function month()
+    public function Month()
     {
     	return $this->belongsTo(Month::class);
     }

@@ -34,6 +34,17 @@ Route::prefix('government')->name('government.')->group(function() {
             Route::post('/search', 'MarriageController@search')->name('search');  
             Route::get('/result', 'MarriageController@showResult')->name('result');  
         });
+        //health statistics routes
+        Route::prefix('health')->name('health.')->group(function() {
+            Route::prefix('infection')
+            ->name('infection.')
+            ->namespace('Health')
+            ->group(function() {
+                Route::get('/', 'InfectionController@index')->name('index');  
+                Route::post('/search', 'InfectionController@search')->name('search');  
+                Route::get('/result', 'InfectionController@showResult')->name('result');
+            });  
+        });
     });
     Route::get('/', 'GovernmentController@verify')->name('government');
     Route::get('/dashboard', 'GovernmentController@index')->name('dashboard');

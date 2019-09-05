@@ -21,6 +21,11 @@ class CreateLgaHospitalReportCollationsTable extends Migration
             $table->integer('admission')->default(0);
             $table->integer('discharge')->default(0);
             $table->integer('death')->default(0);
+            $table->integer('birth')->default(0);
+            $table->integer('monthly_birth')->default(0);
+            $table->integer('monthly_admission')->default(0);
+            $table->integer('monthly_discharge')->default(0);
+            $table->integer('monthly_death')->default(0);
             $table->timestamps();
         });
     }
