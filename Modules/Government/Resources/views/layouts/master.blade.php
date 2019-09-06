@@ -29,7 +29,7 @@ if($user->lga){
         <li><a href="{{route('government.analysis.health.admission.index')}}"><span> Hospital Admission</span></a></li>
         <li><a href="{{route('government.analysis.health.admission.discharge.index')}}"><span> Hospital Discharge </span></a></li>
         <li><a href="{{route('government.report.tv')}}"><span> Hospital Birth </span></a></li>
-        <li><a href="{{route('government.report.diabetes')}}"><span>Hospital Death </span></a></li>
+        <li><a href="{{route('government.analysis.health.admission.death.index')}}"><span>Hospital Death </span></a></li>
     </ul>
 </li>
 <li class="has_sub">

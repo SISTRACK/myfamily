@@ -8,16 +8,15 @@ use Illuminate\Routing\Controller;
 use Modules\Address\Entities\Lga;
 use Modules\Address\Entities\Town;
 use Modules\Government\Entities\Year;
-use Modules\Health\Entities\Infection;
 use Modules\Government\Entities\Month;
 use Modules\Address\Entities\District;
-use Modules\Government\Charts\Health\DischargeChart;
+use Modules\Government\Charts\Health\HospitalDeathChart;
 use Modules\Government\Entities\LgaHospitalReportCollation;
 use Modules\Government\Entities\TownHospitalReportCollation;
 use Modules\Government\Entities\DistrictHospitalReportCollation;
 use Modules\Government\Entities\AreaHospitalReportCollation;
 
-class DischargeController extends Controller
+class HospitalDeathController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,16 +24,16 @@ class DischargeController extends Controller
      */
     public function index()
     {
-        return view('government::Analysis.Health.Discharge.index',['years'=>Year::all(),'months'=>Month::all()]);
+        return view('government::Analysis.Health.HospitalDeath.index',['years'=>Year::all(),'months'=>Month::all()]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function showResult(DischargeChart $discharge)
+    public function showResult(HospitalDeathChart $death)
     {
-        return view('government::Analysis.Health.Discharge.result',['discharge'=>$discharge->createChart()]);
+        return view('government::Analysis.Health.HospitalDeath.result',['death'=>$death->createChart()]);
     }
 
     /**
@@ -63,7 +62,7 @@ class DischargeController extends Controller
                 foreach ($town->areas as $area) {
                     $count = 0;
                     foreach (AreaHospitalReportCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $area_hospita_admission) {
-                        $count = $count + $area_hospita_admission->monthly_discharge;
+                        $count = $count + $area_hospita_admission->monthly_death;
                     }
                     $labels[] = $area->name.' '.Year::find($request->year_id)->year.' '.Month::find($request->month_id)->month;
                     $data_sets[] = $count;
@@ -76,7 +75,7 @@ class DischargeController extends Controller
                         $count = 0;
                         foreach (AreaHospitalReportCollation::where(['area_id'=>$area->id,'year_id'=>$request->year_id])->get() as $area_hospita_admission) {
 
-                            $count = $area_hospita_admission->monthly_discharge + $count;
+                            $count = $area_hospita_admission->monthly_death + $count;
                         }
                         $labels[] = $area->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
@@ -87,7 +86,7 @@ class DischargeController extends Controller
                     foreach ($town->areas as $area) {
                         $count = 0;
                         foreach (AreaHospitalReportCollation::where(['area_id'=>$area->id])->get() as $area_hospita_admission) {
-                            $count = $count + $area_hospita_admission->monthly_discharge;
+                            $count = $count + $area_hospita_admission->monthly_death;
                         }
                         $labels[] = $area->name;
                         $data_sets[] = $count;
@@ -102,7 +101,7 @@ class DischargeController extends Controller
                 foreach ($district->towns as $town) {
                     $count = 0;
                     foreach (TownHospitalReportCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $town_hospita_admission) {
-                        $count = $count + $town_hospita_admission->monthly_discharge;
+                        $count = $count + $town_hospita_admission->monthly_death;
                     }
                     $labels[] = $town->name.' '.Year::find($request->year_id)->year.' '.Month::find($request->month_id)->month;
                     $data_sets[] = $count;
@@ -115,7 +114,7 @@ class DischargeController extends Controller
                         $count = 0;
                         foreach (TownHospitalReportCollation::where(['town_id'=>$town->id,'year_id'=>$request->year_id])->get() as $town_hospita_admission) {
 
-                            $count = $town_hospita_admission->monthly_discharge + $count;
+                            $count = $town_hospita_admission->monthly_death + $count;
                         }
                         $labels[] = $town->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
@@ -126,7 +125,7 @@ class DischargeController extends Controller
                     foreach ($district->towns as $town) {
                         $count = 0;
                         foreach (TownHospitalReportCollation::where(['town_id'=>$town->id])->get() as $town_hospita_admission) {
-                            $count = $count + $town_hospita_admission->monthly_discharge;
+                            $count = $count + $town_hospita_admission->monthly_death;
                         }
                         $labels[] = $town->name;
                         $data_sets[] = $count;
@@ -144,7 +143,7 @@ class DischargeController extends Controller
                 foreach ($lga->districts as $district) {
                     $count = 0;
                     foreach (DistrictHospitalReportCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id,'month_id'=>$request->month_id])->get() as $district_hospita_admission) {
-                        $count = $count + $district_hospita_admission->monthly_discharge;
+                        $count = $count + $district_hospita_admission->monthly_death;
                     }
                     $labels[] = $district->name.' '.Year::find($request->year_id)->year.' '.$district_hospita_admission->month->month;
                     $data_sets[] = $count;
@@ -159,7 +158,7 @@ class DischargeController extends Controller
 
                         foreach (DistrictHospitalReportCollation::where(['district_id'=>$district->id,'year_id'=>$request->year_id])->get() as $district_hospita_admission) {
 
-                            $count = $district_hospita_admission->monthly_discharge + $count;
+                            $count = $district_hospita_admission->monthly_death + $count;
                         }
                         $labels[] = $district->name.' '.Year::find($request->year_id)->year;
                         $data_sets[] = $count;
@@ -170,7 +169,7 @@ class DischargeController extends Controller
                     foreach ($lga->districts as $district) {
                         $count = 0;
                         foreach (DistrictHospitalReportCollation::where(['district_id'=>$district->id])->get() as $district_hospita_admission) {
-                            $count = $count + $district_hospita_admission->monthly_discharge;
+                            $count = $count + $district_hospita_admission->monthly_death;
                         }
                         $labels[] = $district->name;
                         $data_sets[] = $count;
@@ -189,7 +188,7 @@ class DischargeController extends Controller
                 foreach (government()->state->lgas as $lga) {
                     $count = 0;
                     foreach ($lga->lgaHospitalReportCollations as $hospital_admission) {
-                        $count = $hospital_admission->monthly_discharge + $count;
+                        $count = $hospital_admission->monthly_death + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $lga->name;
@@ -199,7 +198,7 @@ class DischargeController extends Controller
                 foreach (government()->lga->districts as $district) {
                     $count = 0;
                     foreach ($district->districtHospitalReportCollations as $hospital_admission) {
-                        $count = $hospital_admission->monthly_discharge + $count;
+                        $count = $hospital_admission->monthly_death + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $district->name;
@@ -209,7 +208,7 @@ class DischargeController extends Controller
                 foreach (government()->district->towns as $town) {
                     $count = 0;
                     foreach ($town->townHospitalReportCollations as $hospital_admission) {
-                        $count = $hospital_admission->monthly_discharge + $count;
+                        $count = $hospital_admission->monthly_death + $count;
                     }
                     $data_sets[] = $count;
                     $labels[] = $town->name;
@@ -217,7 +216,7 @@ class DischargeController extends Controller
             }
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
-
-        return redirect()->route('government.analysis.health.admission.discharge.result');
+        return redirect()->route('government.analysis.health.admission.death.result');
     }
+
 }

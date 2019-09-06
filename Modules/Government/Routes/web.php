@@ -62,6 +62,22 @@ Route::prefix('government')->name('government.')->group(function() {
                 Route::get('/', 'DischargeController@index')->name('index');  
                 Route::post('/search', 'DischargeController@search')->name('search');  
                 Route::get('/result', 'DischargeController@showResult')->name('result');
+            });
+            //hospital death statistics
+            Route::prefix('admission/death')
+            ->name('admission.death.')
+            ->group(function() {
+                Route::get('/', 'HospitalDeathController@index')->name('index');  
+                Route::post('/search', 'HospitalDeathController@search')->name('search');  
+                Route::get('/result', 'HospitalDeathController@showResult')->name('result');
+            });
+            //hospital birth statistics
+            Route::prefix('admission/birth')
+            ->name('admission.birth.')
+            ->group(function() {
+                Route::get('/', 'HospitalBirthController@index')->name('index');  
+                Route::post('/search', 'HospitalBirthController@search')->name('search');  
+                Route::get('/result', 'HospitalBirthController@showResult')->name('result');
             });  
         });
     });
