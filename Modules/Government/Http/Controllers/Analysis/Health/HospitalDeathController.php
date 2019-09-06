@@ -57,7 +57,7 @@ class HospitalDeathController extends Controller
         if($request->town_id){
             //view district chart on specified month basic the label eg (District 2019 January)
            $town = Town::find($request->town_id);
-           $result_of = $town->name.' Town Births';
+           $result_of = $town->name.' Town';
             if($flag == 'month'){
                 foreach ($town->areas as $area) {
                     $count = 0;
@@ -82,7 +82,7 @@ class HospitalDeathController extends Controller
                         
                     }
                 }else{
-                    //view general district births)
+                    //view general district)
                     foreach ($town->areas as $area) {
                         $count = 0;
                         foreach (AreaHospitalReportCollation::where(['area_id'=>$area->id])->get() as $area_hospita_admission) {
@@ -96,7 +96,7 @@ class HospitalDeathController extends Controller
         }else if($request->district_id){
             //view district chart on specified month basic the label eg (District 2019 January)
            $district = District::find($request->district_id);
-            $result_of = $district->name.' District Births';
+            $result_of = $district->name.' District';
             if($flag == 'month'){
                 foreach ($district->towns as $town) {
                     $count = 0;
@@ -121,7 +121,7 @@ class HospitalDeathController extends Controller
                         
                     }
                 }else{
-                    //view general district births)
+                    //view general district)
                     foreach ($district->towns as $town) {
                         $count = 0;
                         foreach (TownHospitalReportCollation::where(['town_id'=>$town->id])->get() as $town_hospita_admission) {
@@ -137,7 +137,7 @@ class HospitalDeathController extends Controller
             
             //view district chart on specified month basic the label eg (District 2019 January)
             $lga = Lga::find($request->lga_id);
-            $result_of = $lga->name.' Local Government Births';
+            $result_of = $lga->name.' Local Government';
 
             if($flag == 'month'){
                 foreach ($lga->districts as $district) {
@@ -165,7 +165,7 @@ class HospitalDeathController extends Controller
                         
                     }
                 }else{
-                    //view general district births)
+                    //view general district)
                     foreach ($lga->districts as $district) {
                         $count = 0;
                         foreach (DistrictHospitalReportCollation::where(['district_id'=>$district->id])->get() as $district_hospita_admission) {
@@ -180,10 +180,10 @@ class HospitalDeathController extends Controller
         }else{
             /*
              * you dont specify the direction of the search so we are going to use your 
-             * accessibility to get the general births for you
+             * accessibility to get the general for you
             */
             if(government()->state){
-                $result_of = government()->state->name.' State Births';
+                $result_of = government()->state->name.' State';
                 
                 foreach (government()->state->lgas as $lga) {
                     $count = 0;
@@ -194,7 +194,7 @@ class HospitalDeathController extends Controller
                     $labels[] = $lga->name;
                 }
             }elseif(government()->lga){
-                $result_of = government()->lga->name.' Local Government Births';
+                $result_of = government()->lga->name.' Local Government';
                 foreach (government()->lga->districts as $district) {
                     $count = 0;
                     foreach ($district->districtHospitalReportCollations as $hospital_admission) {
@@ -204,7 +204,7 @@ class HospitalDeathController extends Controller
                     $labels[] = $district->name;
                 }
             }elseif(government()->district){
-                $result_of = government()->district->name.' District Births';
+                $result_of = government()->district->name.' District';
                 foreach (government()->district->towns as $town) {
                     $count = 0;
                     foreach ($town->townHospitalReportCollations as $hospital_admission) {
