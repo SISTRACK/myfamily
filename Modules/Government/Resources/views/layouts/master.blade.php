@@ -27,7 +27,7 @@ if($user->lga){
     <ul class="list-unstyled">
         <li><a href="{{route('government.analysis.health.infection.index')}}"><span>Infections Report</span></a></li>
         <li><a href="{{route('government.analysis.health.admission.index')}}"><span> Hospital Admission</span></a></li>
-        <li><a href="{{route('government.report.hiv')}}"><span> Hospital Discharge </span></a></li>
+        <li><a href="{{route('government.analysis.health.admission.discharge.index')}}"><span> Hospital Discharge </span></a></li>
         <li><a href="{{route('government.report.tv')}}"><span> Hospital Birth </span></a></li>
         <li><a href="{{route('government.report.diabetes')}}"><span>Hospital Death </span></a></li>
     </ul>

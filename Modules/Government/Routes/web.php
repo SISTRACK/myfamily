@@ -54,6 +54,14 @@ Route::prefix('government')->name('government.')->group(function() {
                 Route::get('/', 'AdmissionController@index')->name('index');  
                 Route::post('/search', 'AdmissionController@search')->name('search');  
                 Route::get('/result', 'AdmissionController@showResult')->name('result');
+            });
+            //hospital discharge statistics
+            Route::prefix('admission/discharge')
+            ->name('admission.discharge.')
+            ->group(function() {
+                Route::get('/', 'DischargeController@index')->name('index');  
+                Route::post('/search', 'DischargeController@search')->name('search');  
+                Route::get('/result', 'DischargeController@showResult')->name('result');
             });  
         });
     });
