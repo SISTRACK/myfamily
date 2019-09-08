@@ -20,6 +20,9 @@ class CreateLgaSchoolReportCollationsTable extends Migration
             $table->integer('admission')->default(0);
             $table->integer('gradutaion')->default(0);
             $table->integer('report')->default(0);
+            $table->integer('yearly_admission')->default(0);
+            $table->integer('yearly_gradutaion')->default(0);
+            $table->integer('yearly_report')->default(0);
             $table->timestamps();
         });
     }
