@@ -6,6 +6,7 @@ use Illuminate\Http\Response;
 use Modules\Education\Entities\Admitted;
 use Modules\Education\Entities\Graduated;
 use Modules\Core\Services\Traits\UploadFile;
+use Modules\Government\Events\Education\School\NewGraduationEvent;
 use Modules\Core\Http\Controllers\Education\EducationBaseController;
 use Modules\Education\Http\Requests\Education\School\GraduationFormRequest;
 
@@ -41,11 +42,13 @@ class GraduationController extends EducationBaseController
             'certificate' => $file,
             'class_honor' => $request->class_honor
         ]);
+
         if($request->has('discpline')){
             $admission->graduated()->update([
                 'discpline'=>$request->discpline
             ]);
         }
+        event(new NewGraduationEvent($admission->profile));
         session()->flash('message','Congratulation the graduation was register successfully');
         return redirect()->route('education.school.graduation.index',[$request->route('year')]);
     }

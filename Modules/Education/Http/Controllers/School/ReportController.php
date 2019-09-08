@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Modules\Education\Entities\Admitted;
 use Modules\Education\Entities\SchoolReport;
 use Modules\Core\Http\Controllers\Education\EducationBaseController;
+use Modules\Government\Events\Education\School\NewStudentReportEvent;
 
 
 class ReportController extends EducationBaseController
@@ -39,6 +40,7 @@ class ReportController extends EducationBaseController
             'school_report_type_id' =>$request->report_type_id,
             'evidence' =>$evidence
         ]);
+        event(new NewStudentReportEvent($admission->profile));
         session()->flash('message','Congratulation the report is register successfully');
         return redirect()->route('education.school.report.index',[$request->route('year')]);
     }

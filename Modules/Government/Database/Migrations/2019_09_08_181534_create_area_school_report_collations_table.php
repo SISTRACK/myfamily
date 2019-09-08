@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolReportCollationsTable extends Migration
+class CreateAreaSchoolReportCollationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateSchoolReportCollationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_report_collations', function (Blueprint $table) {
+        Schema::create('area_school_report_collations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('school_id');
+            $table->integer('area_id');
             $table->integer('year_id');
             $table->integer('admission')->default(0);
             $table->integer('gradutaion')->default(0);
-            $table->integer('report')->default(0);
+            $table->integer('student_report')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateSchoolReportCollationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_report_collations');
+        Schema::dropIfExists('area_school_report_collations');
     }
 }

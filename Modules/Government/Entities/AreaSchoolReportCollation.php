@@ -4,11 +4,11 @@ namespace Modules\Government\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class SchoolReportCollation extends BaseModel
+class AreaSchoolReportCollation extends Model
 {
-    public function school()
+    public function area()
     {
-    	return $this->belongsTo('Modules\Education\Entities\School');
+    	return $this->belongsTo('Modules\Address\Entities\Area');
     }
 
     public function year()
@@ -16,7 +16,7 @@ class SchoolReportCollation extends BaseModel
     	return $this->belongsTo(Year::class);
     }
 
-    public function month()
+    public function Month()
     {
     	return $this->belongsTo(Month::class);
     }

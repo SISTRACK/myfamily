@@ -60,4 +60,8 @@ class Lga extends BaseModel
     {
         return $this->hasMany('Modules\Government\Entities\LgaHospitalReportCollation');
     }
+    public function lgaSchoolReportCollations()
+    {
+        return $this->hasMany('Modules\Government\Entities\LgaSchoolReportCollation');
+    }
 }

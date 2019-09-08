@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Profile\Entities\Profile;
 use Modules\Education\Entities\Admitted;
+use Modules\Government\Events\Education\School\NewAdmissionEvent;
 use Modules\Core\Http\Controllers\Education\EducationBaseController;
 
 class AdmissionController extends EducationBaseController
@@ -68,6 +69,7 @@ class AdmissionController extends EducationBaseController
                 'year' => $request->year,
                 'teacher_id' => schoolAdmin()->id
             ]);
+            event(new NewAdmissionEvent($profile))
             session()->flash('message','Congratulation the admission is created success fully');
         }else{
             session()->flash('error',$errors);
