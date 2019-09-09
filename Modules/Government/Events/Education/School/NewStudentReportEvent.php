@@ -4,6 +4,7 @@ namespace Modules\Government\Events\Education\School;
 
 use Illuminate\Queue\SerializesModels;
 use Modules\Profile\Entities\Profile;
+use Modules\Government\Entities\Year;
 
 class NewStudentReportEvent
 {
@@ -21,7 +22,7 @@ class NewStudentReportEvent
     {
         $this->year = Year::firstOrCreate(['year'=>date('Y')]);
         $this->location = $profile->thisProfileFamily()->location;
-        $this->countInTheStudentReport()));
+        $this->countInTheStudentReport();
     }
 
     /**
@@ -34,11 +35,11 @@ class NewStudentReportEvent
         return [];
     }
     
-    public function updateAreaStudentReport()))
+    public function updateAreaStudentReport()
     {
-        //get the last month of the year
+        //get the last year of the year
         $area_school_report = $this->location->area->areaSchoolReportCollations->last();
-        //if this month discharge exit update it from the discharge of the last month
+        //if this year discharge exit update it from the discharge of the last year
         if($area_school_report){
             if($area_school_report->year_id == $this->year->id){
                 $area_school_report->update([
@@ -63,17 +64,17 @@ class NewStudentReportEvent
         
     }
 
-    public function updateTownStudentReport()))
+    public function updateTownStudentReport()
     {
-        //get the last month of the year
+        //get the last year of the year
         $town_school_report = $this->location->area->town->townSchoolReportCollations->last();
         
-        //if this month discharge exit update it from the discharge of the last month
+        //if this year discharge exit update it from the discharge of the last year
         if($town_school_report){
             if($town_school_report->year_id == $this->year->id){
                 $town_school_report->update([
                     'report'=>$town_school_report->report += 1,
-                    'yearly_report'=>$town_school_report->yearly_school_report += 1,
+                    'yearly_report'=>$town_school_report->yearly_report += 1,
                 ]);
             }else{
                 $this->location->area->town->townSchoolReportCollations()->create([
@@ -91,7 +92,7 @@ class NewStudentReportEvent
         } 
     }
     
-    public function updateDistrictStudentReport()))
+    public function updateDistrictStudentReport()
     {
         $district_school_report = $this->location->area->town->district->districtSchoolReportCollations->last();
 
@@ -99,7 +100,7 @@ class NewStudentReportEvent
             if($district_school_report->year_id == $this->year->id){
                 $district_school_report->update([
                     'report'=>$district_school_report->report += 1,
-                    'yearly_report'=>$district_school_report->yearly_school_report += 1,
+                    'yearly_report'=>$district_school_report->yearly_report += 1,
                 ]);
             }else{
                 $this->location->area->town->district->districtSchoolReportCollations()->create([
@@ -119,11 +120,11 @@ class NewStudentReportEvent
         }
     }
 
-    public function updateLgaStudentReport()))
+    public function updateLgaStudentReport()
     {
         $lga_school_report = $this->location->area->town->district->lga->lgaSchoolReportCollations->last();
         if($lga_school_report){
-            if($lga_school_report->month_id == $this->month->id){
+            if($lga_school_report->year_id == $this->year->id){
                 $lga_school_report->update([
                     'report'=>$lga_school_report->report += 1,
                     'yearly_report'=>$lga_school_report->yearly_report += 1,
@@ -145,11 +146,11 @@ class NewStudentReportEvent
         }
     }
 
-    public function countInTheStudentReport()))
+    public function countInTheStudentReport()
     {
-        $this->updateAreaStudentReport()));
-        $this->updateTownStudentReport()));
-        $this->updateDistrictStudentReport()));
-        $this->updateLgaStudentReport()));
+        $this->updateAreaStudentReport();
+        $this->updateTownStudentReport();
+        $this->updateDistrictStudentReport();
+        $this->updateLgaStudentReport();
     }
 }

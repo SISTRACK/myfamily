@@ -128,9 +128,9 @@ Route::prefix('government')->name('government.')->group(function() {
                 Route::prefix('student-report')
                 ->name('student.report.')
                 ->group(function() {
-                    Route::get('/', 'StudentReportController@index')->name('index');  
-                    Route::post('/search', 'StudentReportController@search')->name('search');  
-                    Route::get('/result', 'StudentReportController@showResult')->name('result');
+                    Route::get('/', 'StudenReportController@index')->name('index');  
+                    Route::post('/search', 'StudenReportController@search')->name('search');  
+                    Route::get('/result', 'StudenReportController@showResult')->name('result');
                 });
                 //other school related routes here
             });

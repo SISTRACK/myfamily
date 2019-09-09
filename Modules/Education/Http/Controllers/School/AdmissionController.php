@@ -69,7 +69,7 @@ class AdmissionController extends EducationBaseController
                 'year' => $request->year,
                 'teacher_id' => schoolAdmin()->id
             ]);
-            event(new NewAdmissionEvent($profile))
+            event(new NewAdmissionEvent($profile));
             session()->flash('message','Congratulation the admission is created success fully');
         }else{
             session()->flash('error',$errors);

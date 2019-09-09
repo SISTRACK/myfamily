@@ -48,7 +48,9 @@ class GraduationController extends EducationBaseController
                 'discpline'=>$request->discpline
             ]);
         }
+        
         event(new NewGraduationEvent($admission->profile));
+
         session()->flash('message','Congratulation the graduation was register successfully');
         return redirect()->route('education.school.graduation.index',[$request->route('year')]);
     }

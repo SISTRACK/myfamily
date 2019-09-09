@@ -4,6 +4,7 @@ namespace Modules\Government\Events\Education\School;
 
 use Illuminate\Queue\SerializesModels;
 use Modules\Profile\Entities\Profile;
+use Modules\Government\Entities\Year;
 
 class NewGraduationEvent
 {
@@ -21,7 +22,7 @@ class NewGraduationEvent
     {
         $this->year = Year::firstOrCreate(['year'=>date('Y')]);
         $this->location = $profile->thisProfileFamily()->location;
-        $this->countInTheGraduation());
+        $this->countInTheGraduation();
     }
 
     /**
@@ -34,11 +35,11 @@ class NewGraduationEvent
         return [];
     }
     
-    public function updateAreaGraduation())
+    public function updateAreaGraduation()
     {
-        //get the last month of the year
+        //get the last year of the year
         $area_school_graduation = $this->location->area->areaSchoolReportCollations->last();
-        //if this month discharge exit update it from the discharge of the last month
+        //if this year discharge exit update it from the discharge of the last year
         if($area_school_graduation){
             if($area_school_graduation->year_id == $this->year->id){
                 $area_school_graduation->update([
@@ -63,17 +64,17 @@ class NewGraduationEvent
         
     }
 
-    public function updateTownGraduation())
+    public function updateTownGraduation()
     {
-        //get the last month of the year
+        //get the last year of the year
         $town_school_graduation = $this->location->area->town->townSchoolReportCollations->last();
         
-        //if this month discharge exit update it from the discharge of the last month
+        //if this year discharge exit update it from the discharge of the last year
         if($town_school_graduation){
             if($town_school_graduation->year_id == $this->year->id){
                 $town_school_graduation->update([
                     'graduation'=>$town_school_graduation->graduation += 1,
-                    'yearly_graduation'=>$town_school_graduation->yearly_school_graduation += 1,
+                    'yearly_graduation'=>$town_school_graduation->yearly_graduation += 1,
                 ]);
             }else{
                 $this->location->area->town->townSchoolReportCollations()->create([
@@ -91,7 +92,7 @@ class NewGraduationEvent
         } 
     }
     
-    public function updateDistrictGraduation())
+    public function updateDistrictGraduation()
     {
         $district_school_graduation = $this->location->area->town->district->districtSchoolReportCollations->last();
 
@@ -99,7 +100,7 @@ class NewGraduationEvent
             if($district_school_graduation->year_id == $this->year->id){
                 $district_school_graduation->update([
                     'graduation'=>$district_school_graduation->graduation += 1,
-                    'yearly_graduation'=>$district_school_graduation->yearly_school_graduation += 1,
+                    'yearly_graduation'=>$district_school_graduation->yearly_graduation += 1,
                 ]);
             }else{
                 $this->location->area->town->district->districtSchoolReportCollations()->create([
@@ -119,11 +120,11 @@ class NewGraduationEvent
         }
     }
 
-    public function updateLgaGraduation())
+    public function updateLgaGraduation()
     {
         $lga_school_graduation = $this->location->area->town->district->lga->lgaSchoolReportCollations->last();
         if($lga_school_graduation){
-            if($lga_school_graduation->month_id == $this->month->id){
+            if($lga_school_graduation->year_id == $this->year->id){
                 $lga_school_graduation->update([
                     'graduation'=>$lga_school_graduation->graduation += 1,
                     'yearly_graduation'=>$lga_school_graduation->yearly_graduation += 1,
@@ -145,11 +146,11 @@ class NewGraduationEvent
         }
     }
 
-    public function countInTheGraduation())
+    public function countInTheGraduation()
     {
-        $this->updateAreaGraduation());
-        $this->updateTownGraduation());
-        $this->updateDistrictGraduation());
-        $this->updateLgaGraduation());
+        $this->updateAreaGraduation();
+        $this->updateTownGraduation();
+        $this->updateDistrictGraduation();
+        $this->updateLgaGraduation();
     }
 }

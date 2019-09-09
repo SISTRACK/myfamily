@@ -4,6 +4,7 @@ namespace Modules\Government\Events\Education\School;
 
 use Illuminate\Queue\SerializesModels;
 use Modules\Profile\Entities\Profile;
+use Modules\Government\Entities\Year;
 
 class NewAdmissionEvent
 {

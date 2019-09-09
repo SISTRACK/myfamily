@@ -70,6 +70,7 @@
         <option value="{{$year->id}}">{{$year->year}}</option>
 	@endforeach
 </select><br>
+@isset($months)
 <label>Month</label>
 <select name="month_id" class="form-control">
 	<option value=""></option>
@@ -77,3 +78,4 @@
         <option value="{{$month->id}}">{{$month->month}}</option>
 	@endforeach
 </select><br>
+@endisset

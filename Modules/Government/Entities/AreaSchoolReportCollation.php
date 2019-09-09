@@ -4,7 +4,7 @@ namespace Modules\Government\Entities;
 
 use Modules\Core\Entities\BaseModel;
 
-class AreaSchoolReportCollation extends Model
+class AreaSchoolReportCollation extends BaseModel
 {
     public function area()
     {
