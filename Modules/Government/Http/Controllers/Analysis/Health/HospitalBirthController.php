@@ -216,6 +216,6 @@ class HospitalBirthController extends Controller
             }
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
-        return redirect()->route('government.analysis.health.admission.birth.result');
+        return redirect()->route('government.analysis.health.hospital.admission.birth.result');
     }
 }

@@ -285,6 +285,7 @@
                 <div class="tab-pane" id="no">
                     <strong>We assume that this wife's parent doesn't have family account if they have click <a  href="#yes" data-toggle="tab"><i></i>yes they have</a></li></strong>
                     <div class="form-group clearfix">
+					
                         <label class="col-lg-4 control-label " for="name">Wife Date Of Birth</label>
                         <div class="col-lg-8">
                             <input class="form-control" value="{{ old('wife_date') }}" id="name" name="wife_date" type="date">

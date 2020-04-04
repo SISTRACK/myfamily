@@ -52,4 +52,15 @@ class Profile extends BaseModel implements HasMedia
         return $array;
     }
 
+    public function profilePicture()
+    {
+        if($this->image->id > 2){
+            $picture = $this->image->name;
+        }else{
+            $picture = 'assets/images/users/'.strtolower($this->gender->name).'.jpg';
+        }
+        
+        return $picture;
+    }
+
 }

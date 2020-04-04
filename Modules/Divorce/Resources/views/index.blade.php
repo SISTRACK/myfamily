@@ -16,7 +16,7 @@
                         <p class="text-muted font-13"><strong>Name :</strong><span class="m-l-15">{{$marriage->wife->profile->user->first_name.' '.$marriage->wife->profile->user->last_name}}</span></p>
                         <p class="text-muted font-13"><strong>E-mail :</strong><span class="m-l-15">{{$marriage->wife->profile->user->email}}</span></p>
                         <p class="text-muted font-13"><strong>Phone :</strong><span class="m-l-15">{{$marriage->wife->profile->user->phone}}</span></p> 
-                        <p class="text-muted font-13"><strong>Status :</strong><span class="m-l-15">{{$marriage->wife->status->name}}</span></p>
+                        <p class="text-muted font-13"><strong>Status :</strong><span class="m-l-15">{{$marriage->wife->wifeStatus->name}}</span></p>
                         @if($marriage->divorce != null)
                             <p class="text-muted font-13"><strong>Divorce Count :</strong><span class="m-l-15 btn btn-danger">
                             {{$marriage->divorce->counter}}

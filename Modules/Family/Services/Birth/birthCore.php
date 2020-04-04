@@ -38,7 +38,7 @@ class birthCore
             }
             foreach ($admin->profile->husband->marriages as $marriage) {
             	if($marriage->is_active == 1){
-            		$this->status[] = $marriage->wife->status;
+            		$this->status[] = $marriage->wife->wifeStatus;
             	}
             }
         }else{

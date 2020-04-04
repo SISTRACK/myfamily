@@ -100,11 +100,12 @@ class ProfileController extends BaseController
                 $user = Auth()->User();
             }   
             $profile = $user->profile;
+            
             if(empty($error)){
                 $path = $profile->profileImageLocation('upload');
                 $image = $this->storeFile($request->file('file'),$path);
                 if($profile->image_id > 2){
-                    Storage::disk($this->fileSystem())->delete(storage_url($path.$profile->image->name));
+                    Storage::disk($this->fileSystem())->delete($path.$profile->image->name);
                     $image = $profile->image()->update(['name'=>$image]);
                 }else{
                     $image = Image::create(['name'=>$image]);

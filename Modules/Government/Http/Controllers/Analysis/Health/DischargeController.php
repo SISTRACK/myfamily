@@ -218,6 +218,6 @@ class DischargeController extends Controller
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
 
-        return redirect()->route('government.analysis.health.admission.discharge.result');
+        return redirect()->route('government.analysis.health.hospital.admission.discharge.result');
     }
 }

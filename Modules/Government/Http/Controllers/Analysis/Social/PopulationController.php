@@ -212,6 +212,6 @@ class PopulationController extends Controller
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
 
-        return redirect()->route('government.analysis.population.result');
+        return redirect()->route('government.analysis.social.population.result');
     }
 }

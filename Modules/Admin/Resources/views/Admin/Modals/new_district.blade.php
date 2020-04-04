@@ -7,7 +7,7 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                	<form action="{{route('admin.lga.district.create',[admin()->state->name,$lga->name])}}" method="post">
+                	<form action="{{route('admin.lga.district.create',[$lga->state->name,$lga->name])}}" method="post">
                 		@csrf
                         <input type="hidden" name="lga_id" value="{{$lga->id}}">
                 		<div class="form-group" id="district">

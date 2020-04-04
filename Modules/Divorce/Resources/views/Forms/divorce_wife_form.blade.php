@@ -34,7 +34,7 @@
 					<option value=""></option>
 					@if($wives)
 						@foreach($wives as $wife)
-	                        <option value="{{$wife->status->id}}">{{$wife->status->name}}</option>
+	                        <option value="{{$wife->wifeStatus->id}}">{{$wife->wifeStatus->name}}</option>
 						@endforeach
 					@endif
 				</select>

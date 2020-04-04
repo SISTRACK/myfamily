@@ -53,9 +53,13 @@
                             <li class="nav-item dropdown">
                                 <a data-target="#navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                     @if(Auth()->User()->profile != null)
-                                    <img src="{{Auth()->User()->profile->profileImageLocation('display').Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
+                                        @if(Auth()->User()->profile->image->id > 2)
+                                            <img src="{{storage_url(Auth()->User()->profile->profilePicture())}}" alt="user-img" class="img-circle user-img">
+                                        @else
+                                            <img src="{{asset(Auth()->User()->profile->profilePicture())}}" alt="user-img" class="img-circle user-img">
+                                        @endif
                                     @else
-                                    <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                                        <img src="{{asset('assets/Images/Users/male.jpg')}}" alt="user-img" class="img-circle user-img">
                                     @endif
                                 </a>
 
@@ -75,7 +79,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Logout') }}Auth
                                     </a>
                         
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

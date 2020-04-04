@@ -6,7 +6,7 @@ use Modules\Family\Entities\Family;
 
 use Modules\Family\Services\Family\ValidFamilies;
 
-use Modules\Marriage\Entities\Status;
+use Modules\Marriage\Entities\WifeStatus;
 
 use Modules\Family\Entities\Tribe;
 
@@ -46,12 +46,12 @@ class marriageCore
 			            	//get all his valid wife status and put in the array valid status
 			        		foreach ($admin->profile->husband->marriages as $marriage) {
 				            	if($marriage->is_active == 1){
-				            		$valid_status[] = $marriage->wife->status->id;
+				            		$valid_status[] = $marriage->wife->wifeStatus->id;
 				            	}
 				            }
 			            }
 			            
-			            foreach(Status::all() as $status){
+			            foreach(WifeStatus::all() as $status){
 			            	if(!in_array($status->id,$valid_status)){
 			                    $invalid_status[] = $status->id;
 			            	}
@@ -59,7 +59,7 @@ class marriageCore
 			           
 			            foreach($invalid_status as $status_id){
 			               
-			            	$this->status[] = Status::find($status_id);
+			            	$this->status[] = WifeStatus::find($status_id);
 			           
 			            }
                     break;
@@ -76,7 +76,7 @@ class marriageCore
 	                    }
 	                }
                     
-                    $this->status = Status::all();
+                    $this->status = WifeStatus::all();
                     break;
                 case 'daughter':
                     foreach($admin->profile->husband->father->births as $birth){
@@ -88,7 +88,7 @@ class marriageCore
                             ];
                         }
                     }
-                    $this->status = Status::all();
+                    $this->status = WifeStatus::all();
                     $this->tribes = Tribe::all();
                     break;
                 default:

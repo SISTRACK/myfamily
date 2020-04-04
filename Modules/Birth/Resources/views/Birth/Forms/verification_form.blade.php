@@ -3,7 +3,7 @@
 	
 	<section>
 		<div class="form-group clearfix">
-			<label class="col-lg-4 control-label " for="husband_first_name">Chose Family</label>
+			<label class="col-lg-4 control-label " for="family">Choose Family</label>
 			<div class="col-lg-8">
 				<select name="family" class="form-control">
 					<option value="">Chose Family</option>

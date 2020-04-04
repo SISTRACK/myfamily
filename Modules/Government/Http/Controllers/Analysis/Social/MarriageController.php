@@ -212,6 +212,6 @@ class MarriageController extends Controller
         }
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of]);
 
-        return redirect()->route('government.analysis.marriage.result');
+        return redirect()->route('government.analysis.social.marriage.result');
     }
 }

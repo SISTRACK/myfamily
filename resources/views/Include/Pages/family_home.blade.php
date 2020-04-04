@@ -35,7 +35,11 @@
                         
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($user->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -121,7 +125,11 @@
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($user->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -199,7 +207,11 @@
                        
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($birth->child->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -292,7 +304,11 @@
                        
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($birth->child->profile->image_id > 2)
+                                    <img src="{{storage_url($birth->child->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($birth->child->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -381,7 +397,11 @@
                         <?php $user = $birth->child->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($user->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -460,7 +480,11 @@
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($user->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -542,7 +566,11 @@
                        <?php $user = $marriage->wife->profile->user; ?>
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                @if($user->profile->image_id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                @endif
                             </div>
                             <div class="col-sm-8">
                                 <table>
@@ -749,7 +777,11 @@
                                         <?php $husband_profile = $marriage->husband->profile; ?>
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <img src="{{$husband_profile->profileImageLocation('display').$husband_profile->image->name}}" alt="photo" width="150" class="innerB half">
+                                            @if($husband_profile->image_id > 2)
+                                                <img src="{{storage_url($husband_profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                            @else
+                                                <img src="{{asset($husband_profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                            @endif
                                             </div>
                                             <div class="col-sm-8">
                                                 <table>

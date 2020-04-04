@@ -39,7 +39,6 @@ trait RegisterBirth
      */
     public function store(NewBirthFormRequest $request)
     {
-
         $birth = new NewBirth($request->all());
         if(session('error') == null){
         	//broadcast(new NewBirthEvent($birth->data))->toOthers();

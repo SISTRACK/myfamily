@@ -67,7 +67,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('register')}}">Sign Up</a>
+                                <a href="{{route('signup')}}">Sign Up</a>
 
                             </li>
                         </ul> <!-- end navbar-right -->

@@ -84,12 +84,16 @@
                 <li class="dropdown user-box">
                     <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
                         @if(auth()->guard('government')||auth()->guard('admin')||auth()->guard('doctor')||auth()->guard('teachar'))
-                        <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                        <img src="{{asset('assets/Images/Users/male.jpg')}}" alt="user-img" class="img-circle user-img">
                         @else
                             @if(Auth()->User()->profile != null)
-                            <img src="{{Auth()->User()->profile->profileImageLocation('display').Auth()->User()->profile->image->name}}" alt="user-img" class="img-circle user-img">
+                                @if(Auth()->User()->profile->image->id > 2)
+                                    <img src="{{storage_url(Auth()->User()->profile->profilePictur())}}" alt="user-img" class="img-circle user-img">
+                                @else
+                                    <img src="{{asset(Auth()->User()->profile->profilePicture())}}" alt="users-img" class="img-circle user-img">
+                                @endif
                             @else
-                            <img src="assets/Profile/Images/male.png" alt="user-img" class="img-circle user-img">
+                                <img src="{{asset('assets/Images/Users/male.jpg')}}" alt="user-img" class="img-circle user-img">
                             @endif
                         @endif
                     </a>

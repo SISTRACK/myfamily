@@ -232,11 +232,11 @@ trait ProfileEloquentRelations
 	    		$location = $this->family->location;
 	    	}
     	}
-
+ 
         if(is_null($location)){
             $path = "Nfamily/Profile/Images/";
         }else{
-        	$path = "Nfamily/Profile/Images/".$location->town->district->lga->state->name.' State/'.$location->town->district->lga->name.' Local Government/'.$location->town->district->name.' District/'.$location->town->name.' Town/';
+        	$path = "Nfamily/Profile/Images/".$location->area->town->district->lga->state->name.' State/'.$location->area->town->district->lga->name.' Local Government/'.$location->area->town->district->name.' District/'.$location->area->town->name.' Town/';
         }
         if($flag == 'display' && app()->environment()=='production'){
             return storage_url($path);

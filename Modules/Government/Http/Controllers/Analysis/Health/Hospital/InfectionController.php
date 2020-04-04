@@ -227,7 +227,7 @@ class InfectionController extends Controller
 
         session(['data_set'=>$data_sets,'label'=>$labels,'result_of'=>$result_of,'infection'=>$infection->name]);
 
-        return redirect()->route('government.analysis.health.infection.result');
+        return redirect()->route('government.analysis.health.hospital.infection.result');
     }
 
     /**

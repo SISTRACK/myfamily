@@ -34,7 +34,7 @@ class DeathController extends BaseController
             'status'=> 'required'
         ]);
         session(['death'=>$request->all()]);
-        return redirect('/death');
+        return back();
     }
 
     /**
@@ -48,7 +48,7 @@ class DeathController extends BaseController
             //broadcast(new NewDeathEvent($death))->toOthers();
         }
         session()->forget('death');
-        return redirect('/death');
+        return back();
     }
 
 
