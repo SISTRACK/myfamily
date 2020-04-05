@@ -42,6 +42,17 @@ class Family extends BaseModel
     	return $this->belongsTo(User::class);
     }
 
+    public function areaFamilyCount()
+    {
+        return $this->hasOne(AreaFamilyCount::class);
+    }
+
+    public function familyProfileCounts()
+    {
+        return $this->hasMany(FamilyProfileCount::class);
+    }
+
+
     public function religion()
     {
     	return $this->belongsTo(Religion::class);

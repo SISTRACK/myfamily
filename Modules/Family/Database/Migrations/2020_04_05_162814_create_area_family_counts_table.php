@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTownsTable extends Migration
+class CreateAreaFamilyCountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,23 @@ class CreateTownsTable extends Migration
      */
     public function up()
     {
-        Schema::create('towns', function (Blueprint $table) {
+        Schema::create('area_family_counts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('lga_id')
-            ->default()
+            $table->integer('family_id')
             ->unsigned()
             ->foreign()
             ->refernces('id')
-            ->on('lgas')
+            ->on('families')
             ->delete('restrict')
             ->update('cascade');
-            $table->integer('district_id')
-            ->default()
+            $table->integer('area_id')
             ->unsigned()
             ->foreign()
             ->refernces('id')
-            ->on('districts')
+            ->on('areas')
             ->delete('restrict')
             ->update('cascade');
-            $table->string('name');
-            $table->string('code')->nullable();
+            $table->integer('count')->default(1);
             $table->timestamps();
         });
     }
@@ -44,6 +41,6 @@ class CreateTownsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('towns');
+        Schema::dropIfExists('area_family_counts');
     }
 }

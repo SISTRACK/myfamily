@@ -37,7 +37,21 @@ trait VerifyChild
 		}else{
 			$family_id = session('family')['family'];
 		}
-		$this->profile = $this->user->profile()->create(['image_id'=>$image_id,'gender_id'=>$this->data['gender'],'family_id'=>$family_id,'marital_status_id'=>1,'date_of_birth'=>strtotime($this->data['date'])]);
+
+		$this->profile = $this->user->profile()->create([
+			'image_id'=>$image_id,
+			'gender_id'=>$this->data['gender'],
+			'family_id'=>$family_id,
+			'marital_status_id'=>1,
+			'date_of_birth'=>strtotime($this->data['date'])
+			]);
+		$familyProfileCount = $this->profile->family->familyProfileCounts->last();
+		$this->profile->family->familyProfileCounts()
+		->create([
+			'profile_id'=>$this->wife->profile->id, 
+			'count'=>$familyProfileCount->count += 1
+			]);
+		
 		event(new CountProfileInTheStatePopulation($this->profile));
 	}
 

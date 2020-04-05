@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->increments('id');
             $table->integer('town_id')->default()->unsigned()->foreign()->refernces('id')->on('towns')->delete('restrict')->update('cascade');
             $table->string('name');
+            $table->string('code')->nullable();
             $table->timestamps();
         });
     }

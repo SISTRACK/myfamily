@@ -54,4 +54,4 @@
 @else
     <div class="alert alert-danger">No health report found for this profile</div>
 @endif
-</div>__
+</div>

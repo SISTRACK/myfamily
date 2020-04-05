@@ -56,7 +56,11 @@
             <div class="innerAll half text-center">
                 @foreach($family_event->event->familyMembersThatAreAttending() as $attending)
                 <a href="#" class="border-none">
-                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#{{$attending->id}}">
+                @if($attending->image_id > 2)
+                    <img src="{{storage_url($attending->profilePicture())}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#{{$attending->id}}">
+                @else
+                    <img src="{{asset($attending->profilePicture())}}" alt="photo" width="35" class="innerB half" data-toggle="modal" data-target="#{{$attending->id}}">
+                @endif
                 </a>
                 <!-- modal -->
                 <div class="modal fade" id="{{$attending->id}}" role="dialog">
@@ -69,7 +73,11 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <img src="assets/images/users/{{$attending->image->name}}" alt="photo" width="150" class="innerB half">
+                                    @if($attending->image_id > 2)
+                                        <img src="{{storage_url($attending->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                    @else
+                                        <img src="{{asset($attending->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                                    @endif
                                 </div>
                                 <div class="col-sm-8">
                                     <table>

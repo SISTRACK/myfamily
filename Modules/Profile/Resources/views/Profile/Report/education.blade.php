@@ -1,4 +1,4 @@
-<div class="p-t-10 tab-pane" id="education">
+<div class="tab-pane" id="education">
     @if(count($user->profile->admitteds) > 0)
     <h4 class="text-custom m-b-5 h3">Admissions</h4>
     <div class="row">

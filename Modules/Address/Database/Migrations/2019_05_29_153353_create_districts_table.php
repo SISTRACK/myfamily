@@ -24,6 +24,7 @@ class CreateDistrictsTable extends Migration
             ->delete('restrict')
             ->update('cascade');
             $table->string('name');
+            $table->string('code')->nullable();
             $table->timestamps();
         });
     }

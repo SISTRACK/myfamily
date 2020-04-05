@@ -20,6 +20,7 @@
                     @if(admin() && admin()->state)
                         @include('admin::Admin.Modals.new_lga')
                     @endif
+                    @include('sweetalert::alert')
                     @yield('page-content')
                 </div>
                 <!-- end row -->

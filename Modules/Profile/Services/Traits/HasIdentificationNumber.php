@@ -12,4 +12,9 @@ trait HasIdentificationNumber
 		       $this->family->id.
 		       $this->profile->id
 	}
+
+	public function ($code)
+	{
+		
+	}
 }

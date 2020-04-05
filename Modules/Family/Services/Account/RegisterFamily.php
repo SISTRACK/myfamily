@@ -34,18 +34,23 @@ trait RegisterFamily
      */
     public function store(FamilyFormRequest $request)
     {
-        // try {
+        try {
+            DB::beginTransaction();
             if($family = new NewFamily($request->all())){
                 if(session('error') == null){
+                    return redirect()->route('family.create',
+                    [strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)])->withSuccess('Family account crated successfully');
                     //broadcast(new NewFamilyEvent($family->family))->toOthers();
-                    session()->flash('message','Family account crated successfully');
                 }
-                return redirect()->route('family.create',[strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)]);
+                return redirect()->route('family.create',
+                [strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)])->withSuccess('Family account crated successfully');
             }
-        // } catch (\Exception $exception) {
-        //     return back()->withInput()
-        //         ->withErrors(['error' => 'Unexpected error occurred while trying to process your request!']);
-        // }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollback();
+            return back()->withInput()
+                ->withErrors(['error' => 'Unexpected error occurred while trying to process your request!']);
+        }
     }
 }
 

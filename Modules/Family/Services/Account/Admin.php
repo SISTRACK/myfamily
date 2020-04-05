@@ -27,6 +27,7 @@ trait Admin
         if(!$profile->child){
             event(new CountProfileInTheStatePopulation($profile));
         }
+
     }
 
     public function newUser()
@@ -78,7 +79,13 @@ trait Admin
         	$this->husbandUser = $this->user;
             $this->profile = $this->user->profile()->create(['image_id'=>1,'gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
             $this->husbandProfile = $this->profile;
-		} 
+        }
+        $familyProfileCount = $this->family->familyProfileCounts->last();
+        if($familyProfileCount){
+            $this->profile->familyProfileCount()->create(['family_id'=>$this->family->id,'count'=>$familyProfileCount->count += 1]);
+        }else{
+            $this->profile->familyProfileCount()->create(['family_id'=>$this->family->id]);
+        }
     }
 
     public function newAdminHandle()

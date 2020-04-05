@@ -192,6 +192,16 @@ trait ProfileEloquentRelations
         return $this->hasOne('Modules\Address\Entities\WorkIn');
     }
 
+    public function securityReports()
+    {
+        return $this->hasMany('Modules\Security\Entities\SecurityReport');
+    }
+
+    public function familyProfileCount()
+    {
+        return $this->hasOne('Modules\Family\Entities\FamilyProfileCount');
+    }
+
     public function thisProfileFamilyId()
     {
     	$family = null;

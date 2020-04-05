@@ -98,13 +98,13 @@
                             <div class="widget widget-tabs widget-tabs-gray border-bottom-none">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <h4 class="btn btn-info" data-toggle="tab" href="#health">Health Report</h4>
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#health">Health Report</h4>
                                     </div>
                                     <div class="col-md-4">
-                                        <h4 class="btn btn-info" data-toggle="tab" href="#education">Education Report</h4>
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#education">Education Report</h4>
                                     </div>
                                     <div class="col-md-4">
-                                         <h4 class="btn btn-info" data-toggle="tab" href="#security">Security Report</h4>
+                                         <h4 class="btn btn-info btn-block" data-toggle="tab" href="#security">Security Report</h4>
                                     </div>
                                 </div>
                                 <div class="p-t-10">
@@ -119,6 +119,7 @@
                                                 </div>
                                                 @include('profile::Profile.Report.health')
                                                 @include('profile::Profile.Report.education')
+                                                @include('profile::Profile.Report.security')
                                             </div>
                                         </div>
                                     </div> 

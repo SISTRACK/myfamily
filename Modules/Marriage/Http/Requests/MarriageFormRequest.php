@@ -15,8 +15,6 @@ class MarriageFormRequest extends FormRequest
     {
       
         $rules = [
-            'husband_first_name' => 'required|string|min:3|max:25|',
-            'husband_last_name' => 'required|string|min:3|max:25|',
             'wife_first_name' => 'required|string|min:3|max:15',
             'wife_last_name' => 'required|string|min:3|max:255',
             'country' => 'required|string|max:255',

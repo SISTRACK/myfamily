@@ -43,6 +43,12 @@ trait MarriageInitiate
             event(new CountProfileInTheStatePopulation($this->wife->profile));
             event(new CountThisMarrigeInTheStateMarriages($marriage));
         }
+        $familyProfileCount = $husband->profile->family->familyProfileCounts->last();
+        if($familyProfileCount){
+            $husband->profile->family->familyProfileCounts()->create(['profile_id'=>$this->wife->profile->id, 'count'=>$familyProfileCount->count + 1]);
+        }else{
+            $husband->profile->family->familyProfileCounts()->create(['profile_id'=>$this->wife->profile->id]);
+        }
     }
 
     public function marriageAddress()

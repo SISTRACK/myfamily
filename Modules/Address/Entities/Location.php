@@ -16,4 +16,6 @@ class Location extends BaseModel
     {
     	return $this->belongsTo(Area::class);
     }
+
+
 }

@@ -46,8 +46,21 @@ trait Family
             'admin_id'=>admin()->id,
             ]);
         }
-        
 
+        $areaFamily = $location->area->areaFamilyCounts->last();
+        if($areaFamily){
+            $location->area->areaFamilyCounts()->firstOrCreate([
+                'area_id'=>$location->area_id,
+                'family_id'=>$this->family->id,
+                'count'=>$areaFamily->count += 1,
+            ]);
+        }
+
+        $location->area->areaFamilyCounts()->firstOrCreate([
+            'area_id'=>$location->area_id,
+            'family_id'=>$this->family->id,
+        ]);
+        
     }
 
     private function createSubFamily()
