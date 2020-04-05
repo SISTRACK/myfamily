@@ -7,14 +7,15 @@
 @section('page-content')
 <div class="col-md-8 col-md-offset-2">
     @if($family)
-    @foreach($family->events as $family_event        )
+    @foreach($family->events as $family_event)
+    @if(time() - $family_event->event->start_time + 86400 > 0)
     <div class="widget">
 
         <div class="innerAll half bg-primary border-bottom">
             <div class="media innerAll half margin-none">
                 <div class="pull-left">
                 <i class="fa fa-fw fa-calendar fa-3x"></i>
-                </div>
+                 </div>
                 <div class="media-body">
                     <p class="strong lead margin-none">{{date('D/M/Y',$family_event->event->date)}}</p>
                     <p class="strong margin-none">{{'Time: From '.date('h:m:s a',$family_event->event->start_time)}}  {{'To '.date('h:m:s a',$family_event->event->end_time)}}</p>
@@ -207,11 +208,13 @@
                       </div>
                     </div>
                 </div>
+                
                 <!-- end modal -->
                 @endforeach	
             </div>
         </div>
     </div>
+    @endif
 @endforeach
 @else
 <div class="alert alert-danger">{{'There is no vailable event'}}</div>

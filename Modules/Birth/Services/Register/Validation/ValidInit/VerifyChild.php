@@ -20,7 +20,11 @@ trait VerifyChild
 
 	public function createUser()
 	{
-		$this->user = User::create(['first_name'=>$this->data['child_name'],'last_name'=>$this->data['father_first_name'],'password'=>Hash::make('123456')]);
+		$this->user = User::create([
+			'first_name'=>$this->data['child_name'],
+			'last_name'=>$this->data['father_first_name'],
+			'password'=>Hash::make('123456')
+			]);
 		$this->user->email = $this->user->first_name.$this->user->id.'@family.com';
 		$this->user->save(); 
 	}
