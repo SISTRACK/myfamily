@@ -52,6 +52,6 @@
     <br>    
 @endforeach
 @else
-    <div class="alert alert-danger">No health record found for this profile</div>
+    <div class="alert alert-danger">No health report found for this profile</div>
 @endif
-</div>
+</div>__

@@ -67,6 +67,6 @@
         @endforeach
     </div>
     @else
-        <div class="alert alert-danger">No admission record found in this profiel</div>
+        <div class="alert alert-danger">No admission report found in this profiel</div>
     @endif 
 </div>
