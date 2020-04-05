@@ -1,3 +1,5 @@
+<div class="tab-pane" id="health">
+@if(count($profile->hospitalAdmissions) > 0)
 @foreach($profile->hospitalAdmissions as $admission)
     <div class="col-xs-12">
         <i class="fa fa-pencil" style="font-size: 60px;"></i>
@@ -49,3 +51,7 @@
     </div>
     <br>    
 @endforeach
+@else
+    <div class="alert alert-danger">No health record found for this profile</div>
+@endif
+</div>
