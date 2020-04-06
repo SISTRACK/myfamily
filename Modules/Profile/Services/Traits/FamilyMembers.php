@@ -18,7 +18,7 @@ trait FamilyMembers
         		'email'=>$father->email,
         		'user'=>$father,
         		'status'=>'Father',
-        		'image'=> $father->profile->profileImageLocation('display').$father->profile->image->name
+        		'image'=> $father->profile->profilePicture()
         	]; 
         	$mother = $this->child->birth->mother->wife->profile->user;
         	$parents[] = [
@@ -26,7 +26,7 @@ trait FamilyMembers
         		'email'=>$mother->email,
         		'user'=>$mother,
         		'status'=>'Mother',
-        		'image'=> $mother->profile->profileImageLocation('display').$mother->profile->image->name
+        		'image'=> $mother->profile->profilePicture()
         	];
         }
         return $parents;
@@ -42,7 +42,7 @@ trait FamilyMembers
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
 					'user'=>$birth->child->profile->user,
-					'image'=> $birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name,
+					'image'=> $birth->child->profile->profilePicture(),
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
 			}
@@ -53,7 +53,7 @@ trait FamilyMembers
 					'name'=> $child->first_name.' '.$child->last_name,
 					'email'=>$birth->child->profile->user->email,
 					'user'=>$birth->child->profile->user,
-				    'image'=> $birth->child->profile->profileImageLocation('display').$birth->child->profile->image->name,
+				    'image'=> $birth->child->profile->profilePicture(),
 				    'birth_date' => date('D/M/Y',$birth->child->birth->date)
 			    ];
 			}
@@ -71,8 +71,8 @@ trait FamilyMembers
 						'name'=> $wife->first_name.' '.$wife->last_name,
 					    'email'=>$wife->email,
 					    'user'=>$wife,
-					    'image'=> $marriage->wife->profile->profileImageLocation('display').$marriage->wife->profile->image->name,
-					    'status'=>$marriage->wife->status->name,
+					    'image'=> $marriage->wife->profile->profilePicture(),
+					    'status'=>$marriage->wife->wifeStatus->name,
 					    'married_date' => date('D/M/Y',$marriage->date),
 					    'birth_date' => date('D/M/Y',$this->getWifeDateOfBirth($marriage))
 				    ];

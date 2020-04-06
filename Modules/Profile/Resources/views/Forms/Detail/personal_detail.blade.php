@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -38,6 +39,15 @@
             <label class="col-md-3 control-label">Age</label>
             <div class="col-md-9">
                 <input readonly type="text" value="{{floor($user->profile->date/31622400) != 0 ? floor($user->profile->date/31622400) : 'Not Available'}}" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">FID</label>
+            <div class="col-md-9">
+                <div class="input-group">
+                    <input readonly type="text" id="datepicker1" class="form-control" value="{{$user->profile->identificationNo()}}" />
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                </div>
             </div>
         </div>
     </div>

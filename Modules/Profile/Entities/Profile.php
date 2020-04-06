@@ -3,18 +3,15 @@
 namespace Modules\Profile\Entities;
 
 use Modules\Core\Entities\BaseModel;
-
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-
 use Modules\Profile\Services\Traits\ProfileEloquentRelations;
-
+use Modules\Profile\Services\Traits\HasIdentificationNumber as Identification;
 
 class Profile extends BaseModel implements HasMedia
 {
 
-    use ProfileEloquentRelations, HasMediaTrait;
+    use ProfileEloquentRelations, HasMediaTrait, Identification;
 
     public function birth()
     {
