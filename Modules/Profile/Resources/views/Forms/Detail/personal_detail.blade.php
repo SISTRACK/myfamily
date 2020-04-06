@@ -45,7 +45,7 @@
             <label class="col-md-3 control-label">FID</label>
             <div class="col-md-9">
                 <div class="input-group">
-                    <input readonly type="text" id="datepicker1" class="form-control" value="{{$user->profile->identificationNo()}}" />
+                    <input readonly type="text" id="datepicker1" class="form-control" value="{{$user->profile->FID}}" />
                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
             </div>

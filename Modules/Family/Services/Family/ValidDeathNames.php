@@ -85,7 +85,7 @@ class ValidDeathNames
 		                            'user_id' => $profile->user->id
 		                    	];			                   
 	                    	}else{
-	                    		if(Auth()->User()->id != $id){
+	                    		if(Auth()->User()->id != $profile->user->id){
 			                    	$names[] = [
 			                            'first_name' => $profile->user->first_name,
 			                            'last_name' => $profile->user->last_name,

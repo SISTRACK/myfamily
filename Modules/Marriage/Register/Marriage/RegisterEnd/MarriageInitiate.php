@@ -49,6 +49,7 @@ trait MarriageInitiate
         }else{
             $husband->profile->family->familyProfileCounts()->create(['profile_id'=>$this->wife->profile->id]);
         }
+        $this->wife->profile->update(['FID'=>$this->wife->profile->identificationNo()]);
     }
 
     public function marriageAddress()

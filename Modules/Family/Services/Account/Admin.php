@@ -86,6 +86,8 @@ trait Admin
         }else{
             $this->profile->familyProfileCount()->create(['family_id'=>$this->family->id]);
         }
+
+        $this->profile->update(['FID'=>$this->profile->identificationNo()]);
     }
 
     public function newAdminHandle()

@@ -74,7 +74,7 @@ class NewAdmissionEvent
             if($town_school_admission->year_id == $this->year->id){
                 $town_school_admission->update([
                     'admission'=>$town_school_admission->admission += 1,
-                    'yearly_admission'=>$town_school_admission->yearly_school_admission += 1,
+                    'yearly_admission'=>$town_school_admission->yearly_admission += 1,
                 ]);
             }else{
                 $this->location->area->town->townSchoolReportCollations()->create([
@@ -100,7 +100,7 @@ class NewAdmissionEvent
             if($district_school_admission->year_id == $this->year->id){
                 $district_school_admission->update([
                     'admission'=>$district_school_admission->admission += 1,
-                    'yearly_admission'=>$district_school_admission->yearly_school_admission += 1,
+                    'yearly_admission'=>$district_school_admission->yearly_admission += 1,
                 ]);
             }else{
                 $this->location->area->town->district->districtSchoolReportCollations()->create([
@@ -124,7 +124,7 @@ class NewAdmissionEvent
     {
         $lga_school_admission = $this->location->area->town->district->lga->lgaSchoolReportCollations->last();
         if($lga_school_admission){
-            if($lga_school_admission->month_id == $this->month->id){
+            if($lga_school_admission->year_id == $this->year->id){
                 $lga_school_admission->update([
                     'admission'=>$lga_school_admission->admission += 1,
                     'yearly_admission'=>$lga_school_admission->yearly_admission += 1,

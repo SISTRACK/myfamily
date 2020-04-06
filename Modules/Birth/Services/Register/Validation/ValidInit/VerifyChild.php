@@ -52,9 +52,11 @@ trait VerifyChild
 		$familyProfileCount = $this->profile->family->familyProfileCounts->last();
 		$this->profile->family->familyProfileCounts()
 		->create([
-			'profile_id'=>$this->wife->profile->id, 
+			'profile_id'=>$this->profile->id, 
 			'count'=>$familyProfileCount->count += 1
 			]);
+
+			$this->profile->update(['FID'=>$this->profile->identificationNo()]);
 		
 		event(new CountProfileInTheStatePopulation($this->profile));
 	}

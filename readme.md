@@ -65,4 +65,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 ## to keep every thing up and running simply copy and paste below command on your terminal
-`php artisan migrate:fresh --seed; php artisan system:address-generate; php artisan system:admins-generate; php artisan government:users-generate`
+`php artisan migrate:fresh --seed; php artisan system:address-generate; php artisan generate:address-code; php artisan system:admins-generate; php artisan government:users-generate`

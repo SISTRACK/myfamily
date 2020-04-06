@@ -10,7 +10,11 @@
                     <div class="text-center card-box">
                         <div class="member-card">
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" class="img-radius" height="250" width="200">
+                                @if($user->profile->image->id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @endif
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{$user->first_name.' '.$user->last_name}}</span></p>
@@ -63,84 +67,45 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="btn btn-primary btn-block ">Health Report</h4>
-                            <div class="p-t-10">
+                        <div class="widget widget-tabs widget-tabs-gray border-bottom-none">
                                 <div class="row">
-                                    @php
-                                        $profile = $user->profile;
-                                    @endphp
-                                    @include('profile::Profile.Report.health')
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6">
-                            <h4 class="btn btn-primary btn-block ">Secrity Report</h4>
-                            <div class="p-t-10">
-                                <div class="row">
-                                    <h1>Loading....</h1>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6">
-                            <h4 class="btn btn-primary btn-block ">Educational Report</h4>
-                            <div class="p-t-10">
-                            	<h4 class="text-custom m-b-5 h3">Admissions</h4>
-                                <div class="row">
-                                    @foreach($user->profile->admitteds as $admission)
-                                    <div class="col-md-12">
-                                    	<i class="fa fa-pencil" style="font-size: 60px;"></i>
-                                    	<i class="text-custom m-b-5">Admitted to</i> {{$admission->school->name}} {{$admission->school->schoolType->name}}<br>
-                                    	<i class="text-custom m-b-5">Located At</i> {{$admission->school->schoolLocation->address}}<br>
-                                    	<i class="text-custom m-b-5">At Year of</i> {{$admission->year}}<hr>
-                                    </div> 
-                                    @endforeach
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#health">Health</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#education">Education</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#security">Security</h4>
+                                    </div>
+                                    @if(count($user->profile->admitteds->where('school_id',schoolAdmin()->school->id)) < 1)
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#admit">Give Admission</h4>
+                                    </div>
+                                    @endif
                                 </div>
-                                <h4 class="text-custom m-b-5 h3">Graduation</h4>
-                                <div class="row">
-                                    @foreach($user->profile->admitteds as $admission)
-                                    <div class="col-md-12">
-                                    	@if($admission->graduated)
-                                    	   <i class="fa fa-graduation-cap" style="font-size: 60px;"></i>
-                                           <i class="text-custom m-b-5">Graduated From</i> {{$admission->school->name}}<br>
-                                           <i class="text-custom m-b-5">Education Level</i> 
-                                    	   {{$admission->school->schoolType->name}}<br>
-                                    	   <i class="text-custom m-b-5">At Year of</i> 
-                                    	   {{$admission->graduated->year}}<br>
-                                    	   <i class="text-custom m-b-5">Class Honored</i> 
-                                    	   {{$admission->graduated->class_honor}}
-                                           <h5 class="text-custom m-b-5">Certificate</h5>
-                                    	   @if($admission->graduated->certificate)
-                                    	   <a href="{{storage_url('Nfamily/Profile/Certificates/'.$admission->graduated->certificate)}}"><i class="fa fa-certificate" style="font-size: 60px;"></i>
-                                    	   </a>
-                                    	   @else
-                                    	       <i>Not Uploaded !!!!</i>
-                                           @endif
-                                    	   </div><br><hr>
-                                    	@endif
-                                    </div>
-                                    @endforeach
-                                </div> <hr>
-                                <h4 class="text-custom m-b-5 h3">School Reports</h4>
-                                <div class="row">
-                                    @foreach($user->profile->admitteds as $admission)
-                                    <div class="col-md-12">
-                                    	@foreach($admission->schoolReports as $report)
-                                           <i class="fa fa-book" style="font-size: 60px;"></i>
-                                           <i class="text-custom m-b-5">{{$admission->school->name}} Report base on :</i>{{$report->schoolReportType->name}}<br>
-                                           <i class="text-custom m-b-5">About Report :</i>{{$report->about_report}}<br>
-                                        @endforeach
-                                    </div>
-                                    @endforeach
-                                </div> 
+                                <div class="p-t-10">
+                                    <div class="row">
+                                        @php
+                                            $profile = $user->profile;
+                                        @endphp
+                                        <div class="widget-body">
+                                            <div class="tab-content">
+                                                <div class=" tab-pane active alert alert-success">
+                                                Click the report above to view here !!!
+                                                </div>
+                                                @include('profile::Profile.Report.health')
+                                                @include('profile::Profile.Report.education')
+                                                @include('profile::Profile.Report.security')
+                                                @include('education::Education.School.Admission.create')
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
-    
+                    </div>
+                    
                     <hr/>
                     <div class="row">
                 		<div class="col-md-8 col-sm-6">
@@ -187,39 +152,40 @@
                 		</div>
                     </div>
                     <hr/>
+                    @if($user->profile->child)
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 href="#"  data-toggle="modal" data-target="#work_address" class="text-custom m-b-5">Work Address</h4>
+                            <h4 href="#"  data-toggle="modal" data-target="#work_address" class="text-custom m-b-5">Father's Work Address</h4>
                             <div class="p-t-10">
                                 <p class="text-muted font-13">
                                     <table>
                                         <tr>
                                             <td width="200">Country</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->company->town->lga->state->country->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->company->town->lga->state->country->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>State</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->company->town->lga->state->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->company->town->lga->state->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>Local Government</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->company->town->lga->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->company->town->lga->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>Town / Village</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->company->town->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->company->town->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>Company / Organisation</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->company->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->company->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>Office</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->office->name : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->office->name : ''}}</td>
                                         </tr>
                                         <tr>
                                             <td>Position</td>
-                                            <td>{{$user->profile->work != null ? $user->profile->work->address->position : ''}}</td>
+                                            <td>{{$user->profile->child->birth->father->husband->profile->work != null ? $user->profile->child->birth->father->husband->profile->work->address->position : ''}}</td>
                                         </tr>
                                     </table>
                                 </p>
@@ -227,6 +193,7 @@
                         </div>
                 	</div>
                     <hr/>
+                    @endif
                     <h4 href="#"  data-toggle="modal" data-target="#expertice" class="text-custom m-b-5">Expertise</h4>
                     <div class="row m-t-20">
                         @foreach($user->profile->currentProfileExpertice() as $expertice)
@@ -277,16 +244,14 @@
 
                     </div> <!-- end row -->
                     <div class="col-md-8 col-lg-9">
-                    	@if(empty($user->profile->parents()))
-                            
-                        @else
+                    	@if(!empty($user->profile->parents()))
 	                    <h4 class="text-custom m-b-5">Parents</h4>
 	                    <div class="row">
                             @foreach($user->profile->parents() as $parent)
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="{{$parent['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                                        <img src="{{asset($parent['image'])}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -302,20 +267,12 @@
                                                 <td>Status</td>
                                                 <td>{{$parent['status']}}</td>
                                             </tr>
+                                            <tr>
+                                                <td>GSM</td>
+                                                <td></td>
+                                            </tr>
                                         </table>
-                                        @if($parent['user']->profile->image_id == 1 || $parent['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
-                                            @csrf            
-                                            <label for="inputPasswordOld">choose Picture</label>
-                                            
-                                                <input name="file" type="file" class="form-control" />
-                                                <input type="hidden" value="{{$parent['user']->id}}" name="id">
-                                            <div class="separator bottom"></div>
-                                            <div class="form-actions" style="margin: 0;">
-                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
-                                            </div>
-                                        </form>
-                                        @endif
+    
                                     </div>
                                 </div>
                             </div>
@@ -323,9 +280,7 @@
                         @endif
                     </div>
                 
-            	    @if(empty($user->profile->children()))
-                        
-                    @else
+            	    @if(!empty($user->profile->children()))
                     <h4 class="text-custom m-b-5">Children</h4>
                     <div class="row">
                             @foreach($user->profile->children() as $child)
@@ -333,7 +288,7 @@
                                 <div class=" thumb">
 
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="{{$child['image']}}" class="thumb-img" alt="work-thumbnail" class="img-radius" height="200" width="200">
+                                        <img src="{{asset($child['image'])}}" class="thumb-img" alt="work-thumbnail" class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
@@ -350,21 +305,7 @@
                                                 <td>{{$child['birth_date']}}</td>
                                             </tr>
                                         </table>
-                                        @if($child['user']->profile->image_id == 1 || $child['user']->profile->image_id == 2)
-                                        <form action="{{ route('family.member.profile.update',[$user->profile->thisProfileFamily()->name,$user->profile->id]) }}" method="post" enctype="multipart/form-data">
-                                            @csrf            
-                                            <label for="inputPasswordOld">choose Picture</label>
-                                            
-                                                <input name="file" type="file" class="form-control" />
-                                                <input type="hidden" value="{{$child['user']->id}}" name="id">
-                                            <div class="separator bottom"></div>
-                                            <div class="form-actions" style="margin: 0;">
-                                                <button name="submit" value="upload_image"type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Upload Picture </button>
-                                            </div>
-                                        </form>
-                                        @endif
                                     </div>
-                                    
                                 </div>
                             </div>
                             @endforeach

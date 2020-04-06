@@ -49,6 +49,14 @@ trait BaseAddress
 
     public function newArea(Town $town)
     {
-        $this->area = $town->areas()->firstOrCreate(['name'=>$this->data['area']]);
+        $this->area = $town->areas()->firstOrCreate(['name'=>$this->data['area'],'code'=>$this->formatCode(count($town->areas)+1)]);
+    }
+
+    public function formatCode($code)
+    {
+        if($code < 10){
+            $code = '0'.$code;
+        }
+        return $code;
     }
 }

@@ -1,7 +1,6 @@
 @extends('education::layouts.master')
 
 @section('page-content')
-	<button class="btn btn-primary"><a href="{{route('education.school.admission.create',[request()->route('year')])}}" style="color: white"><i class="fa fa-plus"></i></a></button>
 	@if(empty($admissions))
 	<div class="alert alert-success h4">No Admission Record Found</div>
     @else

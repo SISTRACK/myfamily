@@ -44,7 +44,7 @@ trait RegisterBirth
         	//broadcast(new NewBirthEvent($birth->data))->toOthers();
             session()->forget('family');
             session()->flash('message','Birth is registered successfully');
-            return back();
+            return back()->withSuccess('Brith is registered successfully');
         }
             return back()->withIput();
     }

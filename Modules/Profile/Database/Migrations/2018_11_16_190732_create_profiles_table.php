@@ -80,6 +80,7 @@ class CreateProfilesTable extends Migration
             ->nullable()
             ->default('MY short Biography');
             $table->string('date_of_birth')->default('Not Available');
+            $table->string('FID')->nullable();
             $table->timestamps();
         });
     }

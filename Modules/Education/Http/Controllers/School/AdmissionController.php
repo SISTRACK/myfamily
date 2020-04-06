@@ -50,12 +50,12 @@ class AdmissionController extends EducationBaseController
     public function store(Request $request)
     {
         $request->validate([
-            'profile_id'=>'required',
+            'fid'=>'required',
             'admission_no'=>'required|unique:admitteds'
         ]);
         $errors = [];
         //is this profile exist
-        $profile = Profile::find($request->profile_id);
+        $profile = Profile::where('FID',$request->fid)->first();
         if(!$profile){
             $errors[] = 'Invali Student Profile ID';
         }
@@ -87,7 +87,7 @@ class AdmissionController extends EducationBaseController
     public function update(Request $request, $year, $admission_id)
     {
         $request->validate([
-            'profile_id'=>'required',
+            'fid'=>'required',
             'admission_no'=>'required'
         ]);
         //is this profile exist

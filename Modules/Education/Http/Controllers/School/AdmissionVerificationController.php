@@ -27,12 +27,12 @@ class AdmissionVerificationController extends EducationBaseController
      */
     public function verify(Request $request)
     {
-        $request->validate(['profile_id'=>'required']);
-        $profile = Profile::find($request->profile_id);
+        $request->validate(['fid'=>'required']);
+        $profile = Profile::where('FID',$request->fid)->first();
         if($profile){
             return redirect()->route('education.school.admission.verification.profile',[$request->route('year'),$profile->id]);
         }
-        session()->flash('error',['Invalid Student profile ID']);
+        session()->flash('error',['Invalid Student FID']);
         return back();
     }
 
@@ -43,8 +43,16 @@ class AdmissionVerificationController extends EducationBaseController
      */
     public function viewProfile($year,$profile_id)
     {
-        
         $profile = Profile::find($profile_id);
-        return view('education::Education.School.Verification.profile',['user'=>$profile->user]);
+        return view('education::Education.School.Verification.profile',['years'=>$this->getValidYears(),'user'=>$profile->user]);
+    }
+
+    public function getValidYears()
+    {
+        $years = [];
+        for ($i = request()->route('year') ; $i >= request()->route('year') - 10 ; $i-- ) { 
+            $years[] = $i;
+        }
+        return $years;
     }
 }

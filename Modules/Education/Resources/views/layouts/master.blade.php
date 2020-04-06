@@ -3,19 +3,17 @@
     {{Breadcrumbs::render()}}
 @endsection
 @section('side-bar')
-<li>
-    <a href="{{route('education.school.admission.verification.create',[date('Y')])}}"><span class="fa fa-pencil"> Verify Student</span></a>
-</li>
+
 <li class="has_sub">
     <a href="#" class="waves-effect"><i class="fa fa-pencil"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
-            <a href="{{route('education.school.admission.index',[date('Y')])}}"><span class="fa fa-pencil"> {{date('Y')}} Admission</span></a>
+            <a href="{{route('education.school.admission.verification.create',[date('Y')])}}"><span class="fa fa-pencil"> {{date('Y')}} Admission</span></a>
         </li>
         @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
             @if($year != date('Y'))
                 <li>
-                    <a href="{{route('education.school.admission.index',[$year])}}"><span class="fa fa-pencil"> {{$year}} Admission</span></a>
+                    <a href="{{route('education.school.admission.verification.create',[$year])}}"><span class="fa fa-pencil"> {{$year}} Admission</span></a>
                 </li>
             @endif
         @endforeach
