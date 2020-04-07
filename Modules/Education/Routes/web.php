@@ -53,27 +53,32 @@ Route::prefix('education')->group(function() {
 		});
 
 		//school gradutaion routes
-	    Route::prefix('{year}/graduation/')
+	    Route::prefix('graduation/')
 	    ->namespace('School')
 	    ->name('graduation.')
 	    ->group(function() {
-		    Route::get('show', 'GraduationController@index')->name('index');
+		    Route::get('{year}/show', 'GraduationController@index')->name('index');
 		    Route::get('create', 'GraduationController@create')->name('create');
-		    Route::post('{graduation_id}/update', 'GraduationController@update')->name('update');
+		    Route::post('{year}/{graduation_id}/update', 'GraduationController@update')->name('update');
 		    Route::post('register', 'GraduationController@store')->name('register');
-		    Route::get('{graduation_id}/delete', 'GraduationController@delete')->name('delete');
+			Route::get('register', 'GraduationController@listIndex')->name('list');
+			Route::post('search', 'GraduationController@searchGraduation')->name('search');
+			
+		    Route::get('{year}/{graduation_id}/delete', 'GraduationController@delete')->name('delete');
 		});
 
         //school school report routes
-	    Route::prefix('{year}/student-school-report/')
+	    Route::prefix('report/')
 	    ->namespace('School')
 	    ->name('report.')
 	    ->group(function() {
-		    Route::get('show', 'ReportController@index')->name('index');
+		    Route::get('{year}/show', 'ReportController@index')->name('index');
 		    Route::get('create', 'ReportController@create')->name('create');
-		    Route::post('{report_id}/update', 'ReportController@update')->name('update');
+		    Route::post('{year}/{report_id}/update', 'ReportController@update')->name('update');
 		    Route::post('register', 'ReportController@store')->name('register');
-		    Route::get('{report_id}/delete', 'ReportController@delete')->name('delete');
+		    Route::post('search', 'ReportController@searchReport')->name('search');
+		    Route::get('{year}/{report_id}/delete', 'ReportController@delete')->name('delete');
+		    Route::get('/list', 'ReportController@listIndex')->name('list');
 		});
 	    
 	});

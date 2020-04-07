@@ -19,13 +19,23 @@ Breadcrumbs::for('education.school.admission.create', function ($breadcrumbs) {
     $breadcrumbs->push(request()->route('year').'Admission', route('education.school.admission.index', [request()->route('year')]));
 });
 Breadcrumbs::for('education.school.graduation.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('education.school.graduation.list');
+    $breadcrumbs->push(request()->route('year'), route('education.school.admission.index', [request()->route('year')]));
+});
+
+Breadcrumbs::for('education.school.graduation.list', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');
-    $breadcrumbs->push(request()->route('year').' Graduations', route('education.school.admission.index', [request()->route('year')]));
+    $breadcrumbs->push('Graduations', route('education.school.graduation.list'));
 });
 
 Breadcrumbs::for('education.school.report.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('education.school.report.list');
+    $breadcrumbs->push(request()->route('year'), route('education.school.report.index', [request()->route('year')]));
+});
+
+Breadcrumbs::for('education.school.report.list', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');
-    $breadcrumbs->push(request()->route('year').' Reports', route('education.school.admission.index', [request()->route('year')]));
+    $breadcrumbs->push('Reports', route('education.school.report.list'));
 });
 
 Breadcrumbs::for('education.school.admission.verification.create', function ($breadcrumbs) {

@@ -41,7 +41,7 @@ class AdmissionController extends EducationBaseController
     public function getValidYears()
     {
         $years = [];
-        for ($i = request()->route('year') ; $i >= request()->route('year') - 10 ; $i-- ) { 
+        for ($i = date('Y') ; $i >= date('Y') - 20 ; $i-- ) { 
             $years[] = $i;
         }
         return $years;

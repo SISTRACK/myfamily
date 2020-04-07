@@ -20,7 +20,17 @@ class ReportController extends EducationBaseController
     {
         return view('education::Education.School.Report.index');
     }
+    
+    public function listIndex()
+    {   
+        return view('education::Education.School.Report.List.index',['years'=>$this->getValidYears()]);
+    }
 
+    public function searchGraduation(Request $request)
+    {
+        $request->validate(['year'=>'required']);
+        return redirect()->route('education.school.report.index',[$request->year]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -83,5 +93,14 @@ class ReportController extends EducationBaseController
         $report->delete();
         session()->flash('message','Congratulation the report is deleted successfully');
         return redirect()->route('education.school.report.index',[request()->route('year')]);
+    }
+
+    public function getValidYears()
+    {
+        $years = [];
+        for ($i = date('Y') ; $i >= date('Y') - 20 ; $i-- ) { 
+            $years[] = $i;
+        }
+        return $years;
     }
 }

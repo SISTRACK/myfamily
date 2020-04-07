@@ -2,6 +2,7 @@
 
 namespace Modules\Education\Http\Controllers\School;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Education\Entities\Admitted;
 use Modules\Education\Entities\Graduated;
@@ -22,7 +23,16 @@ class GraduationController extends EducationBaseController
         return view('education::Education.School.Graduation.index',['class_honors'=>$class_honors]);
     }
 
-    
+    public function listIndex()
+    {   
+        return view('education::Education.School.Graduation.List.index',['years'=>$this->getValidYears()]);
+    }
+
+    public function searchGraduation(Request $request)
+    {
+        $request->validate(['year'=>'required']);
+        return redirect()->route('education.school.graduation.index',[$request->year]);
+    }
     /**
      * Store a newly created resource in storage.
      * @param Request $request
@@ -109,5 +119,14 @@ class GraduationController extends EducationBaseController
     public function destroy($id)
     {
         //
+    }
+
+    public function getValidYears()
+    {
+        $years = [];
+        for ($i = date('Y') ; $i >= date('Y') - 20 ; $i-- ) { 
+            $years[] = $i;
+        }
+        return $years;
     }
 }

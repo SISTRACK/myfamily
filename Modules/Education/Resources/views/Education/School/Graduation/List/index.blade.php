@@ -5,7 +5,7 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
         <h3 class="text-primary">Choose year</h3>
-        <form action="{{route('education.school.admission.search')}}" method="post">
+        <form action="{{route('education.school.graduation.search')}}" method="post">
         	@csrf
             <select class="form-control" name="year">
                 <option value="">Select Year</option>
