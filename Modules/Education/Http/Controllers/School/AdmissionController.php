@@ -25,6 +25,19 @@ class AdmissionController extends EducationBaseController
         }
         return view('education::Education.School.Admission.index',['admissions'=>$admissions,'years'=>$this->getValidYears()]);
     }
+
+    public function listIndex()
+    {
+        return view('education::Education.School.Admission.List.index',['years'=>$this->getValidYears()]);
+    }
+    
+    public function admissionSearch(Request $request)
+    {
+        $request->validate(['year'=>'required']);
+        return redirect()->route('education.school.admission.index',[$request->year]);
+    }
+
+
     public function getValidYears()
     {
         $years = [];

@@ -5,12 +5,18 @@ Breadcrumbs::for('education.dashboard', function ($breadcrumbs) {
 });
 
 Breadcrumbs::for('education.school.admission.index', function ($breadcrumbs) {
-    $breadcrumbs->parent('education.dashboard');
-    $breadcrumbs->push(request()->route('year').' Admissions', route('education.school.admission.index', [request()->route('year')]));
+    $breadcrumbs->parent('education.school.admission.list');
+    $breadcrumbs->push(request()->route('year'), route('education.school.admission.index', [request()->route('year')]));
 });
+
+Breadcrumbs::for('education.school.admission.list', function ($breadcrumbs) {
+    $breadcrumbs->parent('education.dashboard');
+    $breadcrumbs->push('Admissions', route('education.school.admission.list'));
+});
+
 Breadcrumbs::for('education.school.admission.create', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');
-    $breadcrumbs->push(request()->route('year').' Create Admission', route('education.school.admission.index', [request()->route('year')]));
+    $breadcrumbs->push(request()->route('year').'Admission', route('education.school.admission.index', [request()->route('year')]));
 });
 Breadcrumbs::for('education.school.graduation.index', function ($breadcrumbs) {
     $breadcrumbs->parent('education.dashboard');

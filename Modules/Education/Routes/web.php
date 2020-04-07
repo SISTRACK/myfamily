@@ -29,15 +29,17 @@ Route::prefix('education')->group(function() {
 	    });
 
 	    //school admission routes
-	    Route::prefix('{year}/admission/')
+	    Route::prefix('admission/')
 	    ->name('admission.')
 	    ->namespace('School')
 	    ->group(function() {
-		    Route::get('show', 'AdmissionController@index')->name('index');
+		    Route::get('show/{year}', 'AdmissionController@index')->name('index');
 		    Route::get('create', 'AdmissionController@create')->name('create');
-		    Route::post('{admission_id}/update', 'AdmissionController@update')->name('update');
+		    Route::post('{year}/{admission_id}/update', 'AdmissionController@update')->name('update');
 		    Route::post('register', 'AdmissionController@store')->name('register');
-		    Route::get('{admission_id}/delete', 'AdmissionController@delete')->name('delete');
+		    Route::get('{year}/{admission_id}/delete', 'AdmissionController@delete')->name('delete');
+		    Route::get('/list', 'AdmissionController@listIndex')->name('list');
+		    Route::post('/saerch-admission', 'AdmissionController@admissionSearch')->name('search');
             
             Route::prefix('verification/')
 	           ->name('verification.')

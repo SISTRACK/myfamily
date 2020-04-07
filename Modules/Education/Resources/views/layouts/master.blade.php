@@ -8,15 +8,11 @@
     <a href="#" class="waves-effect"><i class="fa fa-pencil"></i> <span> Admission </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li>
-            <a href="{{route('education.school.admission.verification.create',[date('Y')])}}"><span class="fa fa-pencil"> {{date('Y')}} Admission</span></a>
+            <a href="{{route('education.school.admission.verification.create')}}"><span class="fa fa-pencil"> Admission </span></a>
         </li>
-        @foreach(schoolAdmin()->school->yearsOfAdmission() as $year)
-            @if($year != date('Y'))
-                <li>
-                    <a href="{{route('education.school.admission.verification.create',[$year])}}"><span class="fa fa-pencil"> {{$year}} Admission</span></a>
-                </li>
-            @endif
-        @endforeach
+        <li>
+            <a href="{{route('education.school.admission.list')}}"><span class="fa fa-pencil">Admitted Students</span></a>
+        </li>
     </ul>
 </li>
 <li class="has_sub">
