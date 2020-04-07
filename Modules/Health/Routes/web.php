@@ -34,6 +34,7 @@ Route::prefix('health')->name('health.')->group(function() {
                Route::get('/', 'PatientController@index')->name('index');
                Route::get('/{profile_id}/profile','PatientController@profile')->name('profile');
                Route::post('/profile/verify','PatientController@verify')->name('profile.verify');
+               Route::get('/admission/create','AdmissionController@create')->name('create');
                Route::post('/admission/register','AdmissionController@admitPatient')->name('admit');
                Route::post('/admission/discharge','AdmissionController@dischargePatient')->name('discharge');
                Route::get('/admission/{admission_id}/delete','AdmissionController@deleteAdmission')->name('admission.delete');

@@ -15,22 +15,14 @@ use Modules\Government\Events\Health\NewStateCitizenHospitalAdmissionEvent;
 
 class AdmissionController extends HealthBaseController
 {
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
-    public function index()
-    {
-        return view('health::index');
-    }
-
+    
     /**
      * Show the form for creating a new resource.
      * @return Response
      */
     public function create()
     {
-        return view('health::create');
+        return view('health::Hospital.Admission.create');
     }
 
     /**

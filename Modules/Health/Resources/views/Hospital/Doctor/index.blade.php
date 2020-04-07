@@ -23,7 +23,7 @@
         	</thead>
             <tbody>
             @foreach(doctor()->hospital->doctors as $doctor)
-	            @if($doctor->role_id != 1)
+	            @if($doctor->role_id > 1)
 		        <tr>
 					<td>{{$loop->index}}</td>
 					<td>{{$doctor->first_name}} {{$doctor->last_name}}</td>

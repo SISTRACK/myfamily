@@ -14,6 +14,10 @@
 	</li>
 @else
 	<li>
+	    <a href="{{route('health.hospital.doctor.patient.create')}}"><span class="fa fa-patient"> Admission </span></a>
+	</li>
+
+    <li>
 	    <a href="{{route('health.hospital.doctor.patient.index')}}"><span class="fa fa-patient"> Patients </span></a>
 	</li>
 

@@ -11,7 +11,11 @@
                     <div class="text-center card-box">
                         <div class="member-card">
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="{{$profile->profileImageLocation('display').$profile->image->name}}" class="img-radius" height="250" width="200">
+                                @if($profile->image->id > 2)
+                                <img src="{{storage_url($profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @else
+                                <img src="{{asset($profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @endif
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{$profile->user->first_name.' '.$profile->user->last_name}}</span></p>
@@ -58,13 +62,41 @@
                 <div class="col-md-8 col-lg-9">
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Health Report</h4>
-                            <div class="p-t-10">
+                            <div class="widget widget-tabs widget-tabs-gray border-bottom-none">
                                 <div class="row">
-                                    @include('profile::Profile.Report.health')
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#health">Health</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#education">Education</h4>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#security">Security</h4>
+                                    </div>
+                                    @if(!doctor()->onAdmission($profile))
+                                    <div class="col-md-3">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#admit_patient">Admit Patient</h4>
+                                    </div>
+                                    @endif
                                 </div>
-                                <button class="btn btn-info" data-toggle="modal" data-target="#admit_patient">Admit Patient</button>
-                                @include('health::Patient.admit')
+                                <div class="p-t-10">
+                                    <div class="row">
+                                        <div class="widget-body">
+                                            <div class="tab-content">
+                                                <div class=" tab-pane active alert alert-success">
+                                                Click the report above to view here !!!
+                                                </div>
+                                                @php
+                                                    $user = $profile->user;
+                                                @endphp
+                                                @include('profile::Profile.Report.health')
+                                                @include('profile::Profile.Report.education')
+                                                @include('profile::Profile.Report.security')
+                                                @include('health::Patient.admit')
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,20 +196,20 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class=" thumb">
                                     <a href="#" class="image-popup" title="Screenshot-1">
-                                        <img src="{{$parent['image']}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                                        <img src="{{asset($parent['image'])}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
                                     </a>
                                     <div class="gal-detail">
                                         <table>
                                             <tr>
-                                                <td>Name</td>
+                                                <td>Name </td>
                                                 <td>{{$parent['name']}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Email</td>
+                                                <td>Email </td>
                                                 <td>{{$parent['email']}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Status</td>
+                                                <td>Status </td>
                                                 <td>{{$parent['status']}}</td>
                                             </tr>
                                         </table>

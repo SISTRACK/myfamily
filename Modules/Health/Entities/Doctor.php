@@ -2,6 +2,7 @@
 
 namespace Modules\Health\Entities;
 
+use Modules\Profile\Entities\Profile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Modules\Health\Services\Traits\DiagnoseAble;
@@ -71,5 +72,19 @@ class Doctor extends Authenticatable
     public function hospitalAdmissions()
     {
         return $this->hasMany(HospitalAdmission::class);
+    }
+
+    public function onAdmission(Profile $profile)
+    {
+        $flag = false;
+        
+        foreach ($this->hospitalAdmissions as $admission) {
+            
+            if($admission->profile_id == $profile->id && $admission->dischargeAdmission == null){
+                $flag = true;
+            }
+        }
+
+        return $flag;
     }
 }

@@ -37,7 +37,7 @@
 		                                	{{$death->profile->family->name}} 
 		                                </td>
 		                                <td>
-		                                	{{$death->profile->family->location->town->name}} 
+		                                	{{$death->profile->family->location->area->town->name}} 
 		                                </td>
 		                                <td>
 		                                	{{date('d/M/Y',$death->date)}}

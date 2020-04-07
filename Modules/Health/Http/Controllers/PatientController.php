@@ -26,10 +26,9 @@ class PatientController extends HealthBaseController
      */
     public function verify(Request $request)
     {
-        $request->validate([
-            'profile_id' => 'required|integer'
-        ]);
-        $profile = Profile::find($request->profile_id);
+        
+        $request->validate(['fid' => 'required']);
+        $profile = Profile::where('FID',$request->fid)->first();
         if(is_null($profile)){
             session()->flash('error',['Invalid Profile ID']);
             return back()->withInput();
