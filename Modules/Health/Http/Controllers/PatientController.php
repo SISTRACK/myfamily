@@ -28,12 +28,22 @@ class PatientController extends HealthBaseController
     {
         
         $request->validate(['fid' => 'required']);
+        $errors = [];
         $profile = Profile::where('FID',$request->fid)->first();
-        if(is_null($profile)){
-            session()->flash('error',['Invalid Profile ID']);
-            return back()->withInput();
+        if(!$profile){
+            $errors[] = "Invalid Student FID";
         }
-        return  redirect()->route('health.hospital.doctor.patient.profile',[$profile->id]);
+        
+        if($profile && $profile->life_status_id == 0){
+            $errors[] = "You can't access the ".$request->fid." profile because it has been registered death";
+        }
+
+        if(empty($errors)){
+            return  redirect()->route('health.hospital.doctor.patient.profile',[$profile->id]);
+        }
+        
+        session()->flash('error',$errors);
+        return back();
     }
 
     /**

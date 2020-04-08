@@ -64,7 +64,7 @@ class AdmissionController extends EducationBaseController
     {
         $request->validate([
             'fid'=>'required',
-            'admission_no'=>'required|unique:admitteds'
+            'admission_no'=>'required'
         ]);
         $errors = [];
         //is this profile exist
@@ -97,6 +97,14 @@ class AdmissionController extends EducationBaseController
      * @param int $id
      * @return Response
      */
+    public function hasAsignedNumber($number,$year)
+    {
+        $flag = false;
+        foreach (schoolAdmin()->school->admitteds->where('admission_no',$number)->where('year',$year) as $admission) {
+            $flag = true;
+        }
+        return $flag;
+    }
     public function update(Request $request, $year, $admission_id)
     {
         $request->validate([

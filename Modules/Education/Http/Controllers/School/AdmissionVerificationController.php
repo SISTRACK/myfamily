@@ -28,11 +28,21 @@ class AdmissionVerificationController extends EducationBaseController
     public function verify(Request $request)
     {
         $request->validate(['fid'=>'required']);
+        $errors = [];
         $profile = Profile::where('FID',$request->fid)->first();
-        if($profile){
+        if(!$profile){
+            $errors[] = "Invalid Student FID";
+        }
+        
+        if($profile && $profile->life_status_id == 0){
+            $errors[] = "You can't access the ".$request->fid." profile because it has been registered death";
+        }
+
+        if(empty($errors)){
             return redirect()->route('education.school.admission.verification.profile',[$profile->id]);
         }
-        session()->flash('error',['Invalid Student FID']);
+
+        session()->flash('error',$errors);
         return back();
     }
 
