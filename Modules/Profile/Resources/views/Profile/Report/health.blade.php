@@ -13,10 +13,13 @@
         @if(doctor())
         <i class="text-custom m-b-5">Treatment</i> {{$admission->diagnose->treatment->name}}<br>
         @endif
+        <i class="text-custom m-b-5">Date</i> {{$admission->diagnose->created_at}}<br>
+
         @if(doctor() && doctor()->hospital->id == $admission->doctor->hospital->id)
             @if($admission->dischargeAdmission && $admission->dischargeAdmission->is_active == 1)
             <b class="text-custom m-b-5">Discharge</b><br>
             <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
+            <i class="text-custom m-b-5">Discharge Date</i> {{$admission->dischargeAdmission->created_at}}<br>
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
                 <a href="{{route('health.hospital.doctor.patient.admission.discharge.revisit',[$admission->dischargeAdmission->id])}}" class="btn btn-info">Revisit</a>
             @else
@@ -30,11 +33,13 @@
                 @endif
             @endif
         @endif
+
         @if($admission->dischargeAdmission && $admission->dischargeAdmission->is_active == 1)
-            <b class="text-custom m-b-5">Discharge</b><br>
+            <br><b class="text-custom m-b-5">Discharge</b><br>
             <i class="text-custom m-b-5">Discharge Condition</i> {{$admission->dischargeAdmission->dischargeCondition->name}}<br>
             <i class="text-custom m-b-5">Discharge By</i> {{$admission->dischargeAdmission->doctor->first_name}} {{$admission->dischargeAdmission->doctor->last_name}}<br>
         @endif
+
         @if($admission->dischargeAdmission && $admission->dischargeAdmission->dischargeRevisits)
            <hr>
             @foreach($admission->dischargeAdmission->dischargeRevisits as $revisit)
@@ -43,6 +48,7 @@
                 <i class="text-custom m-b-5">Hospital</i> {{$revisit->dischargeAdmission->hospitalAdmission->doctor->hospital->name}}<br>
             @endforeach
         @endif
+        
         @if($admission->medicalReport)
             <a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>
         {{$report->created_at}}</a>

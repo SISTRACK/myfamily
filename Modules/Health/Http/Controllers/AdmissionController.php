@@ -53,7 +53,8 @@ class AdmissionController extends HealthBaseController
     {
         $request->validate(['discharge_condition'=>'required']);
         $admission = HospitalAdmission::find($request->admission_id);
-        if($admission->dischargeAdmission()){
+        
+        if($admission->dischargeAdmission){
             $discharge = $admission->dischargeAdmission;
             $discharge->update(['is_active'=>1]);
         }else{
