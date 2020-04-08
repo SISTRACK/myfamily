@@ -5,7 +5,11 @@
         <div class="col-md-4 col-sm-6">
             <div class=" thumb">
                 <a href="#" data-toggle="modal" data-target="#patient_infor_{{$admission->id}}" class="image-popup" title="click to see more information about the patient">
-                    <img src="{{$admission->profile->profileImageLocation('display').$admission->profile->image->name}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                    @if($admission->profile->image_id > 2)
+                    <img src="{{storage_url($admission->profile->profilePicture())}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                    @else
+                    <img src="{{asset($admission->profile->profilePicture())}}" class="thumb-img" alt="work-thumbnail"  class="img-radius" height="200" width="200">
+                    @endif
                 </a>
                 <div class="gal-detail">
                     <table>

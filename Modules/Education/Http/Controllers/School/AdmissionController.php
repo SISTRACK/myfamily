@@ -63,7 +63,7 @@ class AdmissionController extends EducationBaseController
     public function store(Request $request)
     {
         $request->validate([
-            'fid'=>'required',
+            'year'=>'required',
             'admission_no'=>'required'
         ]);
         $errors = [];
@@ -74,6 +74,9 @@ class AdmissionController extends EducationBaseController
         }
         if($profile && !schoolAdmin()->school->validateThisProfileAdmission($profile->id)){
             $errors[] = 'Sorry we already admitted this student in this school';
+        }
+        if($this->hasAsignedNumber($request->admission_no, $request->year)){
+            $errors[] = $request->admission_no.' was already used by another student at '.$request->year;
         }
         if(empty($errors)){
             $profile->admitteds()->create([
@@ -109,11 +112,16 @@ class AdmissionController extends EducationBaseController
     {
         $request->validate([
             'fid'=>'required',
-            'admission_no'=>'required'
+            'admission_no'=>'required',
+            'year'=>'required'
         ]);
+        $errors = [];
         //is this profile exist
         $profile = Profile::find($request->profile_id);
-        if($profile){
+        if($this->hasAsignedNumber($request->admission_no, $request->year)){
+            $errors[] = $request->admission_no.' was already used by another student at '.$request->year;
+        }
+        if(empty($errors)){
             Admitted::find($admission_id)->update([
                 'school_id'=>schoolAdmin()->school->id,
                 'admission_no' => $request->admission_no,
@@ -122,7 +130,7 @@ class AdmissionController extends EducationBaseController
             ]);
             session()->flash('message','Congratulation the admission is updated success fully');
         }else{
-            session()->flash('error',['Invali Student Profile ID']);
+            session()->flash('error',$errors);
         }
         return redirect()->route('education.school.admission.index',[$request->year]);
     }

@@ -9,7 +9,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img src="{{$profile->profileImageLocation('display').$profile->image->name}}" alt="photo" width="150" class="innerB half">
+                        @if($profile->image->id > 2)
+                        <img src="{{storage_url($profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                        @else
+                        <img src="{{asset($profile->profilePicture())}}" alt="photo" width="150" class="innerB half">
+                        @endif
                     </div>
                     <div class="col-sm-8">
                         <table>
