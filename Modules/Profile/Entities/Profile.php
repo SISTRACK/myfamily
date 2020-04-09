@@ -28,6 +28,34 @@ class Profile extends BaseModel implements HasMedia
         return $count;
     }
 
+    public function years()
+    {
+        $seconds = time() - $this->date_of_birth;
+        return floor($seconds/31536000);
+    }
+
+    public function educationLevel()
+    {
+        $level = 'Zero Level';
+        foreach($this->admitteds as $admission){
+            $level = $admission->school->schoolType->name.' Level';
+        }
+        return $level;
+    }
+
+    public function healthStatus()
+    {
+        $status = 'Normal';
+        foreach($this->hospitalAdmissions as $admission){
+            if($admission->dischargeAdmission){
+                $status = 'Dischrage from '.$admission->doctor->hospital->name;
+            }else{
+                $status = 'On Admission at'.$admission->doctor->hospital->name;
+            }
+        }
+        return $status;
+    }
+
     public function profileAccessibleBy()
     {
         $array = [];

@@ -44,7 +44,6 @@
                                 <td>{{$birth->father->husband->profile->family->location->area->town->name}}</td>
                                 <td>{{$birth->father->husband->profile->family->location->area->name}}</td>
                                 <td>{{$birth->father->husband->profile->family->name}}</td>
-                               
                                 <td>
                                     <a href="{{route('district.family.birth.edit',[$district->lga->state->name,$district->lga->name,$district->name,$birth->father->husband->profile->family->name,$birth->id])}}" class="btn btn-warning">Edit</a>
                                 

@@ -29,7 +29,8 @@ Route::prefix('admin')->group(function () {
   ->name('admin.state.lga.district.')
   ->namespace('Admin\State\Lga\District')
   ->group(function () {
-    Route::get('/birth', 'BirthController@index')->name('birth.index');
+    Route::get('/births', 'BirthController@index')->name('birth.index');
+    Route::get('/profiles', 'ProfileController@index')->name('profile.index');
   });
 
   //local government routes

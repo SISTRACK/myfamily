@@ -5,13 +5,12 @@
 @section('page-content')
 	
     <div class="col-lg-4 col-md-6 col-sm-8">
-	    <a href="#">
+	    <a href="{{route('admin.state.lga.district.profile.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">
 	        <div class="card-box widget-box-one">
 	            <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
 	            <div class="wigdet-one-content">
 	                <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">{{str_plural('Profile',count($district->users()))}}</p>
 	                <h2>{{count($district->users())}} <small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
-	               
  	            </div>
 	        </div>
 	    </a>
