@@ -35,18 +35,18 @@ class AdminController extends Controller
     public function lgaDashboard($state,$lga, $lga_id)
     {
         $lga = Lga::find($lga_id);
-        return view('admin::Admin.lga_dashboard',['lga'=>$lga]);
+        return view('admin::Admin.lgaDashboard',['lga'=>$lga]);
     }
 
     public function stateDashboard($state,$state_id)
     {
         $state = State::find($state_id);
-        return view('admin::Admin.state_dashboard',['state'=>$state]);
+        return view('admin::Admin.stateDashboard',['state'=>$state]);
     }
 
     public function districtDashboard($state,$lga,$dist,$id)
     {
-        return view('admin::Admin.district_dashboard',['district'=>District::find($id)]);
+        return view('admin::Admin.districtDashboard',['district'=>District::find($id)]);
     }
     
     public function index()

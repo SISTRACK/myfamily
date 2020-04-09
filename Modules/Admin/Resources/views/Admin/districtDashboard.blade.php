@@ -4,12 +4,8 @@
 @endsection
 @section('page-content')
 	
-	<div class="col-md-4">
-		<button class="btn btn-info" data-toggle="modal" data-target="#new_village">NEW TOWN/VILLAGE</button>
-	</div>
-	@include('admin::Admin.Modals.new_village')
     <div class="col-lg-4 col-md-6 col-sm-8">
-	    <a href="#"  data-toggle="modal" data-target="#users">
+	    <a href="#">
 	        <div class="card-box widget-box-one">
 	            <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
 	            <div class="wigdet-one-content">
@@ -19,7 +15,6 @@
  	            </div>
 	        </div>
 	    </a>
-	    @include('admin::Admin.Modals.users')
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
@@ -52,16 +47,14 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="#"  data-toggle="modal" data-target="#births">
+		<a href="{{route('admin.state.lga.district.birth.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}"  data-toggle="modal" data-target="#births">
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-layers widget-one-icon"></i>
 		        <div class="wigdet-one-content">
 		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Births</p>
 		            <h2>{{count($district->births())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
-		            
 		        </div>
 		    </div>
-		    @include('admin::Admin.Modals.births')
 	    </a>
 	</div><!-- end col -->
 

@@ -24,7 +24,15 @@ Route::prefix('admin')->group(function () {
   Route::get('/{state}/{state_id}/dashboard', 'AdminController@stateDashboard')->name('state.dashboard')->middleware('landOnState');
 
   Route::get('/{state}/{lga}/{district}/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
-//local government routes
+  //districts routes
+  Route::prefix('/{state}/{lga}/{district}/{district_id}/')
+  ->name('admin.state.lga.district.')
+  ->namespace('Admin\State\Lga\District')
+  ->group(function () {
+    Route::get('/birth', 'BirthController@index')->name('birth.index');
+  });
+
+  //local government routes
   Route::prefix('{state}/')
   ->middleware('landOnLga')
   ->name('admin.lga.')
