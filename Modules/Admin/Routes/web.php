@@ -32,6 +32,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/births', 'BirthController@index')->name('births.index');
     Route::get('/profiles', 'ProfileController@index')->name('profiles.index');
     Route::get('/profiles', 'FamilyController@index')->name('families.index');
+    Route::get('/profiles', 'MarriageController@index')->name('marriages.index');
   });
 
   //local government routes

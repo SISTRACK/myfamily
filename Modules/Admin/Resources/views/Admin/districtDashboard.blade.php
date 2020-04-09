@@ -30,7 +30,7 @@
 
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="#"  data-toggle="modal" data-target="#marriages">
+		<a href="{{route('admin.state.lga.district.marriages.index')}}"  data-toggle="modal" data-target="#marriages">
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-account-convert widget-one-icon"></i>
 		        <div class="wigdet-one-content">
@@ -39,7 +39,6 @@
 		            <p class="text-muted m-0"><b>Last:</b> 1250</p>
 		        </div>
 		    </div>
-		    @include('admin::Admin.Modals.marriages')
 	    </a>
 	</div><!-- end col -->
 
