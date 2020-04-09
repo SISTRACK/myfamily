@@ -16,7 +16,13 @@
                         <th>Area</th>
                         <th>Head E-mail</th>
                         <th>Head Phone</th>
-                        <th></th>
+                        <th><a class="btn btn-success" href="{{route('district.family.create',
+	                    	[
+	                    	$district->lga->state->name,
+	                    	$district->lga->name,
+	                    	$district->name,
+	                    	$district->id
+	                    	])}}">New Family</a></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +30,7 @@
                         
                         <tr>
                             <td>{{$family->name}}</td>
-                            <td>{{$family->familyAdmin->profile->totalFamilyMembers()}}</td>
+                            <td>{{count($family->familyAdmin->profile->totalFamilyMembers())}}</td>
                             <td>{{$family->tribe->name}}</td>
                             <td>{{$family->location->area->town->name}}</td>
                             <td>{{$family->location->area->name}}</td>

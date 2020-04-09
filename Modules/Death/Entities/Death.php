@@ -17,4 +17,10 @@ class Death extends BaseModel
         return $this->belongsTo('App\User');
     }
     
+    public function age()
+    {
+        $seconds = time() - $this->date;
+        return floor($seconds/31536000);
+    }
+    
 }

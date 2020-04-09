@@ -9,14 +9,20 @@
     		<table class="table">
                 <thead>
                     <tr>
-                        <th>{{'Name'}}</th>
-                        <th>{{'Family'}}</th>
-                        <th>{{'Town'}}</th>
-                        <th>{{'Date'}}</th>
-                        <th>{{'Place'}}</th>
-                        <th>{{'Wives'}}</th>
-                        <th>{{'Children'}}</th>
-                        <th></th>
+                        <th>Name</th>
+                        <th>Family</th>
+                        <th>Town</th>
+                        <th>Year</th>
+                        <th>Month</th>
+                        <th>Day</th>
+                        <th>Age</th>
+                        <th>Place</th>
+                        <th>About</th>
+                        <th>Wives</th>
+                        <th>Children</th>
+                        <th>
+            	            <a class="btn btn-success" href="{{route('district.deaths.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Death</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,14 +39,23 @@
                             	{{$death->profile->family->location->area->town->name}} 
                             </td>
                             <td>
-                            	{{date('d/M/Y',$death->date)}}
+                            	{{date('Y',$death->date)}}
+                            </td>
+                            <td>
+                            	{{date('M',$death->date)}}
+                            </td>
+                            <td>
+                            	{{date('D',$death->date)}}
+                            </td>
+                            <td>
+                            	{{$death->age()}} Years
                             </td>
                             <td>{{$death->place}}</td>
+                            <td>{{$death->about_death}}</td>
                             <td>{{count($death->profile->numberOfWives())}}</td>
                             <td>{{count($death->profile->numberOfBirths())}}</td>
                             <td>
                                 <a href="{{route('district.family.death.edit',[$district->lga->state->name,$district->lga->name,$district->name,$death->profile->family->name,$death->id])}}" class="btn btn-warning">Edit</a>
-                          
                             </td>
                         </tr>
                        

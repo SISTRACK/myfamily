@@ -21,4 +21,10 @@ class Marriage extends BaseModel
     {
         return $this->hasOne('Modules\Divorce\Entities\Divorce');
     }
+
+    public function age()
+    {
+        $seconds = time() - $this->date;
+        return floor($seconds/31536000);
+    }
 }

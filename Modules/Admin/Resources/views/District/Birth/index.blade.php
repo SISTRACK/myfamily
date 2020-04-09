@@ -12,18 +12,21 @@
                             <th>Father</th>
                             <th>Mother</th>
                             <th>Child</th>
-                            <th>Date Of Birth</th>
-                            <th>Place Of Birth</th>
+                            <th>Year</th>
+                            <th>Month</th>
+                            <th>Day</th>
+                            <th>Place</th>
                             <th>Deliver At</th>
                             <th>Town</th>
                             <th>Area</th>
                             <th>Family</th>
-                            <th></th>
+                            <th>
+            	                <a class="btn btn-success" href="{{route('district.births.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Birth</a>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($district->births() as $birth)
-                            
                             <tr>
                                 <td>
                                     {{$birth->father->husband->profile->user->first_name}} {{$birth->father->husband->profile->user->last_name}}
@@ -37,7 +40,13 @@
                                     {{$birth->child->profile->user->last_name}}
                                 </td>
                                 <td>
-                                    {{date('d/M/Y',$birth->date)}}
+                                    {{date('Y',$birth->date)}}
+                                </td>
+                                <td>
+                                    {{date('M',$birth->date)}}
+                                </td>
+                                <td>
+                                    {{date('D',$birth->date)}}
                                 </td>
                                 <td>{{$birth->place}}</td>
                                 <td>{{$birth->deliver_at}}</td>
@@ -49,7 +58,6 @@
                                 
                                 </td>
                             </tr>
-                            
                         @endforeach
                     </tbody>
                 </table>

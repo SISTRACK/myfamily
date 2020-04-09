@@ -43,7 +43,7 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="{{route('admin.state.lga.district.Births.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
+		<a href="{{route('admin.state.lga.district.births.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-layers widget-one-icon"></i>
 		        <div class="wigdet-one-content">

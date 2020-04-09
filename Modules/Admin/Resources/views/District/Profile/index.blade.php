@@ -40,11 +40,7 @@
                             <td>{{$user->profile->educationLevel()}}</td>
                             <td>{{$user->profile->healthStatus()}}</td>
                             <td>
-                            @if($user->profile->gender->name == 'Male')
-                                {{count(optional(optional(optional($user->profile)->husband)->father)->births ?? [])}}
-                            @else
-                                {{count(optional(optional(optional($user->profile)->wife)->mother)->births ?? [])}}
-                            @endif
+                           {{count($user->profile->birth())}}
                             </td>
                             <td>
                                 @if($user->profile->child)
