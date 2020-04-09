@@ -17,7 +17,7 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="{{route('admin.state.lga.district.families.index')}}" >
+		<a href="{{route('admin.state.lga.district.families.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
 		        <div class="wigdet-one-content">
@@ -30,7 +30,7 @@
 
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="{{route('admin.state.lga.district.marriages.index')}}"  data-toggle="modal" data-target="#marriages">
+		<a href="{{route('admin.state.lga.district.marriages.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-account-convert widget-one-icon"></i>
 		        <div class="wigdet-one-content">
@@ -43,7 +43,7 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="{{route('admin.state.lga.district.Births.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}"  data-toggle="modal" data-target="#births">
+		<a href="{{route('admin.state.lga.district.Births.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-layers widget-one-icon"></i>
 		        <div class="wigdet-one-content">
@@ -55,18 +55,17 @@
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
-		<a href="#"  data-toggle="modal" data-target="#deaths">
+		<a href="{{route('admin.state.lga.district.deaths.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
 		        <i class="mdi mdi-av-timer widget-one-icon"></i>
 		        <div class="wigdet-one-content">
 		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Request Per Minute">Deaths</p>
 		            <h2>{{count($district->deaths())}}<small><i class="mdi mdi-arrow-down text-danger"></i></small></h2>
-		           
 		        </div>
 		    </div>
-		    @include('admin::Admin.Modals.deaths')
 		</a>
-	</div><!-- end col -->
+	</div>
+	<!-- end col -->
 	<div class="col-lg-4 col-md-6 col-sm-8">
 	    <div class="card-box widget-box-one">
 	        <i class="mdi mdi-download widget-one-icon"></i>

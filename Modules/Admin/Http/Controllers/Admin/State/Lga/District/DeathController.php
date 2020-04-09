@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Address\Entities\District;
 
-class MarriageController extends Controller
+class DeathController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class MarriageController extends Controller
      */
     public function index($state,$lga,$district,$districtId)
     {
-        return view('admin::District.Marriage.index',['district'=>District::find($districtId)]);
+        return view('admin::District.Death.index',['district'=>District::find($districtId)]);
     }
 
     
