@@ -36,7 +36,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/deaths', 'DeathController@index')->name('deaths.index');
     Route::get('/divorces', 'DivorceController@index')->name('divorces.index');
     Route::get('/towns', 'TownController@index')->name('towns.index');
+    Route::post('/towns/{townId}/update', 'TownController@update')->name('town.update');
+    Route::get('/towns/{townId}/delete', 'TownController@delete')->name('town.delete');
     Route::get('/towns/{townId}/areas', 'AreaController@index')->name('town.areas.index');
+    Route::post('/{town}/area/{areaId}/update', 'AreaController@update')->name('town.area.update');
+    Route::get('/{town}/area/{areaId}/delete', 'AreaController@delete')->name('town.area.delete');
+    Route::post('/towns/{townId}/register', 'AreaController@register')->name('town.area.register');
   });
 
   //local government routes

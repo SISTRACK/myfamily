@@ -5,6 +5,7 @@ namespace Modules\Admin\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Address\Entities\Town;
 use Modules\Address\Entities\District;
 
 class TownController extends Controller
@@ -34,24 +35,31 @@ class TownController extends Controller
      */
     public function register(Request $request)
     {
+        
         $district = District::find($request->district_id);
-        foreach ($request->towns as $new_town) {
-            if($district->towns->isNotEmpty()){
-                foreach($district->towns as $town){
-                    if($town->name != $new_town){
-                        $district->towns()->create(['lga_id'=>$district->lga->id,'name'=>$new_town]);
-                    }
-                }
-            }else{
-                $district->towns()->create(['lga_id'=>$district->lga->id,'name'=>$new_town]);
-            }
+        $counter = count($district->towns) + 1;
+        foreach ($request->towns as $town) {
+            Town::firstOrCreate([
+                'lga_id'=>$district->lga->id,
+                'district_id'=>$district->id,
+                'name'=>$town,
+                'code'=>$this->formatCode($counter)
+                ]);
+            $counter++;    
         }
         
         session()->flash('message','Congratulation you ware successfully created the town please click the new town button to add town or village to reagister another one if any');
         return back();
         
     }
-
+    
+    public function formatCode($code)
+    {
+        if($code < 10){
+            $code = '0'.$code;
+        }
+        return $code;
+    }
     /**
      * Show the specified resource.
      * @param int $id

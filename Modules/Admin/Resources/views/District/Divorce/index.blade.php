@@ -16,9 +16,7 @@
                         <th>Month</th>
                         <th>Day</th>
                         <th>Age</th>
-                       
                         <th>About</th>
-                        
                         <th>Children</th>
                         <th>
             	            <a class="btn btn-success" href="{{route('district.deaths.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Death</a>
@@ -27,7 +25,6 @@
                 </thead>
                 <tbody>
                     @foreach($district->deaths() as $death)
-                        
                         <tr>
                             <td>
                             	{{$divorec->marriage->wife->profile->user->first_name}} {{$death->profile->user->last_name}}

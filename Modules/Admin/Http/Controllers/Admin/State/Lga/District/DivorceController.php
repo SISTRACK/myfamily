@@ -15,7 +15,7 @@ class DivorceController extends Controller
      */
     public function index($state,$lga,$district,$districtId)
     {
-        return view('admin::District.Divorec.index',['district'=>District::find($districtId)]);
+        return view('admin::District.Divorce.index',['district'=>District::find($districtId)]);
     }
 
     
