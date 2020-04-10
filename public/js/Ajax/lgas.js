@@ -17,7 +17,7 @@
                    }
                 });
             } else {
-                $('select[name="area"]').empty();
+                $('select[name="lga"]').empty();
             }
         });
 	});

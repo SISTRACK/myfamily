@@ -9,10 +9,11 @@
                    type: 'GET',
                    dataType: 'json',
                    success: function(data){
-                   	   $('select[name="area"]').empty();
-                   	   $.each(data, function(key, value){
-                   	   	$('select[name="area"]').append('<option value="'+key+'">'+ value +'</option>');
-                   	   });
+                        $('select[name="area"]').empty();
+                        $('select[name="area"]').append('<option value="">Select Area</option>');  
+                   	    $.each(data, function(key, value){
+                   	     	$('select[name="area"]').append('<option value="'+key+'">'+ value +'</option>');
+                   	    });
                    }
                 });
             } else {

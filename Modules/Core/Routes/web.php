@@ -23,6 +23,8 @@ Route::prefix('core')
 		   ->group(function() {
 	        Route::get('/town/{townId}/areas', 'CoreController@getAreas');
 	        Route::get('/state/{stateId}/lgas', 'CoreController@getLgas');
+	        Route::get('/lga/{lgaId}/districts', 'CoreController@getDistricts');
+	        Route::get('/district/{districtId}/towns', 'CoreController@getTowns');
 		});  
 	});
 });

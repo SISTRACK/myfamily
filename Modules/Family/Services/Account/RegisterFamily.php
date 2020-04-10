@@ -7,6 +7,7 @@ use Modules\Family\Services\Account\NewFamily;
 use Modules\Family\Events\NewFamilyEvent;
 use Modules\Address\Entities\Country;
 use Modules\Family\Entities\Tribe;
+use Illuminate\Support\Facades\DB;
 
 trait RegisterFamily
 {
@@ -35,8 +36,7 @@ trait RegisterFamily
      */
     public function store(FamilyFormRequest $request)
     {
-        try {
-            DB::beginTransaction();
+        
             if($family = new NewFamily($request->all())){
                 if(session('error') == null){
                     return redirect()->route('family.create',
@@ -46,12 +46,7 @@ trait RegisterFamily
                 return redirect()->route('family.create',
                 [strtolower(auth()->user()->first_name.'-'.auth()->user()->last_name)])->withSuccess('Family account crated successfully');
             }
-            DB::commit();
-        } catch (\Exception $exception) {
-            DB::rollback();
-            return back()->withInput()
-                ->withErrors(['error' => 'Unexpected error occurred while trying to process your request!']);
-        }
+           
     }
 }
 
