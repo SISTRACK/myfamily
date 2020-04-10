@@ -28,7 +28,6 @@
 		</a>
 	</div><!-- end col -->
 
-
 	<div class="col-lg-4 col-md-6 col-sm-8">
 		<a href="{{route('admin.state.lga.district.marriages.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
 		    <div class="card-box widget-box-one">
@@ -67,14 +66,16 @@
 	</div>
 	<!-- end col -->
 	<div class="col-lg-4 col-md-6 col-sm-8">
-	    <div class="card-box widget-box-one">
-	        <i class="mdi mdi-download widget-one-icon"></i>
-	        <div class="wigdet-one-content">
-	            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="New Downloads">Divorces</p>
-	            <h2>{{count($district->divorces())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
-	            
-	        </div>
-	    </div>
+		<a href="{{route('admin.state.lga.district.divorces.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
+		    <div class="card-box widget-box-one">
+		        <i class="mdi mdi-download widget-one-icon"></i>
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="New Downloads">Divorces</p>
+		            <h2>{{count($district->divorces())}}<small><i class="mdi mdi-arrow-up text-success"></i></small></h2>
+		            
+		        </div>
+		    </div>
+		</a>
 	</div><!-- end col -->
 	                
 
@@ -89,14 +90,15 @@
 	    </div>
 	</div>  
 	<div class="col-lg-4 col-md-6 col-sm-8">
-	    <div class="card-box widget-box-one">
-	        <i class="fa fa-home widget-one-icon"></i>
-	        <div class="wigdet-one-content">
-	            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="New Downloads">Villages/Towns</p>
-	            <h2>{{count($district->towns)}}</h2>
-	            
-	        </div>
-	    </div>
+		<a href="{{route('admin.state.lga.district.towns.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
+		    <div class="card-box widget-box-one">
+		        <i class="fa fa-home widget-one-icon"></i>
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="New Downloads">Villages/Towns</p>
+		            <h2>{{count($district->towns)}}</h2>
+		        </div>
+		    </div>
+		</a>
 	</div>                 
 @endsection
 

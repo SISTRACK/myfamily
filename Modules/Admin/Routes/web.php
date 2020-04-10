@@ -25,7 +25,7 @@ Route::prefix('admin')->group(function () {
 
   Route::get('/{state}/{lga}/{district}/{district_id}/dashboard', 'AdminController@districtDashboard')->name('district.dashboard')->middleware('landOnDistrict');
   //districts routes
-  Route::prefix('/{state}/{lga}/{district}/{district_id}/')
+  Route::prefix('/{state}/{lga}/{district}/{districtId}')
   ->name('admin.state.lga.district.')
   ->namespace('Admin\State\Lga\District')
   ->group(function () {
@@ -34,6 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/families', 'FamilyController@index')->name('families.index');
     Route::get('/marriages', 'MarriageController@index')->name('marriages.index');
     Route::get('/deaths', 'DeathController@index')->name('deaths.index');
+    Route::get('/divorces', 'DivorceController@index')->name('divorces.index');
+    Route::get('/towns', 'TownController@index')->name('towns.index');
+    Route::get('/towns/{townId}/areas', 'AreaController@index')->name('town.areas.index');
   });
 
   //local government routes
