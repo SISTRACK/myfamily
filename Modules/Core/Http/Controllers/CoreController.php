@@ -5,6 +5,8 @@ namespace Modules\Core\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Address\Entities\Lga;
+use Modules\Address\Entities\Area;
 
 class CoreController extends Controller
 {
@@ -12,61 +14,13 @@ class CoreController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function index()
+    public function getAreas($town_id)
     {
-        return view('core::index');
+        return response()->json(Area::where('town_id',$town_id)->pluck('name','id'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
+    
+    public function getLgas($state_id)
     {
-        return view('core::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('core::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('core::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+        return response()->json(Lga::where('state_id',$state_id)->pluck('name','id'));
     }
 }

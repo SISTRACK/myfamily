@@ -42,7 +42,6 @@ class AreaController extends Controller
     public function update(Request $request,$state,$lga,$district,$districtId,$town,$areaId)
     {
         $area = Area::find($areaId);
-        
         $area->update($request->all());
         session()->flash('message','Area information updated successfully');
         return back();

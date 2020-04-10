@@ -45,9 +45,9 @@
                                     <label class="col-lg-2 control-label " for="location">Town / Village</label>
                                     <div class="col-lg-10">
                                         <select name="town" class="form-control">
-                                            <option value="">Select Location</option>
+                                            <option value="">Town/Village</option>
                                             @foreach($district->towns as $town)
-                                                <option value="{{$town->name}}">{{$town->name}}</option>
+                                                <option value="{{$town->id}}">{{$town->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -56,7 +56,9 @@
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="location">Area/Street</label>
                                     <div class="col-lg-10">
-                                        <input type="text" name="area" placeholder="Area of the family" class="form-control" >
+                                        <select name="area" class="form-control">
+                                            <option value="">Area</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -179,17 +181,5 @@
 @endsection
 
 @section('footer')
-<script>
-    const app = new Vue({
-        el: '#family',
-        data: {
-            no: '',
-            yes: '',
-        },
-        mounted() {
-        
-      },
-    )};
-
-</script>
+<script src="{{ asset('js/Ajax/areas.js') }}"></script>
 @endsection

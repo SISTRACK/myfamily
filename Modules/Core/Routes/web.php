@@ -11,6 +11,18 @@
 |
 */
 
-Route::prefix('core')->group(function() {
-    Route::get('/', 'CoreController@index');
+Route::prefix('core')
+   ->group(function() {
+    //ajax route
+    Route::prefix('ajax')
+	   ->name('ajax')
+	   ->group(function() {
+        //address ajax routes
+	    Route::prefix('address')
+		   ->name('address')
+		   ->group(function() {
+	        Route::get('/town/{townId}/areas', 'CoreController@getAreas');
+	        Route::get('/state/{stateId}/lgas', 'CoreController@getLgas');
+		});  
+	});
 });

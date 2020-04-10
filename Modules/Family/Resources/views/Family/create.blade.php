@@ -22,35 +22,53 @@
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="Country">Country</label>
                                     <div class="col-lg-10">
-                                        <input placeholder="Country" class="form-control" id="country" value="Nigeria"name="country" type="text">
+                                        <input placeholder="Country" class="form-control" id="country" value="{{$country->name}}"name="country" type="text">
                                     </div>
                                 </div>
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="state">State</label>
                                     <div class="col-lg-10">
-                                        <input placeholder="State" id="password2" value="{{ old('state') }}" name="state" type="text" class="required form-control">
-
+                                        <select name="state" class="form-control">
+                                            <option value="">State</option>
+                                            @foreach($country->states as $state)
+                                                <option value="{{$state->id}}">{{$state->name}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="lga">Local Government</label>
                                     <div class="col-lg-10">
-                                        <input id="confirm2" placeholder="Local Government" name="lga" value="{{ old('lga') }}" type="text" class="required form-control">
+                                        <select name="lga" class="form-control">
+                                            <option value="">Local Governemnt</option>
+                                        </select>
                                     </div>
                                 </div>
                                 
                                 <div class="form-group clearfix">
                                     <label class="col-lg-2 control-label " for="lga">District</label>
                                     <div class="col-lg-10">
-                                        <input id="confirm2" placeholder="District" name="district" value="{{ old('district') }}" type="text" class="required form-control">
+                                        <select name="district" class="form-control">
+                                            <option value="">District</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group clearfix">
-                                    <label class="col-lg-2 control-label " for="location">Town / Villag / Street</label>
+                                    <label class="col-lg-2 control-label " for="location">Town/Villag</label>
                                     <div class="col-lg-10">
-                                        <input placeholder="Family Location" id="confirm2" value="{{ old('town') }}" name="town" type="text" class="required form-control">
+                                        <select name="town" class="form-control">
+                                            <option value="">Town</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-lg-2 control-label " for="location">Area</label>
+                                    <div class="col-lg-10">
+                                        <select name="area" class="form-control">
+                                            <option value="">Area</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -197,17 +215,6 @@
 @endsection
 
 @section('footer')
-<script>
-    const app = new Vue({
-        el: '#family',
-        data: {
-            no: '',
-            yes: '',
-        },
-        mounted() {
-        
-      },
-    )};
-
-</script>
+<script src="{{ asset('js/Ajax/lgas.js') }}"></script>
+<script src="{{ asset('js/Ajax/areas.js') }}"></script>
 @endsection

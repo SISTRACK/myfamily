@@ -5,6 +5,7 @@ namespace Modules\Family\Services\Account;
 use Modules\Family\Http\Requests\FamilyFormRequest;
 use Modules\Family\Services\Account\NewFamily;
 use Modules\Family\Events\NewFamilyEvent;
+use Modules\Address\Entities\Country;
 use Modules\Family\Entities\Tribe;
 
 trait RegisterFamily
@@ -25,7 +26,7 @@ trait RegisterFamily
      */
     public function create()
     {
-        return view('family::Family.create',['tribes'=>Tribe::all()]);
+        return view('family::Family.create',['tribes'=>Tribe::all(),'country'=>Country::find(1)]);
     }
     /**
      * Store a newly created resource in storage.
