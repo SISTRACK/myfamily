@@ -217,32 +217,67 @@
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="state">State</label>
 			<div class="col-lg-8">
-				<input value="{{$family_admin->address()['state']}}" placeholder="State"  class="form-control required" id="state" name="state" type="text" >
+			    <select name="state" class="form-control">
+				    <option value="">{{$family_admin->address()['state']}}</option>
+					@foreach($country->states as $state)
+                        @if($state->name != $family_admin->address()['state'])
+                            <option value="{{$state->id}}">{{$state->name}}</option>
+						@endif
+					@endforeach
+				</select>
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="lga">Local Government</label>
 			<div class="col-lg-8">
-				<input value="{{$family_admin->address()['lga']}}"  placeholder="Local Government" class="form-control required" id="lga" name="lga" type="text" >
+			    <select name="lga" class="form-control">
+				    <option value="{{$family_admin->family->location->area->town->district->lga->id}}">{{$family_admin->family->location->area->town->district->lga->name}}</option>
+					@foreach($family_admin->family->location->area->town->district->lga->state->lgas as $lga)
+					    @if($lga->id != $family_admin->family->location->area->town->district->lga->id)
+                            <option value="{{$lga->id}}">{{$lga->name}}</option>
+						@endif
+					@endforeach
+				</select>
 			</div>
 		</div>
         <div class="form-group clearfix">
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="lga">District</label>
 			<div class="col-lg-8">
-				<input value="{{$family_admin->address()['district']}}"  placeholder="District" class="form-control required" id="district" name="district" type="text" >
+			    <select name="district" class="form-control">
+				<option value="{{$family_admin->family->location->area->town->district->id}}">{{$family_admin->family->location->area->town->district->name}}</option>
+					@foreach($family_admin->family->location->area->town->district->lga->districts as $district)
+					    @if($district->id != $family_admin->family->location->area->town->district->id)
+                            <option value="{{$district->id}}">{{$district->name}}</option>
+						@endif
+					@endforeach
+				</select>
 			</div>
 		</div>
         <div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="town">Town/Village</label>
 			<div class="col-lg-8">
-				<input value="{{$family_admin->address()['town']}}"  placeholder="Town/Village" class="form-control required" id="town" name="town" type="text">
+			    <select name="town" class="form-control">
+				    <option value="{{$family_admin->family->location->area->town->id}}">{{$family_admin->family->location->area->town->name}}</option>
+					@foreach($family_admin->family->location->area->town->district->towns as $town)
+					    @if($town->id != $family_admin->family->location->area->town->id)
+                            <option value="{{$town->id}}">{{$town->name}}</option>
+						@endif
+					@endforeach
+				</select>
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="area">Area</label>
 			<div class="col-lg-8">
-				<input value="{{$family_admin->address()['area']}}"  placeholder="Living Area"  class="form-control required" id="area" name="area" type="text">
+			    <select name="area" class="form-control">
+				    <option value="{{$family_admin->family->location->area->name}}">{{$family_admin->family->location->area->name}}</option>
+					@foreach($family_admin->family->location->area->town->areas as $area)
+					    @if($area->id != $family_admin->family->location->area->id)
+                            <option value="{{$area->id}}">{{$area->name}}</option>
+						@endif
+					@endforeach
+				</select>
 			</div>
 		</div>
 		<div class="form-group clearfix">

@@ -14,3 +14,10 @@
 	    @include('admin::Admin.Registration.Marriage.verify_family')
 	@endif
 @endsection
+
+@section('footer')
+<script src="{{ asset('js/Ajax/lgas.js') }}"></script>
+<script src="{{ asset('js/Ajax/districts.js') }}"></script>
+<script src="{{ asset('js/Ajax/towns.js') }}"></script>
+<script src="{{ asset('js/Ajax/areas.js') }}"></script>
+@endsection

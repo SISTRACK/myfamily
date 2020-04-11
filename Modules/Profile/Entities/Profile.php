@@ -17,12 +17,16 @@ class Profile extends BaseModel implements HasMedia
     {
         $count = [];
         if($this->gender->name = 'Male' && $this->husband != null && $this->husband->father != null){
-            foreach ($this->husband->father->births as $birth) {
-                $count[] = $birth;
+            if($this->isFather()){
+                foreach ($this->husband->father->births as $birth) {
+                    $count[] = $birth;
+                }
             }
         }else{
-            foreach ($this->wife->mother->births as $birth) {
-                $count[] = $birth;
+            if($this->isMother()){
+                foreach ($this->wife->mother->births as $birth) {
+                    $count[] = $birth;
+                }
             }
         } 
         return $count;

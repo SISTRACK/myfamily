@@ -12,6 +12,8 @@
                         <th>Husband</th>
                         <th>Wife</th>
                         <th>Year</th>
+                        <th>Month</th>
+                        <th>Day</th>
                         <th>Age</th>
                         <th>Town/Village</th>
                         <th>Area</th>
@@ -30,6 +32,8 @@
                             <td>{{$marriage->husband->profile->user->first_name}} {{$marriage->husband->profile->user->last_name}}</td>
                             <td>{{$marriage->wife->profile->user->first_name}} {{$marriage->wife->profile->user->last_name}}</td>
                             <td>{{date('Y',$marriage->date)}}</td>
+                            <td>{{date('M',$marriage->date)}}</td>
+                            <td>{{date('D',$marriage->date)}}</td>
                             <td>{{$marriage->age()}} Years</td>
                             <td>{{$marriage->husband->profile->family->location->area->town->name}}</td>
                             <td>{{$marriage->husband->profile->family->location->area->name}}</td>

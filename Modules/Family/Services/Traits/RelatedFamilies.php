@@ -86,7 +86,7 @@ trait RelatedFamilies
             //get all his valid wife status and put in the array valid status
             foreach ($this->familyAdmin->profile->husband->marriages as $marriage) {
                 if($marriage->is_active == 1){
-                    $valid_statuses[] = $marriage->wife->status->id;
+                    $valid_statuses[] = $marriage->wife->wifeStatus->id;
                 }
             }
         }

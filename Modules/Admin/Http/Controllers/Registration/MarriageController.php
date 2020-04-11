@@ -9,6 +9,7 @@ use Modules\Address\Entities\District;
 use Modules\Family\Entities\Family;
 use Modules\Marriage\Entities\Status;
 use Modules\Marriage\Entities\Marriage;
+use Modules\Address\Entities\Country;
 use Modules\Address\Services\LivingAddress;
 use Modules\Marriage\Events\NewMarriageEvent;
 use Modules\Marriage\Http\Requests\MarriageFormRequest;
@@ -32,7 +33,7 @@ class MarriageController extends Controller
 
         $district = District::find($id);
         
-        return view('admin::Admin.Registration.Marriage.create',['district'=>$district,'families'=>$district->families()]);
+        return view('admin::Admin.Registration.Marriage.create',['country'=>Country::find(1),'district'=>$district,'families'=>$district->families()]);
     }
 
     public function verifyMarriageFamily(Request $request)
