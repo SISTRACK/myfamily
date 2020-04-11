@@ -19,17 +19,8 @@
 @endsection
 
 @section('footer')
-<script>
-    const app = new Vue({
-        el: '#family',
-        data: {
-            no: '',
-            yes: '',
-        },
-        mounted() {
-        
-      },
-    )};
-
-</script>
+<script src="{{ asset('js/Ajax/lgas.js') }}"></script>
+<script src="{{ asset('js/Ajax/districts.js') }}"></script>
+<script src="{{ asset('js/Ajax/towns.js') }}"></script>
+<script src="{{ asset('js/Ajax/areas.js') }}"></script>
 @endsection

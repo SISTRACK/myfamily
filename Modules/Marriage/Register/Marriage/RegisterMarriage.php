@@ -3,23 +3,18 @@ namespace Modules\Marriage\Register\Marriage;
 
 
 use Modules\Family\Entities\Family;
-
+use Modules\Address\Entities\Country;
 use Illuminate\Http\Request;
-
 use Modules\Marriage\Events\NewMarriageEvent;
-
 use Modules\Marriage\Http\Requests\MarriageFormRequest;
-
 use Modules\Marriage\Register\Marriage\MarriageRegistered;
-
-
 use Modules\Family\Services\Marriage\marriageCore;
 
 trait RegisterMarriage
 {
     public function index(marriageCore $marriage)
     {
-        return view('marriage::Marriage.new_marriage',['family'=>$marriage->family,'families'=>$marriage->families,'husbands'=>$marriage->husbands,'wives'=>$marriage->wives,'status'=>$marriage->status,'tribes'=>$marriage->tribes]);
+        return view('marriage::Marriage.new_marriage',['country'=>Country::find(1),'family'=>$marriage->family,'families'=>$marriage->families,'husbands'=>$marriage->husbands,'wives'=>$marriage->wives,'status'=>$marriage->status,'tribes'=>$marriage->tribes]);
     }
 
     /**
@@ -30,7 +25,7 @@ trait RegisterMarriage
     public function create()
     {
         
-        return view('marriage::Marriage.new_marriage',['family'=>$families]);
+        return view('marriage::Marriage.new_marriage',['country'=>Country::find(1),'family'=>$families]);
     }
 
     /**
