@@ -60,18 +60,19 @@ Breadcrumbs::for('admin.district.family.edit', function ($trail,$family) {
     ]));
 });
 
-Breadcrumbs::for('admin.district.family.marriage.create', function ($trail,$district) {
-    $trail->parent('admin.district.dashboard', $district);
+Breadcrumbs::for('admin.district.family.marriage.create', function ($trail,$family) {
+    $trail->parent('admin.district.dashboard', $family->location->area->town->district);
     if(session('family')){
     	$page = 'New Marriage';
     }else{
     	$page = 'Select Family Account';
     }
     $trail->push($page, route('district.marriages.create',[
-    	$district->lga->state->name,
-    	$district->lga->name,
-    	$district->name,
-    	$district->id
+        $family->location->area->town->district->lga->state->name,
+    	$family->location->area->town->district->lga->name,
+    	$family->location->area->town->district->name,
+    	$family->location->area->town->district->id,
+    	$family->id
     ]));
 });
 

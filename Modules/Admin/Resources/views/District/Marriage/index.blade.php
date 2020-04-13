@@ -20,7 +20,8 @@
                         <th>Family</th>
                         <th>BirthS</th>
                         <th>
-	                    	<a class="btn btn-success" href="{{route('district.marriages.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Marriage</a>
+	                    	<a class="btn btn-success" data-toggle="modal" data-target="#newMarriage">New Marriage</a>
+                            @include('admin::Admin.Registration.Marriage.verifyFamily')
                         </th>
                     </tr>
                 </thead>

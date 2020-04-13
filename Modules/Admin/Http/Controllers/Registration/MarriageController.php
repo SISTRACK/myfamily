@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Address\Entities\District;
+use Modules\Family\Entities\Tribe;
 use Modules\Family\Entities\Family;
-use Modules\Marriage\Entities\Status;
+use Modules\Marriage\Entities\WifeStatus;
 use Modules\Marriage\Entities\Marriage;
 use Modules\Address\Entities\Country;
 use Modules\Address\Services\LivingAddress;
@@ -28,12 +29,16 @@ class MarriageController extends Controller
      */
     public $data;
 
-    public function createMarriage($state,$lga,$district,$id)
+    public function createMarriage($state,$lga,$district,$districtId,$familyId)
     {
 
-        $district = District::find($id);
-        
-        return view('admin::Admin.Registration.Marriage.create',['country'=>Country::find(1),'district'=>$district,'families'=>$district->families()]);
+        return view('admin::Admin.Registration.Marriage.create',[
+            'country'=>Country::find(1),
+            'district'=>District::find($districtId),
+            'family'=>Family::find($familyId),
+            'tribes'=>Tribe::all(),
+            'statuses'=>WifeStatus::all()
+            ]);
     }
 
     public function verifyMarriageFamily(Request $request)
@@ -42,9 +47,15 @@ class MarriageController extends Controller
             'family' => 'required',
             'status'=> 'required'
         ]);
+        $family = Family::find($request->family);
         session(['register'=>$request->all()]);
-        session(['family'=>Family::find($request->family)]);
-        return back();
+        return redirect()->route('district.marriages.create',[
+            $family->location->area->town->district->lga->state->name,
+            $family->location->area->town->district->lga->name,
+            $family->location->area->town->district->name,
+            $family->location->area->town->district->id,
+            $family->id
+            ]);
     }
     /**
      * Store a newly created resource in storage.

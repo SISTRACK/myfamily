@@ -22,11 +22,11 @@
 			<div class="col-lg-8">
 				<select class="form-control" name="husband_first_name">
 					<option value=""></option>
-					@if($husbands)
-                        @foreach($husbands as $husband)
-                            <option value="{{$husband['user_id']}}">{{$husband['name']}}</option>
+					
+                        @foreach($family_admin->family->unMarriedSons() as $childProfile)
+                            <option value="{{$childProfile->user->id}}">{{$childProfile->user->first_name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>
@@ -35,11 +35,9 @@
 			<div class="col-lg-8">
 				<select class="form-control" name="husband_last_name">
 					<option value=""></option>
-					@if($husbands)
-                        @foreach($husbands as $husband)
-                            <option value="{{$husband['user_id']}}">{{$husband['surname']}}</option>
-                        @endforeach
-					@endif
+					@foreach($family_admin->family->unMarriedSons() as $childProfile)
+							<option value="{{$childProfile->user->id}}">{{$childProfile->user->last_name}}</option>
+					@endforeach
 				</select>
 			</div>
 		</div>
@@ -133,11 +131,11 @@
 			<div class="col-lg-8">
 				<select name="wife_first_name" class="form-control"  >
 					<option value=""></option>
-					@if($wives)
-                        @foreach($wives as $wife)
-                            <option value="{{$wife['user_id']}}">{{$wife['name']}}</option>
+					
+                        @foreach($family_admin->family->unMarriedDaughters() as $childProfile)
+                            <option value="{{$childProfile->user->id}}">{{$childProfile->user->first_name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>
@@ -146,11 +144,9 @@
 			<div class="col-lg-8">
 				<select name="wife_last_name" class="form-control"  >
 					<option value=""></option>
-					@if($wives)
-                        @foreach($wives as $wife)
-                            <option value="{{$wife['user_id']}}">{{$wife['surname']}}</option>
+					    @foreach($family_admin->family->unMarriedDaughters() as $childProfile)
+                            <option value="{{$childProfile->user->id}}">{{$childProfile->user->last_name}}</option>
                         @endforeach
-					@endif
 				</select>
 			</div>
 		</div>
@@ -159,11 +155,11 @@
 			<div class="col-lg-8">
 				<select name="wife_status" class="form-control" value="{{old('wife_status')}}" >
 					<option value=""></option>
-					@if($status)
-                        @foreach($status as $status)
+					
+                        @foreach($statuses as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>

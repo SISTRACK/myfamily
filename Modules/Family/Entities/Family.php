@@ -3,12 +3,12 @@
 namespace Modules\Family\Entities;
 
 use Modules\Core\Entities\BaseModel;
-
+use Modules\Family\Services\Traits\FamilyMembers;
 use Modules\Family\Services\Traits\RelatedFamilies;
 
 class Family extends BaseModel
 {
-    use RelatedFamilies;
+    use RelatedFamilies, FamilyMembers;
     
     public function familyAdmin()
     {
@@ -51,7 +51,6 @@ class Family extends BaseModel
     {
         return $this->hasMany(FamilyProfileCount::class);
     }
-
 
     public function religion()
     {

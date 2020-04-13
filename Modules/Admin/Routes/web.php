@@ -69,7 +69,7 @@ Route::prefix('admin')->group(function () {
 
   // Marriage administration
 
-  Route::get('/{state}/{lga}/{district}/{district_id}/marriages/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/family/{familyId}/marriage/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/{district_id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
 
