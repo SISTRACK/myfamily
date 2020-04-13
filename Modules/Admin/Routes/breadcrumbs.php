@@ -117,18 +117,14 @@ Breadcrumbs::for('admin.district.family.death.edit', function ($trail,$death) {
 
 //birth breadcrumbs
 
-Breadcrumbs::for('admin.district.family.birth.create', function ($trail,$district) {
-    $trail->parent('admin.district.dashboard', $district);
-    if(session('family')){
-    	$page = 'Register New Birth';
-    }else{
-    	$page = 'Select Family To Register Birth';
-    }
-    $trail->push($page, route('district.deaths.create',[
-    	$district->lga->state->name,
-    	$district->lga->name,
-    	$district->name,
-    	$district->id
+Breadcrumbs::for('admin.district.family.birth.create', function ($trail,$family) {
+    $trail->parent('admin.district.dashboard', $family->location->area->town->district);
+    $trail->push('Birth Registration', route('district.births.create',[
+        $family->location->area->town->district->lga->state->name,
+    	$family->location->area->town->district->lga->name,
+    	$family->location->area->town->district->name,
+    	$family->location->area->town->district->id,
+    	$family->id
     ]));
 });
 

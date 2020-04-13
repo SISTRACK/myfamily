@@ -52,7 +52,13 @@
     <!--wizard initialization-->
     <script src="{{ asset('js/jquery.wizard-init.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"> </script>
-
+    <script>
+        $(function() {
+            $('#table').DataTable({
+                
+            });
+        });
+    </script>
     @yield('footer')
     
     <footer class="footer text-right">

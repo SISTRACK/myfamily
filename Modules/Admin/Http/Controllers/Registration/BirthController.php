@@ -24,10 +24,12 @@ class BirthController extends Controller
      * Display a listing of the resource.
      * @return Response
      */
-    public function createBirth($state,$lga,$district,$id)
+    public function createBirth($state,$lga,$district,$districtId,$familyId)
     {
-        $district = District::find($id);
-        return view('admin::Admin.Registration.Birth.create',['district'=>$district]);
+        $family = Family::find($familyId);
+        return view('admin::Admin.Registration.Birth.create',[
+            'district'=>$family->location->area->town->district,
+            'family'=>$family]);
     }
 
     /**
@@ -39,8 +41,14 @@ class BirthController extends Controller
         $request->validate([
             'family' => 'required'
         ]);
-        session(['family'=> Family::find($request->family)]);
-        return back();
+        $family = Family::find($request->family);
+        return redirect()->route('district.births.create',[
+            $family->location->area->town->district->lga->state->name,
+            $family->location->area->town->district->lga->name,
+            $family->location->area->town->district->name,
+            $family->location->area->town->district->id,
+            $family->id
+            ]);
     }
 
     /**

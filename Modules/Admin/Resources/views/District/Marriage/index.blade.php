@@ -6,7 +6,7 @@
     @else
     <div class="row">
         <div class="col-xs-12">
-            <table class="table">
+            <table class="table" id="table">
                 <thead>
                     <tr>
                         <th>Husband</th>

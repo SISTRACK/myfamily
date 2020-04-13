@@ -6,7 +6,7 @@
     @else
         <div class="row">
             <div class="col-xs-12">
-                <table class="table">
+                <table class="table" id="table">
                     <thead>
                         <tr>
                             <th>Father</th>
@@ -21,7 +21,8 @@
                             <th>Area</th>
                             <th>Family</th>
                             <th>
-            	                <a class="btn btn-success" href="{{route('district.births.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Birth</a>
+            	                <a class="btn btn-success" href="#" data-toggle="modal" data-target="#newBirth">New Birth</a>
+                                @include('admin::Admin.Registration.Birth.verifyFamily')
                             </th>
                         </tr>
                     </thead>

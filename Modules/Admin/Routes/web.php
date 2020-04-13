@@ -80,7 +80,7 @@ Route::prefix('admin')->group(function () {
   Route::post('/{state}/{lga}/{district}/{town}/{family}/marriage/{marriage_id}/update', 'Registration\MarriageController@updateMarriage')->name('district.family.marriage.update')->middleware('landOnDistrict');
 
   //birth administration
-  Route::get('/{state}/{lga}/{district}/{district_id}/birth/create', 'Registration\BirthController@createBirth')->name('district.births.create')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/family/{familyId}/birth/create', 'Registration\BirthController@createBirth')->name('district.births.create')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/{district_id}/birth/verify-family', 'Registration\BirthController@verifyFamily')->name('district.births.verify.family')->middleware('landOnDistrict');
 

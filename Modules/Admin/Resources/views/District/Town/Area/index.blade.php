@@ -4,7 +4,7 @@
     
     <div class="row">
         <div class="col-xs-12">
-            <table class="table">
+            <table class="table" id="table">
                 <thead>
                     <tr>
                         <th>Town</th>
@@ -15,6 +15,7 @@
                         <a class="btn btn-success" href="#" data-toggle="modal" data-target="#newArea">New Area</a>
                         @include('admin::District.Town.Area.create')
                         </th>
+                        
                     </tr>
                 </thead>
                 <tbody>

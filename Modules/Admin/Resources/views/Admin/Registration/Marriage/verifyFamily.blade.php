@@ -3,7 +3,7 @@
           <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Select Family to register marriage in</h3>
+                    <h3>Select Family of the birth</h3>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
