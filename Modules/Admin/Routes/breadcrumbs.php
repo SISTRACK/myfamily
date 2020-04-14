@@ -89,7 +89,7 @@ Breadcrumbs::for('admin.district.family.death.create', function ($trail,$distric
     if(session('death')){
     	$page = 'Register New Death';
     }else{
-    	$page = 'Select Family And Member Category';
+    	$page = 'New Death Registration';
     }
     $trail->push($page, route('district.deaths.create',[
     	$district->lga->state->name,

@@ -36,19 +36,25 @@ trait FamilyMembers
         switch ($status) {
 
             case 'husband':
-                $people[] = $this->familyAdmin->profile;
+                if($this->familyAdmin->profile->life_status_id == 1){
+                    $people[] = $this->familyAdmin->profile;
+                }
                 break;
                 
             case 'wife':
                 foreach($this->familyAdmin->profile->husband->marriages->where('is_active', 1) as $marriage){
-                    $people[] = $marriage->wife->profile;
+                    if($marriage->wife->profile->life_status_id == 1){
+                        $people[] = $marriage->wife->profile;
+                    }
                 }
                 break;
                 
             case 'child':
                 if($this->familyAdmin->profile->isFather()){
                     foreach($this->familyAdmin->profile->husband->father->births as $birth){
-                        $people[] = $birth->child->profile;
+                        if($birth->child->profile->life_status_id ==1){
+                            $people[] = $birth->child->profile;
+                        }
                     }
                 }
                 break;
@@ -59,7 +65,7 @@ trait FamilyMembers
                         $profile = $birth->child->profile;
                         if($profile->life_status_id == 1 && $profile->gender_id == 2 && $profile->wife){
                             foreach ($profile->wife->marriages->where('is_active',1) as $marriages) {
-                                if($marriage->husband->profile->life_status_id == 1){
+                                if($marriage->husband->profile->life_status_id == 1 && $marriage->husband->profile->life_status_id == 1){
                                     $people[] = $marriage->husband->profile;
                                 }
                             }
