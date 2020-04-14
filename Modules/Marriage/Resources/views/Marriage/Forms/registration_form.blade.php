@@ -2,31 +2,31 @@
 	@csrf
 	<h3>Husband Info</h3>
 	<section>
-		@if(session('register')['status'] == 'father')
-		<input type="hidden" name="user_id" value="{{$husbands['user_id']}}">
+		@if(request()->route('status') == 'father')
+		<input type="hidden" name="user_id" value="{{$family->familyAdmin->profile->user->id}}">
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="husband_first_name">Husband First Name</label>
 			<div class="col-lg-8">
-				<input value="{{$husbands['name']}}" placeholder="Husband First Name" class="form-control required" id="userName1" name="husband_first_name" type="text" value="{{old('husband_first_name')}}" >
+				<input value="{{$family->familyAdmin->profile->user->first_name}}" placeholder="Husband First Name" class="form-control required" id="userName1" name="husband_first_name" type="text" value="{{$family->familyAdmin->profile->user->first_name}}" >
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="husband_last_name">Husband Last Name</label>
 			<div class="col-lg-8">
-				<input value="{{$husbands['surname']}}" value="{{old('husband_last_name')}}" placeholder="Husband Last Name"  id="husband_last_name" name="husband_last_name" type="text" class="required form-control" >
+				<input value="{{$family->familyAdmin->profile->user->last_name}}" value="{{$family->familyAdmin->profile->user->last_name}}" placeholder="Husband Last Name"  id="husband_last_name" name="husband_last_name" type="text" class="required form-control" >
 			</div>
 		</div>
-		@elseif(session('register')['status'] == 'son')
+		@elseif(request()->route('status') == 'son')
         <div class="form-group clearfix">
 		<label class="col-lg-4 control-label " for="husband_first_name">Husband First Name</label>
 			<div class="col-lg-8">
 				<select class="form-control" name="husband_first_name">
 					<option value=""></option>
-					@if($husbands)
-                        @foreach($husbands as $husband)
-                            <option value="{{$husband['user_id']}}">{{$husband['name']}}</option>
+					
+                        @foreach($family->unMarriedSons() as $husband)
+                            <option value="{{$husband->user->id}}">{{$husband->user->first_name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>
@@ -35,11 +35,9 @@
 			<div class="col-lg-8">
 				<select class="form-control" name="husband_last_name">
 					<option value=""></option>
-					@if($husbands)
-                        @foreach($husbands as $husband)
-                            <option value="{{$husband['user_id']}}">{{$husband['surname']}}</option>
+                        @foreach($family->unMarriedSons() as $husband)
+                            <option value="{{$husband->user->id}}">{{$husband->user->last_name}}</option>
                         @endforeach
-					@endif
 				</select>
 			</div>
 		</div>
@@ -98,11 +96,11 @@
 						<div class="col-lg-8">
 							<select class="form-control" name="tribe">
 								<option value=""></option>
-			   					@if($tribes)
+			   					
                                     @foreach($tribes as $tribe)
                                         <option value="{{$tribe->id}}">{{$tribe->name}}</option>
                                     @endforeach
-								@endif
+								
 							</select>
 						</div>
 					</div>
@@ -126,18 +124,16 @@
 		@endif
 	</section>
 	<h3>Wife Info</h3>
-	@if(session('register')['status'] == 'daughter')
+	@if(request()->route('status') == 'daughter')
 	<section>
         <div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="userName1">Wife First Name</label>
 			<div class="col-lg-8">
 				<select name="wife_first_name" class="form-control"  >
 					<option value=""></option>
-					@if($wives)
-                        @foreach($wives as $wife)
-                            <option value="{{$wife['user_id']}}">{{$wife['name']}}</option>
+                        @foreach($family->unMarriedDaughters() as $wife)
+                            <option value="{{$wife->user->id}}">{{$wife->user->first_name}}</option>
                         @endforeach
-					@endif
 				</select>
 			</div>
 		</div>
@@ -146,11 +142,11 @@
 			<div class="col-lg-8">
 				<select name="wife_last_name" class="form-control"  >
 					<option value=""></option>
-					@if($wives)
-                        @foreach($wives as $wife)
-                            <option value="{{$wife['user_id']}}">{{$wife['surname']}}</option>
+					
+                        @foreach($family->unMarriedDaughters() as $wife)
+                            <option value="{{$wife->user->id}}">{{$wife->user->last_name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>
@@ -159,11 +155,11 @@
 			<div class="col-lg-8">
 				<select name="wife_status" class="form-control" value="{{old('wife_status')}}" >
 					<option value=""></option>
-					@if($status)
-                        @foreach($status as $status)
+					
+                        @foreach($statuses as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>
@@ -187,11 +183,11 @@
 			<div class="col-lg-8">
 				<select name="wife_status" class="form-control" value="{{old('wife_status')}}" >
 					<option value=""></option>
-					@if($status)
-                        @foreach($status as $status)
+					
+                        @foreach($family->availableWifeStatuses() as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach
-					@endif
+					
 				</select>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 @extends('marriage::layouts.master')
 
 @section('page-title')
-    {{ Breadcrumbs::render('family.marriage.create',[profile()->thisProfileFamily()->name]) }}
+    
 @endsection
 
 @section('page-content')

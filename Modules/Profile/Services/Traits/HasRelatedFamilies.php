@@ -3,7 +3,8 @@ namespace Modules\Profile\Services\Traits;
 
 use Modules\Family\Services\Family\ValidFamilies;
 
-trait HasRelatedFamilies  {
+trait HasRelatedFamilies  
+{
 
     public function relatedFamilies()
 

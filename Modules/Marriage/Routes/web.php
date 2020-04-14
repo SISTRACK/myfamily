@@ -11,9 +11,9 @@
 |
 */
 
-Route::prefix('{family}/marriage/')->group(function() {
-	Route::get('family/{familyId}/create', 'MarriageController@index')->name('family.marriage.create');
-    Route::post('register', 'MarriageController@store')->name('family.marriage.register');
-    Route::post('verify', 'MarriageController@verify')->name('family.marriage.verify');
+Route::prefix('marriage/')->group(function() {
+	Route::get('family/{familyId}/{status}/create', 'MarriageController@index')->name('family.marriage.create');
+    Route::post('{family}/register', 'MarriageController@store')->name('family.marriage.register');
+    Route::post('{family}/verify', 'MarriageController@verify')->name('family.marriage.verify');
 });
 

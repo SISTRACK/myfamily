@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Family\Services\Traits;
+use Modules\Marriage\Entities\WifeStatus;
 
 trait FamilyMembers
 {
@@ -8,10 +9,12 @@ trait FamilyMembers
     public function unMarriedSons()
     {
         $sons = [];
-        foreach ($this->familyAdmin->profile->husband->father->births as $birth) {
-            $childProfile = $birth->child->profile;
-            if($childProfile->gender->id == 1 && !$childProfile->husband && $childProfile->life_status_id == 1){
-                $sons[] = $childprofile;
+        if($this->familyAdmin->profile->isFather()){
+            foreach ($this->familyAdmin->profile->husband->father->births as $birth) {
+                $childProfile = $birth->child->profile;
+                if($childProfile->gender->id == 1 && !$childProfile->husband && $childProfile->life_status_id == 1){
+                    $sons[] = $childProfile;
+                }
             }
         }
         return $sons;
@@ -20,10 +23,12 @@ trait FamilyMembers
     public function unMarriedDaughters()
     {
         $doaghters = [];
-        foreach ($this->familyAdmin->profile->husband->father->births as $birth) {
-            $childProfile = $birth->child->profile;
-            if($childProfile->gender->id == 2 && !$childProfile->husband && $childProfile->life_status_id == 1){
-                $doaghters[] = $childprofile;
+        if($this->familyAdmin->profile->isFather()){
+            foreach ($this->familyAdmin->profile->husband->father->births as $birth) {
+                $childProfile = $birth->child->profile;
+                if($childProfile->gender->id == 2 && !$childProfile->husband && $childProfile->life_status_id == 1){
+                    $doaghters[] = $childProfile;
+                }
             }
         }
         return $doaghters;
@@ -76,6 +81,35 @@ trait FamilyMembers
         }
         
         return $people;
-	}
+    }
+    
+    public function availableWifeStatuses()
+    {
+        $validStatuses = [];
+        $invalidStatuses = [];
+        $availableStatus = [];
+        //if admin has married
+        if($this->familyAdmin->profile->husband){
+            //get all his valid wife status and put in the array valid status
+            foreach ($this->familyAdmin->profile->husband->marriages as $marriage) {
+                if($marriage->is_active == 1){
+                    $validStatuses[] = $marriage->wife->wifeStatus->id;
+                }
+            }
+        }
+        
+        foreach(WifeStatus::all() as $status){
+            if(!in_array($status->id,$validStatuses)){
+                $invalidStatuses[] = $status->id;
+            }
+        }
+        
+        foreach($invalidStatuses as $status_id){
+            
+            $availableStatus[] = WifeStatus::find($status_id);
+        
+        }
+        return $availableStatus;
+    }
     
 }

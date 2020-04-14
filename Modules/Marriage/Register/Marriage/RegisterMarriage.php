@@ -3,6 +3,8 @@ namespace Modules\Marriage\Register\Marriage;
 
 
 use Modules\Family\Entities\Family;
+use Modules\Family\Entities\Tribe;
+use Modules\Marriage\Entities\WifeStatus;
 use Modules\Address\Entities\Country;
 use Illuminate\Http\Request;
 use Modules\Marriage\Events\NewMarriageEvent;
@@ -12,9 +14,14 @@ use Modules\Family\Services\Marriage\marriageCore;
 
 trait RegisterMarriage
 {
-    public function index(marriageCore $marriage)
+    public function index($familyId,$status)
     {
-        return view('marriage::Marriage.new_marriage',['country'=>Country::find(1),'family'=>$marriage->family,'families'=>$marriage->families,'husbands'=>$marriage->husbands,'wives'=>$marriage->wives,'status'=>$marriage->status,'tribes'=>$marriage->tribes]);
+        return view('marriage::Marriage.new_marriage',[
+            'country'=>Country::find(1),
+            'family'=>Family::find($familyId),
+            'tribes'=>Tribe::all(),
+            'statuses'=>WifeStatus::all()
+        ]);
     }
 
     /**
@@ -22,10 +29,10 @@ trait RegisterMarriage
      * @return Response
      */
     
-    public function create()
+    public function create($family,$familyId)
     {
         
-        return view('marriage::Marriage.new_marriage',['country'=>Country::find(1),'family'=>$families]);
+        return view('marriage::Marriage.new_marriage',['country'=>Country::find(1),'family'=>Family::find($familyId)]);
     }
 
     /**
@@ -49,6 +56,6 @@ trait RegisterMarriage
             'status'=> 'required'
         ]);
         $family = Family::find($request->family);
-        return redirect()->route('family.marriage.create',[$family->id]);
+        return redirect()->route('family.marriage.create',[$family->id,$request->status]);
     }
 }

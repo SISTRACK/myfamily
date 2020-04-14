@@ -2,7 +2,7 @@
         <a href="#" class="waves-effect"><i class="fa fa-pencil-square-o"></i> <span> Registration </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('family.birth.create',[profile()->thisProfileFamily()->name])}}"><i class="fa fa-baby"></i> <span>Birth</span></a></li>
-            <li><a href="{{route('family.marriage.create',[profile()->thisProfileFamily()->name])}}">Marriage</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#newMarriage">Marriage</a></li>
             @if(profile()->husband && canDivorce())
             <li><a href="{{route('family.divorce.create',[profile()->thisProfileFamily()->name])}}">Divorce</a></li>
             @endif
