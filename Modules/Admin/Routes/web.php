@@ -91,7 +91,7 @@ Route::prefix('admin')->group(function () {
   Route::post('/{state}/{lga}/{district}/{family}/birth/{birth_id}/update', 'Registration\BirthController@updateBirth')->name('district.family.birth.update')->middleware('landOnDistrict');
 
   //Death routes
-   Route::get('/{state}/{lga}/{district}/{district_id}/death/create', 'Registration\DeathController@createDeath')->name('district.deaths.create')->middleware('landOnDistrict');
+   Route::get('/{state}/{lga}/{district}/{district_id}/family/{familyId}/{status}/death/create', 'Registration\DeathController@createDeath')->name('district.deaths.create')->middleware('landOnDistrict');
 
    Route::post('/{state}/{lga}/{district}/{district_id}/death/family/verify', 'Registration\DeathController@verifyFamily')->name('district.death.family.verify')->middleware('landOnDistrict');
 

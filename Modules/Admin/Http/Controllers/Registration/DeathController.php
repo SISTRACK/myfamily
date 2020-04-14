@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Address\Entities\District;
 use Modules\Death\Entities\Death;
 use Modules\Family\Services\Family\ValidDeathNames;
+use Modules\Family\Entities\Family;
 use Modules\Death\Http\Requests\DeathFormRequest;
 use Modules\Death\Services\Registration\NewDeath as RegisterDeath;
 use Modules\Death\Events\NewDeathEvent;
@@ -22,10 +23,9 @@ class DeathController extends Controller
      * Show the form for creating a new resource.
      * @return Response
      */
-    public function createDeath($state,$lga,$district,$id, ValidDeathNames $names)
+    public function createDeath($state,$lga,$district,$districtId,$familyId,$status)
     {
-        $district = District::find($id);
-        return view('admin::Admin.Registration.Death.create',['district'=>$district,'names'=>$names->names]);
+        return view('admin::Admin.Registration.Death.create',['district'=>District::find($districtId),'family'=>Family::find($familyId)]);
     }
 
     /**
@@ -38,8 +38,6 @@ class DeathController extends Controller
         if($death = new RegisterDeath($request->all()) && is_null(session('error'))){
 
             //broadcast(new NewDeathEvent($death))->toOthers();
-
-            session()->forget('death');
             session()->flash('message','Death has been registered successfully');
             return back();
         }
@@ -58,8 +56,16 @@ class DeathController extends Controller
             'family' => 'required',
             'status'=> 'required'
         ]);
-        session(['death'=>$request->all()]);
-        return back();
+        $family = Family::find($request->family);
+        
+        return redirect()->route('district.deaths.create',[
+            'state'=>$family->location->area->town->district->lga->state->name,
+            'lga'=>$family->location->area->town->district->lga->name,
+            'district'=>$family->location->area->town->district->name,
+            'district_id'=>$family->location->area->town->district->id,
+            'familyId'=>$family->id,
+            'status'=>$request->status
+            ]);
     }
 
     /**

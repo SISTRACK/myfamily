@@ -21,7 +21,8 @@
                         <th>Wives</th>
                         <th>Children</th>
                         <th>
-            	            <a class="btn btn-success" href="{{route('district.deaths.create',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}">New Death</a>
+            	            <a class="btn btn-success" href="#" data-toggle="modal" data-target="#newDeath">New Death</a>
+                            @include('admin::Admin.Registration.Death.verifyFamily')
                         </th>
                     </tr>
                 </thead>

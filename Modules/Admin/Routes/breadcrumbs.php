@@ -62,12 +62,8 @@ Breadcrumbs::for('admin.district.family.edit', function ($trail,$family) {
 
 Breadcrumbs::for('admin.district.family.marriage.create', function ($trail,$family) {
     $trail->parent('admin.district.dashboard', $family->location->area->town->district);
-    if(session('family')){
-    	$page = 'New Marriage';
-    }else{
-    	$page = 'Select Family Account';
-    }
-    $trail->push($page, route('district.marriages.create',[
+    
+    $trail->push('New Marriage', route('district.marriages.create',[
         $family->location->area->town->district->lga->state->name,
     	$family->location->area->town->district->lga->name,
     	$family->location->area->town->district->name,
@@ -88,7 +84,7 @@ Breadcrumbs::for('admin.district.family.marriage.edit', function ($trail,$marria
     ]));
 });
 
-Breadcrumbs::for('admin.district.family.death.create', function ($trail,$district) {
+Breadcrumbs::for('admin.district.family.death.create', function ($trail,$district,$family) {
     $trail->parent('admin.district.dashboard', $district);
     if(session('death')){
     	$page = 'Register New Death';
@@ -99,7 +95,9 @@ Breadcrumbs::for('admin.district.family.death.create', function ($trail,$distric
     	$district->lga->state->name,
     	$district->lga->name,
     	$district->name,
-    	$district->id
+    	$district->id,
+        $family->id,
+        request()->route('status')
     ]));
 });
 

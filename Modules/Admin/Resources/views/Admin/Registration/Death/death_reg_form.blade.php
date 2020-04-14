@@ -1,3 +1,4 @@
+
 <form id="wizard-vertical" action="{{route('district.family.death.register',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" method="POST">
 	@csrf
 	<h3>Personal Info</h3>
@@ -7,11 +8,9 @@
 			<div class="col-lg-8">
 				<select name="first_name" class="form-control">
 					<option value="">First Name</option>
-					@if(!empty($names))
-						@foreach($names as $name)
-	                        <option value="{{$name['user_id']}}">{{$name['first_name']}}</option>
-						@endforeach
-					@endif
+					@foreach($family->availablePeopleInTheFamily(request()->route('status')) as $person)
+						<option value="{{$person->user->id}}">{{$person->user->first_name}}</option>
+					@endforeach
 				</select>
 			</div>
 		</div>
@@ -20,11 +19,9 @@
 			<div class="col-lg-8">
 				<select name="last_name" class="form-control">
 					<option value="">Last name</option>
-					@if(!empty($names))
-						@foreach($names as $name)
-	                        <option value="{{$name['user_id']}}">{{$name['last_name']}}</option>
-						@endforeach
-					@endif
+					@foreach($family->availablePeopleInTheFamily(request()->route('status')) as $person)
+						<option value="{{$person->user->id}}">{{$person->user->last_name}}</option>
+					@endforeach
 				</select>
 			</div>
 		</div>
