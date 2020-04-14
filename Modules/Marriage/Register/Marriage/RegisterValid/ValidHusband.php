@@ -31,7 +31,7 @@ trait ValidHusband
                 $this->canMarryAgain($this->husbandUser);
             }
         }
-        if(session('register')['status'] == 'son'||session('register')['status'] == 'father'){
+        if(request()->route('status') == 'son' || request()->route('status') == 'father'){
             if($this->husbandUser != null && $this->husbandUser->profile != null && $this->husbandUser->profile->child != null){
                 
             }else if(filled($this->husbandUser) && filled($this->husbandUser->profile->child)){
@@ -48,7 +48,7 @@ trait ValidHusband
         }
         
 
-        if(session('register')['status'] == 'son'){
+        if(request()->route('status') == 'son'){
             $this->emailAuth();
         }
         if($this->husbandUser == null){

@@ -61,7 +61,7 @@
 			<label class="col-lg-4 control-label " for="area">Area</label>
 			<div class="col-lg-8">
 			    <select name="area" class="form-control">
-				    <option value="{{$family_admin->family->location->area->name}}">{{$family_admin->family->location->area->name}}</option>
+				    <option value="{{$family_admin->family->location->area->id}}">{{$family_admin->family->location->area->name}}</option>
 					@foreach($family_admin->family->location->area->town->areas as $area)
 					    @if($area->id != $family_admin->family->location->area->id)
                             <option value="{{$area->id}}">{{$area->name}}</option>

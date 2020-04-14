@@ -13,7 +13,7 @@
 
 Route::prefix('marriage/')->group(function() {
 	Route::get('family/{familyId}/{status}/create', 'MarriageController@index')->name('family.marriage.create');
-    Route::post('{family}/register', 'MarriageController@store')->name('family.marriage.register');
+    Route::post('{family}/{familyId}/{status}/register', 'MarriageController@store')->name('family.marriage.register');
     Route::post('{family}/verify', 'MarriageController@verify')->name('family.marriage.verify');
 });
 

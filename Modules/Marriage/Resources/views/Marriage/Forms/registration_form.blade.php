@@ -1,4 +1,4 @@
-<form id="wizard-vertical" action="{{route('family.marriage.register',profile()->thisProfileFamily()->name)}}" method="POST">
+<form id="wizard-vertical" action="{{route('family.marriage.register',[$family->name,$family->id,request()->route('status')])}}" method="POST">
 	@csrf
 	<h3>Husband Info</h3>
 	<section>
@@ -209,7 +209,7 @@
 		@endphp
 		@include('marriage::Marriage.Forms.addressInfo')
 	</section>
-	@if(session('register')['status'] == 'father' || session('register')['status'] == 'son')
+	@if(request()->route('status') == 'father' || request()->route('status') == 'son')
 	<h3>Wife Family Info</h3>
 	<section>
 		<div class="widget widget-tabs widget-tabs-gray border-bottom-none">

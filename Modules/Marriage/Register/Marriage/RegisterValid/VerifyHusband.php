@@ -56,7 +56,7 @@ trait VerifyHusband
     public function validBirth(User $user)
     {
         $flag = false;
-        foreach(Family::find(session('register')['family'])->admin->profile->husband->marriages as $marriage){
+        foreach(Family::find(request()->route('familyId'))->admin->profile->husband->marriages as $marriage){
             if($marriage->wife->mother->id == $user->profile->child->birth->mother_id){
                 $flag = true;
             }
@@ -73,7 +73,7 @@ trait VerifyHusband
             $this->error[] = "Sorry the husband marriage date authentication fails there must be the interval of atleast 15 years between husband date of birth and marriage date";
         }
 
-        if(session('register')['status'] == 'son' && empty($this->husbandUser->email)){
+        if(request()->route('status') == 'son' && empty($this->husbandUser->email)){
             $this->error[] = "Profile authentication fails husband did not update his email to his profile";
         }
     }

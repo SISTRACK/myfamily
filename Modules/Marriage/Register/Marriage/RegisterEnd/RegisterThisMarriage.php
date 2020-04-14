@@ -30,11 +30,11 @@ trait RegisterThisMarriage
     public function prepareData($data)
     {
     
-    	switch (session('register')['status']) {
+    	switch (request()->route('status')) {
     		case 'father':
 
     			//data was already prepared
-                $family = Family::find(session('register')['family']);
+                $family = Family::find(request()->route('familyId'));
                 $this->family = $family;
     		    $data['address'] = $this->address($data);
     			break;
@@ -42,7 +42,7 @@ trait RegisterThisMarriage
     		case 'son':
     		    //prepare family data
 		        $data['address'] = $this->address($data);
-		        $family = Family::find(session('register')['family']);
+		        $family = Family::find(request()->route('familyId'));
                 $this->family = $family;
 		        $user = User::find($data['husband_first_name']);
                 $data['family'] = strtolower($family->name.'-'.$user->first_name.'-child-id-'.$user->profile->child->birth->id);
@@ -56,7 +56,7 @@ trait RegisterThisMarriage
     		case 'daughter':
     			//need to prepare the data
     		    $data['address'] = $this->address($data);
-		        $family = Family::find(session('register')['family']);
+		        $family = Family::find(request()->route('familyId'));
 		        $user = User::find($data['wife_first_name']);
                 $data['wife_email'] = $user->email;
                 $data['wife_family'] = $user->profile->family->name;

@@ -33,7 +33,7 @@ class MarriageRegistered
        
         if(empty($this->error)){
          
-        	switch (session('register')['status']) {
+        	switch (request()->route('status')) {
 	        	case 'father':
 	        		$this->registerMarriage();
 	        		$message = "Congratulation your Marriage was register successfully";

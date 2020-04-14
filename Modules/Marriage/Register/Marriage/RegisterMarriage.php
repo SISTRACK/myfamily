@@ -44,7 +44,7 @@ trait RegisterMarriage
     {
         if(new MarriageRegistered($request->all()) && session('error') == null){
             //broadcast(new NewMarriageEvent($this->marriage))->toOthers();
-            session()->forget('register');
+            
         }
         return back();
     }

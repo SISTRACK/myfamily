@@ -13,7 +13,7 @@ trait ProfileHandle
 
 	public function handleWifeProfile()
 	{
-		if(session('register')['status'] == 'daughter'){
+		if(request()->route('status') == 'daughter'){
             $user = User::find($this->data['wife_first_name']);
             $this->wifeUser = $user;
             $this->wifeProfile = $user->profile;
@@ -43,7 +43,7 @@ trait ProfileHandle
 	}
     public function handleHusbandProfile()
 	{
-		if(session('register')['status'] == 'father' || session('register')['status'] == 'son'){
+		if(request()->route('status') == 'father' || request()->route('status') == 'son'){
 			
 			$this->husbandProfile = $this->husbandUser->profile;
 		}else{

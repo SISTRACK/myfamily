@@ -26,6 +26,7 @@ trait LivingAddress
 
     public function address()
     {
+        
         $this->newHouse(Area::find($this->data['area']));
         return $this->newAddress($this->house);
     }
