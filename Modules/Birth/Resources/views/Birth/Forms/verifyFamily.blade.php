@@ -13,7 +13,7 @@
 						<div class="col-lg-8">
 							<select name="family" class="form-control">
 								<option value="">Choose Family</option>
-								@foreach($families as $family)
+								@foreach(profile()->relatedFamilies() as $family)
 				                    <option value="{{$family->id}}">{{$family->name}}</option>
 								@endforeach
 							</select>

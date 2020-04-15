@@ -1,19 +1,19 @@
 
-<form id="wizard-vertical" action="{{route('family.birth.register',[profile()->thisProfileFamily()->name])}}" method="POST">
+<form id="wizard-vertical" action="{{route('family.birth.register',[$family->name,$family->id])}}" method="POST">
 	@csrf
 	<h3>Father Info</h3>
 	<section>
 		<div class="form-group clearfix">
-			<input type="hidden" name="user_id" value="{{$father['user_id']}}">
+			<input type="hidden" name="user_id" value="{{$family->familyAdmin->profile->user->id}}">
 			<label class="col-lg-4 control-label " for="father_first_name">Father First Name</label>
 			<div class="col-lg-8">
-				<input value="{{$father['name']}}" class="form-control required" id="userName1" name="father_first_name" type="text">
+				<input value="{{$family->familyAdmin->profile->user->first_name}}" class="form-control required" id="userName1" name="father_first_name" type="text">
 			</div>
 		</div>
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="husband_last_name">Father Last Name</label>
 			<div class="col-lg-8">
-				<input value="{{$father['surname']}}" value="{{old('father_last_name')}}" placeholder="Husband Last Name"  id="husband_last_name" name="father_last_name" type="text" class="required form-control" >
+				<input value="{{$family->familyAdmin->profile->user->last_name}}" value="{{old('father_last_name')}}" placeholder="Husband Last Name"  id="husband_last_name" name="father_last_name" type="text" class="required form-control" >
 			</div>
 		</div>
 	</section>
@@ -25,8 +25,8 @@
 			<div class="col-lg-8">
 				<select name="mother_first_name" class= form-control>
 					<option values="">Mother First Name</option>
-					@foreach($mothers as $mother)
-                        <option value="{{$mother['name'].'.'.$mother['user_id']}}">{{$mother['name']}}</option>
+					@foreach($family->availableMothers() as $mother)
+                        <option value="{{$mother->user->first_name.'.'.$mother->user->id}}">{{$mother->user->first_name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -36,8 +36,8 @@
 			<div class="col-lg-8">
 				<select name="mother_last_name" class= form-control>
 					<option values="">Mother Last Name</option>
-					@foreach($mothers as $mother)
-                        <option value="{{$mother['surname'].'.'.$mother['user_id']}}">{{$mother['surname']}}</option>
+					@foreach($family->availableMothers() as $mother)
+                        <option value="{{$mother->user->last_name.'.'.$mother->user->id}}">{{$mother->user->last_name}}</option>
 					@endforeach
 				</select>
 			</div>
@@ -46,12 +46,10 @@
 			<label class="col-lg-4 control-label " for="userName1">Mother Status</label>
 			<div class="col-lg-8">
 				<select name="mother_status" class="form-control" value="{{old('wife_status')}}" >
-					<option value=""></option>
-					@if($status)
-                        @foreach($status as $status)
-                            <option value="{{$status->id}}">{{$status->name}}</option>
-                        @endforeach
-					@endif
+					<option value="">Mother Status</option>
+					@foreach($family->availableMothers() as $mother)
+						<option value="{{$mother->wife->wifeStatus->id}}">{{$mother->wife->wifeStatus->name}}</option>
+					@endforeach
 				</select>
 			</div>
 		</div>

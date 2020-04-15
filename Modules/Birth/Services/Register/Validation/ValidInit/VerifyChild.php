@@ -39,7 +39,7 @@ trait VerifyChild
 		if(admin()){
 			$family_id = session('family')->id;
 		}else{
-			$family_id = session('family')['family'];
+			$family_id = request()->route('familyId');
 		}
 
 		$this->profile = $this->user->profile()->create([

@@ -3,15 +3,11 @@
 namespace Modules\Birth\Services\Register;
 
 use Modules\Family\Services\Birth\birthCore;
-
+use Modules\Family\Entities\Family;
 use Modules\Birth\Services\Register\Validation\ValidateBirthRequest as ValidateRequest;
-
 use Modules\Birth\Services\Register\NewBirth;
-
 use Modules\Birth\Events\NewBirthEvent;
-
 use Illuminate\Http\Request;
-
 use Modules\Birth\Http\Requests\NewBirthFormRequest;
 
 trait RegisterBirth
@@ -20,7 +16,7 @@ trait RegisterBirth
 
 	public function index($family,$familyId)
     {
-        return view('birth::Birth.new_birth',['family'=>Family::find($familyId) ]);
+        return view('birth::Birth.new_birth',['family'=>Family::find($familyId)]);
     }
 
     /**
@@ -42,7 +38,6 @@ trait RegisterBirth
         $birth = new NewBirth($request->all());
         if(session('error') == null){
         	//broadcast(new NewBirthEvent($birth->data))->toOthers();
-            session()->forget('family');
             session()->flash('message','Birth is registered successfully');
             return back()->withSuccess('Brith is registered successfully');
         }
