@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Modules\Death\Http\Requests\DeathFormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Family\Entities\Family;
 use Modules\Family\Services\Family\ValidFamilies;
 use Modules\Family\Services\Family\ValidDeathNames;
 use Modules\Death\Services\Registration\NewDeath as RegisterDeath;
@@ -18,9 +19,9 @@ class DeathController extends BaseController
      * @return Response
      */
 
-    public function index(ValidFamilies $family, ValidDeathNames $names)
+    public function index($family, $familyId,$status)
     {
-        return view('death::index',['families' => $family->families, 'names' => $names->names]);
+        return view('death::index',['family' => Family::find($familyId)]);
     }
 
     /**
@@ -33,8 +34,8 @@ class DeathController extends BaseController
             'family' => 'required',
             'status'=> 'required'
         ]);
-        session(['death'=>$request->all()]);
-        return back();
+        $family = Family::find($request->family);
+        return redirect()->route('family.death.create',[$family->name,$family->id,$request->status]);
     }
 
     /**

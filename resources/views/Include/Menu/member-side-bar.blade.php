@@ -8,7 +8,8 @@
             @if(profile()->husband && canDivorce())
             <li><a href="{{route('family.divorce.create',[profile()->thisProfileFamily()->name])}}">Divorce</a></li>
             @endif
-            <li><a href="{{route('family.death.create',[profile()->thisProfileFamily()->name])}}"><i class="fa fa-book-dead"></i><span>Death</span> </a></li>
+            <li><a href="#" data-toggle="modal" data-target="#newDeath"><i class="fa fa-book-dead"></i><span>Death</span> </a></li>
+             <!-- this modal will be included in Resources/Views/Iclude/pages/content -->
         </ul>
     </li>
     <li class="has_sub">

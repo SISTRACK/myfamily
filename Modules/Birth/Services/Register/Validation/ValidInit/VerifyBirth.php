@@ -18,10 +18,8 @@ trait VerifyBirth
         }
 
         if(strtotime($this->data['date']) < 15552000 + last($date)){
-
         	$this->error[] = "Birth authentication fails depending of the registered previous birth father and mother are too early to give another birth";
         }
-
 	}
 
 	public function firstBirthAuth()
