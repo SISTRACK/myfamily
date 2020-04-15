@@ -18,9 +18,9 @@ trait RegisterBirth
 {
 	use ValidateRequest;
 
-	public function index(birthCore $birth)
+	public function index($family,$familyId)
     {
-        return view('birth::Birth.new_birth',['father'=>$birth->father,'mothers'=>$birth->mothers,'families'=>$birth->families,'status'=>$birth->status]);
+        return view('birth::Birth.new_birth',['family'=>Family::find($familyId) ]);
     }
 
     /**
@@ -54,8 +54,8 @@ trait RegisterBirth
         $request->validate([
             'family' => 'required'
         ]);
-        session(['family'=> $request->all()]);
-        return back();
+        $family = Family::find($request->family);
+        return redirect()->route('family.birth.create',[$family->name,$family->id]);
     }
 
 }

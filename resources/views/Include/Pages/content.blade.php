@@ -16,6 +16,7 @@
                     @if(profile())
                         @include('gallary::Modals.create_album')
                         @include('marriage::Marriage.Forms.verifyFamily')
+                        @include('marriage::Birth.Forms.verifyFamily')
                     @endif
                     
                     @if(admin() && admin()->state)

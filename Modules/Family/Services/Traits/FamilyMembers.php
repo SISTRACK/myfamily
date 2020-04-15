@@ -34,6 +34,11 @@ trait FamilyMembers
         return $doaghters;
     }
 
+    public function availableMothers()
+    {
+        return $this->availablePeopleInTheFamily('wife');
+    }
+    
     public function availablePeopleInTheFamily($status)
 	{
 
