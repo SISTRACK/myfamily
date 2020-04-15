@@ -15,6 +15,7 @@
                     @include('Include.Pages.message')
                     @if(profile())
                         @include('gallary::Modals.create_album')
+                        @include('marriage::Marriage.Forms.verifyFamily')
                     @endif
                     
                     @if(admin() && admin()->state)

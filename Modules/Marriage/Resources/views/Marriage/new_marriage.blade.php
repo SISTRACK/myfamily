@@ -8,11 +8,7 @@
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card-box">
-			@if(session('register'))
-                @include('marriage::Marriage.Forms.registration_form')
-			@else
-                @include('marriage::Marriage.Forms.verification_form')
-			@endif
+            @include('marriage::Marriage.Forms.registration_form')
 		</div>
 	</div>
 </div><!-- End row -->

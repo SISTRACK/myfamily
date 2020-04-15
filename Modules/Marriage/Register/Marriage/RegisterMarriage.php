@@ -48,7 +48,7 @@ trait RegisterMarriage
             'family' => 'required',
             'status'=> 'required'
         ]);
-        session(['register'=>$request->all()]);
-        return back();
+        $family = Family::find($request->family);
+        return redirect()->route('family.marriage.create',[$family->id]);
     }
 }

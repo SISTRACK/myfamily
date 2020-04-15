@@ -5,7 +5,8 @@
     <a href="#" class="waves-effect"><i class="mdi mdi-lead-pencil "></i> <span> Registration </span> <span class="menu-arrow"></span></a>
     <ul class="list-unstyled">
         <li><a href="{{route('family.birth.create',[profile()->thisProfileFamily()->name])}}"><i class="mdi mdi-baby"></i> <span>Birth</span></a></li>
-        <li><a href="{{route('family.marriage.create',[profile()->thisProfileFamily()->name])}}">Marriage</a></li>
+        <li><a href="#" data-toggle="modal" data-terget="#newMarriage">Marriage</a></li>
+        //this was included in in the main page content
         @if(profile()->husband)
         <li><a href="{{route('family.divorce.create',[profile()->thisProfileFamily()->name])}}">Divorce</a></li>
         @endif
