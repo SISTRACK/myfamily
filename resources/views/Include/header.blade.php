@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="{{ asset('css/jquery.steps.css') }}" />
         
         <script src="{{ asset('js/modernizr.min.js') }}"></script>
+
          
         @yield('header')
     </head>

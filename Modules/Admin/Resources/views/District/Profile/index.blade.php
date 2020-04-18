@@ -1,9 +1,17 @@
 @extends('admin::layouts.master')
 
+@section('title')
+   {{$district->name}} District list of people
+@endsection
+ 
+@section('header')
+    @include('Include.datatable.style')
+@endsection
+
 @section('page-content')                            
     <div class="row">
         <div class="col-xs-12 table-responsive">
-            <table class="table" id="table">
+            <table class="table table-striped table-bordered" id="datatable-buttons">
                 <thead>
                     <tr>
                         <th>Picture</th>
@@ -71,4 +79,8 @@
             </table>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    @include('Include.datatable.script')
 @endsection

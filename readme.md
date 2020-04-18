@@ -66,3 +66,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## to keep every thing up and running simply copy and paste below command on your terminal
 `php artisan migrate:fresh --seed; php artisan system:address-generate; php artisan generate:address-code; php artisan system:admins-generate; php artisan government:users-generate`
+
+## type of datatable used ID with on of this
+`datatable
+ datatable-buttons
+ datatable-fixed-header
+ datatable-keytable
+ datatable-responsive
+ datatable-scroller
+ datatable-colvid
+ datatable-fixed-col`
