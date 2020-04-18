@@ -5,7 +5,7 @@
 @endsection
  
 @section('header')
-    @include('Include.datatable.style')
+    @include('Include.Datatable.style')
 @endsection
 
 @section('page-content')                            
@@ -82,5 +82,5 @@
 @endsection
 
 @section('footer')
-    @include('Include.datatable.script')
+    @include('Include.Datatable.script')
 @endsection

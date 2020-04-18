@@ -11,7 +11,7 @@
     </li>
     @endif
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="fa fa-account-search"></i> <span> Search </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Search </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.search.identity.index')}}">Identity</a></li>
             <li><a href="{{route('admin.search.relative.index')}}">Relatives</a></li>
@@ -27,7 +27,7 @@
     </li>
 
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Schools </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-school"></i> <span> Schools </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li>
             	<a href="{{route('admin.education.school.create')}}">New School</a>
@@ -38,7 +38,7 @@
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> School Admins </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-account-multiple"></i> <span> School Admins </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li>
             	<a href="{{route('admin.education.school.teacher.create')}}">New School Admin</a>
@@ -49,21 +49,21 @@
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Police </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-security"></i> <span> Police </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.security.police.station.index')}}">Stations</a></li>
             <li><a href="{{route('admin.security.police.station.user.index')}}">User Agents</a></li>
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Jedicuary </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-case-sensitive-alt"></i> <span> Jedicuary </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.security.court.index')}}">Court</a></li>
             <li><a href="#">User Agents</a></li>
         </ul>
     </li>
     <li class="has_sub">
-        <a href="#" class="waves-effect"><i class="mdi mdi-account-search"></i> <span> Configurations </span> <span class="menu-arrow"></span></a>
+        <a href="#" class="waves-effect"><i class="mdi mdi-settings "></i> <span> Configurations </span> <span class="menu-arrow"></span></a>
         <ul class="list-unstyled">
             <li><a href="{{route('admin.config.profile.index')}}">Profile</a></li>
             <li><a href="#">Dis Marge Family</a></li>

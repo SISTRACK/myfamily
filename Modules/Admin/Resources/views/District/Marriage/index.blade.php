@@ -1,12 +1,19 @@
 @extends('admin::layouts.master')
+@section('title')
+   {{$district->name}} District registered marriages
+@endsection
+ 
 
+@section('header')
+    @include('Include.Datatable.style')
+@endsection
 @section('page-content')    
     @if(empty($district->marriages()))
         <h3>{{'Marriages record not found in '.$district->name.' District'}}</h3>
     @else
     <div class="row">
         <div class="col-xs-12">
-            <table class="table" id="table">
+            <table class="table-striped table-bordered" id="datatable-buttons">
                 <thead>
                     <tr>
                         <th>Husband</th>
@@ -40,6 +47,8 @@
                             <td>{{$marriage->husband->profile->family->location->area->name}}</td>
                             <td>{{$marriage->husband->profile->family->name}}</td>
                             <td>{{!is_null($marriage->wife->mother) ? count($marriage->wife->mother->births) : '0'}}</td>
+                            <td>{{$marriage->created_at}}</td>
+                            <td>{{$marriage->updated_at}}</td>
                             <td>
                                 <a href="{{route('district.family.marriage.edit',[$district->lga->state->name,$district->lga->name,$district->name,$marriage->husband->profile->family->location->area->town->name,$marriage->husband->profile->family->name,$marriage->id])}}" class="btn btn-warning">Edit</a><br>
                             </td>
@@ -51,4 +60,8 @@
         </div>
     </div>
     @endif
+@endsection
+
+@section('footer')
+    @include('Include.Datatable.script')
 @endsection    

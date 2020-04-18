@@ -87,7 +87,7 @@ class Profile extends BaseModel implements HasMedia
         if($this->image->id > 2){
             $picture = $this->image->name;
         }else{
-            $picture = 'assets/images/users/'.strtolower($this->gender->name).'.jpg';
+            $picture = 'images/users/'.strtolower($this->gender->name).'.jpg';
         }
         
         return $picture;
