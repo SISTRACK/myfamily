@@ -20,14 +20,8 @@
         <link href="{{asset('css/menu.css')}}" rel="stylesheet" />
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/switchery.min.css')}}" />
-
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
+        <link rel="stylesheet" href="{{asset('js/plugins/morris/morris.css')}}">
+        
         <script src="{{asset('js/modernizr.min.js')}}"></script>
 
     </head>
@@ -80,13 +74,28 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
+                       <br>
+                       <br>
+                       <br>
+                       @include('healthReport')
+                       <br>
+                       <br>
+                       <br>
+                       @include('educationReport')
+                       <br>
+                       <br>
+                       <br>
+                       @include('countDown')
+
+
+
+
+                    
+                        
                         <div class="row">
-                            <div class="col-xs-12">
-                                <div class="page-title-box">
-                                    <h4 class="page-title">Timeline</h4>
-                                    
-                                    <div class="clearfix"></div>
-                                </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <h4 class="center">Timeline</h4>
                             </div>
                         </div>
                         <!-- end row -->
@@ -165,7 +174,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2017 - {{date('Y',time())}} © Khaliphate citizen information management system.
+                    {{date('Y',time())}} © My Family My Pride.
                 </footer>
 
             </div>
@@ -191,10 +200,19 @@
         <script src="{{asset('js/jquery.slimscroll.js')}}"></script>
         <script src="{{asset('js/jquery.scrollTo.min.js')}}"></script>
         <script src="{{asset('js/switchery.min.js')}}"></script>
-
-        <!-- App js -->
         <script src="{{asset('js/jquery.core.js')}}"></script>
-        <script src="{{asset('js/jquery.app.js')}}"></script>
 
+        <!-- Counter js  -->
+        <script src="{{asset('js/plugins/jquery.waypoints.min.js')}}"></script>
+        <script src="{{asset('js/plugins/jquery.counterup.min.js')}}"></script>
+
+        <!--Morris Chart-->
+		<script src="{{asset('js/plugins/morris.min.js')}}"></script>
+		<script src="{{asset('js/plugins/raphael-min.js')}}"></script>
+
+        <!-- Dashboard init -->
+        <script src="{{asset('js/pages/jquery.dashboard.js')}}"></script>
+
+        <script src="{{asset('js/jquery.app.js')}}"></script>
     </body>
 </html>
