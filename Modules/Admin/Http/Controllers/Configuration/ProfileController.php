@@ -41,8 +41,8 @@ class ProfileController extends Controller
     
     public function showProfile(Request $request)
     {
-        $request->validate(['profile_id'=>'required']);
-        $profile = Profile::find($request->profile_id);
+        $request->validate(['fid_no'=>'required']);
+        $profile = Profile::where('FID',$request->fid_no)->first();
 
         if($profile){
             return redirect()->route('admin.config.user.profile',['profile'=>$profile->id]);

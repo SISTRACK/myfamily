@@ -19,17 +19,21 @@
                         <div class="member-card">
                             
                             <div class=" member-thumb m-b-10 center-block">
-                                <img src="{{$user->profile->profileImageLocation('display').$user->profile->image->name}}" class="img-radius" height="250" width="200">
+                                @if($user->profile->image->id > 2)
+                                    <img src="{{storage_url($user->profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @else
+                                    <img src="{{asset($user->profile->profilePicture())}}" class="img-radius" height="250" width="200">
+                                @endif
                             </div>
                             <div class="text-left">
                                 <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">{{$user->first_name.' '.$user->last_name}}</span></p>
                                 <p class="text-muted font-13"><strong>Status :</strong> <span class="m-l-15">{{$user->profile->life_status_id == 1 ? 'A life' : 'Dead'}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['status']}}</span></p>
+                                <p class="text-muted font-13"><strong>Health Status :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['status'] ?? 'Not available'}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Genotype :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['genotype']}}</span></p>
+                                <p class="text-muted font-13"><strong>Genotype :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['genotype'] ?? 'Not available'}}</span></p>
 
-                                <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['blood']}}</span></p>
+                                <p class="text-muted font-13"><strong>Blood Group :</strong> <span class="m-l-15">{{$user->profile->healthStatus()['blood'] ?? 'Not available'}}</span></p>
 
                                 <p class="text-muted font-13"><strong>Father Name :</strong> <span class="m-l-15">{{$user->profile->child != null ? $user->profile->child->birth->father->husband->profile->user->first_name.' '.$user->profile->child->birth->father->husband->profile->user->last_name : 'Not Available'}}</span></p>
 
@@ -97,40 +101,39 @@
                     <hr/>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Health Report</h4>
-                            <div class="p-t-10">
+                            <div class="widget widget-tabs widget-tabs-gray border-bottom-none">
                                 <div class="row">
-                                    @foreach($user->profile->medicalReports as $report)
-                                    <div class="col-md-2"><a href="{{storage_url('Nfamily/Profile/Report/Medical/'.$user->profile->id.'/'.$report->file)}}"><i class="fa fa-file-pdf-o" style="font-size: 60px;"></i>{{$report->created_at}}</a></div><br>
-                                    @endforeach
-                                </div> 
+                                    <div class="col-md-4">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#health">Health Report</h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#education">Education Report</h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h4 class="btn btn-info btn-block" data-toggle="tab" href="#security">Security Report</h4>
+                                    </div>
+                                </div>
+                                <div class="p-t-10">
+                                    <div class="row">
+                                        @php
+                                            $profile = $user->profile;
+                                        @endphp
+                                        <div class="widget-body">
+                                            <div class="tab-content">
+                                                <div class=" tab-pane active alert alert-success">
+                                                Click the report above to view here !!!
+                                                </div>
+                                                @include('profile::Profile.Report.health')
+                                                @include('profile::Profile.Report.education')
+                                                @include('profile::Profile.Report.security')
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Educational Report</h4>
-                            <div class="p-t-10">
-                                <div class="row">
-                                    
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6">
-                            <h4 class="text-custom m-b-5">Security Report</h4>
-                            <div class="p-t-10">
-                                <div class="row">
-                                    
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
+                   
                     <hr>
                     <div class="row">
                         <div class="col-md-8 col-sm-6">

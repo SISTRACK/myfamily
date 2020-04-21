@@ -10,8 +10,8 @@
     <h1 class="text-primary">Profile Information</h1><hr>     
         <form method="post" action="{{route('admin.config.profile.show')}}" >
         {{csrf_field()}}
-            <label for="">Profile ID :</label>
-            <input type="number" name="profile_id" id="" class="form-control" value="{{old('profile_id')}}" placeholder="Enter profile ID to search"><br>
+            <label for="">FID NO :</label>
+            <input type="text" name="fid_no" id="" class="form-control" value="{{old('fid_no')}}" placeholder="Enter FID NO"><br>
             <input type="submit" value="Search Profile" class="form-control btn btn-primary btn-block"/>
         </form>
     </div>
