@@ -38,6 +38,18 @@
  		        </div>
 		    </div>
 		</a>
+	</div>
+	
+	<div class="col-lg-4 col-md-6 col-sm-8">
+		<a href="{{route('admin.state.lga.district.wives.index',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" >
+		    <div class="card-box widget-box-one">
+		        <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
+		        <div class="wigdet-one-content">
+		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="Statistics">Wives</p>
+		            <h2>{{count($district->marriages())}} <small><i class="mdi mdi-acount-multiple text-success"></i></small></h2>
+ 		        </div>
+		    </div>
+		</a>
 	</div><!-- end col -->
 
 	<div class="col-lg-4 col-md-6 col-sm-8">
@@ -47,7 +59,6 @@
 		        <div class="wigdet-one-content">
 		            <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User Today">Marriages</p>
 		            <h2>{{count($district->marriages())}}<small><i class="mdi mdi-arrow-down text-danger"></i></small></h2>
-		            <p class="text-muted m-0"><b>Last:</b> 1250</p>
 		        </div>
 		    </div>
 	    </a>
