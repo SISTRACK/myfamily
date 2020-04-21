@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
   ->group(function () {
     Route::get('/births', 'BirthController@index')->name('births.index');
     Route::get('/profiles', 'ProfileController@index')->name('profiles.index');
+    Route::get('/house-holds', 'HouseHoldController@index')->name('households.index');
     Route::get('/families', 'FamilyController@index')->name('families.index');
     Route::get('/marriages', 'MarriageController@index')->name('marriages.index');
     Route::get('/deaths', 'DeathController@index')->name('deaths.index');

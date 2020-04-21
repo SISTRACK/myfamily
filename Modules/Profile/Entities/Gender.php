@@ -11,8 +11,8 @@ class Gender extends BaseModel
     {
     	return $this->hasMany(Profile::class);
     }
-    public function doctor()
+    public function doctors()
     {
-        return $this->hasOne('Modules\Health\Entities\Doctor');
+        return $this->hasMany('Modules\Health\Entities\Doctor');
     }
 }

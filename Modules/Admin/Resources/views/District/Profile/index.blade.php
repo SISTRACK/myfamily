@@ -26,6 +26,7 @@
                         <th>E-mail Address</th>
                         <th>Phone</th>
                         <th>Marital Status</th>
+                        <th>Gender</th>
                         <th>Family</th>
                         <th>Town</th>
                         <th>Area</th>
@@ -69,6 +70,7 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
                             <td>{{$user->profile ? $user->profile->maritalStatus->name : 'Not Available'}}</td>
+                            <td>{{$user->profile ? $user->profile->gender->name : 'Not Available'}}</td>
                             <td>{{$user->profile->thisProfileFamily()->name}}</td>
                             <td>{{$user->profile->thisProfileFamily()->location->area->town->name}}</td>
                             <td>{{$user->profile->thisProfileFamily()->location->area->name}}</td>
