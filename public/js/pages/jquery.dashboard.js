@@ -40,7 +40,7 @@
           fillOpacity: opacity,
           pointFillColors: Pfillcolor,
           pointStrokeColors: Pstockcolor,
-          behaveLikeLine: true,
+          behaveLikeLine: false,
           gridLineColor: '#eef0f2',
           hideHover: 'auto',
           resize: true, //defaulted to true
@@ -65,26 +65,38 @@
 
         //creating bar chart
         var $barData  = [
-            { y: '01/16', a: 42 },
-            { y: '02/16', a: 75 },
-            { y: '03/16', a: 38 },
-            { y: '04/16', a: 19 },
-            { y: '05/16', a: 93 }
+            { label: 'Bagudo', population: 42, male: 57, female: 75 },
+            { label: 'Bahindi', population: 75, male: 57, female: 75 },
+            { label: 'Zagga', population: 38, male: 57, female: 75 },
+            { label: 'Kaoje', population: 19, male: 57, female: 75 },
+            { label: 'Illo', population: 93, male: 57, female: 75 }
         ];
-        this.createBarChart('morris-bar-example', $barData, 'y', ['a'], ['Statistics'], ['#3bafda']);
+        this.createBarChart('morris-bar-example', $barData, 'label', ['population','male','female'], ['Population','Male','Female'], ['#3bafda','#111111','#222222']);
 
         //create line chart
         var $data  = [
-            { y: '2008', a: 50, b: 0 },
-            { y: '2009', a: 75, b: 50 },
-            { y: '2010', a: 30, b: 80 },
-            { y: '2011', a: 50, b: 50 },
-            { y: '2012', a: 75, b: 10 },
-            { y: '2013', a: 50, b: 40 },
-            { y: '2014', a: 75, b: 50 },
-            { y: '2015', a: 100, b: 70 }
+            { label: '2002', malaria: 50, typhoid: 53, ultha: 35, asma: 54, diabetes: 65},
+            { label: '2003', malaria: 50, typhoid: 1, ultha: 12, asma: 85, diabetes: 96},
+            { label: '2004', malaria: 50, typhoid: 0, ultha: 35, asma: 85, diabetes: 96},
+            { label: '2005', malaria: 50, typhoid: 36, ultha: 14, asma: 84, diabetes: 96},
+            { label: '2006', malaria: 50, typhoid: 0, ultha: 35, asma: 85, diabetes: 64},
+            { label: '2007', malaria: 50, typhoid: 8, ultha: 18, asma: 54, diabetes: 96},
+            { label: '2008', malaria: 50, typhoid: 90, ultha: 35, asma: 85, diabetes: 96},
+            { label: '2009', malaria: 75, typhoid: 50, ultha: 83, asma: 73, diabetes: 96 },
+            { label: '2010', malaria: 30, typhoid: 80, ultha: 35, asma: 130, diabetes: 85 },
+            { label: '2011', malaria: 50, typhoid: 189, ultha: 83, asma: 6, diabetes: 96 },
+            { label: '2012', malaria: 75, typhoid: 10, ultha: 35, asma: 85, diabetes: 74 },
+            { label: '2013', malaria: 50, typhoid: 40, ultha: 36, asma: 85, diabetes: 176 },
+            { label: '2014', malaria: 75, typhoid: 50, ultha: 52, asma: 1, diabetes: 96 },
+            { label: '2015', malaria: 100, typhoid: 70, ultha: 35, asma: 85, diabetes: 28 },
+            { label: '2016', malaria: 156, typhoid: 10, ultha: 35, asma: 74, diabetes: 96 },
+            { label: '2017', malaria: 100, typhoid: 70, ultha: 63, asma: 85, diabetes: 74 },
+            { label: '2018', malaria: 100, typhoid: 70, ultha: 35, asma: 1, diabetes: 96 },
+            { label: '2019', malaria: 100, typhoid: 70, ultha: 5, asma: 85, diabetes: 132 },
+            { label: '2020', malaria: 100, typhoid: 70, ultha: 35, asma: 85, diabetes: 63 }
           ];
-        this.createLineChart('morris-line-example', $data, 'y', ['a','b'], ['Series A','Series B'],['0.9'],['#ffffff'],['#999999'], ['#10c469','#188ae2']);
+        this.createLineChart('morris-lines-example', $data, 'label', ['malaria','typhoid','ultha','asma','diabetes'], 
+        ['Malaria','Typhoid','Ultha','Asma','Diabetes'],['0.9'],['#ffffff'],['#999999'], ['#10c469','#188ae2','#10d474','#10e649','#28f469']);
 
         //creating donut chart
         var $donutData = [

@@ -20,7 +20,7 @@
         <link href="{{asset('css/menu.css')}}" rel="stylesheet" />
         <link href="{{asset('css/responsive.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/switchery.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('js/plugins/morris/morris.css')}}">
+        <link rel="stylesheet" href="{{asset('css/morris.css')}}">
         
         <script src="{{asset('js/modernizr.min.js')}}"></script>
 
@@ -77,11 +77,31 @@
                        <br>
                        <br>
                        <br>
+                       <br>
+                       <br>
+                       <br>
                        @include('healthReport')
                        <br>
                        <br>
                        <br>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
                        @include('educationReport')
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                       <br>
+                       @include('populationReport')
+                       <br>
+                       <br>
+                       <br>
+                       <br>
                        <br>
                        <br>
                        <br>
@@ -91,7 +111,9 @@
 
 
                     
-                        
+                    <div class="row">
+                    <div class="col-md-1"></div>                    
+                    <div class="col-md-10">                    
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
@@ -165,6 +187,8 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
+                        </div>
                         <!-- end row -->
 
 
@@ -209,7 +233,8 @@
         <!--Morris Chart-->
 		<script src="{{asset('js/plugins/morris.min.js')}}"></script>
 		<script src="{{asset('js/plugins/raphael-min.js')}}"></script>
-
+        
+		<script src="{{asset('js/pages/jquery.morris.init.js')}}"></script>
         <!-- Dashboard init -->
         <script src="{{asset('js/pages/jquery.dashboard.js')}}"></script>
 
