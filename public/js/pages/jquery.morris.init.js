@@ -26,7 +26,7 @@
           hideHover: 'auto',
           lineWidth: '3px',
           pointSize: 0,
-          preUnits: '$',
+          preUnits: 'p',
           resize: true, //defaulted to true
           lineColors: lineColors
         });
@@ -110,16 +110,16 @@
 
         //create line chart
         var $data  = [
-            { label: '2008', malaria: 50, typhoid: 0 , cancer: 54, athma: 26},
-            { label: '2009', malaria: 75, typhoid: 50, cancer: 54, athma: 26 },
-            { label: '2010', malaria: 30, typhoid: 80, cancer: 54, athma: 26 },
-            { label: '2011', malaria: 50, typhoid: 50, cancer: 54, athma: 26 },
-            { label: '2012', malaria: 75, typhoid: 10, cancer: 54, athma: 26 },
-            { label: '2013', malaria: 50, typhoid: 40, cancer: 54, athma: 26 },
-            { label: '2014', malaria: 75, typhoid: 50, cancer: 54, athma: 26 },
-            { label: '2015', malaria: 100, typhoid: 70, cancer: 54, athma: 26 }
+            { label: '2008', malaria: 50, typhoid: 0 , cancer: 4, athma: 26},
+            { label: '2009', malaria: 75, typhoid: 50, cancer: 54, athma: 87 },
+            { label: '2010', malaria: 30, typhoid: 80, cancer: 84, athma: 15 },
+            { label: '2011', malaria: 50, typhoid: 50, cancer: 47, athma: 19 },
+            { label: '2012', malaria: 75, typhoid: 10, cancer: 54, athma: 0 },
+            { label: '2013', malaria: 50, typhoid: 40, cancer: 12, athma: 3 },
+            { label: '2014', malaria: 75, typhoid: 50, cancer: 0, athma: 26 },
+            { label: '2015', malaria: 100, typhoid: 70, cancer: 54, athma: 8 }
           ];
-        this.createLineChart('morris-line-example', $data, 'label', ['malaria', 'typhoid','cancer','athma'], ['Malaria', 'Typhoid','Cancer','Athma'],['0.1'],['#ffffff'],['#999999'], ['#188ae2', '#4bd396']);
+        this.createLineChart('morris-line-example', $data, 'label', ['malaria', 'typhoid','cancer','athma'], ['Malaria', 'Typhoid','Cancer','Athma'],['0.1'],['#ffffff'],['#999999'], ['#188ae2', '#222222','#b03aa6','#63d474']);
 
         //creating area chart
         var $areaData = [
