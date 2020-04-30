@@ -11,27 +11,33 @@
             <div class="col-md-6">
                 <div class="panel panel-border panel-inverse">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Panel Inverse</h3>
+                        <h3 class="panel-title">Education</h3>
                     </div>
                     <div class="panel-body">
                         <p>
-                        We register families and its members to generate familyidentification number (FID),
-                        which can be use to retrive and update the family member educational history.
+                        We register families and its members to generate family identification number (FIN),
+                        which can be use to retrive, Verify and update the family member educational information.
                         </p> 
-                        We can register schools of our locality and give them access to the individual 
-                        family member that were to be admitted to school.  
+                        <p> 
+                        We register schools (Nursery, Primary, Secondary) and their respective administrators in our of our communities and give them access to the individual 
+                        family member, for the academic information update example aqedmission, graduation, report among others.  
                         </p>
                         <p>
-                        The FID NO generated to the child is been taken to school as the requirement of admission
-                        the school will use the the number verify the candidate information and admitt the candidate
-                        this admission will be read by his profile
+                        The FIN generated to the child is to be taken to school as one of the admission requirement in
+                        the school,
                         </p>
                         <p>
-                        The school has the complete basic student management information they will have access to
+                        The number will be use to verify the candidate information and admitt the child in the school
+                        this admission will also add the educational record to the child's profile
+                        </p>
+                        <p>
+                        The school by default has the complete basic student management information enbaded they will have access to
                         the parent contact and others
                         </p>
-                        <p>At the left hand side are the statistics of student admission and graduation from various
-                        schools in the Bagudo Local Government at year of {{date('Y')}}</p>
+                        <p>
+                        At the left hand side are the statistics of student admission and graduation from various
+                        schools in the Bagudo Local Government at year of {{date('Y')}}
+                        </p>
                     </div>
                 </div>
             </div>
