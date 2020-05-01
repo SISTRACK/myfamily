@@ -1,3 +1,10 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -9,11 +16,18 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                        We register families and its members to generate profile for each family member,
-                        which can keep the health record of individual
+                        We register hospitals and its administrators in the comminity, 
+                        these hospital's administrators are responsible of registring 
+                        the doctors of the various department in the hospital
                         </p> 
-                        We can perform analysis on the people's health records
-                        in the family, community, town or village, district local government or the entire state , 
+                        <p>
+                        The patient will visit the hospital in the comminity with his family 
+                        indentification number (FIN), The registered Doctor will use the patient FIN to check the patient previous 
+                        health record and medications undergoes or admitt patient
+                        </p>
+                        <p>
+                        We can use health records from the varous family and its members within
+                        the family, community, town or village, district local government or the entire state , 
                         to identify some problem, example which area in Bagudo people 
                         suffer most from malaria ? 
                         </p>

@@ -1,3 +1,11 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -13,31 +21,29 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Education</h3>
                     </div>
-                    <div class="panel-body">
-                        <p>
-                        We register families and its members to generate family identification number (FIN),
-                        which can be use to retrive, Verify and update the family member educational information.
-                        </p> 
+                    <div class="panel-body"> 
+
                         <p> 
-                        We register schools (Nursery, Primary, Secondary) and their respective administrators in our of our communities and give them access to the individual 
-                        family member, for the academic information update example aqedmission, graduation, report among others.  
+                        We register schools (Nursery, Primary, Secondary) and their respective administrators,
+                        these administrator can admitt pupils or students into their respective schools using
+                        family identification number of the child
                         </p>
+
                         <p>
-                        The FIN generated to the child is to be taken to school as one of the admission requirement in
-                        the school,
+                        With these system the statistics of children that are admitted to school from the various
+                        schools in the community.
                         </p>
-                        <p>
-                        The number will be use to verify the candidate information and admitt the child in the school
-                        this admission will also add the educational record to the child's profile
-                        </p>
+
                         <p>
                         The school by default has the complete basic student management information enbaded they will have access to
                         the parent contact and others
                         </p>
+
                         <p>
                         At the left hand side are the statistics of student admission and graduation from various
                         schools in the Bagudo Local Government at year of {{date('Y')}}
                         </p>
+
                     </div>
                 </div>
             </div>
