@@ -6,7 +6,7 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-        <a href="{{url('/')}}" class="logo"><span>KHA<span>CIMS</span></span><i class="mdi mdi-layers"></i></a>
+        <a href="{{url('/')}}" class="logo"><span>FAMILY<span>PRIDE</span></span><i class="mdi mdi-layers"></i></a>
     </div>
 
     <!-- Button mobile view to collapse sidebar menu -->
