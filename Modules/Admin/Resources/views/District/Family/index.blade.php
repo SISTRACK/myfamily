@@ -10,7 +10,17 @@
 
 @section('page-content')
     @if(empty($district->families()))
-        <h3>{{'Families record not found in '.$district->name.' District'}}</h3>
+        <h3>{{'Families record not found in '.$district->name.' District'}}
+            <a class="btn btn-primary" href="{{route('district.family.create',
+                [
+                $district->lga->state->name,
+                $district->lga->name,
+                $district->name,
+                $district->id
+                ])}}">
+                Create One
+            </a>
+        </h3>
     @else
     <div class="row">
         <div class="col-xs-12">
