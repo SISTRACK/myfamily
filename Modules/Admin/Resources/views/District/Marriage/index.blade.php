@@ -9,7 +9,8 @@
 @endsection
 @section('page-content')    
     @if(empty($district->marriages()))
-        <h3>{{'Marriages record not found in '.$district->name.' District'}}</h3>
+        <h3>{{'Marriages record not found in '.$district->name.' District'}} <a class="btn btn-primary" data-toggle="modal" data-target="#newMarriage">Register One</a>
+        @include('admin::Admin.Registration.Marriage.verifyFamily')</h3>
     @else
     <div class="row">
         <div class="col-xs-12">

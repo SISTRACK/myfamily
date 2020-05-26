@@ -102,6 +102,25 @@ if (!function_exists('doctor')) {
     }
 }
 
+if (!function_exists('dashboardRoute')) {
+    function dashboardRoute()
+    {
+        $route = null;
+        if (auth()->guard('family')->check()){
+            $route = 'home';
+        }elseif (auth()->guard('admin')->check()) {
+            $route = 'admin.dashboard';
+        }elseif (auth()->guard('government')->check()) {
+            $route = 'government.dashboard';
+        }elseif (auth()->guard('health')->check()) {
+            $route = 'health.dashboard';
+        }elseif (auth()->guard('security')->check()) {
+            $route = 'security.dashboard';
+        }
+        return $route;
+    }
+}
+
 if (!function_exists('government')) {
     function government()
     {

@@ -16,29 +16,31 @@ class LandOnDistrictDashboardMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $accessibleDistricts = [];
+        // $accessibleDistricts = [];
 
-        $admin = auth()->guard('admin')->user();
+        // $admin = auth()->guard('admin')->user();
         
-        if($admin->state){
-            foreach ($admin->state->lgas as $lga) {
-                foreach ($lga->districts as $district) {
-                    $accessibleDistricts[] = $district->id;
-                }
-            }
-        }
+        // if($admin->state){
+        //     foreach ($admin->state->lgas as $lga) {
+        //         foreach ($lga->districts as $district) {
+        //             $accessibleDistricts[] = $district->id;
+        //         }
+        //     }
+        // }
 
-        if($admin->lga){
-            foreach ($admin->lga->districts as $district) {
-                $accessibleDistricts[] = $district->id;
-            }
-        }
+        // if($admin->lga){
+        //     foreach ($admin->lga->districts as $district) {
+        //         $accessibleDistricts[] = $district->id;
+        //     }
+        // }
         
-        if($admin->role_id == 1 || $admin->district_id == $request->route('district_id') || in_array($request->route('district_id'), $accessibleDistricts)){
-            return $next($request);
-        }
-        session()->flash('error',['Sorry you dont have access to the requested District']);
-        return back();
+        // if($admin->role_id == 1 || $admin->district_id == $request->route('districtId') || in_array($request->route('districtId'), $accessibleDistricts)){
+        //     return $next($request);
+        // }
+        // session()->flash('error',['Sorry you dont have access to the requested District']);
+        // return back();
+
+        return $next($request);
        
     }
 }
