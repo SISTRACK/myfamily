@@ -36,16 +36,11 @@ trait VerifyChild
 		}else if($this->data['gender'] == 2){
 			$image_id = 2;
 		}
-		if(admin()){
-			$family_id = session('family')->id;
-		}else{
-			$family_id = request()->route('familyId');
-		}
-
+		
 		$this->profile = $this->user->profile()->create([
 			'image_id'=>$image_id,
 			'gender_id'=>$this->data['gender'],
-			'family_id'=>$family_id,
+			'family_id'=>request()->route('family_id'),
 			'marital_status_id'=>1,
 			'date_of_birth'=>strtotime($this->data['date'])
 			]);

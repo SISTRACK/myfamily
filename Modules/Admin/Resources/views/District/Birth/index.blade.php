@@ -10,7 +10,8 @@
 
 @section('page-content')
     @if(empty($district->births()))
-        <h3>{{'Births record not found in '.$district->name.' District'}}</h3>
+        <h3>{{'Births record not found in '.$district->name.' District'}} <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newBirth">Register One</a>
+                                @include('admin::Admin.Registration.Birth.verifyFamily')</h3>
     @else
         <div class="row">
             <div class="col-xs-12">
@@ -32,7 +33,7 @@
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>
-            	                <a class="btn btn-success" href="#" data-toggle="modal" data-target="#newBirth">New Birth</a>
+            	                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newBirth">New Birth</a>
                                 @include('admin::Admin.Registration.Birth.verifyFamily')
                             </th>
                         </tr>

@@ -2,11 +2,9 @@
 
 namespace Modules\Birth\Services\Register\Validation\ValidInit;
 
-use Modules\Marriage\Entities\Status;
-
 use App\User;
-
 use Modules\Family\Entities\Family;
+use Modules\Marriage\Entities\Status;
 
 trait VerifyMother
 
@@ -36,11 +34,8 @@ trait VerifyMother
     }
     private function wifeStatus()
     {
-        if(admin()){
-            $family = session('family');
-        }else{
-            $family = Family::find(request()->route('familyId'));
-        }
+        $family = Family::find(request()->route('family_id'));
+        
     	foreach($family->familyAdmin->profile->husband->marriages as $marriage){
             if($marriage->is_active == 1 && $marriage->wife->status_id == $this->data['mother_status']){
             	$this->status = $marriage->wife->status;
