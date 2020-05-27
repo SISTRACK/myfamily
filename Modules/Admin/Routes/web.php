@@ -71,11 +71,11 @@ Route::prefix('admin')->group(function () {
 
   // Marriage administration
 
-  Route::get('/{state}/{lga}/{district}/{district_id}/family/{familyId}/marriage/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
+  Route::get('/{state}/{lga}/{district}/{district_id}/family/{familyId}/{status}/marriage/create', 'Registration\MarriageController@createMarriage')->name('district.marriages.create')->middleware('landOnDistrict');
 
   Route::post('/{state}/{lga}/{district}/{district_id}/marriages/verify-family', 'Registration\MarriageController@verifyMarriageFamily')->name('district.marriage.family.verify')->middleware('landOnDistrict');
 
-  Route::post('/{state}/{lga}/{district}/family/{family_id}marriage/register-family', 'Registration\MarriageController@registerMarriage')->name('district.family.marriage.register')->middleware('landOnDistrict');
+  Route::post('/{state}/{lga}/{district}/family/{family_id}/{status}/marriage/register', 'Registration\MarriageController@registerMarriage')->name('district.family.marriage.register')->middleware('landOnDistrict');
 
   Route::get('/{state}/{lga}/{district}/{town}/{family}/marriage/{marriage_id}/edit', 'Registration\MarriageController@editMarriage')->name('district.family.marriage.edit')->middleware('landOnDistrict');
 

@@ -1,4 +1,11 @@
-<form id="wizard-vertical" action="{{route('district.family.marriage.register',[$district->lga->state->name,$district->lga->name,$district->name,$family_admin->family->id])}}" method="POST">
+
+<form id="wizard-vertical" action="{{route('district.family.marriage.register',[
+$district->lga->state->name,
+$district->lga->name,
+$district->name,
+$family_admin->family->id,
+request()->route('status')
+])}}" method="POST">
 	@csrf
 	<h3>Husband Info</h3>
 	<section>

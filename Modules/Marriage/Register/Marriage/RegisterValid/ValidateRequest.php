@@ -2,8 +2,8 @@
 
 namespace Modules\Marriage\Register\Marriage\RegisterValid;
 
+use Modules\Family\Entities\Family;
 use Modules\Marriage\Register\Marriage\RegisterValid\ValidHusband;
-
 use Modules\Marriage\Register\Marriage\RegisterValid\ValidWife;
 
 use App\User;
@@ -20,9 +20,9 @@ trait ValidateRequest
     use ValidWife, ValidHusband;
 
     public function validateMarriageRequest(){
+        $this->family = Family::find(request()->route('family_id'));
         switch (request()->route('status')) {
             case 'father':
-                
                 $this->husbandUser = $this->family->familyAdmin->profile->user;
                 break;
             case 'son':

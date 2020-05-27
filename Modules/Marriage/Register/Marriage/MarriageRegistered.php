@@ -3,9 +3,8 @@
 namespace Modules\Marriage\Register\Marriage;
 
 use Modules\Marriage\Register\Marriage\RegisterEnd\RegisterThisMarriage;
-
 use Modules\Marriage\Register\Marriage\RegisterValid\ValidateRequest;
-
+use Modules\Family\Entities\Family;
 use Modules\Family\Services\Account\Family as NewChildFamily;
 
 class MarriageRegistered
@@ -15,20 +14,20 @@ class MarriageRegistered
 	use ValidateRequest, RegisterThisMarriage, NewChildFamily;
 
     public $data;
-    
     public $error;
+    public $family;
 
 	public function __construct($data)
 	{
 		$this->error = [];
 		$this->data = $data;
+		$this->family = Family::find(request()->route('family_id'));
 		$this->data = $this->prepareData($data);
 		$this->registeredNewMarriage();
 	}
       
     public function registeredNewMarriage()
     {
-
     	$validate = $this->validateMarriageRequest();
        
         if(empty($this->error)){

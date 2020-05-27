@@ -44,7 +44,9 @@ Breadcrumbs::for('admin.district.family.create', function ($trail,$district) {
     	$district->lga->state->name,
     	$district->lga->name,
     	$district->name,
-    	$district->id
+    	$district->id,
+        request()->route('family_id'),
+        request()->route('status'),
     ]));
 });
 
@@ -68,7 +70,8 @@ Breadcrumbs::for('admin.district.family.marriage.create', function ($trail,$fami
     	$family->location->area->town->district->lga->name,
     	$family->location->area->town->district->name,
     	$family->location->area->town->district->id,
-    	$family->id
+    	$family->id,
+        request()->route('status')
     ]));
 });
 

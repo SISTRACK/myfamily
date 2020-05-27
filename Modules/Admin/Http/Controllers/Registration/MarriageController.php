@@ -54,7 +54,8 @@ class MarriageController extends Controller
             $family->location->area->town->district->lga->name,
             $family->location->area->town->district->name,
             $family->location->area->town->district->id,
-            $family->id
+            $family->id,
+            $request->status
             ]);
     }
     /**
@@ -79,7 +80,7 @@ class MarriageController extends Controller
     public function editMarriage($state,$lga,$dist,$town,$family,$id)
     {   
         $marriage = Marriage::find($id);
-        return view('admin::Admin.Registration.Marriage.edit',['marriage'=>$marriage,'statuses'=>Status::all(),'district'=>$marriage->husband->profile->family->location->town->district]);
+        return view('admin::Admin.Registration.Marriage.edit',['marriage'=>$marriage,'statuses'=>WifeStatus::all(),'district'=>$marriage->husband->profile->family->location->town->district]);
     }
 
     /**
