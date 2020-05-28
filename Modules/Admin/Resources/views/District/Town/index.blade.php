@@ -2,7 +2,7 @@
 
 @section('page-content')
 
-    @if(!empty($district->families()))
+    @if(empty($district->families()))
         <h3>{{'Towns record not found in '.$district->name.' District'}}</h3>
     @else
     <div class="row">

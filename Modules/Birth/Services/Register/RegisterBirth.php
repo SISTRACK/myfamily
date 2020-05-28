@@ -4,7 +4,7 @@ namespace Modules\Birth\Services\Register;
 
 use Modules\Family\Services\Birth\birthCore;
 use Modules\Family\Entities\Family;
-use Modules\Birth\Services\Register\Validation\ValidateBirthRequest as ValidateRequest;
+use Modules\Birth\Services\Register\Validation\ValidateBirthRequest as alidateRequest;
 use Modules\Birth\Services\Register\NewBirth;
 use Modules\Birth\Events\NewBirthEvent;
 use Illuminate\Http\Request;

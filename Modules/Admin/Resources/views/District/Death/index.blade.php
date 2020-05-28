@@ -10,7 +10,9 @@
 
 @section('page-content')    
     @if(empty($district->deaths()))
-        <h3>{{'Deaths record not found in '.$district->name.' District'}}</h3>
+        <h3>{{'Deaths record not found in '.$district->name.' District'}} 
+            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#newDeath">New Death</a>
+            @include('admin::Admin.Registration.Death.verifyFamily')</h3>
     @else
     <div class="row">
     	<div class="col-xs-12">

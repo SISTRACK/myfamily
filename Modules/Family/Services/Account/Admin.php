@@ -32,9 +32,10 @@ trait Admin
 
     public function newUser()
     {
-        if(session('register') == null){
+
+        if(admin()){
         	if(empty($this->data['date'])){
-	            $this->user = $this->registerer;
+	            $this->user = User::find($this->data['husband_first_name']);
 	        }else{
 	            $this->user = User::firstOrCreate([
 	                'first_name'=>$this->data['name'],
@@ -44,7 +45,7 @@ trait Admin
 	                'phone'=>'',
 	            ]); 
 	        }
-        }elseif(session('register')['status'] == 'son'){
+        }elseif(request()->route('status') == 'son'){
         	$this->user = $this->husbandUser;
         }else{
         	$this->user = User::firstOrCreate([
@@ -57,11 +58,12 @@ trait Admin
    
     public function newProfile(User $user)
     {
- 
-        if(session('register') == null){
-	        if(!admin() && empty($this->data['date'])){
-	            $this->data['date'] = $this->data['mdate'];
-	        }
+        if(!admin() && empty($this->data['date'])){
+            $this->data['date'] = $this->data['mdate'];
+        }
+
+        if(admin()){
+
             if(!$user->profile){
     	    	$this->profile = $user->profile()->create([
                     'image_id'=>1,
@@ -70,16 +72,20 @@ trait Admin
     	            'date_of_birth' => strtotime($this->data['date']),
     	            'family_id' =>$this->family->id
     	        ]);
+            }else{
+                $this->profile = $user->profile;
             }
-        }elseif(session('register')['status'] == 'daughter' && $this->husbandUser->isNotEmpty()){
+        }elseif(request()->route('status') == 'daughter' && $this->husbandUser->isNotEmpty()){
             $this->profile = $this->husbandUser->profile;
-        }elseif(session('register')['status'] == 'son' && $this->husbandUser != null){
-            $this->profile = $this->husbandUser->profile;
+        }elseif(request()->route('status') == 'son'){
+            $this->profile = $this->user->profile;
+
         }else{
         	$this->husbandUser = $this->user;
             $this->profile = $this->user->profile()->create(['image_id'=>1,'gender_id'=>1,'marital_status_id'=>2,'date_of_birth'=>strtotime($this->data['husband_date'])]);
             $this->husbandProfile = $this->profile;
         }
+        
         $familyProfileCount = $this->family->familyProfileCounts->last();
         if($familyProfileCount){
             $this->profile->familyProfileCount()->create(['family_id'=>$this->family->id,'count'=>$familyProfileCount->count += 1]);

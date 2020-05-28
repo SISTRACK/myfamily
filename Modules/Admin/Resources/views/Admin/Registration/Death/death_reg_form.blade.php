@@ -1,5 +1,5 @@
 
-<form id="wizard-vertical" action="{{route('district.family.death.register',[$district->lga->state->name,$district->lga->name,$district->name,$district->id])}}" method="POST">
+<form id="wizard-vertical" action="{{route('district.family.death.register',[$district->lga->state->name,$district->lga->name,$district->name,$district->id,request()->route('familyId'),request()->route('status')])}}" method="POST">
 	@csrf
 	<h3>Personal Info</h3>
 	<section>

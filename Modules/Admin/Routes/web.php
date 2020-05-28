@@ -97,7 +97,7 @@ Route::prefix('admin')->group(function () {
 
    Route::post('/{state}/{lga}/{district}/{district_id}/death/family/verify', 'Registration\DeathController@verifyFamily')->name('district.death.family.verify')->middleware('landOnDistrict');
 
-   Route::post('/{state}/{lga}/{district}/{district_id}/family/death/register', 'Registration\DeathController@registerDeath')->name('district.family.death.register')->middleware('landOnDistrict');
+   Route::post('/{state}/{lga}/{district}/{district_id}/family/{familyId}/{status}/death/register', 'Registration\DeathController@registerDeath')->name('district.family.death.register')->middleware('landOnDistrict');
 
    Route::get('/{state}/{lga}/{district}/{family}/death/{death_id}/edit', 'Registration\DeathController@editDeath')->name('district.family.death.edit')->middleware('landOnDistrict');
 

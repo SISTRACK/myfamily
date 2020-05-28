@@ -42,7 +42,7 @@ trait RegisterThisMarriage
     		case 'son':
     		    //prepare family data
 		        $data['address'] = $this->address($data);
-		        $family = Family::find(request()->route('familyId'));
+		        $family = Family::find(request()->route('family_id'));
                 $this->family = $family;
 		        $user = User::find($data['husband_first_name']);
                 $data['family'] = strtolower($family->name.'-'.$user->first_name.'-child-id-'.$user->profile->child->birth->id);

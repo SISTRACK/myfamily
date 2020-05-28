@@ -9,7 +9,7 @@ request()->route('status')
 	@csrf
 	<h3>Husband Info</h3>
 	<section>
-		@if(session('register')['status'] == 'father')
+		@if(request()->route('status') == 'father')
 		<input type="hidden" name="user_id" value="{{$family_admin->user->id}}">
 		<div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="husband_first_name">Husband First Name</label>
@@ -23,7 +23,7 @@ request()->route('status')
 				<input value="{{$family_admin->user->last_name}}" value="{{old('husband_last_name')}}" placeholder="Husband Last Name"  id="husband_last_name" name="husband_last_name" type="text" class="required form-control" >
 			</div>
 		</div>
-		@elseif(session('register')['status'] == 'son')
+		@elseif(request()->route('status') == 'son')
         <div class="form-group clearfix">
 		<label class="col-lg-4 control-label " for="husband_first_name">Husband First Name</label>
 			<div class="col-lg-8">
@@ -131,7 +131,7 @@ request()->route('status')
 		@endif
 	</section>
 	<h3>Wife Info</h3>
-	@if(session('register')['status'] == 'daughter')
+	@if(request()->route('status') == 'daughter')
 	<section>
         <div class="form-group clearfix">
 			<label class="col-lg-4 control-label " for="userName1">Wife First Name</label>
@@ -162,11 +162,16 @@ request()->route('status')
 			<div class="col-lg-8">
 				<select name="wife_status" class="form-control" value="{{old('wife_status')}}" >
 					<option value=""></option>
-					
-                        @foreach($statuses as $status)
-                            <option value="{{$status->id}}">{{$status->name}}</option>
-                        @endforeach
-					
+					    @if(request()->route('status') == 'father')
+	                        @foreach($statuses as $status)
+	                            <option value="{{$status->id}}">{{$status->name}}</option>
+	                        @endforeach
+					    @else
+                            <option value="1">First Wife</option>
+                            <option value="2">Second Wife</option>
+                            <option value="3">Third Wife</option>
+                            <option value="4">Forth Wife</option>
+					    @endif
 				</select>
 			</div>
 		</div>
@@ -190,10 +195,15 @@ request()->route('status')
 			<div class="col-lg-8">
 				<select name="wife_status" class="form-control" value="{{old('wife_status')}}" >
 					<option value=""></option>
-					@if($family_admin->family->familyWivesStatusRemain())
+					@if(request()->route('status')== 'father')
                         @foreach($family_admin->family->familyWivesStatusRemain() as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach
+                    @else
+                        <option value="1">First Wife</option>
+                        <option value="2">Second Wife</option>
+                        <option value="3">Third Wife</option>
+                        <option value="4">Forth Wife</option>
 					@endif
 				</select>
 			</div>
@@ -213,7 +223,7 @@ request()->route('status')
 	<section>
 	    @include('marriage::Marriage.Forms.addressInfo')
 	</section>
-	@if(session('register')['status'] == 'father' || session('register')['status'] == 'son')
+	@if(request()->route('status') == 'father' || request()->route('status') == 'son')
 	<h3>Wife Family Info</h3>
 	<section>
 		<div class="widget widget-tabs widget-tabs-gray border-bottom-none">

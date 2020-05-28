@@ -20,9 +20,10 @@ class NewDeath
 	protected function registerDeath()
 
 	{
+
 		if($this->error == null){
 			$user = User::find($this->data['first_name']);
-			switch (session('death')['status']) {
+			switch (request()->route('status')) {
 				case 'husband':
 					if($user->profile->husband){
 						foreach($user->profile->husband->marriages as $marriage){

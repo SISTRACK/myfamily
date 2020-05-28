@@ -47,10 +47,12 @@
                 </thead>
                 <tbody>
                     @foreach($district->families() as $family)
-                        
+                        @if($family->familyAdmin)
                         <tr>
                             <td>{{$family->name}}</td>
-                            <td>{{count($family->familyAdmin->profile->totalFamilyMembers())}}</td>
+                            <td>
+                                {{count($family->familyAdmin->profile->totalFamilyMembers())}}
+                            </td>
                             <td>{{$family->tribe->name}}</td>
                             <td>{{$family->location->area->town->name}}</td>
                             <td>{{$family->location->area->name}}</td>
@@ -63,7 +65,7 @@
                                 <a href="{{route('district.family.delete',[$district->lga->state->name,$district->lga->name,$district->name,$family->id])}}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
-                       
+                       @endif
                     @endforeach
                 </tbody>
             </table>

@@ -1,1 +1,1 @@
-https://github.com/isahlabbo/nifis/invitations
+https://github.com/isahlabbo/nifis/invitation

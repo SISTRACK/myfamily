@@ -50,7 +50,7 @@ trait DistrictInforUpdate
 			foreach ($town->areas as $area) {
 				foreach ($area->locations as $location) {
 	                foreach ($location->families as $family) {
-	                	if($family->familyAdmin->profile->husband){
+	                	if($family->familyAdmin && $family->familyAdmin->profile->husband){
 	                        foreach ($family->familyAdmin->profile->husband->marriages as $marriage) {
 	                		    $marriages[] = $marriage;
 	                	    }
@@ -69,7 +69,7 @@ trait DistrictInforUpdate
 			foreach ($town->areas as $area) {
 				foreach ($area->locations as $location) {
 	                foreach ($location->families as $family) {
-	                	if($family->familyAdmin->profile->husband && $family->familyAdmin->profile->husband->father){
+	                	if($family->familyAdmin && $family->familyAdmin->profile->husband && $family->familyAdmin->profile->husband->father){
 		                    foreach ($family->familyAdmin->profile->husband->father->births as $birth) {
 								$births[] = $birth;
 							}
