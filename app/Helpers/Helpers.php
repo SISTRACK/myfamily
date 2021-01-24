@@ -1,4 +1,8 @@
 <?php
+use App\User;
+use Modules\Education\Entities\School;
+use Modules\Admin\Entities\Admin;
+use Modules\Government\Entities\Government;
 
 if (!function_exists('storage_url')) {
     function storage_url($url)
@@ -15,6 +19,31 @@ if (!function_exists('profile')) {
             $profile = auth()->guard('family')->user()->profile;
         }
         return $profile;
+    }
+}
+
+if (!function_exists('users')) {
+    function users()
+    {
+        
+        return [
+            [
+                'name'=>'Family Members Today',
+                'count'=>count(User::all()),
+            ],
+            [
+                'name'=>'Government Agents Today',
+                'count'=>count(Government::all()),
+            ],
+            [
+                'name'=>'Educational Agents Today',
+                'count'=>count(School::all()),
+            ],
+            [
+                'name'=>'Administrators Today',
+                'count'=>count(Admin::all()),
+            ]
+        ];
     }
 }
 

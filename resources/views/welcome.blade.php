@@ -9,7 +9,7 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Khaliphate citizen information management system</title>
+        <title>My Family Welcome Page</title>
 
         <!-- App css -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
